@@ -57,6 +57,7 @@
       badgeClass: 'badge-purple',
       regLink: 'https://docs.google.com/forms/d/e/1FAIpQLSecMiVxEvFhMVZTRqtTXktDA7kgFFP0Z4m9juzgaXOUrGFeyw/viewform?usp=sharing&ouid=110119880692213323631'
     },
+    /*
     {
       id: 'webdev',
       title: 'Web Dev Challenge',
@@ -106,6 +107,7 @@
       badge: 'Fun',
       badgeClass: 'badge-orange'
     }
+    */
   ];
 
   let currentFilter = 'all';
