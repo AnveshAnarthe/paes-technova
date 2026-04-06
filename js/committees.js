@@ -1,7 +1,7 @@
 /* ============================================================
    PAES TECHNOVA 2026 — Committees & Leadership JS
    ============================================================ */
-(function() {
+(function () {
   'use strict';
 
   const leadership = [
@@ -17,77 +17,77 @@
   ];
 
   const committees = [
-    { 
-      id: 'cultural', name: 'Cultural', icon: '🎭', 
-      coordinator: 'Ishwari Thokal', 
-      coCoordinator: 'Taniksha Mandalik, Vidita Rane', 
-      volunteers: ['Satpute Ishwari', 'Sanskruti Anarthe', 'Gayatri Dahatonde', 'Mamta Kambale', 'Pradnya Jadhav', 'Akanksha Bhumare', 'Om Rahane', 'Ishwari Gawali', 'Mandira Gadekar', 'Mohit Turakane', 'Sarthak Jorvekar', 'Sangram Tambe'] 
+    {
+      id: 'cultural', name: 'Cultural', icon: '🎭',
+      coordinator: 'Ishwari Thokal',
+      coCoordinator: 'Taniksha Mandalik, Vidita Rane',
+      volunteers: ['Satpute Ishwari', 'Sanskruti Anarthe', 'Gayatri Dahatonde', 'Mamta Kambale', 'Pradnya Jadhav', 'Akanksha Bhumare', 'Om Rahane', 'Ishwari Gawali', 'Mandira Gadekar', 'Mohit Turakane', 'Sarthak Jorvekar', 'Sangram Tambe']
     },
-    { 
-      id: 'technical', name: 'Technical', icon: '💻', 
-      coordinator: 'Siddhi Kharde', 
-      coCoordinator: 'Utkarsha Patil, Battin Aaditya', 
-      volunteers: ['Gayatri Devadhe', 'Sanskruti Anarthe', 'Ketaki Chaudhari', 'Trupti Dabhade', 'Akanksha Shelar', 'Prachi Tambe', 'Prajakta Bidave', 'Shrushti Dhokchaule', 'Aditya Battin', 'Varad Sonawane', 'Nilesh Bhojane'] 
+    {
+      id: 'technical', name: 'Technical', icon: '💻',
+      coordinator: 'Siddhi Kharde',
+      coCoordinator: 'Utkarsha Patil, Battin Aaditya',
+      volunteers: ['Gayatri Devadhe', 'Sanskruti Anarthe', 'Ketaki Chaudhari', 'Trupti Dabhade', 'Akanksha Shelar', 'Prachi Tambe', 'Prajakta Bidave', 'Shrushti Dhokchaule', 'Aditya Battin', 'Varad Sonawane', 'Nilesh Bhojane']
     },
-    { 
-      id: 'stage', name: 'Stage & Decoration', icon: '🎨', 
-      coordinator: 'Vishnu Walunj', 
-      coCoordinator: 'Dyaneshwari Nagare, Utkarsha Shinde', 
-      volunteers: ['Shrushti Dhokchaule', 'Prachi Tambe', 'Prajakta Bidave', 'Ashwini Kale', 'Nikhil Nehe', 'Kartik Bhand', 'Anuksha Kadaskar'] 
+    {
+      id: 'stage', name: 'Stage & Decoration', icon: '🎨',
+      coordinator: 'Vishnu Walunj & Gayatri Dahatonde',
+      coCoordinator: 'Dyaneshwari Nagare, Utkarsha Shinde',
+      volunteers: ['Shrushti Dhokchaule', 'Prachi Tambe', 'Prajakta Bidave', 'Ashwini Kale', 'Nikhil Nehe', 'Kartik Bhand', 'Anuksha Kadaskar']
     },
-    { 
-      id: 'publicity', name: 'Invitation/Publicity', icon: '📢', 
-      coordinator: 'Prajakta More', 
-      coCoordinator: 'Ishwari Gawali', 
-      volunteers: ['Yash Wakchaure', 'Pradnya Jadhav', 'Om Jadhav', 'Sanika Raut'] 
+    {
+      id: 'publicity', name: 'Invitation/Publicity', icon: '📢',
+      coordinator: 'Prajakta More',
+      coCoordinator: 'Ishwari Gawali',
+      volunteers: ['Yash Wakchaure', 'Pradnya Jadhav', 'Om Jadhav', 'Sanika Raut', 'Sakshi Shinde']
     },
-    { 
-      id: 'discipline', name: 'Discipline', icon: '🛡️', 
-      coordinator: 'Krushna Mhaske, Saurabh Salunke', 
-      coCoordinator: 'Mohit Turakane, Saurabh Dhokchaule', 
-      volunteers: ['Sagar Jadhav', 'Prasad Gosavi', 'Yash Waghchaure', 'Somnath Markad', 'Prachi Tambe', 'Prajakta Bidave', 'Amisha Munde', 'Prachi Pansare', 'Rupesh Magar'] 
+    {
+      id: 'discipline', name: 'Discipline', icon: '🛡️',
+      coordinator: 'Krushna Mhaske, Saurabh Salunke',
+      coCoordinator: 'Mohit Turakane, Saurabh Dhokchaule',
+      volunteers: ['Sagar Jadhav', 'Prasad Gosavi', 'Yash Waghchaure', 'Somnath Markad', 'Prachi Tambe', 'Prajakta Bidave', 'Amisha Munde', 'Prachi Pansare', 'Rupesh Magar']
     },
-    { 
-      id: 'momento', name: 'Momento', icon: '🏆', 
-      coordinator: 'Sarthak Jadhav', 
-      coCoordinator: 'Sairaj Mandlik', 
-      volunteers: ['Sarthak Gore'] 
+    {
+      id: 'momento', name: 'Momento', icon: '🏆',
+      coordinator: 'Sarthak Jadhav',
+      coCoordinator: 'Sairaj Mandlik',
+      volunteers: ['Sarthak Gore']
     },
-    { 
-      id: 'food', name: 'Food', icon: '🍔', 
-      coordinator: 'Abhiraj Kute', 
-      coCoordinator: 'Om Jadhav', 
-      volunteers: ['Arti Gite', 'Punam Fanase', 'Sarthak Jadhav', 'Akanksha Bhumare', 'Utkarsha Shinde', 'Ashlesha Tambe', 'Om Badakh', 'Abhay Gawade'] 
+    {
+      id: 'food', name: 'Food', icon: '🍔',
+      coordinator: 'Abhiraj Kute',
+      coCoordinator: 'Om Jadhav',
+      volunteers: ['Arti Gite', 'Punam Fanase', 'Sarthak Jadhav', 'Akanksha Bhumare', 'Utkarsha Shinde', 'Ashlesha Tambe', 'Om Badakh', 'Abhay Gawade']
     },
-    { 
-      id: 'transportation', name: 'Transportation', icon: '🚌', 
-      coordinator: 'Akanksha Bhumare', 
-      coCoordinator: 'Sanjana Ahire', 
-      volunteers: ['Namrata Pawar', 'Om Badakh', 'Anuja Gade', 'Gaurav Shelke'] 
+    {
+      id: 'transportation', name: 'Transportation', icon: '🚌',
+      coordinator: 'Akanksha Bhumare',
+      coCoordinator: 'Sanjana Ahire',
+      volunteers: ['Namrata Pawar', 'Om Badakh', 'Anuja Gade', 'Gaurav Shelke']
     },
-    { 
-      id: 'photography', name: 'Photography & Reels', icon: '📸', 
-      coordinator: 'Kartik Dhanwate, Krushna Mhaske', 
-      coCoordinator: 'Sangram Tambe, Mayur Katore', 
-      volunteers: ['Gauri Kharde'] 
+    {
+      id: 'photography', name: 'Photography & Reels', icon: '📸',
+      coordinator: 'Kartik Dhanwate, Krushna Mhaske',
+      coCoordinator: 'Sangram Tambe, Mayur Katore',
+      volunteers: ['Gauri Kharde']
     },
-    { 
-      id: 'documentation', name: 'Documentation', icon: '📝', 
-      coordinator: 'Adwait Pote', 
-      coCoordinator: 'Sanika Raut', 
-      volunteers: ['Prachi Tambe', 'Utkarsha Patil'] 
+    {
+      id: 'documentation', name: 'Documentation', icon: '📝',
+      coordinator: 'Adwait Pote',
+      coCoordinator: 'Sanika Raut',
+      volunteers: ['Prachi Tambe', 'Utkarsha Patil']
     },
-    { 
-      id: 'magazine', name: 'Magazine', icon: '📰', 
-      coordinator: 'Shravani Kasar (SE), Shubham Jadhav (TE), Shubham Mungase (BE)', 
-      coCoordinator: '-', 
-      volunteers: [] 
+    {
+      id: 'magazine', name: 'Magazine', icon: '📰',
+      coordinator: 'Shravani Kasar (SE), Shubham Jadhav (TE), Shubham Mungase (BE)',
+      coCoordinator: '-',
+      volunteers: []
     },
-    { 
-      id: 'sports', name: 'Sports', icon: '⚽', 
-      coordinator: 'Ankush Hire, Sanskruti Anarthe', 
-      coCoordinator: 'Sarjerao Paul, Amisha Munde', 
-      volunteers: ['Arti Gite', 'Abhiraj Gulve', 'Atharv Bolke', 'Anushka Kadaskar', 'Atul Ingale'] 
+    {
+      id: 'sports', name: 'Sports', icon: '⚽',
+      coordinator: 'Ankush Hire, Sanskruti Anarthe',
+      coCoordinator: 'Sarjerao Paul, Amisha Munde',
+      volunteers: ['Arti Gite', 'Abhiraj Gulve', 'Atharv Bolke', 'Anushka Kadaskar', 'Atul Ingale']
     }
   ];
 
