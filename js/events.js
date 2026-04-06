@@ -54,7 +54,8 @@
       registered: 156,
       teamEvent: false,
       badge: 'Cultural',
-      badgeClass: 'badge-purple'
+      badgeClass: 'badge-purple',
+      regLink: 'https://docs.google.com/forms/d/e/1FAIpQLSecMiVxEvFhMVZTRqtTXktDA7kgFFP0Z4m9juzgaXOUrGFeyw/viewform?usp=sharing&ouid=110119880692213323631'
     },
     {
       id: 'webdev',
