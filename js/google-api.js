@@ -20,7 +20,7 @@ const GoogleAPI = (function () {
       COMMITTEES: '1IdMwdGrEazA-6KQDARyxLQHzptNxaiH6hyMYo5WITeo',
       CERTIFICATES: '1HgkoqXkcnpms9dJiv83DHhtxXY4SAoWrTqqN6EuzVIQ',
       AUTH_WHITELIST: '1T0gU7Is-TzCwARsiroeI301ufz0vlaBAUHKj_KFpTHA',
-      GALLERY_INDEX: '1q6Lc8sSGW6OpBL4mAPe9pKV4-CPVAlHgP2RzFVcYghk '
+      GALLERY_INDEX: '1q6Lc8sSGW6OpBL4mAPe9pKV4-CPVAlHgP2RzFVcYghk'
     },
 
     // Google Drive Folder IDs

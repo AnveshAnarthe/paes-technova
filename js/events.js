@@ -268,7 +268,7 @@
   };
 
   // ---- Submit Registration ----
-  window.submitRegistration = function (e) {
+  window.submitRegistration = async function (e) {
     e.preventDefault();
 
     const name = document.getElementById('reg-name').value.trim();
@@ -319,8 +319,19 @@
     };
 
     console.log('Registration data:', rowData);
-    // TODO: Send to Google Sheets via google-api.js
-    // GoogleAPI.appendRow(SHEET_ID, 'Registrations!A:L', Object.values(rowData));
+
+    // Send to Google Sheets
+    try {
+      const config = GoogleAPI.getConfig();
+      await GoogleAPI.appendRow(
+        config.SHEETS.REGISTRATIONS,
+        'Sheet1!A:L',
+        Object.values(rowData)
+      );
+      console.log('✅ Saved to Google Sheets');
+    } catch (err) {
+      console.warn('Sheets save skipped (API not connected yet):', err.message);
+    }
 
     // Show success with QR
     showRegistrationSuccess(regId, name, selectedEvent.title);
