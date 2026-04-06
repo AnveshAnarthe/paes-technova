@@ -33,7 +33,7 @@
       id: 'stage', name: 'Stage & Decoration', icon: '🎨',
       coordinator: 'Vishnu Walunj & Gayatri Dahatonde',
       coCoordinator: 'Dyaneshwari Nagare, Utkarsha Shinde',
-      volunteers: ['Shrushti Dhokchaule', 'Prachi Tambe', 'Prajakta Bidave', 'Ashwini Kale', 'Nikhil Nehe', 'Kartik Bhand', 'Anuksha Kadaskar']
+      volunteers: ['Shrushti Dhokchaule', 'Prachi Tambe', 'Prajakta Bidave', 'Ashwini Kale', 'Nikhil Nehe', 'Kartik Bhand', 'Dnyaneshwari Nagare']
     },
     {
       id: 'publicity', name: 'Invitation/Publicity', icon: '📢',
