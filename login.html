@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login — PAES TECHNOVA 2026 Admin Panel">
+  <title>Login — PAES TECHNOVA 2026</title>
+  <link rel="icon" type="image/png" href="assets/logo-dept.png">
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-xl);
+    }
+    .login-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-3xl) var(--space-2xl);
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      animation: scaleIn 0.6s ease forwards;
+    }
+    .login-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+    .login-logos img {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3));
+    }
+    .login-title {
+      font-size: 1.6rem;
+      color: var(--neon-cyan);
+      text-shadow: var(--text-glow-cyan);
+      margin-bottom: var(--space-sm);
+    }
+    .login-subtitle {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-2xl);
+    }
+    .login-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+      margin: var(--space-lg) 0;
+    }
+    .login-info {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .login-info strong {
+      color: var(--neon-cyan);
+    }
+    #google-signin-btn {
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+    }
+    .login-back {
+      display: inline-block;
+      margin-top: var(--space-lg);
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+    .login-back:hover {
+      color: var(--neon-cyan);
+    }
+  </style>
+</head>
+<body>
+  <!-- 3D Background -->
+  <div id="three-canvas-container"></div>
+
+  <main class="page-wrapper">
+    <div class="login-page">
+      <div class="login-card">
+        <!-- Logos -->
+        <div class="login-logos">
+          <img src="assets/logo-dept.png" alt="ECE Department Logo">
+          <img src="assets/logo-vp.png" alt="VP Logo">
+        </div>
+
+        <h1 class="login-title">PAES Admin</h1>
+        <p class="login-subtitle">Sign in with your authorized Google account</p>
+
+        <!-- Google Sign-In Button -->
+        <div id="google-signin-btn"></div>
+
+        <div class="login-divider"></div>
+
+        <div class="login-info">
+          <p>🔒 Access restricted to <strong>VP</strong> and <strong>Coordinators</strong> only.</p>
+          <p>Contact VP Anvesh if you need access.</p>
+        </div>
+
+        <a href="index.html" class="login-back">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script type="module" src="js/three-scene.js"></script>
+  <script src="js/google-api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Auth.init();
+    });
+  </script>
+</body>
+</html>

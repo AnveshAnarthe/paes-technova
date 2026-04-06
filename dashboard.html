@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PAES Admin Dashboard — Manage events, notices, certificates, and more.">
+  <title>Dashboard — PAES TECHNOVA 2026</title>
+  <link rel="icon" type="image/png" href="assets/logo-dept.png">
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    .dash-page { max-width: 1200px; margin: 0 auto; }
+    .dash-welcome { text-align: center; margin-bottom: var(--space-2xl); }
+    .dash-welcome h2 { font-size: 1.3rem; color: var(--text-primary); }
+    .dash-welcome p { color: var(--text-muted); font-size: 0.9rem; }
+    .dash-role-badge { display: inline-block; background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue)); color: var(--bg-primary); font-family: var(--font-display); font-size: 0.7rem; font-weight: 700; padding: 6px 16px; border-radius: var(--radius-full); letter-spacing: 0.12em; margin-top: var(--space-sm); }
+
+    /* Quick Actions */
+    .dash-actions { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); margin-bottom: var(--space-2xl); }
+    .dash-action-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: var(--space-xl); text-align: center; cursor: pointer; transition: all var(--transition-base); text-decoration: none; }
+    .dash-action-card:hover { border-color: var(--neon-cyan); box-shadow: var(--glow-cyan); transform: translateY(-4px); text-shadow: none; }
+    .dash-action-icon { font-size: 2rem; margin-bottom: var(--space-sm); }
+    .dash-action-title { font-family: var(--font-display); font-size: 0.75rem; color: var(--text-primary); letter-spacing: 0.1em; }
+
+    /* Approval Queue */
+    .approval-section { margin-bottom: var(--space-2xl); }
+    .approval-item { display: flex; justify-content: space-between; align-items: center; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: var(--space-lg); margin-bottom: var(--space-sm); transition: all var(--transition-fast); }
+    .approval-item:hover { border-color: var(--glass-border-hover); }
+    .approval-info h4 { font-size: 0.9rem; color: var(--text-primary); margin-bottom: 4px; }
+    .approval-info p { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
+    .approval-actions { display: flex; gap: var(--space-sm); }
+
+    /* Activity Feed */
+    .activity-item { display: flex; gap: var(--space-md); padding: var(--space-md) 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+    .activity-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--neon-cyan); margin-top: 6px; flex-shrink: 0; }
+    .activity-text { font-size: 0.85rem; color: var(--text-secondary); }
+    .activity-time { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); margin-top: 2px; }
+
+    @media (max-width: 768px) { .dash-actions { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+  <div class="page-loader"><div class="spinner"></div><span class="page-loader-text">Loading Dashboard</span></div>
+  <div id="three-canvas-container"></div>
+  <div id="site-header"></div>
+
+  <main class="page-wrapper" style="padding-top: 100px;">
+    <section class="section">
+      <div class="dash-page">
+        <!-- Welcome -->
+        <div class="dash-welcome reveal">
+          <h2>Welcome back, <span class="text-cyan" id="dash-user-name">Admin</span></h2>
+          <p>PAES TECHNOVA 2026 Control Panel</p>
+          <div class="dash-role-badge" id="dash-role">ADMIN</div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="dash-actions reveal">
+          <a href="events.html" class="dash-action-card">
+            <div class="dash-action-icon">🎯</div>
+            <div class="dash-action-title">View Events</div>
+          </a>
+          <a href="notices.html" class="dash-action-card">
+            <div class="dash-action-icon">📢</div>
+            <div class="dash-action-title">Post Notice</div>
+          </a>
+          <a href="certificates.html" class="dash-action-card">
+            <div class="dash-action-icon">🎓</div>
+            <div class="dash-action-title">Certificates</div>
+          </a>
+          <a href="analytics.html" class="dash-action-card">
+            <div class="dash-action-icon">📊</div>
+            <div class="dash-action-title">Analytics</div>
+          </a>
+        </div>
+
+        <div class="grid-2" style="gap:var(--space-xl);">
+          <!-- Approval Queue -->
+          <div class="approval-section glass-panel reveal">
+            <h3 style="color:var(--neon-cyan);font-size:0.9rem;margin-bottom:var(--space-lg);">⏳ Pending Approvals</h3>
+            <div class="approval-item">
+              <div class="approval-info">
+                <h4>Gallery Upload — Sports Day Album</h4>
+                <p>By Photography Committee • 2 hours ago</p>
+              </div>
+              <div class="approval-actions">
+                <button class="btn btn-sm btn-primary" onclick="approveItem(1)">✓</button>
+                <button class="btn btn-sm btn-ghost" onclick="rejectItem(1)">✗</button>
+              </div>
+            </div>
+            <div class="approval-item">
+              <div class="approval-info">
+                <h4>Notice — Workshop Registration Extension</h4>
+                <p>By Notices Committee • 5 hours ago</p>
+              </div>
+              <div class="approval-actions">
+                <button class="btn btn-sm btn-primary" onclick="approveItem(2)">✓</button>
+                <button class="btn btn-sm btn-ghost" onclick="rejectItem(2)">✗</button>
+              </div>
+            </div>
+            <div class="approval-item">
+              <div class="approval-info">
+                <h4>Certificate Batch — Hackathon Winners</h4>
+                <p>By Certificates Committee • 1 day ago</p>
+              </div>
+              <div class="approval-actions">
+                <button class="btn btn-sm btn-primary" onclick="approveItem(3)">✓</button>
+                <button class="btn btn-sm btn-ghost" onclick="rejectItem(3)">✗</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Activity Feed -->
+          <div class="glass-panel reveal">
+            <h3 style="color:var(--neon-cyan);font-size:0.9rem;margin-bottom:var(--space-lg);">📋 Recent Activity</h3>
+            <div class="activity-item">
+              <div class="activity-dot"></div>
+              <div><div class="activity-text">New registration for Hackathon — Rahul M.</div><div class="activity-time">10 minutes ago</div></div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot" style="background:var(--neon-purple)"></div>
+              <div><div class="activity-text">Notice published — "Hackathon Problem Statements"</div><div class="activity-time">2 hours ago</div></div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot" style="background:var(--neon-green)"></div>
+              <div><div class="activity-text">5 certificates generated for Tech Quiz winners</div><div class="activity-time">5 hours ago</div></div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot" style="background:var(--neon-orange)"></div>
+              <div><div class="activity-text">Gallery album "Workshop Day 1" awaiting approval</div><div class="activity-time">1 day ago</div></div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot"></div>
+              <div><div class="activity-text">Sports Meet teams finalized — 12 teams</div><div class="activity-time">2 days ago</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logout -->
+        <div class="text-center mt-xl">
+          <button class="btn btn-ghost" onclick="Auth.logout()">🚪 Logout</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script type="module" src="js/three-scene.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/google-api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    function approveItem(id) {
+      event.target.closest('.approval-item').style.opacity = '0.3';
+      event.target.closest('.approval-item').style.pointerEvents = 'none';
+      if (typeof showToast === 'function') showToast('Approved ✓', 'success');
+    }
+    function rejectItem(id) {
+      event.target.closest('.approval-item').style.opacity = '0.3';
+      event.target.closest('.approval-item').style.pointerEvents = 'none';
+      if (typeof showToast === 'function') showToast('Rejected ✗', 'warning');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = Auth.getCurrentUser?.() || {};
+      document.getElementById('dash-user-name').textContent = user.name || 'Admin';
+      document.getElementById('dash-role').textContent = user.title || 'ADMIN';
+    });
+  </script>
+</body>
+</html>

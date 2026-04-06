@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TECHNOVA 2026 Notices — Latest announcements from PAES ECE Department.">
+  <title>Notices — PAES TECHNOVA 2026</title>
+  <link rel="icon" type="image/png" href="assets/logo-dept.png">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/notices.css">
+</head>
+<body>
+  <div class="page-loader"><div class="spinner"></div><span class="page-loader-text">Loading Notices</span></div>
+  <div id="three-canvas-container"></div>
+  <div id="site-header"></div>
+
+  <main class="page-wrapper" style="padding-top: 100px;">
+    <section class="section">
+      <div class="section-header">
+        <h1 class="section-title">Official <span>Notices</span></h1>
+        <p class="section-subtitle">Stay updated with the latest announcements from PAES</p>
+        <div class="section-line"></div>
+      </div>
+
+      <!-- Admin: Post Notice Button -->
+      <div class="text-center mb-xl" id="post-notice-area" style="display:none;">
+        <button class="btn btn-primary" onclick="toggleNoticeForm()">📝 Post New Notice</button>
+      </div>
+
+      <!-- Post Notice Form (admin only) -->
+      <div class="notice-form-wrapper glass-panel" id="notice-form" style="display:none;max-width:640px;margin:0 auto var(--space-2xl);">
+        <h3 style="color:var(--neon-cyan);margin-bottom:var(--space-lg);">Post New Notice</h3>
+        <form onsubmit="submitNotice(event)">
+          <div class="form-group mb-lg">
+            <label class="form-label">Title *</label>
+            <input type="text" class="form-input" id="notice-title" required placeholder="Notice title">
+          </div>
+          <div class="form-group mb-lg">
+            <label class="form-label">Content *</label>
+            <textarea class="form-textarea" id="notice-content" required placeholder="Notice content..." rows="5"></textarea>
+          </div>
+          <div class="form-group mb-lg">
+            <label class="form-label">Priority</label>
+            <select class="form-select" id="notice-priority">
+              <option value="info">ℹ️ Info</option>
+              <option value="important">⚠️ Important</option>
+              <option value="urgent">🔴 Urgent</option>
+            </select>
+          </div>
+          <div class="flex gap-md">
+            <button type="submit" class="btn btn-primary">Publish Notice</button>
+            <button type="button" class="btn btn-ghost" onclick="toggleNoticeForm()">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Notices List -->
+      <div class="notices-list" id="notices-list"></div>
+
+      <!-- Archive Toggle -->
+      <div class="text-center mt-xl">
+        <button class="btn btn-ghost" onclick="toggleArchive()" id="archive-toggle">📂 Show Archive</button>
+      </div>
+      <div class="notices-archive" id="notices-archive" style="display:none;"></div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="js/three-scene.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/google-api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/notices.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>emailjs.init('YOUR_PUBLIC_KEY_HERE');</script>
+
+</body>
+</html>

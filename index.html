@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PAES TECHNOVA 2026 — The official department fest of Electronics & Computer Engineering. Hackathon, Sports Meet, Cultural Night and more.">
+  <meta name="keywords" content="PAES, TECHNOVA, ECE, Electronics, Computer Engineering, Hackathon, Sports, Cultural, College Fest">
+  <title>PAES TECHNOVA 2026 — Electronics & Computer Engineering</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo-dept.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/homepage.css">
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div class="page-loader" id="page-loader">
+    <div class="spinner"></div>
+    <span class="page-loader-text">Initializing TECHNOVA</span>
+  </div>
+
+  <!-- 3D Background -->
+  <div id="three-canvas-container"></div>
+
+  <!-- Header (loaded dynamically) -->
+  <div id="site-header"></div>
+
+  <!-- Page Content -->
+  <main class="page-wrapper">
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="hero">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        DEPARTMENT FEST 2026
+      </div>
+
+      <h1 class="hero-title">
+        <span class="gradient-text">TECHNOVA</span>
+        <span class="year">Electronics & Computer Engineering</span>
+      </h1>
+
+      <p class="hero-desc">
+        The flagship technical festival of PAES — where innovation meets excellence.
+        Three days of hackathons, sports, culture, and technology.
+      </p>
+
+      <div class="hero-actions">
+        <a href="events.html" class="btn btn-primary btn-lg">Explore Events</a>
+        <a href="#countdowns" class="btn btn-secondary btn-lg">View Schedule</a>
+      </div>
+
+      <div class="hero-scroll-indicator">
+        <span>SCROLL</span>
+        <div class="arrow"></div>
+      </div>
+    </section>
+
+    <!-- ===== ANNOUNCEMENT TICKER ===== -->
+    <section class="ticker-section">
+      <div class="ticker-wrapper">
+        <div class="ticker-label">📢 NEWS</div>
+        <div class="ticker-track" id="ticker-track"></div>
+      </div>
+    </section>
+
+    <!-- ===== 3D EVENT CAROUSEL ===== -->
+    <section class="carousel-section section" id="events-preview">
+      <div class="section-header reveal">
+        <h2 class="section-title">Featured <span>Events</span></h2>
+        <p class="section-subtitle">Explore our flagship events for TECHNOVA 2026</p>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="carousel-container reveal">
+        <div class="carousel-viewport" id="carousel-viewport"></div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" id="carousel-prev" aria-label="Previous slide">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="carousel-dots" id="carousel-dots"></div>
+          <button class="carousel-btn" id="carousel-next" aria-label="Next slide">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COUNTDOWN TIMERS ===== -->
+    <section class="countdown-section section" id="countdowns">
+      <div class="section-header reveal">
+        <h2 class="section-title">Event <span>Countdown</span></h2>
+        <p class="section-subtitle">Time is ticking! Don't miss out on TECHNOVA 2026</p>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="countdown-grid reveal">
+        <!-- Hackathon -->
+        <div class="countdown-card" id="countdown-hackathon">
+          <div class="countdown-event-name">⚡ Hackathon</div>
+          <div class="countdown-event-date">Apr 17, 2026 • 09:00 AM</div>
+          <div class="countdown-timer">
+            <div class="countdown-unit">
+              <div class="countdown-value cd-days">--</div>
+              <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value cd-hours">--</div>
+              <div class="countdown-label">Hrs</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value cd-mins">--</div>
+              <div class="countdown-label">Min</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value cd-secs">--</div>
+              <div class="countdown-label">Sec</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sports Meet -->
+        <div class="countdown-card" id="countdown-sports">
+          <div class="countdown-event-name">🏆 Sports Meet</div>
+          <div class="countdown-event-date">Apr 13, 2026 • 08:00 AM</div>
+          <div class="countdown-timer">
+            <div class="countdown-unit">
+              <div class="countdown-value cd-days">--</div>
+              <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value cd-hours">--</div>
+              <div class="countdown-label">Hrs</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value cd-mins">--</div>
+              <div class="countdown-label">Min</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value cd-secs">--</div>
+              <div class="countdown-label">Sec</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cultural Night -->
+        <div class="countdown-card" id="countdown-cultural">
+          <div class="countdown-event-name">🎭 Cultural Night</div>
+          <div class="countdown-event-date">Apr 30, 2026 • 06:00 PM</div>
+          <div class="countdown-timer">
+            <div class="countdown-unit">
+              <div class="countdown-value cd-days">--</div>
+              <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value cd-hours">--</div>
+              <div class="countdown-label">Hrs</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value cd-mins">--</div>
+              <div class="countdown-label">Min</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value cd-secs">--</div>
+              <div class="countdown-label">Sec</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== QUICK LINKS ===== -->
+    <section class="quicklinks-section section" id="quicklinks">
+      <div class="section-header reveal">
+        <h2 class="section-title">Quick <span>Access</span></h2>
+        <p class="section-subtitle">Navigate to any section of TECHNOVA 2026</p>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="quicklinks-grid reveal">
+        <a href="events.html" class="quicklink-card" id="ql-events">
+          <div class="quicklink-icon">🎯</div>
+          <div class="quicklink-title">Events</div>
+          <div class="quicklink-desc">Register for hackathons, sports & cultural events</div>
+        </a>
+        <a href="notices.html" class="quicklink-card" id="ql-notices">
+          <div class="quicklink-icon">📢</div>
+          <div class="quicklink-title">Notices</div>
+          <div class="quicklink-desc">Latest announcements & updates</div>
+        </a>
+        <a href="committees.html" class="quicklink-card" id="ql-committees">
+          <div class="quicklink-icon">👥</div>
+          <div class="quicklink-title">Committees</div>
+          <div class="quicklink-desc">Meet the organizing teams</div>
+        </a>
+        <a href="gallery.html" class="quicklink-card" id="ql-gallery">
+          <div class="quicklink-icon">📸</div>
+          <div class="quicklink-title">Gallery</div>
+          <div class="quicklink-desc">Photos & reels from past events</div>
+        </a>
+        <a href="certificates.html" class="quicklink-card" id="ql-certificates">
+          <div class="quicklink-icon">🎓</div>
+          <div class="quicklink-title">Certificates</div>
+          <div class="quicklink-desc">Download & verify your certificates</div>
+        </a>
+        <a href="analytics.html" class="quicklink-card" id="ql-analytics">
+          <div class="quicklink-icon">📊</div>
+          <div class="quicklink-title">Analytics</div>
+          <div class="quicklink-desc">Event statistics & participation data</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer (loaded dynamically) -->
+  <div id="site-footer"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="js/three-scene.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/homepage.js"></script>
+
+</body>
+</html>

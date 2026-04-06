@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TECHNOVA 2026 Certificates — Generate, download and verify certificates.">
+  <title>Certificates — PAES TECHNOVA 2026</title>
+  <link rel="icon" type="image/png" href="assets/logo-dept.png">
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    .cert-page { max-width: 900px; margin: 0 auto; }
+    .cert-tabs { display: flex; border-bottom: 1px solid var(--glass-border); margin-bottom: var(--space-2xl); gap: 0; }
+    .cert-tab { font-family: var(--font-display); font-size: 0.75rem; color: var(--text-secondary); background: transparent; border: none; padding: var(--space-md) var(--space-xl); cursor: pointer; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 2px solid transparent; transition: all var(--transition-fast); }
+    .cert-tab.active { color: var(--neon-cyan); border-bottom-color: var(--neon-cyan); }
+    .cert-tab:hover { color: var(--neon-cyan); }
+    .cert-panel { display: none; }
+    .cert-panel.active { display: block; animation: slideUp 0.4s ease; }
+
+    /* Verify Section */
+    .verify-form { max-width: 500px; margin: 0 auto; text-align: center; }
+    .verify-form .form-input { text-align: center; font-family: var(--font-mono); font-size: 1.1rem; letter-spacing: 0.1em; }
+    .verify-result { margin-top: var(--space-xl); padding: var(--space-xl); border-radius: var(--radius-lg); }
+    .verify-valid { background: rgba(34, 211, 238, 0.05); border: 1px solid rgba(34, 211, 238, 0.3); }
+    .verify-invalid { background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.3); }
+
+    /* Generate Section */
+    .gen-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); margin-bottom: var(--space-2xl); }
+    .gen-option { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: var(--space-xl); text-align: center; cursor: pointer; transition: all var(--transition-base); }
+    .gen-option:hover, .gen-option.selected { border-color: var(--neon-cyan); box-shadow: var(--glow-cyan); }
+    .gen-option-icon { font-size: 2rem; margin-bottom: var(--space-md); }
+    .gen-option-title { font-family: var(--font-display); font-size: 0.8rem; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: var(--space-sm); }
+    .gen-option-desc { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* Certificate Preview */
+    .cert-preview { background: #fff; border-radius: var(--radius-lg); padding: var(--space-3xl); max-width: 700px; margin: var(--space-xl) auto; text-align: center; color: #1a1a2e; position: relative; overflow: hidden; }
+    .cert-preview-border { position: absolute; inset: 8px; border: 3px double #0077ff; border-radius: 12px; pointer-events: none; }
+    .cert-preview-logos { display: flex; justify-content: center; gap: var(--space-xl); margin-bottom: var(--space-lg); }
+    .cert-preview-logos img { width: 60px; height: 60px; object-fit: contain; }
+    .cert-preview h2 { font-family: var(--font-display); font-size: 1.5rem; color: #0077ff; margin-bottom: var(--space-sm); }
+    .cert-preview .cert-sub { font-family: var(--font-body); font-size: 0.85rem; color: #666; margin-bottom: var(--space-xl); }
+    .cert-preview .cert-name { font-family: var(--font-display); font-size: 1.8rem; color: #1a1a2e; border-bottom: 2px solid #0077ff; display: inline-block; padding-bottom: 4px; margin-bottom: var(--space-md); }
+    .cert-preview .cert-event { font-size: 1rem; color: #333; margin-bottom: var(--space-lg); }
+    .cert-preview .cert-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: var(--space-2xl); }
+    .cert-preview .cert-sig { text-align: center; }
+    .cert-preview .cert-sig-line { width: 120px; border-top: 1px solid #333; margin: 0 auto var(--space-xs); }
+    .cert-preview .cert-sig-name { font-size: 0.75rem; color: #666; }
+
+    @media (max-width: 768px) {
+      .gen-options { grid-template-columns: 1fr; }
+      .cert-preview { padding: var(--space-xl); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-loader"><div class="spinner"></div><span class="page-loader-text">Loading Certificates</span></div>
+  <div id="three-canvas-container"></div>
+  <div id="site-header"></div>
+
+  <main class="page-wrapper" style="padding-top: 100px;">
+    <section class="section">
+      <div class="section-header">
+        <h1 class="section-title"><span>Certificates</span></h1>
+        <p class="section-subtitle">Generate, download, and verify TECHNOVA certificates</p>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="cert-page">
+        <!-- Tabs -->
+        <div class="cert-tabs">
+          <button class="cert-tab active" onclick="switchCertTab('verify')">🔍 Verify</button>
+          <button class="cert-tab" onclick="switchCertTab('generate')" id="gen-tab">🎓 Generate</button>
+          <button class="cert-tab" onclick="switchCertTab('preview')">👁️ Preview</button>
+        </div>
+
+        <!-- VERIFY PANEL -->
+        <div class="cert-panel active" id="panel-verify">
+          <div class="verify-form">
+            <h3 class="text-cyan mb-lg" style="font-size:1.1rem;">Verify Your Certificate</h3>
+            <p class="mb-lg" style="color:var(--text-secondary);">Enter your Registration ID or scan the QR code on your certificate</p>
+            <div class="form-group mb-lg">
+              <input type="text" class="form-input" id="verify-input" placeholder="PAES-HACKATHON-XXXXXX">
+            </div>
+            <button class="btn btn-primary" onclick="verifyCertificate()">Verify Certificate</button>
+            <div id="verify-result"></div>
+          </div>
+        </div>
+
+        <!-- GENERATE PANEL -->
+        <div class="cert-panel" id="panel-generate">
+          <h3 class="text-cyan mb-lg" style="font-size:1rem;text-align:center;">Select Generation Mode</h3>
+          <div class="gen-options">
+            <div class="gen-option" onclick="selectGenOption('all')">
+              <div class="gen-option-icon">👥</div>
+              <div class="gen-option-title">All Participants</div>
+              <div class="gen-option-desc">Generate certificates for all registered participants of an event</div>
+            </div>
+            <div class="gen-option" onclick="selectGenOption('winners')">
+              <div class="gen-option-icon">🏆</div>
+              <div class="gen-option-title">Winners Only</div>
+              <div class="gen-option-desc">Generate certificates for 1st, 2nd, 3rd place winners</div>
+            </div>
+            <div class="gen-option" onclick="selectGenOption('custom')">
+              <div class="gen-option-icon">✏️</div>
+              <div class="gen-option-title">Custom List</div>
+              <div class="gen-option-desc">Enter custom names and details for certificate generation</div>
+            </div>
+          </div>
+          <div class="text-center">
+            <p style="color:var(--text-muted);font-size:0.85rem;">⚠️ Requires Google Slides API setup and admin login</p>
+          </div>
+        </div>
+
+        <!-- PREVIEW PANEL -->
+        <div class="cert-panel" id="panel-preview">
+          <div class="cert-preview">
+            <div class="cert-preview-border"></div>
+            <div class="cert-preview-logos">
+              <img src="assets/logo-dept.png" alt="ECE Logo">
+              <img src="assets/logo-vp.png" alt="VP Logo">
+            </div>
+            <h2>CERTIFICATE OF PARTICIPATION</h2>
+            <div class="cert-sub">PAES — Electronics & Computer Engineering<br>TECHNOVA 2026</div>
+            <p style="font-size:0.9rem;color:#666;margin-bottom:var(--space-md);">This is to certify that</p>
+            <div class="cert-name">John Doe</div>
+            <div class="cert-event">has successfully participated in <strong>Hackathon 2026</strong></div>
+            <p style="font-size:0.8rem;color:#999;">held on May 15, 2026 at Electronics & Computer Engineering Department</p>
+            <div class="cert-footer">
+              <div class="cert-sig">
+                <div class="cert-sig-line"></div>
+                <div class="cert-sig-name">VP Anvesh</div>
+                <div style="font-size:0.65rem;color:#999;">Vice President, PAES</div>
+              </div>
+              <div style="font-size:0.7rem;color:#aaa;">ID: PAES-HACK-SAMPLE</div>
+              <div class="cert-sig">
+                <div class="cert-sig-line"></div>
+                <div class="cert-sig-name">Technical Coordinator</div>
+                <div style="font-size:0.65rem;color:#999;">TECHNOVA 2026</div>
+              </div>
+            </div>
+          </div>
+          <p class="text-center mt-lg" style="color:var(--text-muted);font-size:0.8rem;">This is a sample preview. Actual certificates are generated via Google Slides.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script type="module" src="js/three-scene.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    function switchCertTab(panel) {
+      document.querySelectorAll('.cert-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.cert-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(`panel-${panel}`).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function verifyCertificate() {
+      const input = document.getElementById('verify-input').value.trim();
+      const result = document.getElementById('verify-result');
+      if (!input) { if (typeof showToast === 'function') showToast('Please enter a Registration ID', 'warning'); return; }
+
+      // Simulate verification
+      if (input.startsWith('PAES-')) {
+        result.innerHTML = `
+          <div class="verify-result verify-valid" style="animation:slideUp 0.4s ease">
+            <h3 style="color:var(--neon-green);margin-bottom:var(--space-md);">✅ Certificate Verified!</h3>
+            <p style="color:var(--text-secondary);">This certificate is valid and was issued by PAES TECHNOVA 2026.</p>
+            <div style="margin-top:var(--space-md);font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+              <p>ID: ${input}</p>
+              <p>Event: TECHNOVA 2026</p>
+              <p>Status: Active ✓</p>
+            </div>
+          </div>`;
+      } else {
+        result.innerHTML = `
+          <div class="verify-result verify-invalid" style="animation:slideUp 0.4s ease">
+            <h3 style="color:var(--neon-red);margin-bottom:var(--space-md);">❌ Invalid Certificate</h3>
+            <p style="color:var(--text-secondary);">No certificate found with this ID. Please check and try again.</p>
+          </div>`;
+      }
+    }
+
+    function selectGenOption(type) {
+      document.querySelectorAll('.gen-option').forEach(o => o.classList.remove('selected'));
+      event.target.closest('.gen-option').classList.add('selected');
+      if (typeof showToast === 'function') showToast(`${type === 'all' ? 'All Participants' : type === 'winners' ? 'Winners Only' : 'Custom List'} mode selected. Connect Google Slides API to generate.`, 'info');
+    }
+  </script>
+</body>
+</html>

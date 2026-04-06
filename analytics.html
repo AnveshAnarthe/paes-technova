@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TECHNOVA 2026 Analytics — Event participation data and statistics.">
+  <title>Analytics — PAES TECHNOVA 2026</title>
+  <link rel="icon" type="image/png" href="assets/logo-dept.png">
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    .analytics-page { max-width: 1200px; margin: 0 auto; }
+
+    /* Stat Cards */
+    .stat-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); margin-bottom: var(--space-2xl); }
+    .stat-card { background: var(--glass-bg); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: var(--space-xl); text-align: center; transition: all var(--transition-base); }
+    .stat-card:hover { border-color: var(--glass-border-hover); box-shadow: var(--shadow-card-hover); transform: translateY(-4px); }
+    .stat-icon { font-size: 1.8rem; margin-bottom: var(--space-sm); }
+    .stat-value { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: var(--neon-cyan); text-shadow: 0 0 10px rgba(0,240,255,0.4); }
+    .stat-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: var(--space-xs); }
+
+    /* Chart Containers */
+    .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); margin-bottom: var(--space-xl); }
+    .chart-container { background: var(--glass-bg); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: var(--space-xl); }
+    .chart-title { font-family: var(--font-display); font-size: 0.8rem; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: var(--space-lg); text-transform: uppercase; }
+    .chart-wrapper { position: relative; height: 300px; }
+
+    .chart-full { grid-column: span 2; }
+
+    /* Export */
+    .export-section { text-align: center; padding: var(--space-xl) 0; }
+
+    @media (max-width: 1024px) { .charts-row { grid-template-columns: 1fr; } .chart-full { grid-column: span 1; } }
+    @media (max-width: 768px) { .stat-cards { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+  <div class="page-loader"><div class="spinner"></div><span class="page-loader-text">Loading Analytics</span></div>
+  <div id="three-canvas-container"></div>
+  <div id="site-header"></div>
+
+  <main class="page-wrapper" style="padding-top: 100px;">
+    <section class="section">
+      <div class="section-header">
+        <h1 class="section-title">Event <span>Analytics</span></h1>
+        <p class="section-subtitle">Comprehensive data insights for TECHNOVA 2026</p>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="analytics-page">
+        <!-- Stat Cards -->
+        <div class="stat-cards reveal">
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-value" id="stat-registrations">384</div>
+            <div class="stat-label">Total Registrations</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-value" id="stat-events">6</div>
+            <div class="stat-label">Active Events</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🎓</div>
+            <div class="stat-value" id="stat-certificates">142</div>
+            <div class="stat-label">Certificates Issued</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">👤</div>
+            <div class="stat-value" id="stat-committees">6</div>
+            <div class="stat-label">Committees</div>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-row reveal">
+          <div class="chart-container">
+            <div class="chart-title">📊 Registrations by Event</div>
+            <div class="chart-wrapper"><canvas id="chart-registrations"></canvas></div>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">🎓 Participation by Year</div>
+            <div class="chart-wrapper"><canvas id="chart-year"></canvas></div>
+          </div>
+        </div>
+
+        <div class="charts-row reveal">
+          <div class="chart-container">
+            <div class="chart-title">📈 Registration Trend</div>
+            <div class="chart-wrapper"><canvas id="chart-trend"></canvas></div>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">🏅 Certificate Distribution</div>
+            <div class="chart-wrapper"><canvas id="chart-certs"></canvas></div>
+          </div>
+        </div>
+
+        <div class="charts-row reveal">
+          <div class="chart-container chart-full">
+            <div class="chart-title">👥 Committee Activity</div>
+            <div class="chart-wrapper"><canvas id="chart-committee"></canvas></div>
+          </div>
+        </div>
+
+        <!-- Export -->
+        <div class="export-section reveal">
+          <button class="btn btn-primary btn-lg" onclick="exportReport()">📥 Export Branded Report (PDF)</button>
+          <p class="mt-md" style="color:var(--text-muted);font-size:0.8rem;">Report includes PAES branding and dual logos</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script type="module" src="js/three-scene.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>

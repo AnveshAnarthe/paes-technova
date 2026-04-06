@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TECHNOVA 2026 Gallery — Photos and reels from PAES events.">
+  <title>Gallery — PAES TECHNOVA 2026</title>
+  <link rel="icon" type="image/png" href="assets/logo-dept.png">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+  <div class="page-loader"><div class="spinner"></div><span class="page-loader-text">Loading Gallery</span></div>
+  <div id="three-canvas-container"></div>
+  <div id="site-header"></div>
+
+  <main class="page-wrapper" style="padding-top: 100px;">
+    <section class="section">
+      <div class="section-header">
+        <h1 class="section-title">Event <span>Gallery</span></h1>
+        <p class="section-subtitle">Relive the moments from PAES events</p>
+        <div class="section-line"></div>
+      </div>
+
+      <!-- Albums 3D Carousel -->
+      <div class="albums-section" id="albums-section">
+        <h3 class="text-center text-cyan mb-xl" style="font-size:0.85rem;letter-spacing:0.15em;">SELECT AN ALBUM</h3>
+        <div class="albums-carousel" id="albums-carousel"></div>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="gallery-grid"></div>
+
+      <!-- Upload Button (admin) -->
+      <div class="text-center mt-xl" id="upload-area" style="display:none;">
+        <button class="btn btn-primary" onclick="document.getElementById('upload-input').click()">📤 Upload Photos</button>
+        <input type="file" id="upload-input" multiple accept="image/*,video/*" style="display:none" onchange="handleUpload(event)">
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+      <button class="lightbox-close" onclick="closeLightbox()">×</button>
+      <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1, event)">‹</button>
+      <div class="lightbox-content">
+        <img src="" alt="" id="lightbox-img" class="lightbox-img">
+        <!-- Watermark -->
+        <div class="lightbox-watermark">
+          <img src="assets/logo-dept.png" alt="ECE" style="width:24px;height:24px;opacity:0.5;">
+          <span>PAES ECE</span>
+        </div>
+      </div>
+      <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1, event)">›</button>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script type="module" src="js/three-scene.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/gallery.js"></script>
+</body>
+</html>

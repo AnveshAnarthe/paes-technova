@@ -1,0 +1,175 @@
+/* ============================================================
+   PAES TECHNOVA 2026 — Committees Styles
+   3D Flip Cards
+   ============================================================ */
+
+.committees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-xl);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* 3D Flip Card */
+.committee-card {
+  perspective: 1000px;
+  height: 360px;
+  cursor: pointer;
+}
+
+.committee-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.committee-card:hover .committee-card-inner,
+.committee-card.flipped .committee-card-inner {
+  transform: rotateY(180deg);
+}
+
+.committee-card-front,
+.committee-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+}
+
+/* Front */
+.committee-card-front {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-2xl);
+  gap: var(--space-lg);
+}
+
+.committee-icon {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.committee-card:hover .committee-icon {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.committee-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--neon-cyan);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+}
+
+.committee-members-front {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.committee-role {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.committee-person {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.committee-flip-hint {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: var(--space-md);
+}
+
+/* Back */
+.committee-card-back {
+  background: var(--bg-secondary);
+  border-color: var(--neon-cyan);
+  transform: rotateY(180deg);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+}
+
+.committee-back-title {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--neon-cyan);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.committee-back-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+  letter-spacing: 0.08em;
+}
+
+.volunteers-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 1;
+  overflow-y: auto;
+}
+
+.volunteers-list li {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  padding: 6px var(--space-sm);
+  border-left: 2px solid rgba(0, 240, 255, 0.2);
+  transition: all var(--transition-fast);
+}
+.volunteers-list li:hover {
+  border-left-color: var(--neon-cyan);
+  color: var(--text-primary);
+  background: rgba(0, 240, 255, 0.03);
+}
+
+.committee-dashboard-btn {
+  margin-top: auto;
+  padding-top: var(--space-md);
+}
+
+@media (max-width: 768px) {
+  .committees-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+  .committee-card { height: 340px; }
+}

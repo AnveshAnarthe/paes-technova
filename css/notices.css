@@ -1,0 +1,167 @@
+/* ============================================================
+   PAES TECHNOVA 2026 — Notices Styles
+   ============================================================ */
+
+.notices-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Holographic Notice Card */
+.notice-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-base);
+  animation: slideUp 0.5s ease both;
+}
+.notice-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-blue), var(--neon-purple));
+  background-size: 200% 100%;
+  animation: gradientShift 4s linear infinite;
+}
+.notice-card:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+.notice-card.urgent::before { background: var(--neon-red); }
+.notice-card.important::before { background: var(--neon-orange); }
+
+.notice-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.notice-card-title {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  letter-spacing: 0.03em;
+}
+
+.notice-card-date {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.notice-card-content {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+}
+.notice-card-content.truncated {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.notice-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--glass-border);
+}
+
+.notice-card-logos {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.notice-card-logos img {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  object-fit: contain;
+  opacity: 0.5;
+}
+
+.notice-card-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.notice-share-btn {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  transition: all var(--transition-fast);
+}
+.notice-share-btn:hover {
+  color: var(--neon-cyan);
+  border-color: var(--neon-cyan);
+}
+
+/* Read More */
+.notice-read-more {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  color: var(--neon-cyan);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0;
+  transition: color var(--transition-fast);
+}
+.notice-read-more:hover {
+  color: #fff;
+  text-shadow: var(--text-glow-cyan);
+}
+
+/* Archive */
+.notices-archive {
+  max-width: 800px;
+  margin: var(--space-xl) auto 0;
+}
+
+.archive-month {
+  margin-bottom: var(--space-lg);
+}
+
+.archive-month-title {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--glass-border);
+  margin-bottom: var(--space-md);
+}
+
+/* Notice Form */
+.notice-form-wrapper {
+  animation: slideDown 0.4s ease;
+}
+
+@media (max-width: 768px) {
+  .notice-card { padding: var(--space-lg); }
+  .notice-card-header { flex-direction: column; }
+}

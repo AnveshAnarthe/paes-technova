@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TECHNOVA 2026 Events — Register for Hackathon, Sports Meet, Cultural Night and more.">
+  <title>Events — PAES TECHNOVA 2026</title>
+  <link rel="icon" type="image/png" href="assets/logo-dept.png">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/events.css">
+</head>
+<body>
+  <!-- Page Loader -->
+  <div class="page-loader"><div class="spinner"></div><span class="page-loader-text">Loading Events</span></div>
+
+  <!-- 3D Background -->
+  <div id="three-canvas-container"></div>
+
+  <!-- Header -->
+  <div id="site-header"></div>
+
+  <main class="page-wrapper" style="padding-top: 100px;">
+
+    <!-- Page Header -->
+    <section class="section">
+      <div class="section-header">
+        <h1 class="section-title">TECHNOVA <span>Events</span></h1>
+        <p class="section-subtitle">Choose your arena. Register. Compete. Win.</p>
+        <div class="section-line"></div>
+      </div>
+
+      <!-- Search -->
+      <div class="events-search">
+        <span class="events-search-icon">🔍</span>
+        <input type="text" class="form-input" id="events-search" placeholder="Search events...">
+      </div>
+
+      <!-- Filter -->
+      <div class="events-filter-bar">
+        <button class="filter-btn active" data-filter="all">All Events</button>
+        <button class="filter-btn" data-filter="technical">Technical</button>
+        <button class="filter-btn" data-filter="sports">Sports</button>
+        <button class="filter-btn" data-filter="cultural">Cultural</button>
+        <button class="filter-btn" data-filter="fun">Fun</button>
+      </div>
+
+      <!-- Events Grid -->
+      <div class="events-grid" id="events-grid"></div>
+    </section>
+
+  </main>
+
+  <!-- Registration Modal -->
+  <div class="modal-overlay reg-modal" id="reg-modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeRegistration()">×</button>
+      <h2 class="modal-title" id="reg-event-title">Register</h2>
+
+      <!-- Registration Form -->
+      <form class="reg-form" id="reg-form" onsubmit="submitRegistration(event)">
+
+        <!-- Individual / Team Toggle -->
+        <div class="reg-type-toggle">
+          <button type="button" class="reg-type-btn active" data-type="individual">Individual</button>
+          <button type="button" class="reg-type-btn" data-type="team" id="reg-type-team">Team</button>
+        </div>
+
+        <!-- Personal Details -->
+        <div class="form-group">
+          <label class="form-label" for="reg-name">Full Name *</label>
+          <input type="text" class="form-input" id="reg-name" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-email">Email Address *</label>
+          <input type="email" class="form-input" id="reg-email" placeholder="your.email@college.edu" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-phone">Phone Number *</label>
+          <input type="tel" class="form-input" id="reg-phone" placeholder="+91 98765 43210" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-year">Year / Class *</label>
+          <select class="form-select" id="reg-year" required>
+            <option value="">Select Year</option>
+            <option value="FE">FE (First Year)</option>
+            <option value="SE">SE (Second Year)</option>
+            <option value="TE">TE (Third Year)</option>
+            <option value="BE">BE (Final Year)</option>
+          </select>
+        </div>
+
+        <!-- Team Section -->
+        <div class="team-members-section" id="team-section">
+          <div class="form-group">
+            <label class="form-label" for="reg-team-name">Team Name *</label>
+            <input type="text" class="form-input" id="reg-team-name" placeholder="Enter team name">
+          </div>
+
+          <label class="form-label">Team Members <span id="team-info" style="color:var(--text-muted);font-weight:400;text-transform:none;"></span></label>
+          <div id="team-members-list">
+            <div class="team-member-row">
+              <input type="text" class="form-input team-member-name" placeholder="Member 2 Name" required>
+              <input type="email" class="form-input team-member-email" placeholder="Email" required>
+              <button type="button" class="remove-member-btn" onclick="removeTeamMember(this)">×</button>
+            </div>
+          </div>
+          <button type="button" class="add-member-btn" onclick="addTeamMember()">+ Add Team Member</button>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg w-full" id="reg-submit-btn">
+          Submit Registration
+        </button>
+      </form>
+
+      <!-- Success / QR Code -->
+      <div class="reg-success" id="reg-success">
+        <div class="reg-success-icon">✅</div>
+        <h3>Registration Confirmed!</h3>
+        <p>Welcome, <strong id="success-name"></strong>! You're registered for <strong id="success-event"></strong>.</p>
+        <div class="qr-code-container" id="qr-code"></div>
+        <div class="reg-id-display" id="success-reg-id"></div>
+        <p style="margin-top:var(--space-md);font-size:0.8rem;">Save this QR code — it's your entry pass!</p>
+        <button class="btn btn-secondary mt-lg" onclick="closeRegistration()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="site-footer"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script type="module" src="js/three-scene.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/events.js"></script>
+</body>
+</html>
