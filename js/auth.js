@@ -89,18 +89,20 @@ const Auth = (function () {
     // Store in local storage to persist across tabs
     localStorage.setItem('paes_user', JSON.stringify(currentUser));
 
+    if (typeof showToast === 'function') showToast(`Authenticating Drive Access...`, 'info');
+
     // Get OAuth2 access token for API calls
-    getOAuthToken();
-
-    if (typeof showToast === 'function') showToast(`Welcome, ${currentUser.name}! (${currentUser.title})`, 'success');
-
-    // Redirect to dashboard
-    setTimeout(() => {
-      window.location.href = 'dashboard.html';
-    }, 1500);
+    getOAuthToken(() => {
+      if (typeof showToast === 'function') showToast(`Welcome, ${currentUser.name}! (${currentUser.title})`, 'success');
+      
+      // Redirect to dashboard
+      setTimeout(() => {
+        window.location.href = 'dashboard.html';
+      }, 500);
+    });
   }
 
-  function getOAuthToken() {
+  function getOAuthToken(onSuccess) {
     const config = GoogleAPI.getConfig();
     const client = google.accounts.oauth2.initTokenClient({
       client_id: config.CLIENT_ID,
@@ -108,6 +110,7 @@ const Auth = (function () {
       callback: (tokenResponse) => {
         GoogleAPI.setAccessToken(tokenResponse.access_token);
         localStorage.setItem('paes_token', tokenResponse.access_token);
+        if (onSuccess) onSuccess();
       }
     });
     client.requestAccessToken();
