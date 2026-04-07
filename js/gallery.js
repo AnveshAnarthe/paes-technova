@@ -177,7 +177,10 @@
       }
       
       if (typeof showToast === 'function') showToast(`Successfully uploaded ${successCount} files!`, 'success');
-      progressDiv.innerHTML = `Upload complete! They will appear in the gallery soon.`;
+      progressDiv.innerHTML = `Upload complete!`;
+      
+      // Auto-refresh gallery to show the new photos!
+      renderGallery();
     } catch (err) {
       console.error(err);
       progressDiv.innerHTML = `<span style="color:red">Error uploading: ${err.message}</span>`;

@@ -153,7 +153,13 @@ const GoogleAPI = (function () {
     const url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&pageSize=${pageSize}&fields=files(id,name,mimeType,thumbnailLink,webViewLink,createdTime)&key=${CONFIG.API_KEY}`;
 
     try {
-      const response = await fetch(url);
+      const options = {};
+      if (accessToken) {
+        options.headers = {
+          'Authorization': `Bearer ${accessToken}`
+        };
+      }
+      const response = await fetch(url, options);
       if (!response.ok) throw new Error(`Drive API error: ${response.status}`);
       const data = await response.json();
       return data.files || [];
