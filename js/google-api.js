@@ -11,7 +11,7 @@ const GoogleAPI = (function () {
   const CONFIG = {
     API_KEY: 'AIzaSyAeTncL0enj_ta2WB4NIIz3o2N80zcgFgg',
     CLIENT_ID: '86195276646-iaiim1agmccbm5o6e9nofb3j109ur7he.apps.googleusercontent.com',
-    SCOPES: 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive.file',
+    SCOPES: 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive',
 
     // Google Sheet IDs (create these sheets in your Drive)
     SHEETS: {
