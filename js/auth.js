@@ -113,7 +113,7 @@ const Auth = (function () {
         if (onSuccess) onSuccess();
       }
     });
-    client.requestAccessToken();
+    client.requestAccessToken({prompt: 'consent'});
   }
 
   // ---- Parse JWT ----
