@@ -39,7 +39,8 @@
       registered: 83,
       teamEvent: false,
       badge: 'Sports',
-      badgeClass: 'badge-green'
+      badgeClass: 'badge-green',
+      regLink: 'https://docs.google.com/forms/d/e/1FAIpQLSf0BIFOIbD-oeTnKCpI2rlsiBPdmVmFHJZAIxLEhpOaWs6O9g/viewform?usp=header'
     },
     {
       id: 'cultural',

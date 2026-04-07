@@ -11,7 +11,7 @@
     { role: 'SE Co-coordinator', name: 'Mr. Om Rahane', desc: '' },
     { role: 'Cultural Secretary', name: 'Miss. Ishwari Thokal', desc: '' },
     { role: 'Treasurer', name: 'Mr. Sarthak Achyut Jadhav', desc: '' },
-    { role: 'Student Representative', name: 'Mr. Gulave Abhiraj Narayam', desc: '' },
+    { role: 'Student Representative', name: 'Mr. Gulave Abhiraj Narayan', desc: '' },
     { role: 'Male Representative', name: 'Mr. Ankush Gangadhar Hire', desc: '' },
     { role: 'Female Representative', name: 'Miss. Sanskruti Bhausaheb Anarthe', desc: '' }
   ];
