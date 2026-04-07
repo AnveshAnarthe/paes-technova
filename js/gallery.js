@@ -5,23 +5,10 @@
   'use strict';
 
   const albums = [
-    { id: 'technova2025', name: 'TECHNOVA 2025', icon: '🎉', count: 24 },
-    { id: 'hackathon', name: 'Hackathon', icon: '💻', count: 18 },
-    { id: 'sports', name: 'Sports Meet', icon: '⚽', count: 32 },
-    { id: 'cultural', name: 'Cultural Night', icon: '🎭', count: 28 },
-    { id: 'workshops', name: 'Workshops', icon: '🔧', count: 15 }
+    { id: 'all', name: 'All Photos', icon: '📸', count: 'Loading' }
   ];
 
-  // Placeholder images using picsum for demo
-  const sampleImages = {
-    technova2025: Array.from({length: 12}, (_, i) => ({ id: i, src: `https://picsum.photos/seed/tech${i}/600/${300 + (i % 3) * 100}`, alt: `TECHNOVA 2025 Photo ${i+1}` })),
-    hackathon: Array.from({length: 8}, (_, i) => ({ id: i, src: `https://picsum.photos/seed/hack${i}/600/${300 + (i % 3) * 100}`, alt: `Hackathon Photo ${i+1}` })),
-    sports: Array.from({length: 10}, (_, i) => ({ id: i, src: `https://picsum.photos/seed/sport${i}/600/${300 + (i % 3) * 100}`, alt: `Sports Photo ${i+1}` })),
-    cultural: Array.from({length: 10}, (_, i) => ({ id: i, src: `https://picsum.photos/seed/cult${i}/600/${300 + (i % 3) * 100}`, alt: `Cultural Photo ${i+1}` })),
-    workshops: Array.from({length: 6}, (_, i) => ({ id: i, src: `https://picsum.photos/seed/work${i}/600/${300 + (i % 3) * 100}`, alt: `Workshop Photo ${i+1}` }))
-  };
-
-  let currentAlbum = 'technova2025';
+  let currentAlbum = 'all';
   let currentImages = [];
   let lightboxIndex = 0;
 
@@ -49,16 +36,48 @@
     renderGallery();
   };
 
-  function renderGallery() {
+  async function renderGallery() {
     const grid = document.getElementById('gallery-grid');
     if (!grid) return;
 
-    currentImages = sampleImages[currentAlbum] || [];
-    grid.innerHTML = currentImages.map((img, i) => `
-      <div class="gallery-item" onclick="openLightbox(${i})">
-        <img src="${img.src}" alt="${img.alt}" loading="lazy">
-      </div>
-    `).join('');
+    grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--neon-cyan); font-family: var(--font-mono); padding: 4rem;">Loading photos from Google Drive...<div class="spinner" style="margin: 1rem auto;"></div></div>';
+
+    try {
+      if (!window.GoogleAPI) throw new Error("GoogleAPI not loaded");
+      
+      const folderId = GoogleAPI.getConfig().DRIVE_FOLDERS.GALLERY;
+      const files = await GoogleAPI.listFiles(folderId, 100);
+      
+      albums[0].count = files.length;
+      renderAlbums();
+      
+      currentImages = files.map(f => {
+         // Use thumbnailLink for grid, and modify it for high-res lightly if possible, 
+         // since webViewLink acts as an html preview link, not an img embed.
+         // Usually thumbnailLink looks like ...=s220. We can replace it with =s800
+         const highResSrc = f.thumbnailLink ? f.thumbnailLink.replace(/=s\d+$/, '=s1200') : GoogleAPI.getFileThumbnail(f.id);
+         return {
+           id: f.id,
+           src: highResSrc,
+           alt: f.name
+         };
+      });
+
+      if (currentImages.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: gray;">No photos uploaded yet.</div>';
+        return;
+      }
+
+      grid.innerHTML = currentImages.map((img, i) => `
+        <div class="gallery-item" onclick="openLightbox(${i})" style="cursor:zoom-in;">
+          <img src="${img.src}" alt="${img.alt}" loading="lazy">
+        </div>
+      `).join('');
+
+    } catch (err) {
+      console.error(err);
+      grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: red; font-family: var(--font-mono);">Failed to load gallery.<br><small>${err.message}</small></div>`;
+    }
   }
 
   window.openLightbox = function(index) {
@@ -105,8 +124,8 @@
     if (!confirm('Are you sure you want to delete this photo from Google Drive? This cannot be undone.')) return;
     
     const imgData = currentImages[lightboxIndex];
-    if (typeof imgData.id === 'number') {
-      if (typeof showToast === 'function') showToast('Cannot delete placeholder demo images.', 'error');
+    if (!imgData || !imgData.id) {
+      if (typeof showToast === 'function') showToast('Cannot delete this image (No ID).', 'error');
       return;
     }
 

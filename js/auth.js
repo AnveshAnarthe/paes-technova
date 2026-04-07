@@ -86,8 +86,8 @@ const Auth = (function () {
       title: whitelistEntry.title
     };
 
-    // Store in session
-    sessionStorage.setItem('paes_user', JSON.stringify(currentUser));
+    // Store in local storage to persist across tabs
+    localStorage.setItem('paes_user', JSON.stringify(currentUser));
 
     // Get OAuth2 access token for API calls
     getOAuthToken();
@@ -107,7 +107,7 @@ const Auth = (function () {
       scope: config.SCOPES,
       callback: (tokenResponse) => {
         GoogleAPI.setAccessToken(tokenResponse.access_token);
-        sessionStorage.setItem('paes_token', tokenResponse.access_token);
+        localStorage.setItem('paes_token', tokenResponse.access_token);
       }
     });
     client.requestAccessToken();
@@ -126,8 +126,8 @@ const Auth = (function () {
 
   // ---- Session Management ----
   function restoreSession() {
-    const stored = sessionStorage.getItem('paes_user');
-    const token = sessionStorage.getItem('paes_token');
+    const stored = localStorage.getItem('paes_user');
+    const token = localStorage.getItem('paes_token');
     if (stored) {
       currentUser = JSON.parse(stored);
       if (token) GoogleAPI.setAccessToken(token);
@@ -137,8 +137,8 @@ const Auth = (function () {
 
   function logout() {
     currentUser = null;
-    sessionStorage.removeItem('paes_user');
-    sessionStorage.removeItem('paes_token');
+    localStorage.removeItem('paes_user');
+    localStorage.removeItem('paes_token');
     GoogleAPI.setAccessToken(null);
     if (typeof showToast === 'function') showToast('Logged out successfully', 'info');
     window.location.href = 'index.html';
