@@ -69,6 +69,13 @@
     img.alt = currentImages[index].alt;
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    const delBtn = document.getElementById('lightbox-delete-btn');
+    if (delBtn && window.Auth && (Auth.isVP() || Auth.hasRole(Auth.ROLES.PHOTO_COORD))) {
+      delBtn.style.display = 'block';
+    } else if (delBtn) {
+      delBtn.style.display = 'none';
+    }
   };
 
   window.closeLightbox = function(e) {
@@ -93,14 +100,87 @@
     if (e.key === 'ArrowRight') navigateLightbox(1);
   });
 
-  window.handleUpload = function(e) {
+  window.deletePhoto = async function(e) {
+    if (e) e.stopPropagation();
+    if (!confirm('Are you sure you want to delete this photo from Google Drive? This cannot be undone.')) return;
+    
+    const imgData = currentImages[lightboxIndex];
+    if (typeof imgData.id === 'number') {
+      if (typeof showToast === 'function') showToast('Cannot delete placeholder demo images.', 'error');
+      return;
+    }
+
+    try {
+      const delBtn = document.getElementById('lightbox-delete-btn');
+      delBtn.textContent = 'Deleting...';
+      delBtn.disabled = true;
+      
+      await GoogleAPI.deleteFile(imgData.id);
+      
+      if (typeof showToast === 'function') showToast('Deleted successfully.', 'success');
+      
+      // Remove from current UI array
+      currentImages.splice(lightboxIndex, 1);
+      closeLightbox();
+      renderGallery();
+    } catch (err) {
+      console.error(err);
+      if (typeof showToast === 'function') showToast('Error deleting photo.', 'error');
+    } finally {
+      const delBtn = document.getElementById('lightbox-delete-btn');
+      delBtn.textContent = '🗑️ Delete';
+      delBtn.disabled = false;
+    }
+  };
+
+  window.handleUpload = async function(e) {
     const files = e.target.files;
-    if (typeof showToast === 'function') showToast(`${files.length} file(s) selected. Upload to Google Drive will be implemented with API setup.`, 'info');
+    if (!files || files.length === 0) return;
+    
+    if (!GoogleAPI.isAuthenticated()) {
+      if (typeof showToast === 'function') showToast('Please sign in with Google first to upload.', 'error');
+      return;
+    }
+
+    const progressDiv = document.getElementById('upload-progress');
+    const uploadBtn = document.getElementById('upload-btn');
+    progressDiv.style.display = 'block';
+    uploadBtn.disabled = true;
+
+    try {
+      const folderId = GoogleAPI.getConfig().DRIVE_FOLDERS.GALLERY;
+      let successCount = 0;
+      
+      for (let i = 0; i < files.length; i++) {
+        progressDiv.innerHTML = `Uploading ${i + 1} of ${files.length}...<br><small>${files[i].name}</small>`;
+        await GoogleAPI.uploadFile(folderId, files[i]);
+        successCount++;
+      }
+      
+      if (typeof showToast === 'function') showToast(`Successfully uploaded ${successCount} files!`, 'success');
+      progressDiv.innerHTML = `Upload complete! They will appear in the gallery soon.`;
+    } catch (err) {
+      console.error(err);
+      progressDiv.innerHTML = `<span style="color:red">Error uploading: ${err.message}</span>`;
+      if (typeof showToast === 'function') showToast('Error during upload', 'error');
+    } finally {
+      uploadBtn.disabled = false;
+      setTimeout(() => { progressDiv.style.display = 'none'; }, 5000);
+      e.target.value = ''; // reset input
+    }
   };
 
   function init() {
     renderAlbums();
     renderGallery();
+    
+    // Check permissions after a short delay to allow Auth to initialize
+    setTimeout(() => {
+      if (window.Auth && (Auth.isVP() || Auth.hasRole(Auth.ROLES.PHOTO_COORD))) {
+        const uploadArea = document.getElementById('upload-area');
+        if (uploadArea) uploadArea.style.display = 'block';
+      }
+    }, 500);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

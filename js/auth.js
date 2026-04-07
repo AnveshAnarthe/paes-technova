@@ -25,7 +25,7 @@ const Auth = (function () {
     'siddhi.kharde.ec23@pravaraengg.org.in': { role: ROLES.TECH_COORD, name: 'Technical Coordinator', title: 'Technical Coordinator' },
     'cultural.coord@gmail.com': { role: ROLES.CULTURAL_COORD, name: 'Cultural Coordinator', title: 'Cultural Coordinator' },
     'sports.coord@gmail.com': { role: ROLES.SPORTS_COORD, name: 'Sports Coordinator', title: 'Sports Coordinator' },
-    'photo.coord@gmail.com': { role: ROLES.PHOTO_COORD, name: 'Photography Coordinator', title: 'Photography/Reels Coordinator' },
+    'kartik.dhanwate.ec23@pravaraengg.org.in': { role: ROLES.PHOTO_COORD, name: 'Kartik Dhanwate', title: 'Photography/Reels Coordinator' },
     'cert.coord@gmail.com': { role: ROLES.CERT_COORD, name: 'Certificates Coordinator', title: 'Certificates Coordinator' },
     'notice.coord@gmail.com': { role: ROLES.NOTICE_COORD, name: 'Notices Coordinator', title: 'Notices Coordinator' }
   };

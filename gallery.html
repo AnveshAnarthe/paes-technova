@@ -33,14 +33,16 @@
 
       <!-- Upload Button (admin) -->
       <div class="text-center mt-xl" id="upload-area" style="display:none;">
-        <button class="btn btn-primary" onclick="document.getElementById('upload-input').click()">📤 Upload Photos</button>
+        <button class="btn btn-primary" onclick="document.getElementById('upload-input').click()" id="upload-btn">📤 Upload Photos</button>
         <input type="file" id="upload-input" multiple accept="image/*,video/*" style="display:none" onchange="handleUpload(event)">
+        <div id="upload-progress" style="margin-top: 1rem; font-family: var(--font-mono); font-size: 0.9rem; color: var(--neon-cyan); display: none;"></div>
       </div>
     </section>
 
     <!-- Lightbox -->
     <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
       <button class="lightbox-close" onclick="closeLightbox()">×</button>
+      <button class="lightbox-delete" id="lightbox-delete-btn" onclick="deletePhoto(event)" style="display:none; position:absolute; top:20px; right:70px; background:rgba(255,50,50,0.8); border:none; color:white; padding:8px 16px; border-radius:var(--radius-sm); cursor:pointer; font-family:var(--font-mono); z-index:1002;">🗑️ Delete</button>
       <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1, event)">‹</button>
       <div class="lightbox-content">
         <img src="" alt="" id="lightbox-img" class="lightbox-img">

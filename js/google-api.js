@@ -164,6 +164,28 @@ const GoogleAPI = (function () {
   }
 
   /**
+   * Delete a file from Google Drive
+   */
+  async function deleteFile(fileId) {
+    if (!accessToken) throw new Error('Not authenticated');
+
+    const url = `https://www.googleapis.com/drive/v3/files/${fileId}`;
+    try {
+      const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      if (!response.ok) throw new Error(`Drive API error: ${response.status}`);
+      return true;
+    } catch (error) {
+      console.error('Failed to delete file:', error);
+      throw error;
+    }
+  }
+
+  /**
    * Get a file's shareable link
    */
   function getFileUrl(fileId) {
@@ -251,6 +273,7 @@ const GoogleAPI = (function () {
     appendRow,
     updateCell,
     uploadFile,
+    deleteFile,
     listFiles,
     getFileUrl,
     getFileThumbnail,
