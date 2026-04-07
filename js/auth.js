@@ -21,6 +21,7 @@ const Auth = (function () {
   // Whitelist (replace with actual emails)
   // In production, this would be fetched from a Google Sheet
   const WHITELIST = {
+    'anveshanarthe8@gmail.com': { role: ROLES.VP, name: 'Anvesh (Personal)', title: 'Vice President' },
     'anvesh.anarthe.ec23@pravaraengg.org.in': { role: ROLES.VP, name: 'Anvesh', title: 'Vice President' },
     'siddhi.kharde.ec23@pravaraengg.org.in': { role: ROLES.TECH_COORD, name: 'Technical Coordinator', title: 'Technical Coordinator' },
     'cultural.coord@gmail.com': { role: ROLES.CULTURAL_COORD, name: 'Cultural Coordinator', title: 'Cultural Coordinator' },
