@@ -123,8 +123,11 @@
     });
   });
 
+  // --- Google Sheets Endpoint ---
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxiBvKYz0C_Kc7qLo2Ugpapo_QDDLr5QuJu0aDBpPv_PKDdx4rljkgfhXfHloZ6Vqgd/exec';
+
   // --- Submission ---
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     if (!validateSection(currentSection)) return;
@@ -136,27 +139,53 @@
       data[key] = value;
     });
 
-    console.log('Feedback submitted:', data);
+    // Disable submit button and show loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+      <div class="spinner" style="width:18px;height:18px;border-width:2px;"></div>
+      Submitting...
+    `;
 
-    // Store in localStorage as backup
     try {
-      const feedbacks = JSON.parse(localStorage.getItem('technova_feedbacks') || '[]');
-      data.timestamp = new Date().toISOString();
-      feedbacks.push(data);
-      localStorage.setItem('technova_feedbacks', JSON.stringify(feedbacks));
-    } catch (err) {
-      console.warn('Could not save to localStorage', err);
+      // Send to Google Sheets
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      // Also save to localStorage as backup
+      try {
+        const feedbacks = JSON.parse(localStorage.getItem('technova_feedbacks') || '[]');
+        data.timestamp = new Date().toISOString();
+        feedbacks.push(data);
+        localStorage.setItem('technova_feedbacks', JSON.stringify(feedbacks));
+      } catch (err) {
+        console.warn('Could not save to localStorage', err);
+      }
+
+      // Show success state
+      document.querySelector('.fb-form-wrapper').style.display = 'none';
+      successPanel.style.display = '';
+      successPanel.querySelector('.fb-success-card').classList.add('visible');
+
+      showToast('Feedback submitted successfully! Thank you! 🎉', 'success', 5000);
+
+      // Scroll to success card
+      successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    } catch (error) {
+      console.error('Submission error:', error);
+      showToast('Something went wrong. Please try again.', 'error', 5000);
+
+      // Re-enable submit button
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Submit Feedback
+      `;
     }
-
-    // Show success state
-    document.querySelector('.fb-form-wrapper').style.display = 'none';
-    successPanel.style.display = '';
-    successPanel.querySelector('.fb-success-card').classList.add('visible');
-
-    showToast('Feedback submitted successfully! Thank you! 🎉', 'success', 5000);
-
-    // Scroll to success card
-    successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
   // --- Initialize ---
