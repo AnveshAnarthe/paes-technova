@@ -1,0 +1,511 @@
+/* ============================================================
+   PAES TECHNOVA 2026 — Feedback Form Styles
+   ============================================================ */
+
+/* Form Wrapper */
+.fb-form-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.fb-card {
+  position: relative;
+  padding: var(--space-2xl) var(--space-xl);
+  border: 1px solid transparent;
+  background-image:
+    linear-gradient(var(--glass-bg), var(--glass-bg)),
+    linear-gradient(135deg, var(--neon-cyan), var(--neon-blue), var(--neon-purple), var(--neon-cyan));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-size: 100% 100%, 300% 300%;
+  animation: fbGradientBorder 6s linear infinite;
+  overflow: visible;
+}
+
+@keyframes fbGradientBorder {
+  0%   { background-position: 0 0, 0% 50%; }
+  50%  { background-position: 0 0, 100% 50%; }
+  100% { background-position: 0 0, 0% 50%; }
+}
+
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+.fb-progress-wrap {
+  margin-bottom: var(--space-2xl);
+}
+
+.fb-progress-bar {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-lg);
+}
+
+.fb-progress-fill {
+  height: 100%;
+  width: 20%;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-blue), var(--neon-purple));
+  border-radius: var(--radius-full);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+}
+
+.fb-progress-steps {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.fb-step {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  letter-spacing: 0;
+}
+
+.fb-step.active {
+  color: var(--bg-primary);
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.4), 0 0 32px rgba(0, 240, 255, 0.15);
+  transform: scale(1.1);
+}
+
+.fb-step.completed {
+  color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.1);
+  border-color: rgba(0, 240, 255, 0.4);
+}
+
+/* ============================================================
+   FORM SECTIONS
+   ============================================================ */
+.fb-section {
+  display: none;
+  animation: fbSectionIn 0.5s ease both;
+}
+
+.fb-section.active {
+  display: block;
+}
+
+@keyframes fbSectionIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Section Header */
+.fb-section-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.fb-section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-radius: var(--radius-full);
+  padding: 6px 18px;
+  margin-bottom: var(--space-lg);
+}
+
+.fb-badge-icon {
+  font-size: 0.9rem;
+}
+
+.fb-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+.fb-section-title span {
+  color: var(--neon-cyan);
+  text-shadow: var(--text-glow-cyan);
+}
+
+.fb-section-desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   FORM FIELDS
+   ============================================================ */
+.fb-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.fb-field {
+  position: relative;
+}
+
+.fb-field.has-error .fb-label::after {
+  content: ' *';
+  color: var(--neon-red);
+}
+
+.fb-field.has-error .fb-scale {
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.fb-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   LINEAR SCALE
+   ============================================================ */
+.fb-scale {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  background: rgba(6, 6, 14, 0.4);
+  transition: border-color var(--transition-base);
+}
+
+.fb-scale:hover {
+  border-color: var(--glass-border-hover);
+}
+
+.fb-scale-label {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  min-width: 55px;
+  text-align: center;
+}
+
+.fb-scale-options {
+  display: flex;
+  gap: var(--space-sm);
+  flex: 1;
+  justify-content: center;
+}
+
+.fb-scale-options input[type="radio"] {
+  display: none;
+}
+
+.fb-scale-options label {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.fb-scale-options label:hover {
+  color: var(--neon-cyan);
+  border-color: rgba(0, 240, 255, 0.4);
+  background: rgba(0, 240, 255, 0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 240, 255, 0.1);
+}
+
+.fb-scale-options input[type="radio"]:checked + label {
+  color: var(--bg-primary);
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), 0 0 40px rgba(0, 240, 255, 0.15);
+  transform: translateY(-2px) scale(1.08);
+}
+
+/* Ripple on click */
+.fb-scale-options label::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.fb-scale-options input[type="radio"]:checked + label::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ============================================================
+   RADIO GROUP (Multiple Choice)
+   ============================================================ */
+.fb-radio-group {
+  display: flex;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.fb-radio-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  cursor: pointer;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  background: rgba(6, 6, 14, 0.4);
+  transition: all var(--transition-base);
+  flex: 1;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.fb-radio-option:hover {
+  border-color: rgba(0, 240, 255, 0.4);
+  background: rgba(0, 240, 255, 0.04);
+}
+
+.fb-radio-option input[type="radio"] {
+  display: none;
+}
+
+.fb-radio-custom {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--glass-border);
+  position: relative;
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+}
+
+.fb-radio-custom::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-cyan);
+  transition: transform var(--transition-spring);
+}
+
+.fb-radio-option input[type="radio"]:checked ~ .fb-radio-custom {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.fb-radio-option input[type="radio"]:checked ~ .fb-radio-custom::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.fb-radio-option input[type="radio"]:checked ~ .fb-radio-text {
+  color: var(--neon-cyan);
+}
+
+.fb-radio-text {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+/* Text inputs already styled via global .form-input / .form-textarea */
+
+/* ============================================================
+   NAVIGATION BUTTONS
+   ============================================================ */
+.fb-nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--glass-border);
+  gap: var(--space-md);
+}
+
+.fb-submit-btn {
+  background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan)) !important;
+  box-shadow: 0 2px 15px rgba(34, 211, 238, 0.3) !important;
+}
+.fb-submit-btn:hover {
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.6), 0 0 30px rgba(34, 211, 238, 0.3), 0 0 60px rgba(34, 211, 238, 0.15) !important;
+}
+
+/* ============================================================
+   SUCCESS CARD
+   ============================================================ */
+.fb-success-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.fb-success-card {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-2xl);
+  border: 1px solid transparent;
+  background-image:
+    linear-gradient(var(--glass-bg), var(--glass-bg)),
+    linear-gradient(135deg, var(--neon-green), var(--neon-cyan), var(--neon-blue));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.fb-success-icon {
+  margin-bottom: var(--space-xl);
+  animation: fbSuccessPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes fbSuccessPop {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.fb-success-icon svg {
+  filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.5));
+  animation: fbSuccessGlow 2s ease-in-out infinite;
+}
+
+@keyframes fbSuccessGlow {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.5)); }
+  50% { filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.8)); }
+}
+
+.fb-success-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--neon-cyan);
+  text-shadow: var(--text-glow-cyan);
+  margin-bottom: var(--space-lg);
+}
+
+.fb-success-msg {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-2xl);
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .fb-card {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .fb-scale {
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+
+  .fb-scale-label {
+    min-width: unset;
+  }
+
+  .fb-scale-options label {
+    width: 40px;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+
+  .fb-radio-group {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .fb-radio-option {
+    justify-content: flex-start;
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .fb-nav-buttons {
+    flex-wrap: wrap;
+  }
+
+  .fb-step {
+    width: 32px;
+    height: 32px;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .fb-scale-options {
+    gap: 4px;
+  }
+
+  .fb-scale-options label {
+    width: 36px;
+    height: 36px;
+    font-size: 0.75rem;
+  }
+
+  .fb-progress-steps {
+    gap: var(--space-sm);
+  }
+}
