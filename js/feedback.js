@@ -78,11 +78,19 @@
         }
       }
 
-      // Check text inputs
-      const textInput = field.querySelector('input[type="text"], textarea');
+      // Check text / email inputs
+      const textInput = field.querySelector('input[type="text"], input[type="email"], textarea');
       if (textInput && textInput.hasAttribute('required') && !textInput.value.trim()) {
         field.classList.add('has-error');
         valid = false;
+      }
+      // Extra: validate email format
+      if (textInput && textInput.type === 'email' && textInput.value.trim()) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(textInput.value.trim())) {
+          field.classList.add('has-error');
+          valid = false;
+        }
       }
     });
 
@@ -124,7 +132,7 @@
   });
 
   // --- Google Sheets Endpoint ---
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxiBvKYz0C_Kc7qLo2Ugpapo_QDDLr5QuJu0aDBpPv_PKDdx4rljkgfhXfHloZ6Vqgd/exec';
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_y5ln3Le5dOEx6ufh8WetF6kY_Emn0LAMgrKv4k1_v3wWEoifMAyYygx_3TiIhmo/exec';
 
   // --- Submission ---
   form.addEventListener('submit', async (e) => {
