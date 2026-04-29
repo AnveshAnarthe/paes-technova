@@ -135,7 +135,7 @@
   const eventDates = [
     { id: 'countdown-hackathon', name: 'Hackathon', date: '2026-04-17T09:00:00+05:30' },
     { id: 'countdown-sports', name: 'Sports Meet', date: '2026-04-13T08:00:00+05:30' },
-    { id: 'countdown-cultural', name: 'Cultural Night', date: '2026-04-30T18:00:00+05:30' }
+    { id: 'countdown-cultural', name: 'Cultural Night', date: '2026-05-12T18:00:00+05:30' }
   ];
 
   function updateCountdowns() {
@@ -183,7 +183,7 @@
       '🔥 TECHNOVA 2026 Registrations Now Open!',
       '🏆 Hackathon Prize Backlit Gaming mouse keyboard combo + 3X 16GB Pendrive',
       '⚽ Sports Meet — Apr 13, 2026',
-      '🎭 Cultural Night — Apr 30, 2026 | Freshers + Farewell + Dinner Night',
+      '🎭 Cultural Night — May 12, 2026 | Freshers + Farewell + Dinner Night',
       '📢 Committee Applications Open — Apply Now!',
       '🎓 E-Certificates for All Participants'
     ];

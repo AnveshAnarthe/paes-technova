@@ -46,7 +46,7 @@
       id: 'cultural',
       title: 'Cultural Night 2026',
       category: 'cultural',
-      date: 'Apr 30, 2026',
+      date: 'May 12, 2026',
       time: '06:00 PM',
       venue: 'Main Auditorium',
       desc: 'Grand Cultural Night — Freshers Party, Farewell & Dinner Night with music, dance, drama performances, and a DJ night to close TECHNOVA 2026.',
