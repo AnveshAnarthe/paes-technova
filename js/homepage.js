@@ -7,30 +7,47 @@
   'use strict';
 
   // ===================== 3D CAROUSEL =====================
+  // Now showcasing upcoming events
   const carouselData = [
     {
-      id: 'hackathon',
-      title: 'Hackathon 2026',
-      desc: '24-hour coding marathon. Build, innovate, and compete for amazing prizes.',
-      badge: 'Technical',
+      id: 'iot-challenge',
+      title: 'IoT Innovation Challenge',
+      desc: 'Build a working IoT prototype in 6 hours! Sensors, microcontrollers & cloud — perfect for ECE.',
+      badge: 'Upcoming',
       badgeClass: 'badge-cyan',
       image: 'assets/banners/hackathon.png'
     },
     {
-      id: 'sports',
-      title: 'Sports Meet 2026',
-      desc: 'Inter-department sports competition. Cricket, basketball, football & more.',
-      badge: 'Sports',
-      badgeClass: 'badge-green',
-      image: 'assets/banners/sports.png'
+      id: 'esports',
+      title: 'E-Sports Arena',
+      desc: 'Valorant, BGMI & Free Fire tournaments. Massive prizes, massive fun!',
+      badge: 'Upcoming',
+      badgeClass: 'badge-cyan',
+      image: 'assets/banners/cultural.png'
     },
     {
-      id: 'cultural',
-      title: 'Cultural Night 2026',
-      desc: 'Grand cultural extravaganza — Freshers Party, Farewell, Dinner Night, music, dance & performances.',
-      badge: 'Cultural',
-      badgeClass: 'badge-purple',
+      id: 'treasure',
+      title: 'CypherChase — Treasure Hunt',
+      desc: 'Decode puzzles, solve clues, and race across campus to find the hidden treasure!',
+      badge: 'Upcoming',
+      badgeClass: 'badge-orange',
       image: 'assets/banners/cultural.png'
+    },
+    {
+      id: 'quiz',
+      title: 'BrainBytes — Tech Quiz',
+      desc: 'Test your knowledge in electronics, programming, networking & emerging technologies.',
+      badge: 'Upcoming',
+      badgeClass: 'badge-cyan',
+      image: 'assets/banners/hackathon.png'
+    },
+    {
+      id: 'codeblitz',
+      title: 'Code Blitz',
+      desc: 'Speed programming contest — solve max problems in 2 hours. Quick, competitive & fun!',
+      badge: 'Upcoming',
+      badgeClass: 'badge-cyan',
+      image: 'assets/banners/hackathon.png'
     }
   ];
 
@@ -131,47 +148,82 @@
     if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
   });
 
-  // ===================== COUNTDOWN TIMERS =====================
-  const eventDates = [
-    { id: 'countdown-hackathon', name: 'Hackathon', date: '2026-04-17T09:00:00+05:30' },
-    { id: 'countdown-sports', name: 'Sports Meet', date: '2026-04-13T08:00:00+05:30' },
-    { id: 'countdown-cultural', name: 'Cultural Night', date: '2026-05-12T18:00:00+05:30' }
-  ];
+  // ===================== RESULTS ANNOUNCEMENT =====================
+  function initResultsBanner() {
+    const countdownSection = document.getElementById('countdowns');
+    if (!countdownSection) return;
 
-  function updateCountdowns() {
-    const now = new Date().getTime();
+    // Replace countdown content with results announcement and upcoming events
+    countdownSection.innerHTML = `
+      <div class="section-header reveal">
+        <h2 class="section-title">Event <span>Updates</span></h2>
+        <p class="section-subtitle">All TECHNOVA 2026 events have been successfully completed!</p>
+        <div class="section-line"></div>
+      </div>
 
-    eventDates.forEach(event => {
-      const target = new Date(event.date).getTime();
-      const diff = target - now;
+      <!-- Results Announcement Card -->
+      <div class="results-announce-card reveal">
+        <div class="results-announce-glow"></div>
+        <div class="results-announce-inner">
+          <div class="results-announce-icon">🏆</div>
+          <h3 class="results-announce-title">Results Coming Soon!</h3>
+          <p class="results-announce-desc">
+            All past events — <strong>Hackathon 2026</strong>, <strong>Sports Meet 2026</strong>, and <strong>Cultural Night 2026</strong> — have been successfully completed! 
+            Results & winners will be announced very soon. Stay tuned!
+          </p>
+          <div class="results-events-row">
+            <div class="results-event-chip completed-chip">
+              <span class="chip-icon">⚡</span>
+              <span>Hackathon</span>
+              <span class="chip-status">✅</span>
+            </div>
+            <div class="results-event-chip completed-chip">
+              <span class="chip-icon">🏆</span>
+              <span>Sports Meet</span>
+              <span class="chip-status">✅</span>
+            </div>
+            <div class="results-event-chip completed-chip">
+              <span class="chip-icon">🎭</span>
+              <span>Cultural Night</span>
+              <span class="chip-status">✅</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      const el = document.getElementById(event.id);
-      if (!el) return;
-
-      if (diff <= 0) {
-        el.querySelector('.countdown-timer').innerHTML = `
-          <span style="font-family:var(--font-display);font-size:1.2rem;color:var(--neon-cyan);text-shadow:var(--text-glow-cyan);">
-            🎉 EVENT LIVE!
-          </span>
-        `;
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      const setValue = (cls, val) => {
-        const node = el.querySelector(`.${cls}`);
-        if (node) node.textContent = String(val).padStart(2, '0');
-      };
-
-      setValue('cd-days', days);
-      setValue('cd-hours', hours);
-      setValue('cd-mins', minutes);
-      setValue('cd-secs', seconds);
-    });
+      <!-- Upcoming Events Preview -->
+      <div class="upcoming-preview reveal" style="margin-top: var(--space-2xl);">
+        <h3 class="upcoming-preview-title">🚀 Upcoming Events — Stay Tuned!</h3>
+        <p class="upcoming-preview-subtitle">Dates will be finalized soon. We'll notify you!</p>
+        <div class="upcoming-chips-grid">
+          <a href="events.html#iot-challenge" class="upcoming-chip">
+            <span class="upcoming-chip-icon">🏗️</span>
+            <span class="upcoming-chip-name">IoT Innovation Challenge</span>
+            <span class="upcoming-chip-tag">Technical</span>
+          </a>
+          <a href="events.html#esports" class="upcoming-chip">
+            <span class="upcoming-chip-icon">🎮</span>
+            <span class="upcoming-chip-name">E-Sports Arena</span>
+            <span class="upcoming-chip-tag">Fun</span>
+          </a>
+          <a href="events.html#treasure" class="upcoming-chip">
+            <span class="upcoming-chip-icon">🧩</span>
+            <span class="upcoming-chip-name">CypherChase — Treasure Hunt</span>
+            <span class="upcoming-chip-tag">Fun</span>
+          </a>
+          <a href="events.html#quiz" class="upcoming-chip">
+            <span class="upcoming-chip-icon">🧠</span>
+            <span class="upcoming-chip-name">BrainBytes — Tech Quiz</span>
+            <span class="upcoming-chip-tag">Technical</span>
+          </a>
+          <a href="events.html#codeblitz" class="upcoming-chip">
+            <span class="upcoming-chip-icon">💻</span>
+            <span class="upcoming-chip-name">Code Blitz</span>
+            <span class="upcoming-chip-tag">Technical</span>
+          </a>
+        </div>
+      </div>
+    `;
   }
 
   // ===================== ANNOUNCEMENT TICKER =====================
@@ -180,12 +232,15 @@
     if (!track) return;
 
     const announcements = [
-      '🔥 TECHNOVA 2026 Registrations Now Open!',
-      '🏆 Hackathon Prize Backlit Gaming mouse keyboard combo + 3X 16GB Pendrive',
-      '⚽ Sports Meet — Apr 13, 2026',
-      '🎭 Cultural Night — May 12, 2026 | Freshers + Farewell + Dinner Night',
-      '📢 Committee Applications Open — Apply Now!',
-      '🎓 E-Certificates for All Participants'
+      '🏆 TECHNOVA 2026 — All Events Successfully Completed!',
+      '📊 Results & Winners will be announced very soon — Stay Tuned!',
+      '🏗️ UPCOMING: IoT Innovation Challenge — Date TBA',
+      '🎮 UPCOMING: E-Sports Arena (Valorant, BGMI, Free Fire) — Date TBA',
+      '🧩 UPCOMING: CypherChase Treasure Hunt — Date TBA',
+      '🧠 UPCOMING: BrainBytes Tech Quiz — Date TBA',
+      '💻 UPCOMING: Code Blitz Speed Programming — Date TBA',
+      '🔔 Stay tuned for dates — We will notify you once finalized!',
+      '🎓 E-Certificates for All Participants Coming Soon'
     ];
 
     const content = announcements.map(a =>
@@ -200,8 +255,7 @@
   function init() {
     initCarousel();
     initTicker();
-    updateCountdowns();
-    setInterval(updateCountdowns, 1000);
+    initResultsBanner();
   }
 
   if (document.readyState === 'loading') {

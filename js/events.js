@@ -6,8 +6,8 @@
 (function () {
   'use strict';
 
-  // ---- Event Data ----
-  const eventsData = [
+  // ---- COMPLETED (Past) Events ----
+  const pastEventsData = [
     {
       id: 'hackathon',
       title: 'Hackathon 2026',
@@ -18,13 +18,13 @@
       desc: 'A 24-hour coding marathon where teams of 8-10 build innovative solutions. Top Qualified team win cash prize',
       image: 'assets/banners/hackathon.png',
       spots: 120,
-      registered: 47,
+      registered: 120,
       teamEvent: true,
       minTeam: 2,
       maxTeam: 4,
-      badge: 'Technical',
-      badgeClass: 'badge-cyan',
-      regLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdIcXaymDUSWxDu2CDwyCFo-s1j7BgHvXvx9lJVwPKjbsfdAg/viewform?usp=header'
+      badge: 'Completed',
+      badgeClass: 'badge-green',
+      status: 'completed'
     },
     {
       id: 'sports',
@@ -36,11 +36,11 @@
       desc: 'Inter-class sports competition featuring cricket, football, basketball, badminton, and athletics.',
       image: 'assets/banners/sports.png',
       spots: 200,
-      registered: 83,
+      registered: 200,
       teamEvent: false,
-      badge: 'Sports',
+      badge: 'Completed',
       badgeClass: 'badge-green',
-      regLink: 'https://docs.google.com/forms/d/e/1FAIpQLSf0BIFOIbD-oeTnKCpI2rlsiBPdmVmFHJZAIxLEhpOaWs6O9g/viewform?usp=header'
+      status: 'completed'
     },
     {
       id: 'cultural',
@@ -52,81 +52,184 @@
       desc: 'Grand Cultural Night — Freshers Party, Farewell & Dinner Night with music, dance, drama performances, and a DJ night to close TECHNOVA 2026.',
       image: 'assets/banners/cultural.png',
       spots: 300,
-      registered: 156,
+      registered: 300,
       teamEvent: false,
-      badge: 'Cultural',
-      badgeClass: 'badge-purple',
-      regLink: 'https://docs.google.com/forms/d/e/1FAIpQLSecMiVxEvFhMVZTRqtTXktDA7kgFFP0Z4m9juzgaXOUrGFeyw/viewform?usp=sharing&ouid=110119880692213323631'
-    },
-    /*
+      badge: 'Completed',
+      badgeClass: 'badge-green',
+      status: 'completed'
+    }
+  ];
+
+  // ---- UPCOMING Events ----
+  const upcomingEventsData = [
     {
-      id: 'webdev',
-      title: 'Web Dev Challenge',
+      id: 'iot-challenge',
+      title: 'IoT Innovation Challenge',
       category: 'technical',
-      date: 'May 15, 2026',
-      time: '02:00 PM',
-      venue: 'IT Lab 2',
-      desc: 'Build a responsive website in 3 hours. Individual event testing HTML, CSS, and JavaScript skills.',
-      image: 'assets/banners/hackathon.png',
-      spots: 60,
-      registered: 22,
-      teamEvent: false,
-      badge: 'Technical',
-      badgeClass: 'badge-cyan'
-    },
-    {
-      id: 'quiz',
-      title: 'Tech Quiz',
-      category: 'technical',
-      date: 'May 16, 2026',
-      time: '11:00 AM',
-      venue: 'Seminar Hall',
-      desc: 'Test your knowledge in electronics, programming, networking, and emerging technologies.',
+      date: 'Coming Soon',
+      time: 'TBA',
+      venue: 'Electronics Lab',
+      desc: 'Build a working IoT prototype in 6 hours! Design smart solutions using sensors, microcontrollers, and cloud platforms. Very relevant for ECE students.',
       image: 'assets/banners/hackathon.png',
       spots: 80,
-      registered: 35,
+      registered: 0,
       teamEvent: true,
       minTeam: 2,
-      maxTeam: 2,
-      badge: 'Technical',
-      badgeClass: 'badge-cyan'
+      maxTeam: 4,
+      badge: 'Upcoming',
+      badgeClass: 'badge-cyan',
+      status: 'upcoming'
+    },
+    {
+      id: 'esports',
+      title: 'E-Sports Arena',
+      category: 'fun',
+      date: 'Coming Soon',
+      time: 'TBA',
+      venue: 'IT Lab / Online',
+      desc: 'Battle it out in Valorant, BGMI & Free Fire tournaments! Huge prizes await the champions. Massive student engagement guaranteed.',
+      image: 'assets/banners/cultural.png',
+      spots: 150,
+      registered: 0,
+      teamEvent: true,
+      minTeam: 4,
+      maxTeam: 5,
+      badge: 'Upcoming',
+      badgeClass: 'badge-cyan',
+      status: 'upcoming'
     },
     {
       id: 'treasure',
-      title: 'Treasure Hunt',
+      title: 'CypherChase — Treasure Hunt',
       category: 'fun',
-      date: 'May 16, 2026',
-      time: '03:00 PM',
+      date: 'Coming Soon',
+      time: 'TBA',
       venue: 'Campus Wide',
-      desc: 'Solve clues, decode puzzles, and race across campus to find the hidden treasure!',
+      desc: 'Solve clues, decode puzzles, and race across campus to find the hidden treasure! A thrilling campus-wide adventure.',
       image: 'assets/banners/cultural.png',
       spots: 100,
-      registered: 41,
+      registered: 0,
       teamEvent: true,
       minTeam: 3,
       maxTeam: 5,
-      badge: 'Fun',
-      badgeClass: 'badge-orange'
+      badge: 'Upcoming',
+      badgeClass: 'badge-cyan',
+      status: 'upcoming'
+    },
+    {
+      id: 'quiz',
+      title: 'BrainBytes — Tech Quiz',
+      category: 'technical',
+      date: 'Coming Soon',
+      time: 'TBA',
+      venue: 'Seminar Hall',
+      desc: 'Test your knowledge in electronics, programming, networking, and emerging technologies. Quick-fire rounds, buzzer rounds & more!',
+      image: 'assets/banners/hackathon.png',
+      spots: 80,
+      registered: 0,
+      teamEvent: true,
+      minTeam: 2,
+      maxTeam: 2,
+      badge: 'Upcoming',
+      badgeClass: 'badge-cyan',
+      status: 'upcoming'
+    },
+    {
+      id: 'codeblitz',
+      title: 'Code Blitz',
+      category: 'technical',
+      date: 'Coming Soon',
+      time: 'TBA',
+      venue: 'IT Lab 2',
+      desc: 'Speed programming contest — solve maximum problems in 2 hours! Individual event testing logic, algorithms & coding skills. Quick, competitive & fun.',
+      image: 'assets/banners/hackathon.png',
+      spots: 60,
+      registered: 0,
+      teamEvent: false,
+      badge: 'Upcoming',
+      badgeClass: 'badge-cyan',
+      status: 'upcoming'
     }
-    */
   ];
+
+  // Combined for filtering
+  const allEventsData = [...pastEventsData, ...upcomingEventsData];
 
   let currentFilter = 'all';
   let selectedEvent = null;
   let regType = 'individual';
 
-  // ---- Render Event Cards ----
+  // ---- Render All Sections ----
   function renderEvents(filter = 'all') {
     const grid = document.getElementById('events-grid');
     if (!grid) return;
 
-    const filtered = filter === 'all'
-      ? eventsData
-      : eventsData.filter(e => e.category === filter);
+    let filteredPast, filteredUpcoming;
 
-    grid.innerHTML = filtered.map(event => `
-      <div class="event-card reveal" data-category="${event.category}" id="event-${event.id}">
+    if (filter === 'all') {
+      filteredPast = pastEventsData;
+      filteredUpcoming = upcomingEventsData;
+    } else {
+      filteredPast = pastEventsData.filter(e => e.category === filter);
+      filteredUpcoming = upcomingEventsData.filter(e => e.category === filter);
+    }
+
+    let html = '';
+
+    // ---- Results Announcement Banner ----
+    if (filteredPast.length > 0) {
+      html += `
+        <div class="events-section-banner results-banner reveal" style="grid-column: 1 / -1;">
+          <div class="banner-glow"></div>
+          <div class="banner-content">
+            <div class="banner-icon">🏆</div>
+            <h2 class="banner-title">All Events Successfully Completed!</h2>
+            <p class="banner-desc">Results will be announced very soon. Stay tuned for winners & certificates!</p>
+            <div class="banner-pulse-ring"></div>
+          </div>
+        </div>
+      `;
+
+      // Render completed event cards
+      html += filteredPast.map(event => renderCompletedCard(event)).join('');
+    }
+
+    // ---- Upcoming Events Banner ----
+    if (filteredUpcoming.length > 0) {
+      html += `
+        <div class="events-section-banner upcoming-banner reveal" style="grid-column: 1 / -1;">
+          <div class="banner-glow upcoming-glow"></div>
+          <div class="banner-content">
+            <div class="banner-icon">🚀</div>
+            <h2 class="banner-title">Upcoming Events</h2>
+            <p class="banner-desc">Stay tuned for dates — once finalized, we will notify you!</p>
+            <div class="banner-pulse-ring upcoming-ring"></div>
+          </div>
+        </div>
+      `;
+
+      // Render upcoming event cards
+      html += filteredUpcoming.map(event => renderUpcomingCard(event)).join('');
+    }
+
+    if (!filteredPast.length && !filteredUpcoming.length) {
+      html = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;">
+        <p style="color:var(--text-muted);font-size:1.1rem;">No events found in this category.</p>
+      </div>`;
+    }
+
+    grid.innerHTML = html;
+    initScrollReveal();
+  }
+
+  // ---- Completed Event Card ----
+  function renderCompletedCard(event) {
+    return `
+      <div class="event-card completed-event reveal" data-category="${event.category}" id="event-${event.id}">
         <div class="event-card-inner">
+          <div class="completed-overlay">
+            <div class="completed-stamp">✅ COMPLETED</div>
+          </div>
           <img src="${event.image}" alt="${event.title}" class="event-card-image" loading="lazy">
           <div class="event-card-body">
             <div class="event-card-header">
@@ -143,19 +246,46 @@
             </div>
             <p class="event-card-desc">${event.desc}</p>
             <div class="event-card-footer">
-              <span class="event-card-spots">${event.spots - event.registered} spots left</span>
-              ${event.regLink
-        ? `<a href="${event.regLink}" target="_blank" rel="noopener" class="event-card-register" id="reg-btn-${event.id}">Register</a>`
-        : `<button class="event-card-register" onclick="openRegistration('${event.id}')" id="reg-btn-${event.id}">Register</button>`
-      }
+              <span class="event-card-spots" style="color: var(--neon-orange);">🏆 Results Coming Soon</span>
+              <span class="event-status-badge completed-badge">Event Over</span>
             </div>
           </div>
         </div>
       </div>
-    `).join('');
+    `;
+  }
 
-    // Re-init scroll reveal
-    initScrollReveal();
+  // ---- Upcoming Event Card ----
+  function renderUpcomingCard(event) {
+    return `
+      <div class="event-card upcoming-event reveal" data-category="${event.category}" id="event-${event.id}">
+        <div class="event-card-inner">
+          <div class="upcoming-overlay">
+            <div class="upcoming-stamp">🔜 COMING SOON</div>
+          </div>
+          <img src="${event.image}" alt="${event.title}" class="event-card-image" loading="lazy">
+          <div class="event-card-body">
+            <div class="event-card-header">
+              <h3 class="event-card-title">${event.title}</h3>
+              <span class="badge ${event.badgeClass}">${event.badge}</span>
+            </div>
+            <div class="event-card-meta">
+              <span>📅 ${event.date}</span>
+              <span>🕐 ${event.time}</span>
+            </div>
+            <div class="event-card-meta">
+              <span>📍 ${event.venue}</span>
+              ${event.teamEvent ? `<span>👥 Team (${event.minTeam}-${event.maxTeam})</span>` : '<span>👤 Individual</span>'}
+            </div>
+            <p class="event-card-desc">${event.desc}</p>
+            <div class="event-card-footer">
+              <span class="event-card-spots" style="color: var(--neon-cyan);">🔔 Date TBA — Stay Tuned!</span>
+              <span class="event-status-badge upcoming-badge-tag">Coming Soon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
   }
 
   function initScrollReveal() {
@@ -191,16 +321,20 @@
     searchInput.addEventListener('input', (e) => {
       const query = e.target.value.toLowerCase();
       document.querySelectorAll('.event-card').forEach(card => {
-        const title = card.querySelector('.event-card-title').textContent.toLowerCase();
-        const desc = card.querySelector('.event-card-desc').textContent.toLowerCase();
+        const title = card.querySelector('.event-card-title')?.textContent.toLowerCase() || '';
+        const desc = card.querySelector('.event-card-desc')?.textContent.toLowerCase() || '';
         card.style.display = (title.includes(query) || desc.includes(query)) ? '' : 'none';
+      });
+      // Also show/hide banners based on if any children are visible
+      document.querySelectorAll('.events-section-banner').forEach(banner => {
+        banner.style.display = query ? 'none' : '';
       });
     });
   }
 
-  // ---- Registration Modal ----
+  // ---- Registration Modal (kept for future upcoming events) ----
   window.openRegistration = function (eventId) {
-    selectedEvent = eventsData.find(e => e.id === eventId);
+    selectedEvent = allEventsData.find(e => e.id === eventId);
     if (!selectedEvent) return;
 
     const modal = document.getElementById('reg-modal');

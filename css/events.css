@@ -63,6 +63,106 @@
   margin: 0 auto;
 }
 
+/* ============================================================
+   SECTION BANNERS (Results & Upcoming)
+   ============================================================ */
+.events-section-banner {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl) var(--space-xl);
+  text-align: center;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  margin-bottom: var(--space-md);
+}
+
+.results-banner {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(239, 68, 68, 0.05) 50%, rgba(139, 92, 246, 0.08) 100%);
+  border-color: rgba(249, 115, 22, 0.25);
+}
+
+.upcoming-banner {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.08) 0%, rgba(0, 119, 255, 0.05) 50%, rgba(139, 92, 246, 0.08) 100%);
+  border-color: rgba(0, 240, 255, 0.25);
+}
+
+.banner-glow {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.banner-glow.upcoming-glow {
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 70%);
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+}
+
+.banner-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+  animation: float 3s ease-in-out infinite;
+}
+
+.banner-title {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: var(--text-primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+}
+
+.results-banner .banner-title {
+  color: var(--neon-orange);
+  text-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+}
+
+.upcoming-banner .banner-title {
+  color: var(--neon-cyan);
+  text-shadow: var(--text-glow-cyan);
+}
+
+.banner-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.banner-pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid rgba(249, 115, 22, 0.2);
+  animation: pulseRing 3s ease-out infinite;
+  pointer-events: none;
+}
+
+.banner-pulse-ring.upcoming-ring {
+  border-color: rgba(0, 240, 255, 0.2);
+}
+
+@keyframes pulseRing {
+  0% { width: 120px; height: 120px; opacity: 0.6; }
+  100% { width: 300px; height: 300px; opacity: 0; }
+}
+
 /* ---- 3D Event Card ---- */
 .event-card {
   perspective: 800px;
@@ -176,6 +276,105 @@
 .event-card-register:hover {
   box-shadow: var(--glow-cyan);
   transform: translateY(-1px);
+}
+
+/* ============================================================
+   COMPLETED EVENT CARDS
+   ============================================================ */
+.completed-event .event-card-inner {
+  border-color: rgba(34, 211, 238, 0.15);
+}
+
+.completed-event .event-card-image {
+  filter: grayscale(40%) brightness(0.7);
+}
+
+.completed-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-md);
+  pointer-events: none;
+}
+
+.completed-stamp {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.85), rgba(0, 119, 255, 0.85));
+  padding: 6px 20px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 20px rgba(0, 240, 255, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.event-status-badge {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.completed-badge {
+  color: var(--text-muted);
+  background: rgba(107, 114, 128, 0.15);
+  border: 1px solid rgba(107, 114, 128, 0.3);
+}
+
+/* ============================================================
+   UPCOMING EVENT CARDS
+   ============================================================ */
+.upcoming-event .event-card-inner {
+  border-color: rgba(0, 240, 255, 0.2);
+  animation: glowBorder 4s ease-in-out infinite;
+}
+
+.upcoming-event .event-card-inner:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: var(--shadow-card-hover), 0 0 40px rgba(0, 240, 255, 0.12);
+}
+
+.upcoming-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-md);
+  pointer-events: none;
+}
+
+.upcoming-stamp {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--bg-primary);
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+  padding: 6px 20px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 20px rgba(0, 240, 255, 0.4);
+  animation: neonPulse 2s ease-in-out infinite;
+}
+
+.upcoming-badge-tag {
+  color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  animation: glowBorder 3s ease-in-out infinite;
 }
 
 /* ---- Registration Modal ---- */
@@ -325,4 +524,5 @@
   .events-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
   .event-card { height: auto; }
   .event-card-inner:hover { transform: translateY(-4px); }
+  .banner-title { font-size: 1rem; }
 }
