@@ -1,0 +1,2425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HCI Master Question Paper — B.E. Sem VII</title>
+<style>
+:root {
+  --bg: #0d1117; --bg2: #161b22; --bg3: #1c2333; --bg4: #21262d;
+  --border: #30363d; --text: #e6edf3; --muted: #8b949e; --link: #58a6ff;
+  --purple: #7c3aed; --purple-light: #a78bfa; --purple-bg: #1e1333;
+  --green: #16a34a; --green-light: #4ade80; --green-bg: #0d2318;
+  --amber: #d97706; --amber-light: #fbbf24; --amber-bg: #261a04;
+  --red: #dc2626; --red-light: #f87171; --cyan: #0891b2; --cyan-light: #67e8f9;
+  --blue: #1d4ed8; --blue-light: #93c5fd; --pink: #db2777; --pink-light: #f9a8d4;
+  --radius: 8px; --shadow: 0 4px 24px rgba(0,0,0,0.5);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
+/* NAV */
+#main-nav{position:sticky;top:0;z-index:100;background:var(--bg2);border-bottom:1px solid var(--border);padding:0 12px;display:flex;align-items:center;gap:4px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+#main-nav::-webkit-scrollbar{display:none}
+.nav-brand{font-weight:700;font-size:13px;color:var(--cyan-light);padding:12px 10px 12px 4px;border-right:1px solid var(--border);margin-right:6px;flex-shrink:0}
+.nav-tab{padding:10px 12px;cursor:pointer;border:none;background:none;color:var(--muted);font-size:12.5px;font-weight:500;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{color:var(--cyan-light);border-bottom-color:var(--cyan-light)}
+/* SEARCH */
+#search-bar{position:sticky;top:45px;z-index:99;background:var(--bg3);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;gap:8px}
+#search-input{flex:1;background:var(--bg4);border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:var(--radius);font-size:13px;outline:none}
+#search-input:focus{border-color:var(--cyan)}
+#clear-btn{padding:7px 14px;background:var(--bg4);border:1px solid var(--border);color:var(--muted);border-radius:var(--radius);cursor:pointer;font-size:12px}
+#clear-btn:hover{color:var(--text)}
+mark.hl{background:rgba(251,191,36,0.35);color:#fde68a;padding:0 2px;border-radius:3px}
+/* PAGES */
+.page{display:none;padding:20px 16px;max-width:1100px;margin:0 auto}
+.page.active{display:block}
+/* CARDS & SECTION */
+.section-title{font-size:20px;font-weight:700;color:var(--cyan-light);margin:24px 0 12px;border-left:3px solid var(--cyan);padding-left:10px}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:12px 0}
+.card-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px}
+/* BADGES */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;margin:0 3px}
+.badge-purple{background:var(--purple-bg);color:var(--purple-light);border:1px solid var(--purple)}
+.badge-green{background:var(--green-bg);color:var(--green-light);border:1px solid var(--green)}
+.badge-amber{background:var(--amber-bg);color:var(--amber-light);border:1px solid var(--amber)}
+.badge-mark{background:#1a2744;color:var(--blue-light);border:1px solid var(--blue);padding:2px 7px;border-radius:4px;font-size:11px;font-weight:700}
+/* FREQ TABLE */
+.freq-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px}
+.freq-table th{background:var(--bg3);color:var(--muted);font-weight:600;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.freq-table td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.freq-table tr:last-child td{border-bottom:none}
+.freq-table tr:hover td{background:var(--bg3)}
+/* Q PAPER */
+.q-block{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);margin:14px 0}
+.q-header{padding:12px 16px;background:var(--bg3);border-radius:var(--radius) var(--radius) 0 0;display:flex;align-items:center;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--border)}
+.q-num{font-weight:700;font-size:14px;color:var(--cyan-light)}
+.q-topic{font-size:13px;color:var(--text);flex:1}
+.q-body{padding:14px 16px}
+/* SUB-TABS */
+.sub-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px}
+.sub-tab{padding:5px 12px;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--muted);border-radius:var(--radius);font-size:12px;font-weight:500;transition:all .2s}
+.sub-tab:hover{color:var(--text);border-color:var(--cyan)}
+.sub-tab.active{background:var(--cyan);color:#fff;border-color:var(--cyan)}
+.sub-panel{display:none}
+.sub-panel.active{display:block}
+/* ANSWER STYLES */
+.ans-def{background:var(--bg3);border-left:3px solid var(--cyan);padding:12px 14px;border-radius:0 var(--radius) var(--radius) 0;margin:10px 0;font-size:14px}
+.ans-h{font-size:14px;font-weight:700;color:var(--amber-light);margin:14px 0 6px;display:flex;align-items:center;gap:6px}
+.ans-h::before{content:'▶';font-size:10px;color:var(--cyan)}
+ul.ans-list{padding-left:20px;margin:6px 0}
+ul.ans-list li{margin:4px 0;font-size:13.5px;color:var(--text)}
+ul.ans-list li::marker{color:var(--cyan-light)}
+.callout{padding:10px 14px;border-radius:var(--radius);margin:10px 0;font-size:13px}
+.callout-blue{background:#0d1f3c;border:1px solid var(--blue);color:var(--blue-light)}
+.callout-green{background:var(--green-bg);border:1px solid var(--green);color:var(--green-light)}
+.callout-amber{background:var(--amber-bg);border:1px solid var(--amber);color:var(--amber-light)}
+.callout-purple{background:var(--purple-bg);border:1px solid var(--purple);color:var(--purple-light)}
+.trick-box{border:2px dashed var(--green);background:var(--green-bg);border-radius:var(--radius);padding:12px 14px;margin:12px 0}
+.trick-box .trick-title{font-weight:700;color:var(--green-light);font-size:13px;margin-bottom:4px}
+.trick-box p{font-size:13px;color:#86efac}
+/* COMPARISON TABLE */
+.cmp-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px}
+.cmp-table th{background:var(--bg3);color:var(--cyan-light);font-weight:600;padding:8px 10px;text-align:left;border:1px solid var(--border)}
+.cmp-table td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.cmp-table tr:nth-child(even) td{background:var(--bg3)}
+/* SVG DIAGRAMS */
+.svg-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:12px;margin:10px 0;overflow-x:auto;text-align:center}
+.svg-wrap svg{max-width:100%;height:auto}
+/* GRID */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+@media(max-width:600px){.grid2{grid-template-columns:1fr}.nav-tab{padding:10px 8px;font-size:11.5px}}
+/* PAPER HEADER */
+.paper-header{text-align:center;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:20px}
+.paper-title{font-size:20px;font-weight:700;color:var(--cyan-light);margin:4px 0}
+.paper-subtitle{font-size:13px;color:var(--muted);margin:3px 0}
+.or-divider{text-align:center;padding:8px;color:var(--muted);font-weight:700;font-size:13px;letter-spacing:2px}
+/* REVISION */
+.rev-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;margin:8px 0;display:flex;align-items:flex-start;gap:12px}
+.rev-num{background:var(--cyan);color:#fff;font-weight:700;font-size:13px;border-radius:50%;min-width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rev-content{flex:1}
+.rev-q{font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:4px}
+.rev-hint{font-size:12px;color:var(--muted)}
+/* HOME STATS */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center}
+.stat-num{font-size:28px;font-weight:700;color:var(--cyan-light)}
+.stat-label{font-size:12px;color:var(--muted);margin-top:2px}
+/* OR block */
+.or-block{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);margin:6px 0}
+.or-label{font-size:11px;font-weight:700;color:var(--pink-light);letter-spacing:2px;text-align:center;padding:5px}
+/* progress */
+.progress-bar{height:4px;border-radius:2px;background:var(--bg3);margin:4px 0}
+.progress-fill{height:100%;border-radius:2px}
+/* anchor links */
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav id="main-nav">
+  <div class="nav-brand">🖥 HCI</div>
+  <button class="nav-tab active" onclick="showPage('home',this)">🏠 Home</button>
+  <button class="nav-tab" onclick="showPage('freq',this)">📊 Frequency</button>
+  <button class="nav-tab" onclick="showPage('paper',this)">📋 Master Paper</button>
+  <button class="nav-tab" onclick="showPage('q12',this)">Q1/Q2 — Unit I</button>
+  <button class="nav-tab" onclick="showPage('q34',this)">Q3/Q4 — Unit II</button>
+  <button class="nav-tab" onclick="showPage('q56',this)">Q5/Q6 — Unit III</button>
+  <button class="nav-tab" onclick="showPage('q78',this)">Q7/Q8 — Unit IV</button>
+  <button class="nav-tab" onclick="showPage('revision',this)">📌 Revision</button>
+</nav>
+
+<!-- SEARCH -->
+<div id="search-bar">
+  <input id="search-input" type="text" placeholder="🔍 Search topics, questions, keywords..." oninput="doSearch(this.value)">
+  <button id="clear-btn" onclick="clearSearch()">✕ Clear</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     HOME PAGE
+════════════════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+  <div class="paper-header">
+    <div style="font-size:13px;color:var(--muted);margin-bottom:6px">B.E. Electronics & Computer Engineering • Semester VII • 2019 Pattern</div>
+    <div class="paper-title">Human Computer Interface (HCI) Master Question Paper & Answers By Access_299</div>
+    <div class="paper-subtitle">Master Question Paper — Compiled from 5 Past Year Papers (Oct 2023 – Oct 2025)</div>
+    <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <span class="badge badge-purple">★★★ Very High Probability</span>
+      <span class="badge badge-green">★★ High Probability</span>
+      <span class="badge badge-amber">★ Moderate Probability</span>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num" style="color:var(--purple-light)">5</div><div class="stat-label">Past Papers Analyzed</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--green-light)">40+</div><div class="stat-label">Unique Questions</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--amber-light)">12</div><div class="stat-label">★★★ Repeat Topics</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--cyan-light)">70</div><div class="stat-label">Max Marks</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--pink-light)">4</div><div class="stat-label">Units Covered</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--blue-light)">20</div><div class="stat-label">Revision Questions</div></div>
+  </div>
+
+  <div class="section-title">📚 Unit-wise Topic Coverage</div>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title" style="color:var(--cyan-light)">Unit I — Interaction Foundations</div>
+      <ul class="ans-list" style="margin-top:8px">
+        <li>WIMP Interface Elements <span class="badge badge-purple">★★★ 5/5</span></li>
+        <li>Interaction Styles <span class="badge badge-purple">★★★ 4/5</span></li>
+        <li>Honeycomb Model (UX) <span class="badge badge-purple">★★★ 4/5</span></li>
+        <li>Paradigms of Interaction <span class="badge badge-purple">★★★ 4/5</span></li>
+        <li>Context of Interaction <span class="badge badge-purple">★★★ 4/5</span></li>
+        <li>Ergonomics <span class="badge badge-green">★★ 2/5</span></li>
+        <li>Execution-Evaluation Cycle <span class="badge badge-green">★★ 2/5</span></li>
+        <li>Models of Interaction <span class="badge badge-amber">★ 1/5</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--amber-light)">Unit II — Design Frameworks</div>
+      <ul class="ans-list" style="margin-top:8px">
+        <li>UI Layer & Execution Framework <span class="badge badge-purple">★★★ 4/5</span></li>
+        <li>Prototyping Techniques <span class="badge badge-purple">★★★ 5/5</span></li>
+        <li>Scenarios (Music Player) <span class="badge badge-purple">★★★ 3/5</span></li>
+        <li>MVC Framework <span class="badge badge-purple">★★★ 3/5</span></li>
+        <li>Software Design Process / Constraints <span class="badge badge-green">★★ 2/5</span></li>
+        <li>Navigation Design <span class="badge badge-amber">★ 1/5</span></li>
+        <li>Screen Design Process <span class="badge badge-amber">★ 1/5</span></li>
+        <li>Wireframing <span class="badge badge-amber">★ 1/5</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--green-light)">Unit III — Design Rules & Evaluation</div>
+      <ul class="ans-list" style="margin-top:8px">
+        <li>Shneiderman's 8 Golden Rules <span class="badge badge-purple">★★★ 4/5</span></li>
+        <li>Evaluation through Expert Analysis <span class="badge badge-purple">★★★ 4/5</span></li>
+        <li>Usability Principles <span class="badge badge-purple">★★★ 3/5</span></li>
+        <li>UIMS Architecture <span class="badge badge-green">★★ 2/5</span></li>
+        <li>Nielsen's 10 Heuristics <span class="badge badge-green">★★ 2/5</span></li>
+        <li>Evaluation through User Participation <span class="badge badge-amber">★ 1/5</span></li>
+        <li>Design Guidelines & Standards <span class="badge badge-amber">★ 1/5</span></li>
+        <li>Evaluation Criteria <span class="badge badge-amber">★ 1/5</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--purple-light)">Unit IV — Models & Future HCI</div>
+      <ul class="ans-list" style="margin-top:8px">
+        <li>HTA — Cook Rice <span class="badge badge-purple">★★★ 4/5</span></li>
+        <li>Linguistic Model <span class="badge badge-purple">★★★ 3/5</span></li>
+        <li>KLM (Keystroke-Level Model) <span class="badge badge-purple">★★★ 3/5</span></li>
+        <li>Computer-Mediated Communication <span class="badge badge-green">★★ 2/5</span></li>
+        <li>Cognitive Architectures <span class="badge badge-green">★★ 2/5</span></li>
+        <li>Physical & Device Models <span class="badge badge-amber">★ 1/5</span></li>
+        <li>Ubiquitous Computing <span class="badge badge-amber">★ 1/5</span></li>
+        <li>Diagrammatic Dialog Design <span class="badge badge-amber">★ 1/5</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-blue" style="margin-top:16px">
+    <strong>📌 Exam Pattern:</strong> 8 questions in 4 OR-pairs | Each pair from one unit | Total 70 marks | Time: 2.5 Hours | Mix of 6M, 8M, 9M sub-questions
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     FREQUENCY ANALYSIS PAGE
+════════════════════════════════════════════════════════ -->
+<div id="page-freq" class="page">
+  <div class="section-title">🔴 Very High Probability ★★★ (Appeared 3–5 times)</div>
+  <table class="freq-table">
+    <thead><tr><th>Question / Topic</th><th>Unit</th><th>Marks</th><th>Frequency</th><th>Papers</th></tr></thead>
+    <tbody>
+      <tr><td><strong>WIMP Interface Elements</strong> — explain with advantages & disadvantages</td><td>I</td><td>6–7M</td><td><span class="badge badge-purple">★★★ 5/5</span></td><td>All 5 papers</td></tr>
+      <tr><td><strong>Prototyping Techniques</strong> — types, goals, hill-climbing, rapid prototyping</td><td>II</td><td>8–9M</td><td><span class="badge badge-purple">★★★ 5/5</span></td><td>All 5 papers</td></tr>
+      <tr><td><strong>Interaction Styles</strong> — 4 types with advantages & disadvantages</td><td>I</td><td>5–6M</td><td><span class="badge badge-purple">★★★ 4/5</span></td><td>Apr24, Nov24, Oct23, Oct25</td></tr>
+      <tr><td><strong>Honeycomb Model</strong> — UX theory by Morville</td><td>I</td><td>6M</td><td><span class="badge badge-purple">★★★ 4/5</span></td><td>Apr24, Nov24, Oct23, Oct25</td></tr>
+      <tr><td><strong>Paradigms of Interaction Design</strong></td><td>I</td><td>6–7M</td><td><span class="badge badge-purple">★★★ 4/5</span></td><td>Apr24, Nov24, Oct23, Oct25</td></tr>
+      <tr><td><strong>Context of Interaction</strong> — with example</td><td>I</td><td>5–6M</td><td><span class="badge badge-purple">★★★ 4/5</span></td><td>Apr24, Nov24, Oct23, Oct25</td></tr>
+      <tr><td><strong>UI Layer & Execution Framework</strong></td><td>II</td><td>9M</td><td><span class="badge badge-purple">★★★ 4/5</span></td><td>Apr24, Nov24, Oct23, Oct25</td></tr>
+      <tr><td><strong>Shneiderman's 8 Golden Rules</strong> with example</td><td>III</td><td>9M</td><td><span class="badge badge-purple">★★★ 4/5</span></td><td>Apr24, Nov24, Oct23, Oct25</td></tr>
+      <tr><td><strong>Evaluation through Expert Analysis</strong></td><td>III</td><td>8M</td><td><span class="badge badge-purple">★★★ 4/5</span></td><td>Apr24, Nov24, Oct23, Oct25</td></tr>
+      <tr><td><strong>HTA — Cook Rice</strong> (with diagram)</td><td>IV</td><td>9M</td><td><span class="badge badge-purple">★★★ 4/5</span></td><td>Apr24, Nov24, Oct23, Oct25</td></tr>
+      <tr><td><strong>Scenarios</strong> — types + music player design</td><td>II</td><td>8M</td><td><span class="badge badge-purple">★★★ 3/5</span></td><td>Apr24, Nov24, Oct23</td></tr>
+      <tr><td><strong>MVC Framework</strong> — need, diagram, explanation</td><td>II</td><td>5–8M</td><td><span class="badge badge-purple">★★★ 3/5</span></td><td>Nov24, Oct23, Apr25</td></tr>
+      <tr><td><strong>Usability Principles</strong></td><td>III</td><td>9M</td><td><span class="badge badge-purple">★★★ 3/5</span></td><td>Apr24, Nov24, Oct23</td></tr>
+      <tr><td><strong>Linguistic Model</strong></td><td>IV</td><td>8–9M</td><td><span class="badge badge-purple">★★★ 3/5</span></td><td>Apr24, Nov24, Oct23</td></tr>
+      <tr><td><strong>KLM (Keystroke-Level Model)</strong></td><td>IV</td><td>9M</td><td><span class="badge badge-purple">★★★ 3/5</span></td><td>Apr24, Nov24, Oct23</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">🟢 High Probability ★★ (Appeared 2 times)</div>
+  <table class="freq-table">
+    <thead><tr><th>Question / Topic</th><th>Unit</th><th>Marks</th><th>Frequency</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ergonomics</strong> — disciplines and explanation</td><td>I</td><td>6M</td><td><span class="badge badge-green">★★ 2/5</span></td></tr>
+      <tr><td><strong>Execution-Evaluation Cycle</strong></td><td>I</td><td>6M</td><td><span class="badge badge-green">★★ 2/5</span></td></tr>
+      <tr><td><strong>Software Design Process Constraints</strong></td><td>II</td><td>9M</td><td><span class="badge badge-green">★★ 2/5</span></td></tr>
+      <tr><td><strong>UIMS Conceptual Architecture</strong></td><td>III</td><td>8M</td><td><span class="badge badge-green">★★ 2/5</span></td></tr>
+      <tr><td><strong>Nielsen's 10 Heuristics</strong></td><td>III</td><td>5–8M</td><td><span class="badge badge-green">★★ 2/5</span></td></tr>
+      <tr><td><strong>Computer-Mediated Communication</strong></td><td>IV</td><td>9M</td><td><span class="badge badge-green">★★ 2/5</span></td></tr>
+      <tr><td><strong>Cognitive Architectures</strong></td><td>IV</td><td>5M</td><td><span class="badge badge-green">★★ 2/5</span></td></tr>
+      <tr><td><strong>Physical & Device Models</strong></td><td>IV</td><td>8M</td><td><span class="badge badge-green">★★ 2/5</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">🟡 Moderate Probability ★ (Appeared once)</div>
+  <table class="freq-table">
+    <thead><tr><th>Question / Topic</th><th>Unit</th><th>Marks</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Models of Interaction</strong></td><td>I</td><td>5M</td></tr>
+      <tr><td><strong>Navigation Design</strong></td><td>II</td><td>5M</td></tr>
+      <tr><td><strong>Screen Design Process</strong></td><td>II</td><td>7M</td></tr>
+      <tr><td><strong>Wireframing</strong></td><td>II</td><td>8M</td></tr>
+      <tr><td><strong>Evaluation through User Participation</strong></td><td>III</td><td>5M</td></tr>
+      <tr><td><strong>Design Guidelines & Standards</strong></td><td>III</td><td>8M</td></tr>
+      <tr><td><strong>Evaluation Criteria</strong></td><td>III</td><td>5M</td></tr>
+      <tr><td><strong>Golden Rules & Heuristics (short note)</strong></td><td>III</td><td>5M</td></tr>
+      <tr><td><strong>Ubiquitous Computing</strong></td><td>IV</td><td>5M</td></tr>
+      <tr><td><strong>Diagrammatic Dialog Design / JSD / Flowcharts</strong></td><td>IV</td><td>9M</td></tr>
+      <tr><td><strong>Future of HCI / Finding things on the Web</strong></td><td>IV</td><td>5M</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-purple" style="margin-top:16px">
+    <strong>🎯 Strategy:</strong> Focus 70% of prep time on ★★★ topics — they appear in almost every paper. All 15 ★★★ topics have been fully answered in this document with diagrams, examples and mnemonics.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MASTER PAPER PAGE
+════════════════════════════════════════════════════════ -->
+<div id="page-paper" class="page">
+  <div class="paper-header">
+    <div class="paper-title">MASTER QUESTION PAPER — HCI (410345 B)</div>
+    <div class="paper-subtitle">B.E. Electronics & Computer Engineering | 2019 Pattern | Sem VII | 70 Marks | 2.5 Hours</div>
+    <div style="margin-top:8px;font-size:12px;color:var(--muted)">Instructions: (1) Answer Q1 or Q2, Q3 or Q4, Q5 or Q6, Q7 or Q8 &nbsp;|&nbsp; (2) Neat diagrams where necessary &nbsp;|&nbsp; (3) Figures to right indicate marks</div>
+  </div>
+
+  <!-- Q1 / Q2 -->
+  <div class="q-block">
+    <div class="q-header"><span class="q-num">Q1</span><span class="q-topic">Unit I — Interaction Foundations</span></div>
+    <div class="q-body">
+      <p style="font-size:13px;margin-bottom:8px"><strong>a)</strong> Explain WIMP interface elements. State advantages and disadvantages of WIMP interface. <span class="badge-mark">[6M]</span> <span class="badge badge-purple">★★★ 5/5</span></p>
+      <p style="font-size:13px;margin-bottom:8px"><strong>b)</strong> Explain the execution and evaluation cycle. <span class="badge-mark">[6M]</span> <span class="badge badge-green">★★ 2/5</span></p>
+      <p style="font-size:13px"><strong>c)</strong> Describe different interaction styles used to accommodate dialog between user and computer. <span class="badge-mark">[6M]</span> <span class="badge badge-purple">★★★ 4/5</span></p>
+    </div>
+  </div>
+  <div class="or-divider">— OR —</div>
+  <div class="q-block">
+    <div class="q-header"><span class="q-num">Q2</span><span class="q-topic">Unit I — Interaction Foundations</span></div>
+    <div class="q-body">
+      <p style="font-size:13px;margin-bottom:8px"><strong>a)</strong> Explain theory of User Experience by Honeycomb Model. <span class="badge-mark">[6M]</span> <span class="badge badge-purple">★★★ 4/5</span></p>
+      <p style="font-size:13px;margin-bottom:8px"><strong>b)</strong> Explain paradigms of Interaction design. <span class="badge-mark">[6M]</span> <span class="badge badge-purple">★★★ 4/5</span></p>
+      <p style="font-size:13px"><strong>c)</strong> Explain the context of interaction with an example. <span class="badge-mark">[6M]</span> <span class="badge badge-purple">★★★ 4/5</span></p>
+    </div>
+  </div>
+
+  <!-- Q3 / Q4 -->
+  <div class="q-block" style="margin-top:16px">
+    <div class="q-header"><span class="q-num">Q3</span><span class="q-topic">Unit II — Design Frameworks</span></div>
+    <div class="q-body">
+      <p style="font-size:13px;margin-bottom:8px"><strong>a)</strong> Explain the constraints of the software design process framework in HCI. <span class="badge-mark">[9M]</span> <span class="badge badge-green">★★ 2/5</span></p>
+      <p style="font-size:13px"><strong>b)</strong> What is Prototype? Explain prototyping with hill climbing approach. <span class="badge-mark">[8M]</span> <span class="badge badge-purple">★★★ 5/5</span></p>
+    </div>
+  </div>
+  <div class="or-divider">— OR —</div>
+  <div class="q-block">
+    <div class="q-header"><span class="q-num">Q4</span><span class="q-topic">Unit II — Design Frameworks</span></div>
+    <div class="q-body">
+      <p style="font-size:13px;margin-bottom:8px"><strong>a)</strong> Explain UI layer and its execution framework. <span class="badge-mark">[9M]</span> <span class="badge badge-purple">★★★ 4/5</span></p>
+      <p style="font-size:13px"><strong>b)</strong> What are different types of scenarios? Write scenario for music player design. <span class="badge-mark">[8M]</span> <span class="badge badge-purple">★★★ 3/5</span></p>
+    </div>
+  </div>
+
+  <!-- Q5 / Q6 -->
+  <div class="q-block" style="margin-top:16px">
+    <div class="q-header"><span class="q-num">Q5</span><span class="q-topic">Unit III — Design Rules & Evaluation</span></div>
+    <div class="q-body">
+      <p style="font-size:13px;margin-bottom:8px"><strong>a)</strong> Discuss Shneiderman's 8 golden rules of interface design with an example. <span class="badge-mark">[9M]</span> <span class="badge badge-purple">★★★ 4/5</span></p>
+      <p style="font-size:13px"><strong>b)</strong> What are the goals of evaluation? Explain Evaluation through Expert Analysis. <span class="badge-mark">[8M]</span> <span class="badge badge-purple">★★★ 4/5</span></p>
+    </div>
+  </div>
+  <div class="or-divider">— OR —</div>
+  <div class="q-block">
+    <div class="q-header"><span class="q-num">Q6</span><span class="q-topic">Unit III — Design Rules & Evaluation</span></div>
+    <div class="q-body">
+      <p style="font-size:13px;margin-bottom:8px"><strong>a)</strong> What is Usability? Explain the principles that support Usability. <span class="badge-mark">[9M]</span> <span class="badge badge-purple">★★★ 3/5</span></p>
+      <p style="font-size:13px"><strong>b)</strong> Explain User Interface Management System (UIMS) conceptual architecture. <span class="badge-mark">[8M]</span> <span class="badge badge-green">★★ 2/5</span></p>
+    </div>
+  </div>
+
+  <!-- Q7 / Q8 -->
+  <div class="q-block" style="margin-top:16px">
+    <div class="q-header"><span class="q-num">Q7</span><span class="q-topic">Unit IV — Models & Future HCI</span></div>
+    <div class="q-body">
+      <p style="font-size:13px;margin-bottom:8px"><strong>a)</strong> Explain Keystroke-Level-Model (KLM). <span class="badge-mark">[9M]</span> <span class="badge badge-purple">★★★ 3/5</span></p>
+      <p style="font-size:13px"><strong>b)</strong> Describe a linguistic model in detail. <span class="badge-mark">[9M]</span> <span class="badge badge-purple">★★★ 3/5</span></p>
+    </div>
+  </div>
+  <div class="or-divider">— OR —</div>
+  <div class="q-block">
+    <div class="q-header"><span class="q-num">Q8</span><span class="q-topic">Unit IV — Models & Future HCI</span></div>
+    <div class="q-body">
+      <p style="font-size:13px;margin-bottom:8px"><strong>a)</strong> Perform HTA of the task to cook food (rice). Illustrate using diagram. <span class="badge-mark">[9M]</span> <span class="badge badge-purple">★★★ 4/5</span></p>
+      <p style="font-size:13px"><strong>b)</strong> Discuss applications meant for computer-mediated communication. <span class="badge-mark">[9M]</span> <span class="badge badge-green">★★ 2/5</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     Q1/Q2 ANSWERS — UNIT I
+════════════════════════════════════════════════════════ -->
+<div id="page-q12" class="page">
+  <div class="section-title">Unit I — Interaction Foundations</div>
+
+  <!-- SUB-TABS -->
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('q12','a',this)">Q1a: WIMP Interface</button>
+    <button class="sub-tab" onclick="showSub('q12','b',this)">Q1b: Exec-Eval Cycle</button>
+    <button class="sub-tab" onclick="showSub('q12','c',this)">Q1c: Interaction Styles</button>
+    <button class="sub-tab" onclick="showSub('q12','d',this)">Q2a: Honeycomb Model</button>
+    <button class="sub-tab" onclick="showSub('q12','e',this)">Q2b: Paradigms</button>
+    <button class="sub-tab" onclick="showSub('q12','f',this)">Q2c: Context</button>
+    <button class="sub-tab" onclick="showSub('q12','g',this)">Ergonomics</button>
+  </div>
+
+  <!-- Q1a: WIMP -->
+  <div id="q12-a" class="sub-panel active">
+    <div class="q-header"><span class="q-num">Q1a</span><span class="q-topic">WIMP Interface Elements</span><span class="badge-mark">[6M]</span><span class="badge badge-purple">★★★ 5/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> WIMP stands for <strong>W</strong>indows, <strong>I</strong>cons, <strong>M</strong>enus, <strong>P</strong>ointers. It is a graphical user interface paradigm that uses these four metaphorical elements to allow users to interact with a computer without memorizing commands.</div>
+
+      <div class="ans-h">🔑 The Four WIMP Elements</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" width="700" height="220">
+          <defs><linearGradient id="wg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a2f4a"/><stop offset="100%" stop-color="#0d1f33"/></linearGradient></defs>
+          <rect width="700" height="220" fill="#0d1117" rx="10"/>
+          <!-- Windows -->
+          <rect x="20" y="20" width="150" height="180" rx="8" fill="url(#wg1)" stroke="#58a6ff" stroke-width="1.5"/>
+          <rect x="20" y="20" width="150" height="22" rx="8" fill="#1d4ed8" stroke="#58a6ff" stroke-width="1"/>
+          <text x="95" y="35" fill="#93c5fd" font-size="10" text-anchor="middle" font-weight="bold">WINDOWS</text>
+          <rect x="30" y="52" width="130" height="80" rx="4" fill="#161b22" stroke="#30363d"/>
+          <text x="95" y="96" fill="#8b949e" font-size="9" text-anchor="middle">Rectangular areas on screen</text>
+          <text x="95" y="108" fill="#8b949e" font-size="9" text-anchor="middle">showing running applications</text>
+          <text x="95" y="150" fill="#58a6ff" font-size="9" text-anchor="middle">🗕 🗗 🗙</text>
+          <!-- Icons -->
+          <rect x="190" y="20" width="150" height="180" rx="8" fill="url(#wg1)" stroke="#4ade80" stroke-width="1.5"/>
+          <rect x="190" y="20" width="150" height="22" rx="8" fill="#166534" stroke="#4ade80" stroke-width="1"/>
+          <text x="265" y="35" fill="#86efac" font-size="10" text-anchor="middle" font-weight="bold">ICONS</text>
+          <rect x="220" y="55" width="30" height="30" rx="4" fill="#1a3a26" stroke="#16a34a"/>
+          <text x="235" y="75" fill="#4ade80" font-size="14" text-anchor="middle">📁</text>
+          <rect x="260" y="55" width="30" height="30" rx="4" fill="#1a3a26" stroke="#16a34a"/>
+          <text x="275" y="75" fill="#4ade80" font-size="14" text-anchor="middle">🖨</text>
+          <rect x="300" y="55" width="30" height="30" rx="4" fill="#1a3a26" stroke="#16a34a"/>
+          <text x="315" y="75" fill="#4ade80" font-size="14" text-anchor="middle">🗑</text>
+          <text x="265" y="115" fill="#86efac" font-size="9" text-anchor="middle">Small graphical symbols</text>
+          <text x="265" y="127" fill="#86efac" font-size="9" text-anchor="middle">representing files/apps</text>
+          <!-- Menus -->
+          <rect x="360" y="20" width="150" height="180" rx="8" fill="url(#wg1)" stroke="#f59e0b" stroke-width="1.5"/>
+          <rect x="360" y="20" width="150" height="22" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="1"/>
+          <text x="435" y="35" fill="#fcd34d" font-size="10" text-anchor="middle" font-weight="bold">MENUS</text>
+          <rect x="370" y="52" width="80" height="20" rx="2" fill="#1a1200" stroke="#78350f"/>
+          <text x="410" y="65" fill="#fbbf24" font-size="9" text-anchor="middle">File Edit View</text>
+          <rect x="390" y="78" width="90" height="12" rx="2" fill="#252010" stroke="#78350f"/>
+          <text x="435" y="88" fill="#fcd34d" font-size="8" text-anchor="middle">▶ New</text>
+          <rect x="390" y="93" width="90" height="12" rx="2" fill="#252010" stroke="#78350f"/>
+          <text x="435" y="103" fill="#fcd34d" font-size="8" text-anchor="middle">▶ Open</text>
+          <rect x="390" y="108" width="90" height="12" rx="2" fill="#1d4ed8" stroke="#78350f"/>
+          <text x="435" y="118" fill="white" font-size="8" text-anchor="middle">▶ Save  Ctrl+S</text>
+          <text x="435" y="150" fill="#fbbf24" font-size="9" text-anchor="middle">Lists of choices for</text>
+          <text x="435" y="162" fill="#fbbf24" font-size="9" text-anchor="middle">user commands</text>
+          <!-- Pointers -->
+          <rect x="530" y="20" width="150" height="180" rx="8" fill="url(#wg1)" stroke="#c084fc" stroke-width="1.5"/>
+          <rect x="530" y="20" width="150" height="22" rx="8" fill="#6b21a8" stroke="#c084fc" stroke-width="1"/>
+          <text x="605" y="35" fill="#e9d5ff" font-size="10" text-anchor="middle" font-weight="bold">POINTERS</text>
+          <text x="605" y="90" fill="#c084fc" font-size="30" text-anchor="middle">↖</text>
+          <text x="605" y="130" fill="#e9d5ff" font-size="9" text-anchor="middle">Cursor controlled by</text>
+          <text x="605" y="142" fill="#e9d5ff" font-size="9" text-anchor="middle">mouse/trackpad</text>
+          <text x="605" y="160" fill="#a78bfa" font-size="8" text-anchor="middle">Forms: Arrow, Hand, I-beam</text>
+        </svg>
+      </div>
+
+      <div class="ans-h">📋 Detailed Explanation of Each Element</div>
+      <table class="cmp-table">
+        <thead><tr><th>Element</th><th>Description</th><th>Example in MS Word</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:#58a6ff">Windows</strong></td><td>Rectangular areas showing applications; can be resized, moved, minimized, maximized</td><td>Document editing area, Find dialog box</td></tr>
+          <tr><td><strong style="color:#4ade80">Icons</strong></td><td>Small visual symbols representing files, folders, apps, or actions; clicked to activate</td><td>Printer icon, Save icon, Clipboard icon</td></tr>
+          <tr><td><strong style="color:#fbbf24">Menus</strong></td><td>Hierarchical lists of commands; pull-down (from menu bar) or pop-up (right-click)</td><td>File→Save, Edit→Copy, Format→Font</td></tr>
+          <tr><td><strong style="color:#c084fc">Pointers</strong></td><td>On-screen cursor controlled by pointing device; changes shape based on context</td><td>Arrow for selection, I-beam in text, hand over links</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">⚖️ Advantages & Disadvantages</div>
+      <div class="grid2">
+        <div class="callout callout-green">
+          <strong>✅ Advantages</strong><br>
+          • Visually intuitive — no command memorization<br>
+          • <strong>WYSIWYG</strong> — What You See Is What You Get<br>
+          • Supports multitasking (multiple windows)<br>
+          • Easy for beginners — low learning curve<br>
+          • Consistent UI across applications<br>
+          • Direct manipulation — drag, drop, resize<br>
+          • Supports undo/redo operations
+        </div>
+        <div class="callout callout-amber">
+          <strong>❌ Disadvantages</strong><br>
+          • High memory and processing requirements<br>
+          • Menu navigation can be slow for experts<br>
+          • Requires pointing device (mouse)<br>
+          • Screen can become cluttered<br>
+          • Difficult to automate repetitive tasks<br>
+          • Not suitable for visually impaired users<br>
+          • Limited scripting capability
+        </div>
+      </div>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>"Windows Icons Menus Pointer"</strong> — Think of a Windows OS desktop: you see <u>W</u>indows (apps), <u>I</u>cons (desktop), <u>M</u>enus (taskbar), <u>P</u>ointer (cursor).</p>
+        <p style="margin-top:4px">Also remember: <strong>"WIMP = What I Make Programs"</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q1b: Execution-Evaluation Cycle -->
+  <div id="q12-b" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q1b</span><span class="q-topic">Execution-Evaluation Cycle</span><span class="badge-mark">[6M]</span><span class="badge badge-green">★★ 2/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> The Execution-Evaluation Cycle (by Donald Norman) describes how users interact with a system through two phases: <strong>Execution</strong> (doing something) and <strong>Evaluation</strong> (checking results). It models the gap between the user's goal and the system's state.</div>
+
+      <div class="ans-h">🔑 Norman's Seven Stages of Action</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="380" fill="#0d1117" rx="8"/>
+          <!-- Center Goal -->
+          <ellipse cx="340" cy="190" rx="60" ry="30" fill="#1d4ed8" stroke="#58a6ff" stroke-width="1.5"/>
+          <text x="340" y="186" fill="white" font-size="11" text-anchor="middle" font-weight="bold">GOAL</text>
+          <text x="340" y="200" fill="#93c5fd" font-size="9" text-anchor="middle">User's intent</text>
+          <!-- EXECUTION side -->
+          <rect x="20" y="10" width="140" height="360" rx="8" fill="#0a1628" stroke="#1d4ed8" stroke-width="1"/>
+          <text x="90" y="28" fill="#58a6ff" font-size="11" text-anchor="middle" font-weight="bold">EXECUTION</text>
+          <!-- Steps -->
+          <rect x="30" y="40" width="120" height="38" rx="4" fill="#1a2744" stroke="#58a6ff"/>
+          <text x="90" y="56" fill="#93c5fd" font-size="9" text-anchor="middle">1. Form Intention</text>
+          <text x="90" y="68" fill="#8b949e" font-size="8" text-anchor="middle">What to do?</text>
+          <line x1="90" y1="78" x2="90" y2="93" stroke="#58a6ff" stroke-width="1" marker-end="url(#arr1)"/>
+          <rect x="30" y="95" width="120" height="38" rx="4" fill="#1a2744" stroke="#58a6ff"/>
+          <text x="90" y="111" fill="#93c5fd" font-size="9" text-anchor="middle">2. Specify Action</text>
+          <text x="90" y="123" fill="#8b949e" font-size="8" text-anchor="middle">How to do it?</text>
+          <line x1="90" y1="133" x2="90" y2="148" stroke="#58a6ff" stroke-width="1"/>
+          <rect x="30" y="150" width="120" height="38" rx="4" fill="#1a2744" stroke="#58a6ff"/>
+          <text x="90" y="166" fill="#93c5fd" font-size="9" text-anchor="middle">3. Execute Action</text>
+          <text x="90" y="178" fill="#8b949e" font-size="8" text-anchor="middle">Perform the action</text>
+
+          <!-- EVALUATION side -->
+          <rect x="520" y="10" width="140" height="360" rx="8" fill="#0a1628" stroke="#16a34a" stroke-width="1"/>
+          <text x="590" y="28" fill="#4ade80" font-size="11" text-anchor="middle" font-weight="bold">EVALUATION</text>
+          <rect x="530" y="40" width="120" height="38" rx="4" fill="#0d2318" stroke="#16a34a"/>
+          <text x="590" y="56" fill="#86efac" font-size="9" text-anchor="middle">4. Perceive State</text>
+          <text x="590" y="68" fill="#8b949e" font-size="8" text-anchor="middle">Observe outcome</text>
+          <line x1="590" y1="78" x2="590" y2="93" stroke="#16a34a" stroke-width="1"/>
+          <rect x="530" y="95" width="120" height="38" rx="4" fill="#0d2318" stroke="#16a34a"/>
+          <text x="590" y="111" fill="#86efac" font-size="9" text-anchor="middle">5. Interpret State</text>
+          <text x="590" y="123" fill="#8b949e" font-size="8" text-anchor="middle">What happened?</text>
+          <line x1="590" y1="133" x2="590" y2="148" stroke="#16a34a" stroke-width="1"/>
+          <rect x="530" y="150" width="120" height="38" rx="4" fill="#0d2318" stroke="#16a34a"/>
+          <text x="590" y="166" fill="#86efac" font-size="9" text-anchor="middle">6. Evaluate Action</text>
+          <text x="590" y="178" fill="#8b949e" font-size="8" text-anchor="middle">Did it work?</text>
+          <!-- Arrows to/from center -->
+          <line x1="150" y1="190" x2="280" y2="190" stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="6,3"/>
+          <polygon points="280,186 290,190 280,194" fill="#58a6ff"/>
+          <line x1="400" y1="190" x2="520" y2="190" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="6,3"/>
+          <polygon points="520,186 530,190 520,194" fill="#16a34a"/>
+          <!-- Gulf labels -->
+          <text x="215" y="183" fill="#f87171" font-size="9" text-anchor="middle">Gulf of</text>
+          <text x="215" y="195" fill="#f87171" font-size="9" text-anchor="middle">Execution</text>
+          <text x="460" y="183" fill="#fbbf24" font-size="9" text-anchor="middle">Gulf of</text>
+          <text x="460" y="195" fill="#fbbf24" font-size="9" text-anchor="middle">Evaluation</text>
+          <!-- World / System -->
+          <rect x="250" y="280" width="180" height="40" rx="6" fill="#1a1200" stroke="#f59e0b"/>
+          <text x="340" y="296" fill="#fbbf24" font-size="10" text-anchor="middle" font-weight="bold">SYSTEM / WORLD</text>
+          <text x="340" y="310" fill="#fcd34d" font-size="9" text-anchor="middle">System state changes here</text>
+          <line x1="90" y1="188" x2="250" y2="295" stroke="#58a6ff" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="430" y1="295" x2="590" y2="188" stroke="#16a34a" stroke-width="1" stroke-dasharray="4,3"/>
+        </svg>
+      </div>
+
+      <div class="ans-h">📌 Two Key Concepts — The "Gulfs"</div>
+      <div class="grid2">
+        <div class="callout callout-blue">
+          <strong>🔵 Gulf of Execution</strong><br>
+          The gap between what the user <em>wants to do</em> and what actions are available. Poor UI design widens this gulf.<br>
+          <em>Example: User wants to save but can't find the Save option in menus</em>
+        </div>
+        <div class="callout callout-amber">
+          <strong>🟡 Gulf of Evaluation</strong><br>
+          The gap between the system's state and how well the user <em>understands</em> it. Unclear feedback widens this gulf.<br>
+          <em>Example: File saved but no confirmation message shown</em>
+        </div>
+      </div>
+
+      <div class="ans-h">🔁 Real-World Example: Saving a Document</div>
+      <ul class="ans-list">
+        <li><strong>Goal:</strong> Save the document</li>
+        <li><strong>Intention:</strong> Use Ctrl+S shortcut</li>
+        <li><strong>Specify:</strong> Press Ctrl and S keys together</li>
+        <li><strong>Execute:</strong> Press the keys</li>
+        <li><strong>Perceive:</strong> Title bar still shows asterisk (*)</li>
+        <li><strong>Interpret:</strong> File may not have saved</li>
+        <li><strong>Evaluate:</strong> Try File→Save to verify</li>
+      </ul>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>FISE-PIE</strong>: Form intention → Intent → Specify → Execute | Perceive → Interpret → Evaluate</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q1c: Interaction Styles -->
+  <div id="q12-c" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q1c</span><span class="q-topic">Interaction Styles</span><span class="badge-mark">[6M]</span><span class="badge badge-purple">★★★ 4/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> Interaction Styles are the methods through which a user communicates with a computer system. Each style has different characteristics, advantages, and use cases suited to different user groups and tasks.</div>
+
+      <div class="ans-h">📋 Five Major Interaction Styles</div>
+      <table class="cmp-table">
+        <thead><tr><th>#</th><th>Style</th><th>Description</th><th>Example</th><th>✅ Advantage</th><th>❌ Disadvantage</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1</td><td><strong style="color:#58a6ff">Command Line Interface (CLI)</strong></td>
+            <td>User types text commands; computer processes and responds</td>
+            <td>Linux Terminal, DOS Prompt</td>
+            <td>Fast for experts; automatable with scripts</td>
+            <td>Steep learning curve; must memorize commands</td>
+          </tr>
+          <tr>
+            <td>2</td><td><strong style="color:#4ade80">Menu Selection</strong></td>
+            <td>User selects from a list of displayed options</td>
+            <td>Restaurant POS, ATM screens</td>
+            <td>No memorization; reduces errors</td>
+            <td>Slow for expert users; menu depth issues</td>
+          </tr>
+          <tr>
+            <td>3</td><td><strong style="color:#fbbf24">Form Fill-in</strong></td>
+            <td>User fills out structured forms with fields</td>
+            <td>Online registration, Tax forms</td>
+            <td>Familiar mental model; structured data entry</td>
+            <td>Requires keyboard; not for ad-hoc queries</td>
+          </tr>
+          <tr>
+            <td>4</td><td><strong style="color:#c084fc">Direct Manipulation</strong></td>
+            <td>User directly acts on visible objects (drag, drop, resize)</td>
+            <td>Windows Explorer, Adobe Photoshop</td>
+            <td>Intuitive; immediate feedback; undo possible</td>
+            <td>May not scale; hard for screen readers</td>
+          </tr>
+          <tr>
+            <td>5</td><td><strong style="color:#f87171">Natural Language</strong></td>
+            <td>User interacts using speech or typed natural language</td>
+            <td>Siri, Google Assistant, Chatbots</td>
+            <td>No training needed; accessible</td>
+            <td>Ambiguous input; recognition errors</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>"CMD MFD Natural"</strong>: <u>C</u>LI → <u>M</u>enu → <u>F</u>orm Fill → <u>D</u>irect Manipulation → <u>Natural</u> Language</p>
+        <p style="margin-top:4px">Or: <strong>"Clever Monkeys Fill Databases Naturally"</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2a: Honeycomb Model -->
+  <div id="q12-d" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q2a</span><span class="q-topic">Honeycomb Model — User Experience</span><span class="badge-mark">[6M]</span><span class="badge badge-purple">★★★ 4/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> The Honeycomb Model of User Experience was proposed by <strong>Peter Morville (2004)</strong>. It describes 7 essential facets/qualities that together define a great user experience, arranged in a honeycomb structure where each cell is interconnected.</div>
+
+      <div class="ans-h">🍯 Honeycomb Diagram — 7 UX Facets</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg">
+          <rect width="500" height="380" fill="#0d1117" rx="8"/>
+          <!-- Define hexagon polygon helper: hexagons centered at given coords -->
+          <!-- Center: Valuable -->
+          <polygon points="250,160 285,140 285,100 250,80 215,100 215,140" fill="#1d4ed8" stroke="#58a6ff" stroke-width="1.5"/>
+          <text x="250" y="122" fill="white" font-size="10" text-anchor="middle" font-weight="bold">VALUABLE</text>
+          <text x="250" y="135" fill="#93c5fd" font-size="8" text-anchor="middle">Delivers value</text>
+          <!-- Useful - top left -->
+          <polygon points="175,120 210,100 210,60 175,40 140,60 140,100" fill="#16a34a" stroke="#4ade80" stroke-width="1.5"/>
+          <text x="175" y="78" fill="white" font-size="10" text-anchor="middle" font-weight="bold">USEFUL</text>
+          <text x="175" y="91" fill="#86efac" font-size="8" text-anchor="middle">Fulfills a need</text>
+          <!-- Usable - top right -->
+          <polygon points="325,120 360,100 360,60 325,40 290,60 290,100" fill="#0891b2" stroke="#67e8f9" stroke-width="1.5"/>
+          <text x="325" y="78" fill="white" font-size="10" text-anchor="middle" font-weight="bold">USABLE</text>
+          <text x="325" y="91" fill="#a5f3fc" font-size="8" text-anchor="middle">Easy to use</text>
+          <!-- Desirable - mid left -->
+          <polygon points="100,220 135,200 135,160 100,140 65,160 65,200" fill="#7c3aed" stroke="#a78bfa" stroke-width="1.5"/>
+          <text x="100" y="175" fill="white" font-size="9" text-anchor="middle" font-weight="bold">DESIRABLE</text>
+          <text x="100" y="188" fill="#c4b5fd" font-size="8" text-anchor="middle">Aesthetics &amp; emotion</text>
+          <!-- Findable - mid right -->
+          <polygon points="400,220 435,200 435,160 400,140 365,160 365,200" fill="#db2777" stroke="#f9a8d4" stroke-width="1.5"/>
+          <text x="400" y="175" fill="white" font-size="9" text-anchor="middle" font-weight="bold">FINDABLE</text>
+          <text x="400" y="188" fill="#fbcfe8" font-size="8" text-anchor="middle">Navigable content</text>
+          <!-- Accessible - bottom left -->
+          <polygon points="175,280 210,260 210,220 175,200 140,220 140,260" fill="#d97706" stroke="#fbbf24" stroke-width="1.5"/>
+          <text x="175" y="238" fill="white" font-size="9" text-anchor="middle" font-weight="bold">ACCESSIBLE</text>
+          <text x="175" y="251" fill="#fde68a" font-size="8" text-anchor="middle">For all abilities</text>
+          <!-- Credible - bottom right -->
+          <polygon points="325,280 360,260 360,220 325,200 290,220 290,260" fill="#dc2626" stroke="#f87171" stroke-width="1.5"/>
+          <text x="325" y="238" fill="white" font-size="9" text-anchor="middle" font-weight="bold">CREDIBLE</text>
+          <text x="325" y="251" fill="#fca5a5" font-size="8" text-anchor="middle">Trustworthy design</text>
+          <!-- Title -->
+          <text x="250" y="330" fill="#8b949e" font-size="12" text-anchor="middle" font-weight="bold">Morville's UX Honeycomb Model (2004)</text>
+          <text x="250" y="348" fill="#6e7681" font-size="9" text-anchor="middle">All 7 facets are equally important for great UX</text>
+        </svg>
+      </div>
+
+      <div class="ans-h">📋 7 Facets — Detailed Explanation</div>
+      <table class="cmp-table">
+        <thead><tr><th>Facet</th><th>Meaning</th><th>Example (E-Commerce App)</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:#4ade80">Useful</strong></td><td>System fulfills a genuine user need</td><td>Search, cart, payment functionality exists</td></tr>
+          <tr><td><strong style="color:#67e8f9">Usable</strong></td><td>System is easy and efficient to use</td><td>Checkout process is 3 clicks or fewer</td></tr>
+          <tr><td><strong style="color:#c4b5fd">Desirable</strong></td><td>Visual design evokes positive emotion</td><td>Beautiful product images, clean layout</td></tr>
+          <tr><td><strong style="color:#fbcfe8">Findable</strong></td><td>Content is easily locatable and navigable</td><td>Clear categories, search bar, filters</td></tr>
+          <tr><td><strong style="color:#fca5a5">Credible</strong></td><td>System is trustworthy and honest</td><td>SSL certificate, customer reviews, return policy</td></tr>
+          <tr><td><strong style="color:#fde68a">Accessible</strong></td><td>Usable by people with disabilities</td><td>Screen reader support, color contrast, alt text</td></tr>
+          <tr><td><strong style="color:#93c5fd">Valuable</strong></td><td>Delivers value to users AND business</td><td>Saves time for users, generates revenue</td></tr>
+        </tbody>
+      </table>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>"Useful Usable Desirable Finds Credible Accessible Value"</strong></p>
+        <p><strong>"Uncle Uday Dances Freely Creating Amazing Values"</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2b: Paradigms -->
+  <div id="q12-e" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q2b</span><span class="q-topic">Paradigms of Interaction Design</span><span class="badge-mark">[6M]</span><span class="badge badge-purple">★★★ 4/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> A <strong>paradigm</strong> in interaction design is a fundamental model or pattern that guides how users interact with technology. Each paradigm represents a different conceptual framework for thinking about human-computer interaction.</div>
+
+      <div class="ans-h">📌 Major Paradigms of Interaction</div>
+      <table class="cmp-table">
+        <thead><tr><th>#</th><th>Paradigm</th><th>Core Idea</th><th>Example</th><th>Era</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong style="color:#58a6ff">Batch Processing</strong></td><td>Jobs submitted; processed without user interaction; results collected later</td><td>Punch-card mainframes, payroll systems</td><td>1950s–60s</td></tr>
+          <tr><td>2</td><td><strong style="color:#4ade80">Time-Sharing</strong></td><td>Multiple users share CPU time; terminal-based interaction</td><td>UNIX terminals, VT100</td><td>1960s–70s</td></tr>
+          <tr><td>3</td><td><strong style="color:#fbbf24">Personal Computing</strong></td><td>Dedicated machine per user; GUI, mouse, desktop metaphor</td><td>Apple Mac, Windows PC</td><td>1970s–80s</td></tr>
+          <tr><td>4</td><td><strong style="color:#c084fc">Network Computing</strong></td><td>Distributed resources; client-server architecture</td><td>Email, early web browsers</td><td>1980s–90s</td></tr>
+          <tr><td>5</td><td><strong style="color:#f87171">Web / Hypertext</strong></td><td>Linked information spaces; browser-based interaction</td><td>WWW, HTML pages, Web 2.0</td><td>1990s–2000s</td></tr>
+          <tr><td>6</td><td><strong style="color:#67e8f9">Mobile &amp; Ubiquitous</strong></td><td>Computing everywhere; touch, gesture, context-aware</td><td>Smartphones, IoT sensors</td><td>2000s–now</td></tr>
+          <tr><td>7</td><td><strong style="color:#fde68a">Conversational / AI</strong></td><td>Natural language dialogue with intelligent systems</td><td>Alexa, ChatGPT, voice assistants</td><td>2010s–now</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">🔑 Key Design Paradigm Concepts</div>
+      <div class="grid2">
+        <div class="callout callout-purple">
+          <strong>Direct Manipulation Paradigm</strong><br>
+          • Objects visible on screen<br>
+          • Actions through physical gestures<br>
+          • Rapid, incremental feedback<br>
+          • Reversible operations<br>
+          <em>Example: Dragging file to trash</em>
+        </div>
+        <div class="callout callout-blue">
+          <strong>Agent Paradigm</strong><br>
+          • Intelligent assistants<br>
+          • Proactive, context-aware<br>
+          • Natural language interaction<br>
+          • Background processing<br>
+          <em>Example: Google Assistant</em>
+        </div>
+      </div>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>"BTNWM-CA"</strong>: Batch → Time-share → Network → Web → Mobile → Conversational/AI</p>
+        <p><strong>"Big Tigers Never Win, Monkeys Conquer All"</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2c: Context of Interaction -->
+  <div id="q12-f" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q2c</span><span class="q-topic">Context of Interaction</span><span class="badge-mark">[6M]</span><span class="badge badge-purple">★★★ 4/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> The <strong>context of interaction</strong> refers to the circumstances and environment in which a user interacts with a system. It includes the physical environment, social setting, organizational factors, and technical infrastructure that influence how users work with technology.</div>
+
+      <div class="ans-h">📌 Three Main Contexts</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:10px 0">
+        <div class="callout callout-blue" style="text-align:center">
+          <strong>🏢 Organizational Context</strong><br><br>
+          How the organization's structure, goals, and politics shape the system's use<br><br>
+          <em>Example: Hospital records system constrained by department rules</em>
+        </div>
+        <div class="callout callout-green" style="text-align:center">
+          <strong>👥 Social Context</strong><br><br>
+          How the system is used in social settings — collaboration, communication, norms<br><br>
+          <em>Example: Shared screens in team meetings</em>
+        </div>
+        <div class="callout callout-amber" style="text-align:center">
+          <strong>🌍 Physical Context</strong><br><br>
+          The environmental conditions: lighting, noise, temperature, device type<br><br>
+          <em>Example: Mobile app in a noisy factory floor</em>
+        </div>
+      </div>
+
+      <div class="ans-h">🔑 Context Triangle Model</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+          <rect width="500" height="220" fill="#0d1117" rx="6"/>
+          <polygon points="250,20 80,180 420,180" fill="none" stroke="#58a6ff" stroke-width="2"/>
+          <!-- Nodes -->
+          <circle cx="250" cy="20" r="20" fill="#1d4ed8" stroke="#58a6ff" stroke-width="1.5"/>
+          <text x="250" y="15" fill="white" font-size="8" text-anchor="middle">USER</text>
+          <text x="250" y="27" fill="white" font-size="8" text-anchor="middle">👤</text>
+          <circle cx="80" cy="180" r="20" fill="#16a34a" stroke="#4ade80" stroke-width="1.5"/>
+          <text x="80" y="175" fill="white" font-size="8" text-anchor="middle">SYSTEM</text>
+          <text x="80" y="187" fill="white" font-size="8" text-anchor="middle">💻</text>
+          <circle cx="420" cy="180" r="20" fill="#7c3aed" stroke="#a78bfa" stroke-width="1.5"/>
+          <text x="420" y="175" fill="white" font-size="8" text-anchor="middle">TASK</text>
+          <text x="420" y="187" fill="white" font-size="8" text-anchor="middle">📋</text>
+          <!-- Context labels on edges -->
+          <text x="145" y="95" fill="#67e8f9" font-size="10" text-anchor="middle">Organizational</text>
+          <text x="145" y="107" fill="#67e8f9" font-size="9" text-anchor="middle">Context</text>
+          <text x="355" y="95" fill="#fbbf24" font-size="10" text-anchor="middle">Social</text>
+          <text x="355" y="107" fill="#fbbf24" font-size="9" text-anchor="middle">Context</text>
+          <text x="250" y="200" fill="#f9a8d4" font-size="10" text-anchor="middle">Physical Context</text>
+          <!-- Center label -->
+          <text x="250" y="128" fill="#8b949e" font-size="11" text-anchor="middle" font-style="italic">Context of</text>
+          <text x="250" y="143" fill="#8b949e" font-size="11" text-anchor="middle" font-style="italic">Interaction</text>
+        </svg>
+      </div>
+
+      <div class="ans-h">🔍 Real-World Example: Mobile Banking App</div>
+      <table class="cmp-table">
+        <thead><tr><th>Context Type</th><th>Example Scenario</th><th>Design Impact</th></tr></thead>
+        <tbody>
+          <tr><td>Organizational</td><td>RBI compliance requires 2-factor authentication</td><td>OTP screen mandatory, cannot be skipped</td></tr>
+          <tr><td>Social</td><td>User may check balance in public</td><td>Option to blur balance for privacy</td></tr>
+          <tr><td>Physical</td><td>Outdoors in bright sunlight</td><td>High contrast mode, large fonts</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Ergonomics -->
+  <div id="q12-g" class="sub-panel">
+    <div class="q-header"><span class="q-num">Bonus</span><span class="q-topic">Ergonomics in HCI</span><span class="badge-mark">[6M]</span><span class="badge badge-green">★★ 2/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> <strong>Ergonomics</strong> (from Greek: ergon = work, nomos = laws) is the scientific study of designing systems and products that fit the physical and cognitive capabilities of the people who use them. In HCI, it focuses on making computer workstations and interfaces comfortable, safe, and efficient.</div>
+
+      <div class="ans-h">📌 Disciplines of Ergonomics</div>
+      <table class="cmp-table">
+        <thead><tr><th>#</th><th>Discipline</th><th>Focus Area</th><th>HCI Application</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong style="color:#58a6ff">Physical Ergonomics</strong></td><td>Body posture, musculoskeletal system, physical workload</td><td>Keyboard design, monitor height, mouse grip, chair adjustability</td></tr>
+          <tr><td>2</td><td><strong style="color:#4ade80">Cognitive Ergonomics</strong></td><td>Mental processes: memory, perception, reasoning, attention</td><td>UI information architecture, reducing cognitive load, clear navigation</td></tr>
+          <tr><td>3</td><td><strong style="color:#fbbf24">Organizational Ergonomics</strong></td><td>Work systems, job design, teamwork, group dynamics</td><td>Workflow design, collaborative tools, remote work systems</td></tr>
+          <tr><td>4</td><td><strong style="color:#c084fc">Environmental Ergonomics</strong></td><td>Lighting, temperature, noise, vibration</td><td>Screen brightness adaptation, noise-cancelling in voice UI</td></tr>
+          <tr><td>5</td><td><strong style="color:#f87171">Visual Ergonomics</strong></td><td>Vision, eye strain, screen readability</td><td>Font size, contrast ratio, refresh rate, anti-glare screens</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">⚠️ Common Ergonomic Issues & Solutions</div>
+      <div class="grid2">
+        <div class="callout callout-amber">
+          <strong>🔴 Problems</strong><br>
+          • Repetitive Strain Injury (RSI) from typing<br>
+          • Eye strain (Computer Vision Syndrome)<br>
+          • Back/neck pain from poor posture<br>
+          • Carpal tunnel from mouse overuse
+        </div>
+        <div class="callout callout-green">
+          <strong>✅ Solutions</strong><br>
+          • Ergonomic keyboards and mice<br>
+          • Blue light filters, 20-20-20 rule<br>
+          • Adjustable chairs, standing desks<br>
+          • Wrist rests and arm supports
+        </div>
+      </div>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>"PCOEV"</strong>: Physical, Cognitive, Organizational, Environmental, Visual</p>
+        <p><strong>"People Can Often Experience Vertigo"</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     Q3/Q4 ANSWERS — UNIT II
+════════════════════════════════════════════════════════ -->
+<div id="page-q34" class="page">
+  <div class="section-title">Unit II — Design Frameworks</div>
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('q34','a',this)">Q3a: Software Design Constraints</button>
+    <button class="sub-tab" onclick="showSub('q34','b',this)">Q3b: Prototyping</button>
+    <button class="sub-tab" onclick="showSub('q34','c',this)">Q4a: UI Layer & Framework</button>
+    <button class="sub-tab" onclick="showSub('q34','d',this)">Q4b: Scenarios</button>
+    <button class="sub-tab" onclick="showSub('q34','e',this)">MVC Framework</button>
+  </div>
+
+  <!-- Q3a: Software Design Constraints -->
+  <div id="q34-a" class="sub-panel active">
+    <div class="q-header"><span class="q-num">Q3a</span><span class="q-topic">Software Design Process Constraints in HCI</span><span class="badge-mark">[9M]</span><span class="badge badge-green">★★ 2/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> The software design process in HCI is shaped by various <strong>constraints</strong> — limitations and requirements that designers must work within. These constraints define the boundaries within which the design must operate.</div>
+
+      <div class="ans-h">📌 Types of Constraints in HCI Design</div>
+      <table class="cmp-table">
+        <thead><tr><th>#</th><th>Constraint Type</th><th>Description</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong style="color:#f87171">Physical Constraints</strong></td><td>Limitations imposed by hardware, screen size, input devices</td><td>Mobile screen limits displayed content; touchscreen requires larger tap targets</td></tr>
+          <tr><td>2</td><td><strong style="color:#fbbf24">Cognitive Constraints</strong></td><td>Limitations of human memory, attention, and processing</td><td>Short-term memory limited to 7±2 items; menus should not exceed 7 items</td></tr>
+          <tr><td>3</td><td><strong style="color:#4ade80">Cultural Constraints</strong></td><td>Social norms, conventions, and cultural expectations</td><td>Red = danger in Western context; different in Asian cultures</td></tr>
+          <tr><td>4</td><td><strong style="color:#58a6ff">Technical Constraints</strong></td><td>Limitations imposed by programming languages, platforms, APIs</td><td>Web app must work on Chrome/Firefox; response time under 2 seconds</td></tr>
+          <tr><td>5</td><td><strong style="color:#c084fc">Logical Constraints</strong></td><td>What makes sense based on the design's own logic/conventions</td><td>Grayed-out Save button when nothing has changed</td></tr>
+          <tr><td>6</td><td><strong style="color:#67e8f9">Standards &amp; Guidelines</strong></td><td>Industry standards (ISO), platform guidelines (Material Design, HIG)</td><td>WCAG accessibility standards; Google Material Design guidelines</td></tr>
+          <tr><td>7</td><td><strong style="color:#fca5a5">Time &amp; Budget</strong></td><td>Project constraints on time, money, team size</td><td>Prototyping must be completed in 2 weeks; limited testing resources</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">🔄 HCI Design Process Framework</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="200" fill="#0d1117" rx="6"/>
+          <!-- Process boxes -->
+          <rect x="20" y="70" width="100" height="60" rx="6" fill="#1a2f4a" stroke="#58a6ff" stroke-width="1.5"/>
+          <text x="70" y="95" fill="#93c5fd" font-size="10" text-anchor="middle" font-weight="bold">Requirements</text>
+          <text x="70" y="110" fill="#8b949e" font-size="9" text-anchor="middle">Analysis</text>
+          <polygon points="120,100 135,93 135,107" fill="#58a6ff"/>
+          <rect x="135" y="70" width="100" height="60" rx="6" fill="#1a3a26" stroke="#4ade80" stroke-width="1.5"/>
+          <text x="185" y="95" fill="#86efac" font-size="10" text-anchor="middle" font-weight="bold">Design</text>
+          <text x="185" y="110" fill="#8b949e" font-size="9" text-anchor="middle">UI/UX</text>
+          <polygon points="235,100 250,93 250,107" fill="#4ade80"/>
+          <rect x="250" y="70" width="100" height="60" rx="6" fill="#1a1f3a" stroke="#c084fc" stroke-width="1.5"/>
+          <text x="300" y="95" fill="#e9d5ff" font-size="10" text-anchor="middle" font-weight="bold">Prototype</text>
+          <text x="300" y="110" fill="#8b949e" font-size="9" text-anchor="middle">Build</text>
+          <polygon points="350,100 365,93 365,107" fill="#c084fc"/>
+          <rect x="365" y="70" width="100" height="60" rx="6" fill="#1a1200" stroke="#f59e0b" stroke-width="1.5"/>
+          <text x="415" y="95" fill="#fcd34d" font-size="10" text-anchor="middle" font-weight="bold">Evaluate</text>
+          <text x="415" y="110" fill="#8b949e" font-size="9" text-anchor="middle">Test</text>
+          <polygon points="465,100 480,93 480,107" fill="#f59e0b"/>
+          <rect x="480" y="70" width="100" height="60" rx="6" fill="#1a0f1a" stroke="#f9a8d4" stroke-width="1.5"/>
+          <text x="530" y="95" fill="#fbcfe8" font-size="10" text-anchor="middle" font-weight="bold">Deploy</text>
+          <text x="530" y="110" fill="#8b949e" font-size="9" text-anchor="middle">Release</text>
+          <!-- Feedback loop -->
+          <path d="M 530 130 Q 530 165 300 165 Q 70 165 70 130" fill="none" stroke="#6e7681" stroke-width="1" stroke-dasharray="5,3"/>
+          <polygon points="70,130 64,120 76,120" fill="#6e7681"/>
+          <text x="300" y="180" fill="#6e7681" font-size="9" text-anchor="middle">Iterative Feedback Loop</text>
+          <!-- Constraints box -->
+          <rect x="200" y="10" width="200" height="30" rx="4" fill="#1a0714" stroke="#7c3aed" stroke-width="1"/>
+          <text x="300" y="29" fill="#a78bfa" font-size="10" text-anchor="middle">⚡ Constraints apply at every stage</text>
+        </svg>
+      </div>
+
+      <div class="ans-h">🔑 Impact of Constraints on Design</div>
+      <ul class="ans-list">
+        <li><strong>Norman's constraints</strong> classify into physical, logical, semantic, and cultural — each shapes design affordances</li>
+        <li><strong>Trade-offs:</strong> More features vs. simpler interface; security vs. convenience</li>
+        <li><strong>ISO 9241</strong> standard defines usability: Effectiveness + Efficiency + Satisfaction within constraints</li>
+        <li>Constraints can be <strong>design opportunities</strong> — mobile-first forced cleaner, more focused UIs</li>
+      </ul>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>"PCTLS-TB"</strong>: Physical, Cognitive, Technical, Logical, Standards, Time, Budget</p>
+        <p><strong>"Please Create Truly Logical Software That Benefits"</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3b: Prototyping -->
+  <div id="q34-b" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q3b</span><span class="q-topic">Prototyping — Types, Goals & Hill Climbing</span><span class="badge-mark">[8-9M]</span><span class="badge badge-purple">★★★ 5/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> A <strong>prototype</strong> is a preliminary model or mockup of a system/interface created to explore design ideas and test concepts before full development. It allows designers to get user feedback early and cheaply.</div>
+
+      <div class="ans-h">🎯 Goals of Prototyping</div>
+      <ul class="ans-list">
+        <li>Explore and test design ideas before costly implementation</li>
+        <li>Communicate design concepts to stakeholders and users</li>
+        <li>Gather early user feedback to validate assumptions</li>
+        <li>Identify usability issues early in the design cycle</li>
+        <li>Reduce development risk and rework costs</li>
+        <li>Build shared understanding among team members</li>
+      </ul>
+
+      <div class="ans-h">📋 Types of Prototyping Techniques</div>
+      <table class="cmp-table">
+        <thead><tr><th>Type</th><th>Description</th><th>Fidelity</th><th>When to Use</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:#58a6ff">Paper Prototyping</strong></td><td>Hand-drawn sketches of UI on paper</td><td>Low</td><td>Early ideation, quick exploration</td><td>Hand-drawn app screens on sticky notes</td></tr>
+          <tr><td><strong style="color:#4ade80">Wireframing</strong></td><td>Digital structural layout without colors/fonts</td><td>Low-Mid</td><td>Layout planning, navigation flow</td><td>Figma/Balsamiq wireframes</td></tr>
+          <tr><td><strong style="color:#fbbf24">Mockups</strong></td><td>Static high-fidelity visual design, no interaction</td><td>High</td><td>Visual approval, stakeholder review</td><td>Adobe XD designs</td></tr>
+          <tr><td><strong style="color:#c084fc">Interactive Prototype</strong></td><td>Clickable prototype simulating real behavior</td><td>High</td><td>Usability testing, user flows</td><td>Figma prototype with links</td></tr>
+          <tr><td><strong style="color:#f87171">Throwaway Prototyping</strong></td><td>Quick prototype built only to learn, then discarded</td><td>Low</td><td>Requirements clarification</td><td>Quick HTML mockup for client demo</td></tr>
+          <tr><td><strong style="color:#67e8f9">Evolutionary Prototyping</strong></td><td>Prototype gradually refined into final product</td><td>Grows</td><td>Agile/iterative development</td><td>MVP with incremental releases</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">⛰️ Prototyping with Hill Climbing Approach</div>
+      <div class="ans-def">
+        <strong>Hill Climbing</strong> in prototyping is an iterative design strategy inspired by the optimization algorithm. The designer starts with a basic prototype, evaluates it, makes small improvements, evaluates again — always moving "uphill" toward a better design. Each iteration improves the design until an optimal or acceptable solution is reached.
+      </div>
+
+      <div class="svg-wrap">
+        <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="250" fill="#0d1117" rx="6"/>
+          <!-- Hill curve -->
+          <path d="M 30 210 Q 150 50 300 30 Q 450 10 570 190" fill="none" stroke="#4ade80" stroke-width="2.5"/>
+          <!-- Climbing steps -->
+          <circle cx="80" cy="175" r="8" fill="#f87171" stroke="#dc2626" stroke-width="1.5"/>
+          <text x="80" y="200" fill="#f87171" font-size="9" text-anchor="middle">P1</text>
+          <line x1="80" y1="167" x2="140" y2="135" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <circle cx="150" cy="128" r="8" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+          <text x="150" y="153" fill="#fbbf24" font-size="9" text-anchor="middle">P2</text>
+          <line x1="150" y1="120" x2="210" y2="88" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <circle cx="220" cy="80" r="8" fill="#4ade80" stroke="#16a34a" stroke-width="1.5"/>
+          <text x="220" y="105" fill="#4ade80" font-size="9" text-anchor="middle">P3</text>
+          <line x1="220" y1="72" x2="285" y2="43" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <circle cx="295" cy="36" r="8" fill="#58a6ff" stroke="#1d4ed8" stroke-width="1.5"/>
+          <text x="295" y="20" fill="#58a6ff" font-size="9" text-anchor="middle">OPTIMAL</text>
+          <!-- Labels -->
+          <text x="80" y="220" fill="#8b949e" font-size="8" text-anchor="middle">Initial</text>
+          <text x="80" y="230" fill="#8b949e" font-size="8" text-anchor="middle">Sketch</text>
+          <text x="150" y="163" fill="#8b949e" font-size="8" text-anchor="middle">Wireframe</text>
+          <text x="220" y="115" fill="#8b949e" font-size="8" text-anchor="middle">Mockup</text>
+          <text x="295" y="55" fill="#8b949e" font-size="8" text-anchor="middle">Final UI</text>
+          <!-- Y axis label -->
+          <text x="20" y="120" fill="#6e7681" font-size="10" text-anchor="middle" transform="rotate(-90,20,120)">Design Quality</text>
+          <text x="300" y="240" fill="#6e7681" font-size="10" text-anchor="middle">Iterations →</text>
+          <!-- Evaluate-Refine arrows -->
+          <text x="440" y="80" fill="#c084fc" font-size="10" font-weight="bold">Process:</text>
+          <text x="440" y="96" fill="#8b949e" font-size="9">1. Build prototype</text>
+          <text x="440" y="110" fill="#8b949e" font-size="9">2. Evaluate with users</text>
+          <text x="440" y="124" fill="#8b949e" font-size="9">3. Identify improvements</text>
+          <text x="440" y="138" fill="#8b949e" font-size="9">4. Refine design</text>
+          <text x="440" y="152" fill="#8b949e" font-size="9">5. Repeat until optimal</text>
+        </svg>
+      </div>
+
+      <div class="ans-h">⚖️ Advantages & Limitations of Prototyping</div>
+      <div class="grid2">
+        <div class="callout callout-green">
+          <strong>✅ Advantages</strong><br>
+          • Early detection of design flaws<br>
+          • Users can give concrete feedback<br>
+          • Reduces risk of complete redesign<br>
+          • Bridges communication gap<br>
+          • Saves development costs
+        </div>
+        <div class="callout callout-amber">
+          <strong>❌ Limitations</strong><br>
+          • Users may confuse prototype with final product<br>
+          • Time-consuming for complex systems<br>
+          • May miss non-visual (performance) aspects<br>
+          • Hill climbing can get stuck in local optima<br>
+          • Prototype quality may mislead stakeholders
+        </div>
+      </div>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick — Types of Prototyping</div>
+        <p><strong>"PWM-ITE"</strong>: Paper → Wireframe → Mockup → Interactive → Throwaway → Evolutionary</p>
+        <p><strong>"Practical Work Makes Incredible Things Eventually"</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4a: UI Layer -->
+  <div id="q34-c" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q4a</span><span class="q-topic">UI Layer & Execution Framework</span><span class="badge-mark">[9M]</span><span class="badge badge-purple">★★★ 4/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> The <strong>UI Layer</strong> is the topmost layer of a software system responsible for presenting information to the user and capturing user inputs. The <strong>Execution Framework</strong> is the underlying runtime environment that manages how UI components are rendered, events are handled, and updates are propagated.</div>
+
+      <div class="ans-h">🏗️ UI Layer Architecture</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="320" fill="#0d1117" rx="6"/>
+          <!-- Layer 1: Presentation -->
+          <rect x="30" y="20" width="540" height="55" rx="6" fill="#1a2f4a" stroke="#58a6ff" stroke-width="1.5"/>
+          <text x="300" y="43" fill="#58a6ff" font-size="13" text-anchor="middle" font-weight="bold">🖥 PRESENTATION LAYER (UI Layer)</text>
+          <text x="300" y="61" fill="#8b949e" font-size="10" text-anchor="middle">Widgets • Windows • Controls • Visual Elements • CSS/Style</text>
+          <!-- Arrow down -->
+          <line x1="300" y1="75" x2="300" y2="90" stroke="#6e7681" stroke-width="1.5"/>
+          <polygon points="295,90 305,90 300,100" fill="#6e7681"/>
+          <!-- Layer 2: Application Logic -->
+          <rect x="30" y="102" width="540" height="55" rx="6" fill="#1a3a26" stroke="#4ade80" stroke-width="1.5"/>
+          <text x="300" y="125" fill="#4ade80" font-size="13" text-anchor="middle" font-weight="bold">⚙️ APPLICATION LOGIC LAYER</text>
+          <text x="300" y="143" fill="#8b949e" font-size="10" text-anchor="middle">Business Rules • Controllers • Event Handlers • State Management</text>
+          <line x1="300" y1="157" x2="300" y2="172" stroke="#6e7681" stroke-width="1.5"/>
+          <polygon points="295,172 305,172 300,182" fill="#6e7681"/>
+          <!-- Layer 3: Data Layer -->
+          <rect x="30" y="184" width="540" height="55" rx="6" fill="#1a0f1a" stroke="#c084fc" stroke-width="1.5"/>
+          <text x="300" y="207" fill="#c084fc" font-size="13" text-anchor="middle" font-weight="bold">🗄 DATA / MODEL LAYER</text>
+          <text x="300" y="225" fill="#8b949e" font-size="10" text-anchor="middle">Database • Files • APIs • Domain Objects • Persistence</text>
+          <!-- Execution Framework Box -->
+          <rect x="30" y="255" width="540" height="50" rx="6" fill="#1a1200" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6,3"/>
+          <text x="300" y="276" fill="#fbbf24" font-size="12" text-anchor="middle" font-weight="bold">⚡ EXECUTION FRAMEWORK</text>
+          <text x="300" y="295" fill="#8b949e" font-size="10" text-anchor="middle">Event Loop • Rendering Engine • Thread Management • OS Integration</text>
+          <!-- Bidirectional arrows -->
+          <line x1="80" y1="102" x2="80" y2="75" stroke="#58a6ff" stroke-width="1" stroke-dasharray="3,2"/>
+          <polygon points="75,75 85,75 80,65" fill="#58a6ff"/>
+          <line x1="80" y1="184" x2="80" y2="157" stroke="#4ade80" stroke-width="1" stroke-dasharray="3,2"/>
+          <polygon points="75,157 85,157 80,147" fill="#4ade80"/>
+        </svg>
+      </div>
+
+      <div class="ans-h">🔑 Components of the Execution Framework</div>
+      <table class="cmp-table">
+        <thead><tr><th>Component</th><th>Role</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:#58a6ff">Event Dispatcher</strong></td><td>Routes user events (click, keypress) to appropriate handlers</td><td>JavaScript event queue, Java AWT EventQueue</td></tr>
+          <tr><td><strong style="color:#4ade80">Rendering Engine</strong></td><td>Draws UI components on screen, handles repaints/redraws</td><td>Browser DOM rendering, Android View system</td></tr>
+          <tr><td><strong style="color:#fbbf24">Layout Manager</strong></td><td>Calculates positions and sizes of UI elements</td><td>CSS Flexbox, Android ConstraintLayout</td></tr>
+          <tr><td><strong style="color:#c084fc">State Manager</strong></td><td>Maintains current state of UI; updates when data changes</td><td>React useState, Redux store</td></tr>
+          <tr><td><strong style="color:#f87171">Input Handler</strong></td><td>Captures and normalizes input from keyboard, mouse, touch</td><td>Touch event normalization in mobile apps</td></tr>
+          <tr><td><strong style="color:#67e8f9">Thread Manager</strong></td><td>Separates UI thread from background tasks to prevent freezing</td><td>Android AsyncTask, JavaScript Web Workers</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">🔁 UI Execution Cycle</div>
+      <ul class="ans-list">
+        <li><strong>1. Input Capture:</strong> User performs action (click, type, swipe)</li>
+        <li><strong>2. Event Generation:</strong> Input device generates system event</li>
+        <li><strong>3. Event Dispatch:</strong> Framework routes event to target component</li>
+        <li><strong>4. Event Handler Execution:</strong> Application logic processes the event</li>
+        <li><strong>5. State Update:</strong> Application state changes based on logic</li>
+        <li><strong>6. UI Update:</strong> Framework re-renders affected components</li>
+        <li><strong>7. Display:</strong> Updated UI is shown to user</li>
+      </ul>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>"ICE-DAR": Input → Capture → Event → Dispatch → Application → Render</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4b: Scenarios -->
+  <div id="q34-d" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q4b</span><span class="q-topic">Types of Scenarios + Music Player Design</span><span class="badge-mark">[8M]</span><span class="badge badge-purple">★★★ 3/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> A <strong>scenario</strong> in HCI is a narrative story that describes how a user might interact with a system to achieve a goal. Scenarios help designers understand user needs, context, and expected behavior without writing formal specifications.</div>
+
+      <div class="ans-h">📋 Types of Scenarios</div>
+      <table class="cmp-table">
+        <thead><tr><th>#</th><th>Type</th><th>Description</th><th>Focus</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong style="color:#58a6ff">Concept Scenarios</strong></td><td>High-level, abstract descriptions of system use; vision of future interaction</td><td>What the system will do, not how</td></tr>
+          <tr><td>2</td><td><strong style="color:#4ade80">Use Cases</strong></td><td>Formal structured descriptions of user-system interactions for specific goals</td><td>Functional requirements, actor-system dialog</td></tr>
+          <tr><td>3</td><td><strong style="color:#fbbf24">Task Scenarios</strong></td><td>Specific stories showing a user performing a task step-by-step</td><td>Detailed interaction sequence</td></tr>
+          <tr><td>4</td><td><strong style="color:#c084fc">Walkthroughs</strong></td><td>Guided step-through of an interface to evaluate design decisions</td><td>Evaluation, finding issues</td></tr>
+          <tr><td>5</td><td><strong style="color:#f87171">User Stories</strong></td><td>Informal, brief descriptions: "As a [user], I want [goal], so that [benefit]"</td><td>Agile development requirements</td></tr>
+          <tr><td>6</td><td><strong style="color:#67e8f9">Storyboards</strong></td><td>Visual sequence of panels showing user interaction over time</td><td>Visual communication of scenarios</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">🎵 Scenario: Music Player Design</div>
+      <div class="callout callout-purple">
+        <strong>Persona:</strong> Priya, 22, college student who listens to music while studying.<br>
+        <strong>Goal:</strong> Create a playlist and play songs offline.
+      </div>
+
+      <div class="ans-h" style="margin-top:14px">📖 Task Scenario — Creating a Playlist</div>
+      <div class="callout callout-blue" style="font-size:13px">
+        <strong>Scene:</strong> It is 9 PM. Priya opens her music app and wants to create a new playlist for studying.<br><br>
+        <strong>Step 1:</strong> Priya sees the home screen with "Recently Played" and a prominent "+" button for new playlist.<br>
+        <strong>Step 2:</strong> She taps "+" and types the name "Study Mix" in the dialog box that appears.<br>
+        <strong>Step 3:</strong> The app shows her song library. She searches for "lo-fi" and sees filtered results immediately.<br>
+        <strong>Step 4:</strong> She taps the "+" icon next to each song to add it. A counter shows "3 songs added."<br>
+        <strong>Step 5:</strong> She taps "Done." The playlist "Study Mix" appears in her library with artwork.<br>
+        <strong>Step 6:</strong> She taps the playlist and hits "Play." Music starts immediately.<br>
+        <strong>Step 7:</strong> She locks her phone. Music continues in the background with lock screen controls visible.
+      </div>
+
+      <div class="ans-h">🔑 Design Decisions from This Scenario</div>
+      <ul class="ans-list">
+        <li>Search bar must be always visible (findability)</li>
+        <li>Visual feedback for added songs (progress counter)</li>
+        <li>Background play is a must-have feature</li>
+        <li>Lock screen controls required for usability while phone is locked</li>
+        <li>Offline mode indicated by download icon on songs</li>
+      </ul>
+
+      <div class="ans-h">📋 Use Case for Music Player</div>
+      <table class="cmp-table">
+        <thead><tr><th>Field</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Use Case Name</strong></td><td>Create and Play Playlist</td></tr>
+          <tr><td><strong>Actor</strong></td><td>Registered User</td></tr>
+          <tr><td><strong>Precondition</strong></td><td>User is logged in; songs are available in library</td></tr>
+          <tr><td><strong>Main Flow</strong></td><td>Open app → Tap "+" → Enter name → Add songs → Save → Play</td></tr>
+          <tr><td><strong>Alternative Flow</strong></td><td>Search for songs → Filter by genre → Add to playlist</td></tr>
+          <tr><td><strong>Postcondition</strong></td><td>Playlist is saved; music plays in background</td></tr>
+        </tbody>
+      </table>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick — Types of Scenarios</div>
+        <p><strong>"CUT-WUS"</strong>: Concept, Use Case, Task, Walkthrough, User Story, Storyboard</p>
+        <p><strong>"Cats Usually Take Walks Under Sunlight"</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MVC Framework -->
+  <div id="q34-e" class="sub-panel">
+    <div class="q-header"><span class="q-num">Bonus</span><span class="q-topic">MVC Framework in HCI</span><span class="badge-mark">[5-8M]</span><span class="badge badge-purple">★★★ 3/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> <strong>Model-View-Controller (MVC)</strong> is a software architecture pattern that separates an application into three interconnected components. In HCI, it ensures clean separation between data (Model), UI (View), and control logic (Controller).</div>
+
+      <div class="ans-h">🏗️ MVC Architecture Diagram</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="280" fill="#0d1117" rx="6"/>
+          <!-- MODEL -->
+          <rect x="220" y="20" width="160" height="80" rx="8" fill="#1a2f4a" stroke="#58a6ff" stroke-width="2"/>
+          <text x="300" y="50" fill="#58a6ff" font-size="14" text-anchor="middle" font-weight="bold">MODEL</text>
+          <text x="300" y="68" fill="#8b949e" font-size="9" text-anchor="middle">Data + Business Logic</text>
+          <text x="300" y="82" fill="#8b949e" font-size="9" text-anchor="middle">Database, Domain Objects</text>
+          <!-- VIEW -->
+          <rect x="40" y="170" width="160" height="80" rx="8" fill="#1a3a26" stroke="#4ade80" stroke-width="2"/>
+          <text x="120" y="200" fill="#4ade80" font-size="14" text-anchor="middle" font-weight="bold">VIEW</text>
+          <text x="120" y="218" fill="#8b949e" font-size="9" text-anchor="middle">UI Presentation Layer</text>
+          <text x="120" y="232" fill="#8b949e" font-size="9" text-anchor="middle">HTML, GUI Widgets</text>
+          <!-- CONTROLLER -->
+          <rect x="400" y="170" width="160" height="80" rx="8" fill="#1a1200" stroke="#f59e0b" stroke-width="2"/>
+          <text x="480" y="200" fill="#f59e0b" font-size="14" text-anchor="middle" font-weight="bold">CONTROLLER</text>
+          <text x="480" y="218" fill="#8b949e" font-size="9" text-anchor="middle">Event Handler Logic</text>
+          <text x="480" y="232" fill="#8b949e" font-size="9" text-anchor="middle">Routes user actions</text>
+          <!-- Arrows -->
+          <!-- Model → View (Notifies) -->
+          <line x1="250" y1="100" x2="160" y2="170" stroke="#4ade80" stroke-width="1.5"/>
+          <polygon points="160,170 150,158 170,160" fill="#4ade80"/>
+          <text x="185" y="145" fill="#4ade80" font-size="9">Notifies</text>
+          <!-- View → Controller (User events) -->
+          <line x1="200" y1="210" x2="400" y2="210" stroke="#fbbf24" stroke-width="1.5"/>
+          <polygon points="400,210 388,205 388,215" fill="#fbbf24"/>
+          <text x="300" y="202" fill="#fbbf24" font-size="9" text-anchor="middle">User Events</text>
+          <!-- Controller → Model (Updates) -->
+          <line x1="440" y1="170" x2="350" y2="100" stroke="#f87171" stroke-width="1.5"/>
+          <polygon points="350,100 340,112 358,108" fill="#f87171"/>
+          <text x="415" y="140" fill="#f87171" font-size="9">Updates</text>
+          <!-- User label at bottom center -->
+          <rect x="250" y="260" width="100" height="20" rx="4" fill="#1a0f1a" stroke="#c084fc"/>
+          <text x="300" y="274" fill="#c084fc" font-size="9" text-anchor="middle">👤 USER</text>
+          <line x1="300" y1="260" x2="300" y2="250" stroke="#c084fc" stroke-width="1" stroke-dasharray="3,2"/>
+          <line x1="120" y1="250" x2="300" y2="250" stroke="#c084fc" stroke-width="1" stroke-dasharray="3,2"/>
+          <polygon points="120,250 115,243 115,257" fill="#c084fc"/>
+        </svg>
+      </div>
+
+      <div class="ans-h">📋 Roles & Responsibilities</div>
+      <table class="cmp-table">
+        <thead><tr><th>Component</th><th>Role</th><th>Music App Example</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:#58a6ff">Model</strong></td><td>Manages data, business rules, and database interactions</td><td>Song metadata (title, artist, album), Playlist data, User preferences</td></tr>
+          <tr><td><strong style="color:#4ade80">View</strong></td><td>Renders UI from Model data; displays to user</td><td>Song list screen, Now Playing screen, Album art</td></tr>
+          <tr><td><strong style="color:#fbbf24">Controller</strong></td><td>Receives user input, processes it, updates Model or View</td><td>Play button click → Controller → Model updates state → View refreshes</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">✅ Why MVC?</div>
+      <div class="grid2">
+        <div class="callout callout-green">
+          <strong>Advantages</strong><br>
+          • Separation of concerns<br>
+          • Independent development of UI and logic<br>
+          • Easier testing (Model independently testable)<br>
+          • Multiple views from one Model<br>
+          • Maintainable and scalable code
+        </div>
+        <div class="callout callout-amber">
+          <strong>Disadvantages</strong><br>
+          • Complex for simple applications<br>
+          • Over-engineering for small projects<br>
+          • Learning curve for newcomers<br>
+          • Controller can become bloated (God Controller)
+        </div>
+      </div>
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>MVC = "Movie, Video, Camera"</strong>: Model (story/data), View (screen), Controller (camera operator)</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     Q5/Q6 ANSWERS — UNIT III
+════════════════════════════════════════════════════════ -->
+<div id="page-q56" class="page">
+  <div class="section-title">Unit III — Design Rules & Evaluation</div>
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('q56','a',this)">Q5a: Shneiderman's 8 Rules</button>
+    <button class="sub-tab" onclick="showSub('q56','b',this)">Q5b: Evaluation Goals & Expert Analysis</button>
+    <button class="sub-tab" onclick="showSub('q56','c',this)">Q6a: Usability</button>
+    <button class="sub-tab" onclick="showSub('q56','d',this)">Q6b: UIMS Architecture</button>
+    <button class="sub-tab" onclick="showSub('q56','e',this)">Nielsen's 10 Heuristics</button>
+  </div>
+
+  <!-- Q5a: Shneiderman's 8 Golden Rules -->
+  <div id="q56-a" class="sub-panel active">
+    <div class="q-header"><span class="q-num">Q5a</span><span class="q-topic">Shneiderman's 8 Golden Rules of Interface Design</span><span class="badge-mark">[9M]</span><span class="badge badge-purple">★★★ 4/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> <strong>Ben Shneiderman's 8 Golden Rules</strong> (1986, "Designing the User Interface") are a set of widely-used principles for designing effective, efficient, and satisfying user interfaces. They apply to virtually all interactive systems.</div>
+
+      <div class="ans-h">🏆 The 8 Golden Rules</div>
+      <table class="cmp-table">
+        <thead><tr><th>#</th><th>Golden Rule</th><th>Description</th><th>Violation Example</th><th>Good Example</th></tr></thead>
+        <tbody>
+          <tr>
+            <td style="color:#58a6ff;font-weight:bold">1</td>
+            <td><strong>Strive for Consistency</strong></td>
+            <td>Consistent sequences of actions, identical terminology, same commands throughout</td>
+            <td>Ctrl+Z undo in one screen but Alt+Z in another</td>
+            <td>Ctrl+Z always undoes in MS Office</td>
+          </tr>
+          <tr>
+            <td style="color:#4ade80;font-weight:bold">2</td>
+            <td><strong>Enable Frequent Users to Use Shortcuts</strong></td>
+            <td>Provide abbreviations, function keys, macros for expert users while keeping menus for novices</td>
+            <td>No keyboard shortcuts in a data entry application</td>
+            <td>Ctrl+C/V shortcuts alongside Edit menu options</td>
+          </tr>
+          <tr>
+            <td style="color:#fbbf24;font-weight:bold">3</td>
+            <td><strong>Offer Informative Feedback</strong></td>
+            <td>System should respond to every user action with appropriate feedback</td>
+            <td>File upload with no progress indicator</td>
+            <td>Progress bar + "75% uploaded" message</td>
+          </tr>
+          <tr>
+            <td style="color:#c084fc;font-weight:bold">4</td>
+            <td><strong>Design Dialogs to Yield Closure</strong></td>
+            <td>Sequences of actions should be organized into groups with a beginning, middle, and end</td>
+            <td>Checkout process that abruptly ends without confirmation</td>
+            <td>"Order Confirmed! Order #12345" page at checkout end</td>
+          </tr>
+          <tr>
+            <td style="color:#f87171;font-weight:bold">5</td>
+            <td><strong>Offer Error Prevention and Simple Error Handling</strong></td>
+            <td>Design to prevent errors; if error occurs, detect it and offer simple recovery</td>
+            <td>"ERROR 404" with no explanation or back button</td>
+            <td>Form validates email format before submission</td>
+          </tr>
+          <tr>
+            <td style="color:#67e8f9;font-weight:bold">6</td>
+            <td><strong>Permit Easy Reversal of Actions</strong></td>
+            <td>Actions should be reversible (Undo) to encourage exploration</td>
+            <td>No undo for deleted files; immediate permanent delete</td>
+            <td>Recycle Bin; Gmail "Undo Send" feature</td>
+          </tr>
+          <tr>
+            <td style="color:#fde68a;font-weight:bold">7</td>
+            <td><strong>Support Internal Locus of Control</strong></td>
+            <td>Users should be initiators of actions, not responders to system actions</td>
+            <td>App randomly shuffles items; auto-save without asking</td>
+            <td>User controls all major actions; preferences for auto-save</td>
+          </tr>
+          <tr>
+            <td style="color:#fca5a5;font-weight:bold">8</td>
+            <td><strong>Reduce Short-Term Memory Load</strong></td>
+            <td>Display information across screens; don't require users to remember info from earlier</td>
+            <td>Shopping cart totals disappear when browsing products</td>
+            <td>Persistent cart icon showing count at all times</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">🎯 Real-World Application: Gmail</div>
+      <div class="grid2">
+        <div class="callout callout-blue">
+          <strong>Gmail Golden Rules Analysis</strong><br>
+          1. Consistent toolbar on all screens ✅<br>
+          2. Keyboard shortcuts (c=compose, r=reply) ✅<br>
+          3. "Sending..." then "Message sent. Undo" ✅<br>
+          4. Email thread shows complete conversation ✅
+        </div>
+        <div class="callout callout-purple">
+          <strong>Gmail Golden Rules Analysis (cont.)</strong><br>
+          5. Suggests correct email addresses while typing ✅<br>
+          6. "Undo Send" within 30 seconds ✅<br>
+          7. User chooses when to send, archive, label ✅<br>
+          8. Persistent search bar; conversation threading ✅
+        </div>
+      </div>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick — 8 Golden Rules</div>
+        <p><strong>"CS Offers Diamonds, Error Prevention Reversal Supports Reduction"</strong></p>
+        <p><strong>C</strong>onsistency, <strong>S</strong>hortcuts, <strong>O</strong>ffer Feedback, <strong>D</strong>ialogs-Closure, <strong>E</strong>rror Prevention, <strong>R</strong>eversal, <strong>S</strong>upport Control, <strong>R</strong>educe Memory</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5b: Evaluation Goals & Expert Analysis -->
+  <div id="q56-b" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q5b</span><span class="q-topic">Goals of Evaluation & Expert Analysis</span><span class="badge-mark">[8M]</span><span class="badge badge-purple">★★★ 4/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> <strong>Evaluation</strong> in HCI is the process of assessing how well a system meets the needs of its users. It is conducted throughout the design process to find usability problems, compare design alternatives, and ensure the system is fit for purpose.</div>
+
+      <div class="ans-h">🎯 Goals of Evaluation</div>
+      <ul class="ans-list">
+        <li><strong>Assess extent of system functionality</strong> — Does the system do what it needs to?</li>
+        <li><strong>Assess effect of interface on user</strong> — Is it stressful, satisfying, engaging?</li>
+        <li><strong>Identify specific problems</strong> — Where do users get confused or make errors?</li>
+        <li><strong>Compare alternatives</strong> — Which of two designs is better for users?</li>
+        <li><strong>Measure compliance with standards</strong> — Does it meet WCAG, ISO 9241?</li>
+        <li><strong>Validate design decisions</strong> — Are our design assumptions correct?</li>
+      </ul>
+
+      <div class="ans-h">🔬 Types of Evaluation</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="160" fill="#0d1117" rx="6"/>
+          <rect x="20" y="20" width="170" height="120" rx="6" fill="#1a2f4a" stroke="#58a6ff" stroke-width="1.5"/>
+          <text x="105" y="42" fill="#58a6ff" font-size="11" text-anchor="middle" font-weight="bold">Expert Analysis</text>
+          <text x="105" y="58" fill="#8b949e" font-size="9" text-anchor="middle">• Heuristic Evaluation</text>
+          <text x="105" y="72" fill="#8b949e" font-size="9" text-anchor="middle">• Cognitive Walkthrough</text>
+          <text x="105" y="86" fill="#8b949e" font-size="9" text-anchor="middle">• Formal Methods</text>
+          <text x="105" y="100" fill="#8b949e" font-size="9" text-anchor="middle">No real users needed</text>
+          <rect x="210" y="20" width="170" height="120" rx="6" fill="#1a3a26" stroke="#4ade80" stroke-width="1.5"/>
+          <text x="295" y="42" fill="#4ade80" font-size="11" text-anchor="middle" font-weight="bold">User Testing</text>
+          <text x="295" y="58" fill="#8b949e" font-size="9" text-anchor="middle">• Lab Testing</text>
+          <text x="295" y="72" fill="#8b949e" font-size="9" text-anchor="middle">• Usability Testing</text>
+          <text x="295" y="86" fill="#8b949e" font-size="9" text-anchor="middle">• A/B Testing</text>
+          <text x="295" y="100" fill="#8b949e" font-size="9" text-anchor="middle">Real users involved</text>
+          <rect x="400" y="20" width="180" height="120" rx="6" fill="#1a1200" stroke="#f59e0b" stroke-width="1.5"/>
+          <text x="490" y="42" fill="#f59e0b" font-size="11" text-anchor="middle" font-weight="bold">Field Studies</text>
+          <text x="490" y="58" fill="#8b949e" font-size="9" text-anchor="middle">• Ethnographic Study</text>
+          <text x="490" y="72" fill="#8b949e" font-size="9" text-anchor="middle">• Contextual Inquiry</text>
+          <text x="490" y="86" fill="#8b949e" font-size="9" text-anchor="middle">• Diary Studies</text>
+          <text x="490" y="100" fill="#8b949e" font-size="9" text-anchor="middle">In real environment</text>
+        </svg>
+      </div>
+
+      <div class="ans-h">🔍 Evaluation Through Expert Analysis</div>
+      <div class="ans-def">Expert analysis (also called <strong>Analytical Evaluation</strong>) uses trained evaluators to assess a system without involving real users. It is cost-effective and can be done early in the design process.</div>
+
+      <div class="ans-h">📋 Expert Analysis Methods</div>
+      <table class="cmp-table">
+        <thead><tr><th>Method</th><th>Process</th><th>Output</th><th>Best For</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:#58a6ff">Heuristic Evaluation</strong></td>
+            <td>3–5 evaluators independently inspect UI against Nielsen's 10 heuristics; results compiled into severity ratings</td>
+            <td>List of usability violations with severity (0–4 scale)</td>
+            <td>Early/mid-stage prototypes; budget-limited projects</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#4ade80">Cognitive Walkthrough</strong></td>
+            <td>Evaluator simulates user's thought process task-by-task; asks 4 questions at each step</td>
+            <td>Story of success/failure for each subtask</td>
+            <td>Task-focused evaluation; walk-up-and-use interfaces</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#fbbf24">Model-Based Evaluation</strong></td>
+            <td>Builds formal models of user and system interaction (KLM, GOMS)</td>
+            <td>Quantitative prediction of task completion time</td>
+            <td>Comparing design alternatives before building</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">🔑 Cognitive Walkthrough — 4 Key Questions</div>
+      <div class="callout callout-purple">
+        At each step of a task, the evaluator asks:<br>
+        <strong>Q1:</strong> Will the user try to achieve the right effect? (Will they know what to do?)<br>
+        <strong>Q2:</strong> Will the user notice the correct action is available? (Is the action visible?)<br>
+        <strong>Q3:</strong> Will the user associate the correct action with the effect? (Is the label clear?)<br>
+        <strong>Q4:</strong> If the action is performed, will the user see it's progressing? (Is feedback given?)
+      </div>
+
+      <div class="ans-h">🏷️ Heuristic Evaluation Severity Scale</div>
+      <table class="cmp-table">
+        <thead><tr><th>Rating</th><th>Severity</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:#4ade80">0</strong></td><td>Not a usability problem</td><td>No fix needed</td></tr>
+          <tr><td><strong style="color:#fbbf24">1</strong></td><td>Cosmetic problem only</td><td>Fix if time allows</td></tr>
+          <tr><td><strong style="color:#f59e0b">2</strong></td><td>Minor usability problem</td><td>Low priority fix</td></tr>
+          <tr><td><strong style="color:#f87171">3</strong></td><td>Major usability problem</td><td>High priority fix</td></tr>
+          <tr><td><strong style="color:#dc2626">4</strong></td><td>Usability catastrophe</td><td>Must fix before release</td></tr>
+        </tbody>
+      </table>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>Expert Analysis Methods:</strong> <strong>"HCM"</strong> = Heuristic, Cognitive Walkthrough, Model-Based</p>
+        <p><strong>"Helpful Computers Make"</strong> expert evaluation easy!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q6a: Usability -->
+  <div id="q56-c" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q6a</span><span class="q-topic">Usability — Principles & Definition</span><span class="badge-mark">[9M]</span><span class="badge badge-purple">★★★ 3/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition (ISO 9241-11):</strong> <strong>Usability</strong> is "the extent to which a product can be used by specified users to achieve specified goals with <strong>effectiveness</strong>, <strong>efficiency</strong>, and <strong>satisfaction</strong> in a specified context of use."</div>
+
+      <div class="ans-h">📐 Three Components of Usability</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:10px 0">
+        <div class="callout callout-blue" style="text-align:center">
+          <strong style="font-size:16px">🎯 Effectiveness</strong><br><br>
+          Accuracy and completeness with which users achieve goals<br><br>
+          <em>Measure: % tasks completed correctly</em>
+        </div>
+        <div class="callout callout-green" style="text-align:center">
+          <strong style="font-size:16px">⚡ Efficiency</strong><br><br>
+          Resources (time, effort) expended to achieve goals<br><br>
+          <em>Measure: Time per task, errors per task</em>
+        </div>
+        <div class="callout callout-amber" style="text-align:center">
+          <strong style="font-size:16px">😊 Satisfaction</strong><br><br>
+          Freedom from discomfort; positive attitudes toward use<br><br>
+          <em>Measure: SUS score, user surveys</em>
+        </div>
+      </div>
+
+      <div class="ans-h">🔑 Usability Principles (Nielsen's 5 Attributes)</div>
+      <table class="cmp-table">
+        <thead><tr><th>#</th><th>Principle</th><th>Description</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong style="color:#58a6ff">Learnability</strong></td><td>How easy is it for users to accomplish basic tasks the first time?</td><td>First-time user completes registration in under 2 minutes</td></tr>
+          <tr><td>2</td><td><strong style="color:#4ade80">Efficiency</strong></td><td>How quickly can experienced users perform tasks?</td><td>Expert user creates invoice in 30 seconds with shortcuts</td></tr>
+          <tr><td>3</td><td><strong style="color:#fbbf24">Memorability</strong></td><td>When users return after a break, can they quickly re-establish proficiency?</td><td>Returning user after 1 month can navigate without help</td></tr>
+          <tr><td>4</td><td><strong style="color:#c084fc">Errors</strong></td><td>How many errors do users make, and how easily can they recover?</td><td>Payment form validates in real-time, preventing wrong amounts</td></tr>
+          <tr><td>5</td><td><strong style="color:#f87171">Satisfaction</strong></td><td>How pleasant is it to use the system?</td><td>Users rate the app 4.5/5 on app store</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">📊 Additional Usability Principles</div>
+      <ul class="ans-list">
+        <li><strong>Visibility of System Status:</strong> Always keep users informed about what is happening</li>
+        <li><strong>Match Between System and Real World:</strong> Use user's language, familiar concepts</li>
+        <li><strong>User Control and Freedom:</strong> Provide undo, redo, and exits</li>
+        <li><strong>Consistency and Standards:</strong> Follow platform conventions</li>
+        <li><strong>Error Prevention:</strong> Design to prevent problems in the first place</li>
+        <li><strong>Recognition Over Recall:</strong> Make options visible; don't require memorization</li>
+        <li><strong>Flexibility and Efficiency of Use:</strong> Allow customization and shortcuts</li>
+        <li><strong>Aesthetic and Minimalist Design:</strong> No irrelevant information</li>
+        <li><strong>Help Users Recognize/Recover from Errors:</strong> Plain language error messages</li>
+        <li><strong>Help and Documentation:</strong> Searchable, task-focused help</li>
+      </ul>
+
+      <div class="ans-h">📏 Usability Measurement Methods</div>
+      <table class="cmp-table">
+        <thead><tr><th>Metric</th><th>How Measured</th><th>Target</th></tr></thead>
+        <tbody>
+          <tr><td>Task Completion Rate</td><td>% of users completing task without help</td><td>&gt;90%</td></tr>
+          <tr><td>Task Time</td><td>Seconds/minutes to complete a task</td><td>Define per task</td></tr>
+          <tr><td>Error Rate</td><td>Number of errors per task per user</td><td>&lt;1 per task</td></tr>
+          <tr><td>SUS Score</td><td>System Usability Scale (10-question survey)</td><td>&gt;68 = Good</td></tr>
+          <tr><td>Satisfaction Rating</td><td>Post-task survey (1–5 scale)</td><td>&gt;4/5</td></tr>
+        </tbody>
+      </table>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick — Nielsen's 5 Usability Attributes</div>
+        <p><strong>"LEMSE"</strong>: Learnability, Efficiency, Memorability, (low) Errors, Satisfaction</p>
+        <p><strong>"Lemon Eyes Make Super Experiences"</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q6b: UIMS -->
+  <div id="q56-d" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q6b</span><span class="q-topic">UIMS — User Interface Management System</span><span class="badge-mark">[8M]</span><span class="badge badge-green">★★ 2/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> A <strong>User Interface Management System (UIMS)</strong> is a software tool that separates the interface code from the application code. It manages the creation, modification, and execution of user interfaces independently of the application logic.</div>
+
+      <div class="ans-h">🏗️ UIMS Conceptual Architecture</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="620" height="300" fill="#0d1117" rx="6"/>
+          <!-- User box -->
+          <rect x="250" y="10" width="120" height="40" rx="6" fill="#1a0f1a" stroke="#c084fc" stroke-width="1.5"/>
+          <text x="310" y="34" fill="#c084fc" font-size="12" text-anchor="middle" font-weight="bold">👤 USER</text>
+          <!-- UIMS outer box -->
+          <rect x="30" y="70" width="560" height="180" rx="8" fill="#0a1120" stroke="#58a6ff" stroke-width="2" stroke-dasharray="8,3"/>
+          <text x="60" y="88" fill="#58a6ff" font-size="11" font-weight="bold">UIMS</text>
+          <!-- Presentation Component -->
+          <rect x="50" y="95" width="150" height="140" rx="6" fill="#1a2f4a" stroke="#58a6ff" stroke-width="1.5"/>
+          <text x="125" y="118" fill="#58a6ff" font-size="10" text-anchor="middle" font-weight="bold">Presentation</text>
+          <text x="125" y="133" fill="#58a6ff" font-size="10" text-anchor="middle" font-weight="bold">Component</text>
+          <text x="125" y="155" fill="#8b949e" font-size="8" text-anchor="middle">Input Handling</text>
+          <text x="125" y="168" fill="#8b949e" font-size="8" text-anchor="middle">Output Rendering</text>
+          <text x="125" y="181" fill="#8b949e" font-size="8" text-anchor="middle">Widget Toolkit</text>
+          <text x="125" y="194" fill="#8b949e" font-size="8" text-anchor="middle">Screen Layout</text>
+          <!-- Dialogue Component -->
+          <rect x="230" y="95" width="150" height="140" rx="6" fill="#1a3a26" stroke="#4ade80" stroke-width="1.5"/>
+          <text x="305" y="118" fill="#4ade80" font-size="10" text-anchor="middle" font-weight="bold">Dialogue</text>
+          <text x="305" y="133" fill="#4ade80" font-size="10" text-anchor="middle" font-weight="bold">Controller</text>
+          <text x="305" y="155" fill="#8b949e" font-size="8" text-anchor="middle">User flow control</text>
+          <text x="305" y="168" fill="#8b949e" font-size="8" text-anchor="middle">State management</text>
+          <text x="305" y="181" fill="#8b949e" font-size="8" text-anchor="middle">Event Dispatch</text>
+          <text x="305" y="194" fill="#8b949e" font-size="8" text-anchor="middle">Navigation rules</text>
+          <!-- Application Interface -->
+          <rect x="410" y="95" width="150" height="140" rx="6" fill="#1a1200" stroke="#f59e0b" stroke-width="1.5"/>
+          <text x="485" y="118" fill="#f59e0b" font-size="10" text-anchor="middle" font-weight="bold">Application</text>
+          <text x="485" y="133" fill="#f59e0b" font-size="10" text-anchor="middle" font-weight="bold">Interface</text>
+          <text x="485" y="155" fill="#8b949e" font-size="8" text-anchor="middle">Callback functions</text>
+          <text x="485" y="168" fill="#8b949e" font-size="8" text-anchor="middle">Data binding</text>
+          <text x="485" y="181" fill="#8b949e" font-size="8" text-anchor="middle">Service invocation</text>
+          <text x="485" y="194" fill="#8b949e" font-size="8" text-anchor="middle">Result display</text>
+          <!-- Arrows -->
+          <line x1="200" y1="165" x2="230" y2="165" stroke="#6e7681" stroke-width="1.5"/>
+          <polygon points="230,161 240,165 230,169" fill="#6e7681"/>
+          <line x1="380" y1="165" x2="410" y2="165" stroke="#6e7681" stroke-width="1.5"/>
+          <polygon points="410,161 420,165 410,169" fill="#6e7681"/>
+          <!-- User arrows -->
+          <line x1="310" y1="50" x2="310" y2="70" stroke="#c084fc" stroke-width="1.5"/>
+          <polygon points="306,70 316,70 311,80" fill="#c084fc"/>
+          <!-- Application box outside -->
+          <rect x="250" y="260" width="120" height="35" rx="6" fill="#1a1200" stroke="#f87171" stroke-width="1.5"/>
+          <text x="310" y="282" fill="#f87171" font-size="11" text-anchor="middle" font-weight="bold">APPLICATION</text>
+          <line x1="310" y1="250" x2="310" y2="260" stroke="#f87171" stroke-width="1.5" stroke-dasharray="4,2"/>
+        </svg>
+      </div>
+
+      <div class="ans-h">🔑 Components of UIMS</div>
+      <ul class="ans-list">
+        <li><strong>Presentation Component:</strong> Handles all visual output and user input; responsible for rendering widgets (buttons, text fields, menus)</li>
+        <li><strong>Dialogue Controller:</strong> Controls the sequencing and flow of interaction; manages what comes next based on user actions</li>
+        <li><strong>Application Interface:</strong> Connects UIMS to the underlying application; translates between UI events and application functions</li>
+      </ul>
+
+      <div class="ans-h">✅ Advantages of UIMS</div>
+      <div class="grid2">
+        <div class="callout callout-green">
+          <strong>Advantages</strong><br>
+          • Clear separation of UI and application logic<br>
+          • Multiple UIs for same application<br>
+          • Easier UI maintenance without touching app code<br>
+          • Supports rapid prototyping<br>
+          • Enables accessibility add-ons
+        </div>
+        <div class="callout callout-amber">
+          <strong>Disadvantages</strong><br>
+          • Complex architecture<br>
+          • Performance overhead<br>
+          • Learning curve for developers<br>
+          • Not all applications benefit from full UIMS
+        </div>
+      </div>
+
+      <div class="callout callout-blue" style="margin-top:10px">
+        <strong>Real-World Examples of UIMS concepts:</strong> Java Swing (separates presentation from logic), React (component-based UI separation), Qt Framework (cross-platform UI toolkit)
+      </div>
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>UIMS = "UI Makes Sense"</strong> → Presentation + Dialogue + Application Interface = clean separation</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nielsen's 10 Heuristics -->
+  <div id="q56-e" class="sub-panel">
+    <div class="q-header"><span class="q-num">Bonus</span><span class="q-topic">Nielsen's 10 Usability Heuristics</span><span class="badge-mark">[5-8M]</span><span class="badge badge-green">★★ 2/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> <strong>Jakob Nielsen's 10 Heuristics (1994)</strong> are a set of broad usability principles used for evaluating user interfaces. They are used in <strong>Heuristic Evaluation</strong> where experts judge a UI against each heuristic.</div>
+
+      <table class="cmp-table">
+        <thead><tr><th>#</th><th>Heuristic</th><th>Principle</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong style="color:#58a6ff">Visibility of System Status</strong></td><td>Keep users informed about what's happening</td><td>Loading spinner, progress bar, "Saving..." indicator</td></tr>
+          <tr><td>2</td><td><strong style="color:#4ade80">Match System &amp; Real World</strong></td><td>Speak user's language; use familiar concepts</td><td>Shopping cart icon for purchases; folder metaphor for files</td></tr>
+          <tr><td>3</td><td><strong style="color:#fbbf24">User Control &amp; Freedom</strong></td><td>Support undo/redo; clearly marked emergency exits</td><td>Ctrl+Z undo; Gmail "Undo Send"; browser Back button</td></tr>
+          <tr><td>4</td><td><strong style="color:#c084fc">Consistency &amp; Standards</strong></td><td>Follow platform conventions; don't confuse users</td><td>Red = error, green = success across all screens</td></tr>
+          <tr><td>5</td><td><strong style="color:#f87171">Error Prevention</strong></td><td>Design to prevent errors occurring in the first place</td><td>Disable "Delete" button until confirmation checked</td></tr>
+          <tr><td>6</td><td><strong style="color:#67e8f9">Recognition Over Recall</strong></td><td>Minimize memory load; make options visible</td><td>Autocomplete in search, visible menu options</td></tr>
+          <tr><td>7</td><td><strong style="color:#fde68a">Flexibility &amp; Efficiency of Use</strong></td><td>Allow shortcuts for expert users; customization</td><td>Keyboard shortcuts, macros, user-defined toolbars</td></tr>
+          <tr><td>8</td><td><strong style="color:#fca5a5">Aesthetic &amp; Minimalist Design</strong></td><td>No irrelevant information; every element serves a purpose</td><td>Google's clean homepage; no visual clutter</td></tr>
+          <tr><td>9</td><td><strong style="color:#a5f3fc">Help Users Recognize &amp; Recover from Errors</strong></td><td>Plain language error messages with solutions</td><td>"Password must be 8+ characters" not "Invalid input"</td></tr>
+          <tr><td>10</td><td><strong style="color:#d8b4fe">Help &amp; Documentation</strong></td><td>Provide searchable, task-focused help when needed</td><td>In-app tooltips, searchable knowledge base</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">🔍 Nielsen vs. Shneiderman — Comparison</div>
+      <table class="cmp-table">
+        <thead><tr><th>Aspect</th><th>Nielsen's 10 Heuristics</th><th>Shneiderman's 8 Golden Rules</th></tr></thead>
+        <tbody>
+          <tr><td>Purpose</td><td>Evaluation checklist for inspectors</td><td>Design guidelines for designers</td></tr>
+          <tr><td>Focus</td><td>Finding violations in existing UI</td><td>Building good UI from scratch</td></tr>
+          <tr><td>When Used</td><td>During evaluation phase</td><td>During design phase</td></tr>
+          <tr><td>Key Overlap</td><td>Error prevention, consistency</td><td>Error prevention, consistency</td></tr>
+          <tr><td>Unique to Nielsen</td><td>Aesthetic design, help docs</td><td>Shortcuts, locus of control</td></tr>
+        </tbody>
+      </table>
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick — Nielsen's 10</div>
+        <p><strong>"VMUCE RFAEH"</strong>: Visibility, Match, User Control, Consistency, Error Prevention, Recognition, Flexibility, Aesthetic, Error Recovery, Help</p>
+        <p><strong>"Very Many Users Can Experience Really Fantastic And Easy Help"</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     Q7/Q8 ANSWERS — UNIT IV
+════════════════════════════════════════════════════════ -->
+<div id="page-q78" class="page">
+  <div class="section-title">Unit IV — Models, Task Analysis & Future HCI</div>
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('q78','a',this)">Q7a: KLM</button>
+    <button class="sub-tab" onclick="showSub('q78','b',this)">Q7b: Linguistic Model</button>
+    <button class="sub-tab" onclick="showSub('q78','c',this)">Q8a: HTA – Cook Rice</button>
+    <button class="sub-tab" onclick="showSub('q78','d',this)">Q8b: Computer-Mediated Communication</button>
+    <button class="sub-tab" onclick="showSub('q78','e',this)">Cognitive Architectures</button>
+  </div>
+
+  <!-- Q7a: KLM -->
+  <div id="q78-a" class="sub-panel active">
+    <div class="q-header"><span class="q-num">Q7a</span><span class="q-topic">Keystroke-Level Model (KLM)</span><span class="badge-mark">[9M]</span><span class="badge badge-purple">★★★ 3/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> The <strong>Keystroke-Level Model (KLM)</strong> was proposed by Card, Moran, and Newell (1980) as part of the GOMS framework. It is a predictive model used to estimate the time an expert user takes to complete a task without errors, based on counting low-level physical and mental operations.</div>
+
+      <div class="ans-h">⌨️ KLM Operators</div>
+      <table class="cmp-table">
+        <thead><tr><th>Operator</th><th>Symbol</th><th>Description</th><th>Time (seconds)</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:#58a6ff">Keystroke</strong></td><td><strong>K</strong></td><td>Pressing a key or button (including mouse buttons)</td><td>0.08–1.20 s (avg: 0.28 s)</td></tr>
+          <tr><td><strong style="color:#4ade80">Pointing</strong></td><td><strong>P</strong></td><td>Moving the mouse pointer to a target on screen</td><td>1.10 s</td></tr>
+          <tr><td><strong style="color:#fbbf24">Homing</strong></td><td><strong>H</strong></td><td>Moving hand from keyboard to mouse or vice versa</td><td>0.40 s</td></tr>
+          <tr><td><strong style="color:#c084fc">Drawing</strong></td><td><strong>D</strong></td><td>Drawing lines with mouse (dependent on parameters)</td><td>Variable</td></tr>
+          <tr><td><strong style="color:#f87171">Mental</strong></td><td><strong>M</strong></td><td>Mental preparation — deciding what to do next</td><td>1.35 s</td></tr>
+          <tr><td><strong style="color:#67e8f9">Response / System</strong></td><td><strong>R</strong></td><td>Waiting for system to respond</td><td>Variable (measured)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">🧠 Mental Operator (M) — Detailed</div>
+      <div class="callout callout-purple">
+        <strong>Mental Operator Rules (when to insert M):</strong><br>
+        • M precedes the first operator in every high-level task action<br>
+        • M is inserted before K if the K is a command key (not data entry)<br>
+        • M is not placed before P (pointing) if it immediately follows K<br>
+        • M is not placed before K that is part of a rapidly-typed string<br>
+        <strong>Key insight:</strong> M is the "thinking" time — the pause between deciding to act and acting. Physical operators (K, P, H) are purely physical.
+      </div>
+
+      <div class="ans-h">🔑 Physical vs Mental Operators</div>
+      <div class="grid2">
+        <div class="callout callout-blue">
+          <strong>⚙️ Physical Operators</strong><br>
+          K, P, H, D — involve physical movement of body parts<br>
+          • Measured through empirical studies<br>
+          • Times are consistent across skilled users<br>
+          • Independent of cognitive processing<br>
+          <em>Example: K = 0.28s regardless of what key</em>
+        </div>
+        <div class="callout callout-amber">
+          <strong>🧠 Mental Operator (M)</strong><br>
+          Cognitive preparation time before action<br>
+          • Accounts for decision making<br>
+          • Fixed at 1.35 seconds<br>
+          • Occurs when user must think about next step<br>
+          <em>Example: M before Ctrl+S = deciding to save</em>
+        </div>
+      </div>
+
+      <div class="ans-h">📐 KLM Example — Saving a File with Ctrl+S</div>
+      <div class="callout callout-blue">
+        <strong>Task:</strong> User decides to save a file using Ctrl+S (hands already on keyboard)<br><br>
+        <strong>Sequence:</strong> M [K<sub>Ctrl</sub> K<sub>S</sub>]<br><br>
+        <strong>Calculation:</strong><br>
+        • M = 1.35 s (mental preparation — deciding to save)<br>
+        • K (Ctrl) = 0.08 s<br>
+        • K (S) = 0.08 s<br>
+        <strong>Total = 1.35 + 0.08 + 0.08 = 1.51 seconds</strong>
+      </div>
+
+      <div class="ans-h">📐 KLM Example — Opening File via Menu</div>
+      <div class="callout callout-green">
+        <strong>Task:</strong> Open a file using File→Open menu (user starts with hand on keyboard)<br><br>
+        <strong>Sequence:</strong> M H P<sub>File</sub> K<sub>click</sub> P<sub>Open</sub> K<sub>click</sub><br><br>
+        • M = 1.35 s, H = 0.40 s, P = 1.10 s, K = 0.20 s, P = 1.10 s, K = 0.20 s<br>
+        <strong>Total = 1.35 + 0.40 + 1.10 + 0.20 + 1.10 + 0.20 = 4.35 seconds</strong><br><br>
+        <strong>Comparison shows Ctrl+S is 2.84 seconds faster than menu approach.</strong>
+      </div>
+
+      <div class="ans-h">✅ Advantages & Limitations of KLM</div>
+      <div class="grid2">
+        <div class="callout callout-green">
+          <strong>Advantages</strong><br>
+          • No user testing needed (saves time/cost)<br>
+          • Quantitative, objective predictions<br>
+          • Good for comparing two design alternatives<br>
+          • Accurate for routine expert tasks<br>
+          • Simple to apply
+        </div>
+        <div class="callout callout-amber">
+          <strong>Limitations</strong><br>
+          • Only predicts expert, error-free performance<br>
+          • Does not model novice users or learning<br>
+          • Does not account for errors<br>
+          • Mental operator placement can be subjective<br>
+          • Not suitable for creative or complex tasks
+        </div>
+      </div>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick — KLM Operators</div>
+        <p><strong>"K-PHD-MR"</strong>: Keystroke, Pointing, Homing, Drawing, Mental, Response</p>
+        <p><strong>"Keypresses Power Human Decisions, Mental Responses"</strong></p>
+        <p style="margin-top:4px">Times: K≈0.28, P=1.10, H=0.40, M=1.35 (remember: <strong>M is the longest physical wait</strong>)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q7b: Linguistic Model -->
+  <div id="q78-b" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q7b</span><span class="q-topic">Linguistic Model in HCI</span><span class="badge-mark">[9M]</span><span class="badge badge-purple">★★★ 3/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> <strong>Linguistic models</strong> in HCI describe the interaction between user and computer as a form of language exchange. They apply concepts from linguistics (grammar, syntax, semantics) to formalize the structure of user commands and system responses.</div>
+
+      <div class="ans-h">🗣️ Why Linguistic Models?</div>
+      <ul class="ans-list">
+        <li>Human-computer interaction involves "conversation" — commands and responses</li>
+        <li>Formal grammars can specify precisely what commands are valid</li>
+        <li>Helps detect errors in command sequences automatically</li>
+        <li>Provides a basis for designing and implementing command-line and form-based interfaces</li>
+      </ul>
+
+      <div class="ans-h">📋 Types of Linguistic Models</div>
+      <table class="cmp-table">
+        <thead><tr><th>#</th><th>Model</th><th>Based On</th><th>Use Case</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong style="color:#58a6ff">BNF Grammar</strong> (Backus-Naur Form)</td><td>Formal language grammars</td><td>Specifying command-line syntax</td></tr>
+          <tr><td>2</td><td><strong style="color:#4ade80">Syntactic-Semantic Model</strong></td><td>Parsing theory</td><td>Understanding typed commands</td></tr>
+          <tr><td>3</td><td><strong style="color:#fbbf24">TAG (Task Action Grammar)</strong></td><td>Formal grammar</td><td>Measuring learnability and consistency</td></tr>
+          <tr><td>4</td><td><strong style="color:#c084fc">CLG (Command Language Grammar)</strong></td><td>Multi-level grammar</td><td>Analyzing multi-level command languages</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">🔑 BNF (Backus-Naur Form) in HCI</div>
+      <div class="ans-def">BNF is a notation used to formally specify the grammar of a command language. It defines what combinations of tokens (words, symbols) form valid commands.</div>
+
+      <div class="callout callout-blue" style="font-family:'Courier New',monospace;font-size:12px">
+        <strong>BNF Grammar for a simple file command:</strong><br><br>
+        &lt;command&gt; ::= &lt;action&gt; &lt;object&gt;<br>
+        &lt;action&gt; ::= "copy" | "move" | "delete" | "open"<br>
+        &lt;object&gt; ::= &lt;filename&gt; | &lt;filename&gt; &lt;destination&gt;<br>
+        &lt;filename&gt; ::= &lt;string&gt; "." &lt;extension&gt;<br>
+        &lt;extension&gt; ::= "txt" | "pdf" | "jpg" | "docx"<br><br>
+        <span style="color:#4ade80">Valid:</span> "copy report.pdf /backup"<br>
+        <span style="color:#f87171">Invalid:</span> "report.pdf copy" (wrong order)
+      </div>
+
+      <div class="ans-h">🔑 Syntactic-Semantic Model</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="200" fill="#0d1117" rx="6"/>
+          <!-- Input -->
+          <rect x="20" y="80" width="100" height="40" rx="4" fill="#1a1200" stroke="#f59e0b" stroke-width="1.5"/>
+          <text x="70" y="104" fill="#fbbf24" font-size="11" text-anchor="middle">User Input</text>
+          <line x1="120" y1="100" x2="145" y2="100" stroke="#6e7681" stroke-width="1.5"/>
+          <polygon points="145,96 155,100 145,104" fill="#6e7681"/>
+          <!-- Lexical -->
+          <rect x="155" y="70" width="90" height="60" rx="4" fill="#1a2f4a" stroke="#58a6ff" stroke-width="1.5"/>
+          <text x="200" y="97" fill="#93c5fd" font-size="10" text-anchor="middle" font-weight="bold">Lexical</text>
+          <text x="200" y="112" fill="#8b949e" font-size="8" text-anchor="middle">Tokenize input</text>
+          <line x1="245" y1="100" x2="265" y2="100" stroke="#6e7681" stroke-width="1.5"/>
+          <polygon points="265,96 275,100 265,104" fill="#6e7681"/>
+          <!-- Syntactic -->
+          <rect x="275" y="70" width="90" height="60" rx="4" fill="#1a3a26" stroke="#4ade80" stroke-width="1.5"/>
+          <text x="320" y="97" fill="#86efac" font-size="10" text-anchor="middle" font-weight="bold">Syntactic</text>
+          <text x="320" y="112" fill="#8b949e" font-size="8" text-anchor="middle">Parse grammar</text>
+          <line x1="365" y1="100" x2="385" y2="100" stroke="#6e7681" stroke-width="1.5"/>
+          <polygon points="385,96 395,100 385,104" fill="#6e7681"/>
+          <!-- Semantic -->
+          <rect x="395" y="70" width="90" height="60" rx="4" fill="#1a0f1a" stroke="#c084fc" stroke-width="1.5"/>
+          <text x="440" y="97" fill="#e9d5ff" font-size="10" text-anchor="middle" font-weight="bold">Semantic</text>
+          <text x="440" y="112" fill="#8b949e" font-size="8" text-anchor="middle">Assign meaning</text>
+          <line x1="485" y1="100" x2="505" y2="100" stroke="#6e7681" stroke-width="1.5"/>
+          <polygon points="505,96 515,100 505,104" fill="#6e7681"/>
+          <!-- Action -->
+          <rect x="515" y="80" width="75" height="40" rx="4" fill="#1a1200" stroke="#f87171" stroke-width="1.5"/>
+          <text x="552" y="104" fill="#f87171" font-size="11" text-anchor="middle">Execute</text>
+          <!-- Level labels -->
+          <text x="200" y="155" fill="#6e7681" font-size="9" text-anchor="middle">Words/tokens</text>
+          <text x="320" y="155" fill="#6e7681" font-size="9" text-anchor="middle">Grammar rules</text>
+          <text x="440" y="155" fill="#6e7681" font-size="9" text-anchor="middle">What it means</text>
+          <!-- Example -->
+          <text x="300" y="180" fill="#8b949e" font-size="9" text-anchor="middle">Example: "copy file.txt /backup" → Tokens → Parse → Copy action on file.txt</text>
+        </svg>
+      </div>
+
+      <div class="ans-h">🔑 TAG (Task Action Grammar)</div>
+      <div class="callout callout-purple">
+        <strong>TAG</strong> measures the <em>consistency</em> of a command language by analyzing whether similar tasks have similar command structures.<br><br>
+        <strong>Principle:</strong> If two tasks are conceptually similar, their commands should be grammatically similar (same verb-object structure).<br><br>
+        <strong>Example:</strong> "copy file from A to B" and "move file from A to B" have same structure → consistent design ✅<br>
+        "copy A B" vs "move-file A B" → inconsistent structure ❌
+      </div>
+
+      <div class="ans-h">📋 Comparison — Linguistic vs. Task Models</div>
+      <table class="cmp-table">
+        <thead><tr><th>Aspect</th><th>Linguistic Models</th><th>Task Models (HTA/GOMS)</th></tr></thead>
+        <tbody>
+          <tr><td>Focus</td><td>Command language structure and grammar</td><td>User goals and task decomposition</td></tr>
+          <tr><td>Level</td><td>Syntactic / command level</td><td>Semantic / goal level</td></tr>
+          <tr><td>Output</td><td>Grammar specification, consistency metrics</td><td>Task tree, time prediction</td></tr>
+          <tr><td>Best For</td><td>CLI, form-based interfaces</td><td>Any interactive system</td></tr>
+        </tbody>
+      </table>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>Linguistic model levels: "LSS" = Lexical → Syntactic → Semantic</strong></p>
+        <p><strong>"Language Structures Sentences"</strong> (from words to meaning)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q8a: HTA Cook Rice -->
+  <div id="q78-c" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q8a</span><span class="q-topic">HTA — Hierarchical Task Analysis: Cook Rice</span><span class="badge-mark">[9M]</span><span class="badge badge-purple">★★★ 4/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> <strong>Hierarchical Task Analysis (HTA)</strong> is a technique for analyzing tasks by breaking down a high-level goal into sub-goals, operations, and plans. It was developed by Annett and Duncan (1967). HTA provides a structured understanding of what users need to do to achieve a goal.</div>
+
+      <div class="ans-h">🔑 Key Concepts in HTA</div>
+      <ul class="ans-list">
+        <li><strong>Goal:</strong> The end state the user wants to achieve</li>
+        <li><strong>Sub-goal:</strong> An intermediate state that contributes to the main goal</li>
+        <li><strong>Operation:</strong> A single, indivisible action (the leaf of the tree)</li>
+        <li><strong>Plan:</strong> The condition under which sub-goals/operations are executed (sequential, conditional, cyclic)</li>
+        <li><strong>Stopping Rule:</strong> Stop decomposing when further analysis won't improve the design</li>
+      </ul>
+
+      <div class="ans-h">🍚 HTA Diagram: Cook Rice</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 760 480" xmlns="http://www.w3.org/2000/svg">
+          <rect width="760" height="480" fill="#0d1117" rx="6"/>
+          <!-- ROOT GOAL -->
+          <rect x="260" y="10" width="240" height="40" rx="6" fill="#1d4ed8" stroke="#58a6ff" stroke-width="2"/>
+          <text x="380" y="35" fill="white" font-size="12" text-anchor="middle" font-weight="bold">0. Cook Rice</text>
+          <!-- Level 1 connections -->
+          <line x1="380" y1="50" x2="380" y2="75" stroke="#58a6ff" stroke-width="1.5"/>
+          <line x1="90" y1="75" x2="670" y2="75" stroke="#58a6ff" stroke-width="1.5"/>
+          <!-- Sub-goal 1: Prepare Rice -->
+          <line x1="90" y1="75" x2="90" y2="90" stroke="#58a6ff" stroke-width="1.5"/>
+          <rect x="20" y="90" width="140" height="38" rx="5" fill="#16a34a" stroke="#4ade80" stroke-width="1.5"/>
+          <text x="90" y="108" fill="white" font-size="10" text-anchor="middle" font-weight="bold">1. Prepare</text>
+          <text x="90" y="121" fill="white" font-size="10" text-anchor="middle" font-weight="bold">Rice</text>
+          <!-- Sub-goal 2: Prepare Equipment -->
+          <line x1="230" y1="75" x2="230" y2="90" stroke="#58a6ff" stroke-width="1.5"/>
+          <rect x="160" y="90" width="140" height="38" rx="5" fill="#0891b2" stroke="#67e8f9" stroke-width="1.5"/>
+          <text x="230" y="108" fill="white" font-size="10" text-anchor="middle" font-weight="bold">2. Prepare</text>
+          <text x="230" y="121" fill="white" font-size="10" text-anchor="middle" font-weight="bold">Equipment</text>
+          <!-- Sub-goal 3: Cook -->
+          <line x1="380" y1="75" x2="380" y2="90" stroke="#58a6ff" stroke-width="1.5"/>
+          <rect x="310" y="90" width="140" height="38" rx="5" fill="#7c3aed" stroke="#a78bfa" stroke-width="1.5"/>
+          <text x="380" y="108" fill="white" font-size="10" text-anchor="middle" font-weight="bold">3. Cook Rice</text>
+          <text x="380" y="121" fill="white" font-size="9" text-anchor="middle">(on stove/cooker)</text>
+          <!-- Sub-goal 4: Monitor -->
+          <line x1="530" y1="75" x2="530" y2="90" stroke="#58a6ff" stroke-width="1.5"/>
+          <rect x="460" y="90" width="140" height="38" rx="5" fill="#d97706" stroke="#fbbf24" stroke-width="1.5"/>
+          <text x="530" y="108" fill="white" font-size="10" text-anchor="middle" font-weight="bold">4. Monitor</text>
+          <text x="530" y="121" fill="white" font-size="10" text-anchor="middle" font-weight="bold">Cooking</text>
+          <!-- Sub-goal 5: Serve -->
+          <line x1="670" y1="75" x2="670" y2="90" stroke="#58a6ff" stroke-width="1.5"/>
+          <rect x="600" y="90" width="140" height="38" rx="5" fill="#dc2626" stroke="#f87171" stroke-width="1.5"/>
+          <text x="670" y="108" fill="white" font-size="10" text-anchor="middle" font-weight="bold">5. Serve Rice</text>
+          <text x="670" y="121" fill="white" font-size="9" text-anchor="middle">and Clean</text>
+          <!-- Level 2: Sub-goals of 1 -->
+          <line x1="90" y1="128" x2="90" y2="155" stroke="#4ade80" stroke-width="1"/>
+          <line x1="40" y1="155" x2="140" y2="155" stroke="#4ade80" stroke-width="1"/>
+          <line x1="40" y1="155" x2="40" y2="168" stroke="#4ade80" stroke-width="1"/>
+          <line x1="140" y1="155" x2="140" y2="168" stroke="#4ade80" stroke-width="1"/>
+          <rect x="8" y="168" width="66" height="34" rx="4" fill="#0d2318" stroke="#16a34a" stroke-width="1"/>
+          <text x="41" y="183" fill="#86efac" font-size="8" text-anchor="middle">1.1 Measure</text>
+          <text x="41" y="195" fill="#86efac" font-size="8" text-anchor="middle">rice</text>
+          <rect x="107" y="168" width="66" height="34" rx="4" fill="#0d2318" stroke="#16a34a" stroke-width="1"/>
+          <text x="140" y="183" fill="#86efac" font-size="8" text-anchor="middle">1.2 Wash</text>
+          <text x="140" y="195" fill="#86efac" font-size="8" text-anchor="middle">rice 2–3x</text>
+          <!-- Level 2: Sub-goals of 2 -->
+          <line x1="230" y1="128" x2="230" y2="155" stroke="#67e8f9" stroke-width="1"/>
+          <line x1="180" y1="155" x2="280" y2="155" stroke="#67e8f9" stroke-width="1"/>
+          <line x1="180" y1="155" x2="180" y2="168" stroke="#67e8f9" stroke-width="1"/>
+          <line x1="280" y1="155" x2="280" y2="168" stroke="#67e8f9" stroke-width="1"/>
+          <rect x="148" y="168" width="66" height="34" rx="4" fill="#061520" stroke="#0891b2" stroke-width="1"/>
+          <text x="181" y="183" fill="#a5f3fc" font-size="8" text-anchor="middle">2.1 Get pot</text>
+          <text x="181" y="195" fill="#a5f3fc" font-size="8" text-anchor="middle">or cooker</text>
+          <rect x="248" y="168" width="66" height="34" rx="4" fill="#061520" stroke="#0891b2" stroke-width="1"/>
+          <text x="281" y="183" fill="#a5f3fc" font-size="8" text-anchor="middle">2.2 Add</text>
+          <text x="281" y="195" fill="#a5f3fc" font-size="8" text-anchor="middle">water</text>
+          <!-- Level 2: Sub-goals of 3 -->
+          <line x1="380" y1="128" x2="380" y2="155" stroke="#a78bfa" stroke-width="1"/>
+          <line x1="330" y1="155" x2="430" y2="155" stroke="#a78bfa" stroke-width="1"/>
+          <line x1="330" y1="155" x2="330" y2="168" stroke="#a78bfa" stroke-width="1"/>
+          <line x1="430" y1="155" x2="430" y2="168" stroke="#a78bfa" stroke-width="1"/>
+          <rect x="298" y="168" width="66" height="34" rx="4" fill="#120930" stroke="#7c3aed" stroke-width="1"/>
+          <text x="331" y="183" fill="#c4b5fd" font-size="8" text-anchor="middle">3.1 Place</text>
+          <text x="331" y="195" fill="#c4b5fd" font-size="8" text-anchor="middle">on stove</text>
+          <rect x="398" y="168" width="66" height="34" rx="4" fill="#120930" stroke="#7c3aed" stroke-width="1"/>
+          <text x="431" y="183" fill="#c4b5fd" font-size="8" text-anchor="middle">3.2 Set</text>
+          <text x="431" y="195" fill="#c4b5fd" font-size="8" text-anchor="middle">heat level</text>
+          <!-- Level 2: Sub-goals of 4 -->
+          <line x1="530" y1="128" x2="530" y2="155" stroke="#fbbf24" stroke-width="1"/>
+          <line x1="480" y1="155" x2="580" y2="155" stroke="#fbbf24" stroke-width="1"/>
+          <line x1="480" y1="155" x2="480" y2="168" stroke="#fbbf24" stroke-width="1"/>
+          <line x1="580" y1="155" x2="580" y2="168" stroke="#fbbf24" stroke-width="1"/>
+          <rect x="448" y="168" width="66" height="34" rx="4" fill="#1a0d00" stroke="#d97706" stroke-width="1"/>
+          <text x="481" y="183" fill="#fde68a" font-size="8" text-anchor="middle">4.1 Check</text>
+          <text x="481" y="195" fill="#fde68a" font-size="8" text-anchor="middle">water level</text>
+          <rect x="548" y="168" width="66" height="34" rx="4" fill="#1a0d00" stroke="#d97706" stroke-width="1"/>
+          <text x="581" y="183" fill="#fde68a" font-size="8" text-anchor="middle">4.2 Reduce</text>
+          <text x="581" y="195" fill="#fde68a" font-size="8" text-anchor="middle">heat/wait</text>
+          <!-- Level 2: Sub-goals of 5 -->
+          <line x1="670" y1="128" x2="670" y2="155" stroke="#f87171" stroke-width="1"/>
+          <line x1="620" y1="155" x2="720" y2="155" stroke="#f87171" stroke-width="1"/>
+          <line x1="620" y1="155" x2="620" y2="168" stroke="#f87171" stroke-width="1"/>
+          <line x1="720" y1="155" x2="720" y2="168" stroke="#f87171" stroke-width="1"/>
+          <rect x="588" y="168" width="66" height="34" rx="4" fill="#1a0000" stroke="#dc2626" stroke-width="1"/>
+          <text x="621" y="183" fill="#fca5a5" font-size="8" text-anchor="middle">5.1 Turn off</text>
+          <text x="621" y="195" fill="#fca5a5" font-size="8" text-anchor="middle">stove</text>
+          <rect x="688" y="168" width="66" height="34" rx="4" fill="#1a0000" stroke="#dc2626" stroke-width="1"/>
+          <text x="721" y="183" fill="#fca5a5" font-size="8" text-anchor="middle">5.2 Serve</text>
+          <text x="721" y="195" fill="#fca5a5" font-size="8" text-anchor="middle">in bowl</text>
+          <!-- Plan boxes -->
+          <text x="380" y="240" fill="#8b949e" font-size="10" text-anchor="middle" font-weight="bold">Plans</text>
+          <rect x="20" y="250" width="720" height="80" rx="6" fill="#0a0a1a" stroke="#30363d" stroke-width="1"/>
+          <text x="380" y="270" fill="#6e7681" font-size="9" text-anchor="middle" font-weight="bold">Plan 0:</text>
+          <text x="380" y="284" fill="#8b949e" font-size="9" text-anchor="middle">Do 1-2-3-4-5 in sequence: Prepare rice → Prepare equipment → Cook → Monitor → Serve</text>
+          <text x="380" y="302" fill="#6e7681" font-size="9" text-anchor="middle" font-weight="bold">Plan 3:</text>
+          <text x="380" y="316" fill="#8b949e" font-size="9" text-anchor="middle">Do 3.1 then 3.2. If using rice cooker: skip 3.2 and 4.1-4.2 (cooker auto-manages)</text>
+          <!-- Legend -->
+          <rect x="20" y="345" width="720" height="40" rx="4" fill="#0d1117" stroke="#30363d"/>
+          <text x="40" y="362" fill="#8b949e" font-size="9">Legend:</text>
+          <rect x="90" y="352" width="12" height="12" rx="2" fill="#1d4ed8"/>
+          <text x="108" y="362" fill="#8b949e" font-size="9">Main Goal</text>
+          <rect x="185" y="352" width="12" height="12" rx="2" fill="#16a34a"/>
+          <text x="203" y="362" fill="#8b949e" font-size="9">Sub-goal</text>
+          <rect x="265" y="352" width="12" height="12" rx="2" fill="#0d2318"/>
+          <text x="283" y="362" fill="#8b949e" font-size="9">Operation (leaf)</text>
+          <text x="440" y="362" fill="#8b949e" font-size="9">Numbers = goal/sub-goal index (0.1, 1.1, 1.2…)</text>
+          <!-- HTA Table -->
+          <text x="380" y="405" fill="#8b949e" font-size="10" text-anchor="middle" font-weight="bold">HTA Notation Table</text>
+          <rect x="20" y="410" width="720" height="60" rx="4" fill="#0d1117" stroke="#30363d"/>
+          <text x="40" y="427" fill="#93c5fd" font-size="9">Goal:</text><text x="80" y="427" fill="#8b949e" font-size="9">0. Cook Rice</text>
+          <text x="40" y="442" fill="#93c5fd" font-size="9">Sub-goals:</text><text x="100" y="442" fill="#8b949e" font-size="9">1-5 (Prepare, Equipment, Cook, Monitor, Serve)</text>
+          <text x="40" y="457" fill="#93c5fd" font-size="9">Operations:</text><text x="104" y="457" fill="#8b949e" font-size="9">1.1, 1.2, 2.1, 2.2, 3.1, 3.2, 4.1, 4.2, 5.1, 5.2 (10 leaf-level operations)</text>
+          <text x="440" y="457" fill="#93c5fd" font-size="9">Plans:</text><text x="470" y="457" fill="#8b949e" font-size="9">Sequential execution; conditional for rice cooker</text>
+        </svg>
+      </div>
+
+      <div class="ans-h">📋 HTA in Tabular Form</div>
+      <table class="cmp-table">
+        <thead><tr><th>Goal #</th><th>Goal/Sub-goal/Operation</th><th>Plan</th></tr></thead>
+        <tbody>
+          <tr><td><strong>0</strong></td><td>Cook Rice</td><td>Do 1–2–3–4–5 in sequence</td></tr>
+          <tr><td>1</td><td>Prepare Rice</td><td>Do 1.1 then 1.2</td></tr>
+          <tr><td>1.1</td><td>Measure correct quantity of rice</td><td>—</td></tr>
+          <tr><td>1.2</td><td>Wash rice 2–3 times with clean water</td><td>—</td></tr>
+          <tr><td>2</td><td>Prepare Equipment</td><td>Do 2.1 then 2.2</td></tr>
+          <tr><td>2.1</td><td>Get pot or pressure cooker</td><td>—</td></tr>
+          <tr><td>2.2</td><td>Add appropriate quantity of water</td><td>—</td></tr>
+          <tr><td>3</td><td>Cook Rice</td><td>Do 3.1 then 3.2</td></tr>
+          <tr><td>3.1</td><td>Place pot on stove or in rice cooker</td><td>—</td></tr>
+          <tr><td>3.2</td><td>Set heat level (high until boiling, then low)</td><td>—</td></tr>
+          <tr><td>4</td><td>Monitor Cooking</td><td>Repeat 4.1–4.2 until done</td></tr>
+          <tr><td>4.1</td><td>Check water level and steam</td><td>—</td></tr>
+          <tr><td>4.2</td><td>Reduce heat; wait for absorption</td><td>—</td></tr>
+          <tr><td>5</td><td>Serve and Clean</td><td>Do 5.1 then 5.2</td></tr>
+          <tr><td>5.1</td><td>Turn off stove; let rice rest 5 min</td><td>—</td></tr>
+          <tr><td>5.2</td><td>Serve in bowl; wash pot</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">✅ Advantages of HTA</div>
+      <ul class="ans-list">
+        <li>Provides clear understanding of user tasks and their structure</li>
+        <li>Identifies opportunities for system support at each sub-goal</li>
+        <li>Helps detect missing functionality in the system design</li>
+        <li>Useful for training material design and error analysis</li>
+        <li>Flexible — can be represented as tree, table, or text</li>
+      </ul>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>HTA structure: "GOPS" = Goal → Operations → Plans → Stopping rule</strong></p>
+        <p>Cook Rice example: <strong>5 sub-goals, 10 operations, plans for sequence and conditions</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q8b: Computer-Mediated Communication -->
+  <div id="q78-d" class="sub-panel">
+    <div class="q-header"><span class="q-num">Q8b</span><span class="q-topic">Computer-Mediated Communication (CMC) Applications</span><span class="badge-mark">[9M]</span><span class="badge badge-green">★★ 2/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> <strong>Computer-Mediated Communication (CMC)</strong> refers to any form of human communication that occurs through the use of computers or digital devices. It includes text, audio, video, and multimedia communication over networks.</div>
+
+      <div class="ans-h">📋 Categories of CMC Applications</div>
+      <table class="cmp-table">
+        <thead><tr><th>#</th><th>Category</th><th>Description</th><th>Examples</th><th>HCI Challenges</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong style="color:#58a6ff">Email</strong></td><td>Asynchronous text message exchange; supports attachments and threading</td><td>Gmail, Outlook, Thunderbird</td><td>Information overload, threading complexity, spam</td></tr>
+          <tr><td>2</td><td><strong style="color:#4ade80">Instant Messaging (IM)</strong></td><td>Real-time text chat between individuals or groups</td><td>WhatsApp, Telegram, Slack</td><td>Presence indicators, notification management</td></tr>
+          <tr><td>3</td><td><strong style="color:#fbbf24">Video Conferencing</strong></td><td>Real-time audio/video communication; supports screen sharing</td><td>Zoom, MS Teams, Google Meet</td><td>Latency, eye contact issues, non-verbal cues</td></tr>
+          <tr><td>4</td><td><strong style="color:#c084fc">Social Networks</strong></td><td>Platforms for sharing content, connecting with others, communities</td><td>Facebook, LinkedIn, Instagram</td><td>Privacy, addiction, misinformation, accessibility</td></tr>
+          <tr><td>5</td><td><strong style="color:#f87171">Discussion Forums</strong></td><td>Threaded, topic-based community discussion; asynchronous</td><td>Reddit, Stack Overflow, Quora</td><td>Thread navigation, content moderation</td></tr>
+          <tr><td>6</td><td><strong style="color:#67e8f9">Collaborative Tools</strong></td><td>Shared workspaces for real-time co-creation of documents/code</td><td>Google Docs, GitHub, Figma</td><td>Conflict resolution, version control UI, awareness</td></tr>
+          <tr><td>7</td><td><strong style="color:#fde68a">Blogs &amp; Wikis</strong></td><td>Web-published content; wikis allow collaborative editing</td><td>WordPress, Wikipedia, Medium</td><td>Content discovery, editing interface, citation</td></tr>
+          <tr><td>8</td><td><strong style="color:#fca5a5">Virtual Worlds / Metaverse</strong></td><td>3D immersive environments for social interaction and collaboration</td><td>Second Life, Roblox, VRChat</td><td>Navigation, avatar representation, accessibility</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">🔑 Synchronous vs. Asynchronous CMC</div>
+      <div class="grid2">
+        <div class="callout callout-blue">
+          <strong>⚡ Synchronous (Real-time)</strong><br>
+          • Both parties communicate simultaneously<br>
+          • Immediate response expected<br>
+          • Examples: Video call, IM chat, voice call<br>
+          • HCI need: Low latency, clear presence indicators<br>
+          • Challenge: Scheduling across time zones
+        </div>
+        <div class="callout callout-amber">
+          <strong>🕐 Asynchronous (Time-shifted)</strong><br>
+          • Communication does not require simultaneous presence<br>
+          • Response can be delayed<br>
+          • Examples: Email, forum, wiki, blog<br>
+          • HCI need: Thread navigation, notification control<br>
+          • Challenge: Context loss over time
+        </div>
+      </div>
+
+      <div class="ans-h">🎯 HCI Design Considerations for CMC</div>
+      <ul class="ans-list">
+        <li><strong>Presence &amp; Awareness:</strong> Show who is online, typing indicators, read receipts</li>
+        <li><strong>Turn-taking:</strong> In video calls, design mechanisms to manage speaking order</li>
+        <li><strong>Non-verbal Cues:</strong> Emoji reactions, status indicators compensate for lack of body language</li>
+        <li><strong>Accessibility:</strong> Captions, screen reader support, keyboard navigation</li>
+        <li><strong>Privacy:</strong> End-to-end encryption controls, data retention settings</li>
+        <li><strong>Notification Management:</strong> Do Not Disturb, focus modes, priority filtering</li>
+      </ul>
+
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>CMC Types: "EI-VSDBloVM"</strong>: Email, IM, Video, Social, Discussion, Blog/Wiki, Virtual/Metaverse</p>
+        <p><strong>"Every Individual Values Social Discussion Before Virtual Meetings"</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cognitive Architectures -->
+  <div id="q78-e" class="sub-panel">
+    <div class="q-header"><span class="q-num">Bonus</span><span class="q-topic">Cognitive Architectures in HCI</span><span class="badge-mark">[5M]</span><span class="badge badge-green">★★ 2/5</span></div>
+    <div class="card">
+      <div class="ans-def"><strong>Definition:</strong> A <strong>cognitive architecture</strong> is a theory and computational model of the structure and processes of the human mind. In HCI, cognitive architectures help predict how users will interact with systems by modeling human cognitive capabilities.</div>
+
+      <div class="ans-h">📋 Major Cognitive Architectures</div>
+      <table class="cmp-table">
+        <thead><tr><th>Architecture</th><th>Full Name</th><th>Key Concept</th><th>HCI Application</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:#58a6ff">GOMS</strong></td><td>Goals, Operators, Methods, Selection Rules</td><td>Models skilled user performance as goal-directed behavior using operators and methods</td><td>Predicting expert task completion time; comparing design alternatives</td></tr>
+          <tr><td><strong style="color:#4ade80">ACT-R</strong></td><td>Adaptive Control of Thought-Rational</td><td>Human cognition as production rules; chunks of knowledge activated from memory</td><td>Modeling learning, memory retrieval, interface adaptation</td></tr>
+          <tr><td><strong style="color:#fbbf24">SOAR</strong></td><td>State, Operator And Result</td><td>Problem solving through search in a problem space; learns through chunking</td><td>Modeling intelligent tutoring, complex task performance</td></tr>
+          <tr><td><strong style="color:#c084fc">MHP</strong></td><td>Model Human Processor</td><td>Three processors: Perceptual, Cognitive, Motor; each with cycle times</td><td>Engineering estimates of human performance limits</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ans-h">🔑 Model Human Processor (MHP) — Key Details</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 580 160" xmlns="http://www.w3.org/2000/svg">
+          <rect width="580" height="160" fill="#0d1117" rx="6"/>
+          <!-- Input -->
+          <rect x="10" y="60" width="60" height="40" rx="4" fill="#1a1200" stroke="#f59e0b"/>
+          <text x="40" y="84" fill="#fbbf24" font-size="9" text-anchor="middle">World</text>
+          <line x1="70" y1="80" x2="90" y2="80" stroke="#6e7681" stroke-width="1.5"/>
+          <!-- Perceptual -->
+          <rect x="90" y="40" width="130" height="80" rx="5" fill="#1a2f4a" stroke="#58a6ff" stroke-width="1.5"/>
+          <text x="155" y="70" fill="#58a6ff" font-size="10" text-anchor="middle" font-weight="bold">Perceptual</text>
+          <text x="155" y="85" fill="#93c5fd" font-size="10" text-anchor="middle" font-weight="bold">Processor</text>
+          <text x="155" y="104" fill="#8b949e" font-size="8" text-anchor="middle">Cycle: 100ms</text>
+          <text x="155" y="115" fill="#8b949e" font-size="8" text-anchor="middle">Working Mem: 7±2</text>
+          <line x1="220" y1="80" x2="240" y2="80" stroke="#6e7681" stroke-width="1.5"/>
+          <!-- Cognitive -->
+          <rect x="240" y="40" width="130" height="80" rx="5" fill="#1a3a26" stroke="#4ade80" stroke-width="1.5"/>
+          <text x="305" y="70" fill="#4ade80" font-size="10" text-anchor="middle" font-weight="bold">Cognitive</text>
+          <text x="305" y="85" fill="#86efac" font-size="10" text-anchor="middle" font-weight="bold">Processor</text>
+          <text x="305" y="104" fill="#8b949e" font-size="8" text-anchor="middle">Cycle: 70ms</text>
+          <text x="305" y="115" fill="#8b949e" font-size="8" text-anchor="middle">LTM: unlimited</text>
+          <line x1="370" y1="80" x2="390" y2="80" stroke="#6e7681" stroke-width="1.5"/>
+          <!-- Motor -->
+          <rect x="390" y="40" width="130" height="80" rx="5" fill="#1a1200" stroke="#f59e0b" stroke-width="1.5"/>
+          <text x="455" y="70" fill="#f59e0b" font-size="10" text-anchor="middle" font-weight="bold">Motor</text>
+          <text x="455" y="85" fill="#fbbf24" font-size="10" text-anchor="middle" font-weight="bold">Processor</text>
+          <text x="455" y="104" fill="#8b949e" font-size="8" text-anchor="middle">Cycle: 70ms</text>
+          <text x="455" y="115" fill="#8b949e" font-size="8" text-anchor="middle">Min. move: 70ms</text>
+          <line x1="520" y1="80" x2="545" y2="80" stroke="#6e7681" stroke-width="1.5"/>
+          <!-- Output -->
+          <rect x="545" y="60" width="25" height="40" rx="4" fill="#1a1200" stroke="#f87171"/>
+          <text x="557" y="84" fill="#f87171" font-size="8" text-anchor="middle">Act</text>
+          <!-- Title -->
+          <text x="290" y="150" fill="#6e7681" font-size="9" text-anchor="middle">Model Human Processor (Card, Moran, Newell)</text>
+        </svg>
+      </div>
+
+      <div class="ans-h">🔑 GOMS Model</div>
+      <ul class="ans-list">
+        <li><strong>Goals:</strong> What the user wants to achieve (hierarchical)</li>
+        <li><strong>Operators:</strong> Elementary actions user can perform (K, P in KLM)</li>
+        <li><strong>Methods:</strong> Learned procedures for accomplishing goals</li>
+        <li><strong>Selection Rules:</strong> Rules for choosing between competing methods</li>
+      </ul>
+      <div class="callout callout-blue">
+        <strong>GOMS Example — Deleting a word:</strong><br>
+        Goal: Delete word "error"<br>
+        Method 1: Double-click word → Press Delete key<br>
+        Method 2: Triple-click to select line → Retype<br>
+        Selection Rule: Use Method 1 for single words; Method 2 for large sections
+      </div>
+      <div class="trick-box">
+        <div class="trick-title">🧠 Memory Trick</div>
+        <p><strong>GOMS = "Goals Operators Methods Selection"</strong> — Think of GOMS as the expert user's recipe book</p>
+        <p><strong>MHP = 3 processors: "P-C-M" (Perception, Cognition, Motor)</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     LAST-DAY REVISION PAGE
+════════════════════════════════════════════════════════ -->
+<div id="page-revision" class="page">
+  <div class="section-title">📌 Last-Day Revision — Top 20 Questions</div>
+  <div class="callout callout-purple" style="margin-bottom:16px">
+    <strong>🎯 Exam Strategy:</strong> These 20 questions cover ~90% of marks in past papers. Each has a 60-second answer outline. For 9M questions, write 3-4 points per sub-heading. Diagrams earn 2-3 marks each — always draw them!
+  </div>
+
+  <!-- Questions 1-10 -->
+  <div class="rev-item"><div class="rev-num">1</div><div class="rev-content">
+    <div class="rev-q">WIMP Interface — Elements, Advantages, Disadvantages <span class="badge badge-purple">★★★</span> <span class="badge-mark">[6-7M]</span></div>
+    <div class="rev-hint">🧠 WIMP = Windows Icons Menus Pointer | Draw 4-box diagram | Adv: Intuitive, WYSIWYG, Multitasking | Disadv: Memory-heavy, needs mouse</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">2</div><div class="rev-content">
+    <div class="rev-q">Shneiderman's 8 Golden Rules <span class="badge badge-purple">★★★</span> <span class="badge-mark">[9M]</span></div>
+    <div class="rev-hint">🧠 "CS Offers Diamonds, Error Prevention Reversal Supports Reduction" | Key: Consistency, Shortcuts, Feedback, Closure, Error, Undo, Control, Memory | Give Gmail example for each</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">3</div><div class="rev-content">
+    <div class="rev-q">HTA: Cook Rice (with diagram) <span class="badge badge-purple">★★★</span> <span class="badge-mark">[9M]</span></div>
+    <div class="rev-hint">🧠 5 sub-goals: Prepare Rice → Prepare Equipment → Cook → Monitor → Serve | Draw tree diagram | Write plans (sequential) | 10 leaf operations | Stopping rule at operation level</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">4</div><div class="rev-content">
+    <div class="rev-q">KLM — Operators, Example, Mental vs Physical <span class="badge badge-purple">★★★</span> <span class="badge-mark">[9M]</span></div>
+    <div class="rev-hint">🧠 "K-PHD-MR": K=0.28s, P=1.10s, H=0.40s, M=1.35s | M is mental preparation | Example: Ctrl+S = M + K + K = 1.51s | Menu = 4.35s | Menu is 2.84s slower</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">5</div><div class="rev-content">
+    <div class="rev-q">Prototyping — Types, Goals, Hill Climbing <span class="badge badge-purple">★★★</span> <span class="badge-mark">[8-9M]</span></div>
+    <div class="rev-hint">🧠 "PWM-ITE": Paper, Wireframe, Mockup, Interactive, Throwaway, Evolutionary | Hill climbing = iterative improvement toward optimal | Draw hill diagram | Goals: early feedback, reduce risk</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">6</div><div class="rev-content">
+    <div class="rev-q">Honeycomb Model — 7 UX Facets <span class="badge badge-purple">★★★</span> <span class="badge-mark">[6M]</span></div>
+    <div class="rev-hint">🧠 "Uncle Uday Dances Freely Creating Amazing Values" | Useful, Usable, Desirable, Findable, Credible, Accessible, Valuable | Draw honeycomb SVG | Peter Morville 2004 | Example: e-commerce app</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">7</div><div class="rev-content">
+    <div class="rev-q">UI Layer & Execution Framework <span class="badge badge-purple">★★★</span> <span class="badge-mark">[9M]</span></div>
+    <div class="rev-hint">🧠 3 layers: Presentation → Application Logic → Data | Execution components: Event Dispatcher, Rendering Engine, Layout Manager, State Manager | Cycle: Input→Event→Dispatch→Handler→State Update→Render</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">8</div><div class="rev-content">
+    <div class="rev-q">Evaluation through Expert Analysis <span class="badge badge-purple">★★★</span> <span class="badge-mark">[8M]</span></div>
+    <div class="rev-hint">🧠 3 methods: Heuristic Evaluation, Cognitive Walkthrough, Model-Based | Heuristic: 3-5 experts, rate severity 0-4 | Cognitive Walkthrough: 4 questions per step | Cheap, no real users needed</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">9</div><div class="rev-content">
+    <div class="rev-q">Interaction Styles — 5 Types with Advantages/Disadvantages <span class="badge badge-purple">★★★</span> <span class="badge-mark">[6M]</span></div>
+    <div class="rev-hint">🧠 "Clever Monkeys Fill Databases Naturally": CLI, Menu, Form Fill, Direct Manipulation, Natural Language | Each: advantage (1) + disadvantage (1) + example</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">10</div><div class="rev-content">
+    <div class="rev-q">Paradigms of Interaction Design <span class="badge badge-purple">★★★</span> <span class="badge-mark">[6-7M]</span></div>
+    <div class="rev-hint">🧠 "Big Tigers Never Win, Monkeys Conquer All": Batch → Time-share → Network → Web → Mobile → Conversational/AI | Timeline: 1950s to now | Direct Manipulation paradigm = Shneiderman's key concept</div>
+  </div></div>
+
+  <!-- Questions 11-20 -->
+  <div class="rev-item"><div class="rev-num">11</div><div class="rev-content">
+    <div class="rev-q">Usability — Definition & 5 Principles (Nielsen) <span class="badge badge-purple">★★★</span> <span class="badge-mark">[9M]</span></div>
+    <div class="rev-hint">🧠 ISO 9241: Effectiveness + Efficiency + Satisfaction | "LEMSE": Learnability, Efficiency, Memorability, (low) Errors, Satisfaction | SUS Score > 68 = Good | Measure: task completion %, time per task</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">12</div><div class="rev-content">
+    <div class="rev-q">Context of Interaction — with Example <span class="badge badge-purple">★★★</span> <span class="badge-mark">[5-6M]</span></div>
+    <div class="rev-hint">🧠 3 contexts: Organizational (rules), Social (norms), Physical (environment) | Draw triangle diagram | Mobile banking example: RBI compliance, public privacy, outdoor sunlight</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">13</div><div class="rev-content">
+    <div class="rev-q">Linguistic Model — BNF, Syntactic-Semantic, TAG <span class="badge badge-purple">★★★</span> <span class="badge-mark">[8-9M]</span></div>
+    <div class="rev-hint">🧠 Levels: "Language Structures Sentences" = Lexical → Syntactic → Semantic | BNF: formal grammar notation | TAG: measures consistency | Example: "copy file.txt /backup" parsing</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">14</div><div class="rev-content">
+    <div class="rev-q">Scenarios — Types + Music Player Design <span class="badge badge-purple">★★★</span> <span class="badge-mark">[8M]</span></div>
+    <div class="rev-hint">🧠 "Cats Usually Take Walks Under Sunlight": Concept, Use Case, Task, Walkthrough, User Story, Storyboard | Music player scenario: Priya, 9PM, Study Mix playlist, 7 steps | Use case table</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">15</div><div class="rev-content">
+    <div class="rev-q">MVC Framework — Need, Diagram, Explanation <span class="badge badge-purple">★★★</span> <span class="badge-mark">[5-8M]</span></div>
+    <div class="rev-hint">🧠 "Movie, Video, Camera": Model (data), View (UI), Controller (logic) | Draw 3-box triangle with arrows | Separation of concerns | Advantages: independent development, testability, multiple views</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">16</div><div class="rev-content">
+    <div class="rev-q">Nielsen's 10 Heuristics <span class="badge badge-green">★★</span> <span class="badge-mark">[5-8M]</span></div>
+    <div class="rev-hint">🧠 "Very Many Users Can Experience Really Fantastic And Easy Help" | 10 heuristics = evaluation tool for inspectors | Key: Visibility, User Control, Consistency, Error Prevention, Help | Compare with Shneiderman</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">17</div><div class="rev-content">
+    <div class="rev-q">UIMS — Conceptual Architecture <span class="badge badge-green">★★</span> <span class="badge-mark">[8M]</span></div>
+    <div class="rev-hint">🧠 "UI Makes Sense": 3 components = Presentation + Dialogue Controller + Application Interface | Draw layered diagram | Separates UI code from application code | Examples: Java Swing, React</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">18</div><div class="rev-content">
+    <div class="rev-q">Ergonomics — Disciplines <span class="badge badge-green">★★</span> <span class="badge-mark">[6M]</span></div>
+    <div class="rev-hint">🧠 "People Can Often Experience Vertigo": Physical, Cognitive, Organizational, Environmental, Visual | Problems: RSI, CVS, back pain | Solutions: ergonomic keyboards, blue light filters, standing desks</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">19</div><div class="rev-content">
+    <div class="rev-q">Execution-Evaluation Cycle (Norman's 7 Stages) <span class="badge badge-green">★★</span> <span class="badge-mark">[6M]</span></div>
+    <div class="rev-hint">🧠 "FISE-PIE": Form intention, Intent, Specify, Execute | Perceive, Interpret, Evaluate | Gulf of Execution (can't find action) + Gulf of Evaluation (can't see result) | Save file example</div>
+  </div></div>
+
+  <div class="rev-item"><div class="rev-num">20</div><div class="rev-content">
+    <div class="rev-q">Computer-Mediated Communication Applications <span class="badge badge-green">★★</span> <span class="badge-mark">[9M]</span></div>
+    <div class="rev-hint">🧠 "Every Individual Values Social Discussion Before Virtual Meetings" | 8 types: Email, IM, Video, Social, Forum, Collab, Blog/Wiki, Metaverse | Sync vs Async | HCI challenges for each</div>
+  </div></div>
+
+  <!-- Formula Sheet -->
+  <div class="section-title" style="margin-top:24px">📐 Key Formulas & Values</div>
+  <div class="card">
+    <div class="grid2">
+      <div>
+        <div class="ans-h">KLM Operator Times</div>
+        <table class="cmp-table">
+          <tr><td>K (Keystroke)</td><td><strong style="color:#58a6ff">0.08–1.20s (avg 0.28s)</strong></td></tr>
+          <tr><td>P (Pointing)</td><td><strong style="color:#4ade80">1.10s</strong></td></tr>
+          <tr><td>H (Homing)</td><td><strong style="color:#fbbf24">0.40s</strong></td></tr>
+          <tr><td>M (Mental)</td><td><strong style="color:#c084fc">1.35s</strong></td></tr>
+          <tr><td>R (Response)</td><td><strong style="color:#f87171">Variable</strong></td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="ans-h">Usability Metrics</div>
+        <table class="cmp-table">
+          <tr><td>Good SUS Score</td><td><strong style="color:#4ade80">&gt; 68 / 100</strong></td></tr>
+          <tr><td>Excellent SUS</td><td><strong style="color:#58a6ff">&gt; 85 / 100</strong></td></tr>
+          <tr><td>Short-term Memory</td><td><strong style="color:#fbbf24">7 ± 2 items</strong></td></tr>
+          <tr><td>HE Severity Scale</td><td><strong style="color:#c084fc">0–4 (4 = catastrophic)</strong></td></tr>
+          <tr><td>ISO 9241 (Usability)</td><td><strong style="color:#f87171">Effectiveness+Efficiency+Satisfaction</strong></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">🧠 Master Mnemonic Sheet</div>
+  <div class="card">
+    <table class="cmp-table">
+      <thead><tr><th>Topic</th><th>Mnemonic</th><th>Stands For</th></tr></thead>
+      <tbody>
+        <tr><td>WIMP</td><td><strong style="color:#58a6ff">"WIMP = Windows I Make Programs"</strong></td><td>Windows, Icons, Menus, Pointer</td></tr>
+        <tr><td>Honeycomb</td><td><strong style="color:#4ade80">"Uncle Uday Dances Freely Creating Amazing Values"</strong></td><td>Useful, Usable, Desirable, Findable, Credible, Accessible, Valuable</td></tr>
+        <tr><td>Interaction Styles</td><td><strong style="color:#fbbf24">"Clever Monkeys Fill Databases Naturally"</strong></td><td>CLI, Menu, Form Fill, Direct Manipulation, Natural Language</td></tr>
+        <tr><td>Shneiderman's 8</td><td><strong style="color:#c084fc">"CS Offers Diamonds, Error Prevention Reversal Supports Reduction"</strong></td><td>Consistency, Shortcuts, Feedback, Closure, Error, Undo, Control, Memory</td></tr>
+        <tr><td>Nielsen's 10</td><td><strong style="color:#f87171">"Very Many Users Can Experience Really Fantastic And Easy Help"</strong></td><td>Visibility, Match, User Control, Consistency, Error Prev, Recognition, Flexibility, Aesthetic, Error Recovery, Help</td></tr>
+        <tr><td>Usability (Nielsen 5)</td><td><strong style="color:#67e8f9">"Lemon Eyes Make Super Experiences"</strong></td><td>Learnability, Efficiency, Memorability, (low) Errors, Satisfaction</td></tr>
+        <tr><td>KLM Operators</td><td><strong style="color:#fde68a">"Keypresses Power Human Decisions, Mental Responses"</strong></td><td>K=0.28, P=1.10, H=0.40, D=varies, M=1.35, R=varies</td></tr>
+        <tr><td>Scenario Types</td><td><strong style="color:#fca5a5">"Cats Usually Take Walks Under Sunlight"</strong></td><td>Concept, Use Case, Task, Walkthrough, User Story, Storyboard</td></tr>
+        <tr><td>Prototyping</td><td><strong style="color:#a5f3fc">"Practical Work Makes Incredible Things Eventually"</strong></td><td>Paper, Wireframe, Mockup, Interactive, Throwaway, Evolutionary</td></tr>
+        <tr><td>Ergonomics</td><td><strong style="color:#d8b4fe">"People Can Often Experience Vertigo"</strong></td><td>Physical, Cognitive, Organizational, Environmental, Visual</td></tr>
+        <tr><td>Norman's Stages</td><td><strong style="color:#86efac">"FISE-PIE"</strong></td><td>Form, Intent, Specify, Execute — Perceive, Interpret, Evaluate</td></tr>
+        <tr><td>Paradigms</td><td><strong style="color:#fdba74">"Big Tigers Never Win, Monkeys Conquer All"</strong></td><td>Batch, Time-share, Network, Web, Mobile, Conversational/AI</td></tr>
+        <tr><td>HTA</td><td><strong style="color:#6ee7b7">"GOPS"</strong></td><td>Goal, Operations, Plans, Stopping rule</td></tr>
+        <tr><td>CMC Types</td><td><strong style="color:#c4b5fd">"Every Individual Values Social Discussion Before Virtual Meetings"</strong></td><td>Email, IM, Video, Social, Discussion, Blog, Virtual/Metaverse</td></tr>
+        <tr><td>Linguistic Model</td><td><strong style="color:#fda4af">"Language Structures Sentences"</strong></td><td>Lexical → Syntactic → Semantic</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-green" style="margin-top:16px;text-align:center">
+    <strong>🎓 All the best for your HCI exam!</strong><br>
+    Remember: Every 9M answer = Definition (2M) + Diagram (2M) + Explanation (3M) + Example (2M)
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════ -->
+<script>
+// Tab switching
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Sub-tab switching
+function showSub(page, id, btn) {
+  const prefix = page + '-';
+  document.querySelectorAll('[id^="' + prefix + '"]').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('#page-' + page + ' .sub-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(prefix + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Search
+function doSearch(q) {
+  // Remove old highlights
+  document.querySelectorAll('mark.hl').forEach(m => {
+    const parent = m.parentNode;
+    parent.replaceChild(document.createTextNode(m.textContent), m);
+    parent.normalize();
+  });
+  if (!q || q.length < 2) return;
+  const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi');
+  function walk(node) {
+    if (node.nodeType === 3) {
+      const text = node.textContent;
+      if (re.test(text)) {
+        const frag = document.createDocumentFragment();
+        let last = 0, m;
+        re.lastIndex = 0;
+        while ((m = re.exec(text)) !== null) {
+          frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+          const mark = document.createElement('mark');
+          mark.className = 'hl';
+          mark.textContent = m[0];
+          frag.appendChild(mark);
+          last = m.index + m[0].length;
+        }
+        frag.appendChild(document.createTextNode(text.slice(last)));
+        node.parentNode.replaceChild(frag, node);
+      }
+    } else if (node.nodeType === 1 && !['SCRIPT','STYLE','NAV'].includes(node.tagName)) {
+      Array.from(node.childNodes).forEach(walk);
+    }
+  }
+  document.querySelectorAll('.page').forEach(walk);
+}
+
+function clearSearch() {
+  document.getElementById('search-input').value = '';
+  doSearch('');
+}
+</script>
+</body>
+</html>

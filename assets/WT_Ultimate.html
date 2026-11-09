@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Web Technology — Ultimate Master Paper & Solutions</title>
+<style>
+:root {
+  --bg:#0d1117;--sur:#161b22;--sur2:#21262d;--bdr:#30363d;
+  --blue:#58a6ff;--blue2:#1f6feb;--amber:#e3b341;--green:#3fb950;
+  --red:#f85149;--purple:#bc8cff;--cyan:#79c0ff;--orange:#ffa657;
+  --text:#e6edf3;--dim:#8b949e;--nav:52px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',sans-serif;font-size:14px;line-height:1.65}
+
+/* NAV */
+#nav{position:sticky;top:0;z-index:200;background:var(--sur);border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:2px;padding:0 8px;height:var(--nav);overflow-x:auto;flex-wrap:nowrap}
+#nav::-webkit-scrollbar{height:3px}
+#nav::-webkit-scrollbar-thumb{background:var(--blue2);border-radius:2px}
+.nb{flex-shrink:0;padding:5px 12px;border:none;background:transparent;color:var(--dim);font-size:12.5px;font-weight:500;cursor:pointer;border-radius:6px;transition:.15s;white-space:nowrap;border-bottom:2px solid transparent}
+.nb:hover{background:var(--sur2);color:var(--text)}
+.nb.on{background:var(--blue2);color:#fff;border-bottom-color:var(--blue)}
+.nsep{width:1px;height:22px;background:var(--bdr);flex-shrink:0;margin:0 2px}
+
+/* SEARCH */
+#sbar{background:var(--sur2);border-bottom:1px solid var(--bdr);padding:7px 16px;display:flex;gap:8px;align-items:center;position:sticky;top:var(--nav);z-index:190}
+#sbar input{flex:1;background:#0d1117;border:1px solid var(--bdr);border-radius:6px;padding:6px 12px;color:var(--text);font-size:13px;outline:none}
+#sbar input:focus{border-color:var(--blue)}
+#sbar button{background:var(--sur);border:1px solid var(--bdr);border-radius:6px;padding:5px 10px;color:var(--dim);cursor:pointer;font-size:12px}
+#sbar button:hover{color:var(--text)}
+.hl{background:#e3b34155;border-radius:2px;padding:0 1px}
+
+/* PAGES */
+.pg{display:none;max-width:1000px;margin:0 auto;padding:24px 16px 60px}
+.pg.on{display:block}
+
+/* SUB-TABS */
+.stabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:16px}
+.stb{padding:5px 12px;border:1px solid var(--bdr);border-radius:20px;background:transparent;color:var(--dim);font-size:12px;cursor:pointer;transition:.15s}
+.stb:hover{background:var(--sur2);color:var(--text)}
+.stb.on{background:var(--blue2);border-color:var(--blue2);color:#fff}
+.sp{display:none}.sp.on{display:block}
+
+/* CARDS */
+.card{background:var(--sur);border:1px solid var(--bdr);border-radius:10px;margin-bottom:20px;overflow:hidden}
+.ch{padding:12px 18px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ch h2{font-size:15px;font-weight:600;flex:1}
+.cb{padding:18px}
+.mbadge{font-size:11px;font-weight:700;padding:2px 7px;border-radius:12px;background:#1f6feb22;color:var(--blue);border:1px solid var(--blue2)}
+.s3{color:var(--purple);font-size:13px;font-weight:700}
+.s2{color:var(--green);font-size:13px;font-weight:700}
+.s1{color:var(--amber);font-size:13px;font-weight:700}
+.marks{font-size:11px;background:var(--sur2);color:var(--dim);padding:2px 7px;border-radius:4px}
+
+/* TYPOGRAPHY */
+h3{font-size:13px;font-weight:700;color:var(--blue);margin:16px 0 7px;text-transform:uppercase;letter-spacing:.04em}
+h3:first-child{margin-top:0}
+h4{font-size:13px;font-weight:600;color:var(--amber);margin:12px 0 5px}
+p{margin-bottom:9px}
+ul,ol{padding-left:20px;margin-bottom:9px}
+li{margin-bottom:3px}
+strong{color:var(--text)}
+code{background:var(--sur2);border:1px solid var(--bdr);border-radius:3px;padding:0 4px;font-family:'Courier New',monospace;font-size:12px;color:var(--cyan)}
+
+/* CODE */
+pre{background:#010409;border:1px solid var(--bdr);border-radius:8px;padding:14px;overflow-x:auto;font-family:'Courier New',Consolas,monospace;font-size:12.5px;line-height:1.55;margin:10px 0}
+.kw{color:#ff7b72}.fn{color:#d2a8ff}.str{color:#a5d6ff}.cm{color:#8b949e;font-style:italic}.num{color:#79c0ff}.tag{color:#7ee787}.attr{color:#e3b341}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12.5px}
+th{background:var(--sur2);color:var(--blue);padding:8px 11px;text-align:left;border:1px solid var(--bdr);font-weight:600;font-size:11.5px}
+td{padding:7px 11px;border:1px solid var(--bdr);vertical-align:top}
+tr:nth-child(even) td{background:rgba(255,255,255,.018)}
+
+/* CALLOUT BOXES */
+.note{border-left:3px solid var(--blue);background:#1f6feb11;border-radius:0 6px 6px 0;padding:10px 14px;margin:10px 0}
+.warn{border-left:3px solid var(--amber);background:#e3b34111;border-radius:0 6px 6px 0;padding:10px 14px;margin:10px 0}
+.trick{border:1.5px dashed var(--green);border-radius:8px;background:#3fb95011;padding:10px 14px;margin:10px 0}
+.trick::before{content:"🧠 Memory Trick: ";font-weight:700;color:var(--green)}
+.exam{border-left:3px solid var(--purple);background:#bc8cff11;border-radius:0 6px 6px 0;padding:10px 14px;margin:10px 0}
+.exam::before{content:"📌 Exam Summary: ";font-weight:700;color:var(--purple)}
+
+/* FREQ TABLE */
+.freq-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--bdr);font-size:13px}
+.freq-row:last-child{border-bottom:none}
+.fq-num{font-weight:700;min-width:28px;color:var(--dim)}
+.fq-q{flex:1}
+.fq-cnt{font-size:11px;background:var(--sur2);padding:2px 6px;border-radius:10px;color:var(--dim);white-space:nowrap}
+.fq-unit{font-size:10px;color:var(--dim);min-width:60px;text-align:right}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0d1a2e,#0d1117 70%);border:1px solid #1f6feb33;border-radius:12px;padding:24px;margin-bottom:22px}
+.hero h1{font-size:20px;font-weight:700;color:var(--blue);margin-bottom:4px}
+.hero p{color:var(--dim);font-size:13px}
+.hmeta{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+.hmeta span{font-size:12px;color:var(--dim);background:var(--sur2);border:1px solid var(--bdr);padding:3px 10px;border-radius:20px}
+.hmeta strong{color:var(--amber)}
+
+.or{text-align:center;font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.12em;padding:10px}
+.unit-head{font-size:12px;font-weight:700;color:var(--purple);border-left:3px solid var(--purple);padding-left:10px;margin:14px 0 8px}
+.mp-q{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid #30363d44}
+.mp-qn{font-size:12px;font-weight:700;color:var(--dim);min-width:34px}
+.mp-qt{font-size:13px;flex:1}
+.mp-m{font-size:11px;color:var(--dim);white-space:nowrap}
+.mp-s{font-size:12px;margin-left:4px}
+.top20-item{display:flex;gap:10px;align-items:flex-start;padding:8px 12px;border-bottom:1px solid #30363d44}
+.t20n{font-weight:700;color:var(--amber);min-width:28px;font-size:13px}
+.t20q{flex:1;font-size:13px}
+.t20u{font-size:11px;color:var(--dim);white-space:nowrap}
+.mnemonic{background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:12px;margin:8px 0}
+.mnemonic strong{color:var(--amber)}
+hr{border:none;border-top:1px solid var(--bdr);margin:16px 0}
+
+@media(max-width:600px){.cb{padding:12px} pre{font-size:11px} table{font-size:11px} .hero h1{font-size:16px}}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="nav">
+  <button class="nb on" onclick="gp('home',this)">🏠 Home</button>
+  <div class="nsep"></div>
+  <button class="nb" onclick="gp('freq',this)">📊 Frequency</button>
+  <button class="nb" onclick="gp('master',this)">📋 Master Paper</button>
+  <div class="nsep"></div>
+  <button class="nb" onclick="gp('q12',this)">Q1/Q2 — JS & DOM</button>
+  <button class="nb" onclick="gp('q34',this)">Q3/Q4 — JSP & Servlet</button>
+  <button class="nb" onclick="gp('q56',this)">Q5/Q6 — PHP & AJAX</button>
+  <button class="nb" onclick="gp('q78',this)">Q7/Q8 — EJB & Frameworks</button>
+  <div class="nsep"></div>
+  <button class="nb" onclick="gp('rev',this)">🔥 Last-Day Revision</button>
+</nav>
+
+<!-- ══════════ SEARCH BAR ══════════ -->
+<div id="sbar">
+  <span style="color:var(--dim);font-size:12px;white-space:nowrap">🔍 Search:</span>
+  <input type="text" id="si" placeholder="Type keyword — e.g. AJAX, DOM, EJB, JSP..." oninput="doSearch(this.value)">
+  <button onclick="clearSearch()">✕ Clear</button>
+  <span id="sc" style="font-size:11px;color:var(--dim);white-space:nowrap"></span>
+</div>
+
+<!-- ══════════════════════ HOME ══════════════════════ -->
+<div id="pg-home" class="pg on">
+  <div class="hero">
+    <h1>🌐 Web Technology — Ultimate Master Paper & Solutions By Access_299</h1>
+    <p>B.E. Electronics &amp; Computer Engineering | 2019 Pattern | Semester VII (410342)</p>
+    <div class="hmeta">
+      <span>⏱ <strong>2.5 Hours</strong></span>
+      <span>📊 <strong>70 Marks</strong></span>
+      <span>📄 <strong>5 Papers Merged</strong></span>
+      <span>🗓 Oct'23 · Apr'24 · Nov'24 · Apr'25 · Oct'25</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><h2>📌 Paper Overview — All 5 Exam Papers</h2></div>
+    <div class="cb">
+      <table>
+        <tr><th>Paper</th><th>Code</th><th>Q1/Q2 (JS/DOM)</th><th>Q3/Q4 (JSP/Servlet)</th><th>Q5/Q6 (PHP/AJAX)</th><th>Q7/Q8 (EJB/Frameworks)</th></tr>
+        <tr><td>Oct 2023</td><td>6181-394</td><td>Data types, features, jQuery DOM</td><td>Servlet lifecycle, JSP vs Servlet</td><td>PHP MySQL, Multi-dim array, AngularJS, WAP</td><td>EJB arch, JSF, SOAP vs REST, WordPress, Bootstrap</td></tr>
+        <tr><td>Apr 2024</td><td>6263-360</td><td>JS features+arrays, JS objects</td><td>JSP directive+scriptlet, JSP elements/actions</td><td>PHP sessions+cookies, PHP features+functions</td><td>Bootstrap+buttons, EJB 3-tier, Entity vs Session, EJB types</td></tr>
+        <tr><td>Nov 2024</td><td>6354-761</td><td>JS objects, JS features, Data types</td><td>JSP scripting elements, JSP vs Servlet, Struts, doGet/doPost</td><td>Assoc. arrays, AngularJS, AJAX, WAP/WML</td><td>EJB types, JSF+SOAP vs REST, Entity vs Session, WordPress/Spring</td></tr>
+        <tr><td>Apr 2025</td><td>6404-355</td><td>JS objects, JS features, Data types</td><td>JSP scripting, JSP vs Servlet, Struts, doGet/doPost</td><td>Assoc. arrays, AngularJS, AJAX, WAP/WML</td><td>EJB types, JSF+SOAP vs REST, Entity vs Session, WordPress/Spring</td></tr>
+        <tr><td>Oct 2025</td><td>6584-363</td><td>JS features+arrays, JS objects, DOM, jQuery</td><td>JSP directive+scriptlet, JSP elements, JSP lifecycle, Struts</td><td>PHP sessions+cookies, PHP features, Assoc. arrays, AJAX</td><td>Bootstrap+buttons, EJB 3-tier, Entity vs Session, EJB types</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><h2>🎯 Unit-wise Important Topics</h2></div>
+    <div class="cb">
+      <table>
+        <tr><th>Unit</th><th>Topic</th><th>Probability</th><th>Marks</th></tr>
+        <tr><td>I — JavaScript</td><td>JS Features + Arrays</td><td><span class="s3">★★★ Very High</span></td><td>[9]</td></tr>
+        <tr><td>I — JavaScript</td><td>JavaScript Objects (Math/Date/String)</td><td><span class="s3">★★★ Very High</span></td><td>[8]</td></tr>
+        <tr><td>I — DOM/jQuery</td><td>DOM Levels + DOM Tree</td><td><span class="s3">★★★ Very High</span></td><td>[9]</td></tr>
+        <tr><td>I — DOM/jQuery</td><td>jQuery Events</td><td><span class="s2">★★ High</span></td><td>[8]</td></tr>
+        <tr><td>II — JSP</td><td>JSP Scripting Elements + Actions + Templates</td><td><span class="s3">★★★ Very High</span></td><td>[9]</td></tr>
+        <tr><td>II — JSP</td><td>Struts Architecture</td><td><span class="s3">★★★ Very High</span></td><td>[9]</td></tr>
+        <tr><td>II — Servlet</td><td>doGet vs doPost</td><td><span class="s2">★★ High</span></td><td>[8]</td></tr>
+        <tr><td>III — PHP</td><td>Sessions &amp; Cookies</td><td><span class="s3">★★★ Very High</span></td><td>[9]</td></tr>
+        <tr><td>III — PHP</td><td>Associative Arrays</td><td><span class="s3">★★★ Very High</span></td><td>[9]</td></tr>
+        <tr><td>III — AJAX</td><td>AJAX Purpose + Example</td><td><span class="s3">★★★ Very High</span></td><td>[9]</td></tr>
+        <tr><td>IV — EJB</td><td>Entity Bean vs Session Bean + Callbacks</td><td><span class="s3">★★★ Very High</span></td><td>[9]</td></tr>
+        <tr><td>IV — EJB</td><td>Types of EJB + When to Use</td><td><span class="s3">★★★ Very High</span></td><td>[9]</td></tr>
+        <tr><td>IV — Frameworks</td><td>Bootstrap Button Styles</td><td><span class="s2">★★ High</span></td><td>[9]</td></tr>
+        <tr><td>IV — Frameworks</td><td>SOAP vs REST + JSF</td><td><span class="s2">★★ High</span></td><td>[9]</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ FREQUENCY ══════════════════════ -->
+<div id="pg-freq" class="pg">
+  <div class="card">
+    <div class="ch"><h2>🔴 Very High Probability ★★★ — Appeared in 4–5 Papers</h2><span class="s3">★★★</span></div>
+    <div class="cb">
+      <div class="freq-row"><span class="fq-num">1</span><span class="fq-q">Explain features of JavaScript. How to create array and read elements in JavaScript.</span><span class="fq-cnt">4/5 papers</span><span class="fq-unit">Unit I [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">2</span><span class="fq-q">What are the various JavaScript objects? Explain any one with an example.</span><span class="fq-cnt">5/5 papers</span><span class="fq-unit">Unit I [8M]</span></div>
+      <div class="freq-row"><span class="fq-num">3</span><span class="fq-q">Explain various JSP scripting elements, actions and Templates in JSP.</span><span class="fq-cnt">5/5 papers</span><span class="fq-unit">Unit II [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">4</span><span class="fq-q">Explain the Struts architecture with neat diagram and also explain the benefits of Struts.</span><span class="fq-cnt">4/5 papers</span><span class="fq-unit">Unit II [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">5</span><span class="fq-q">Explain how session and cookies are used for session management in PHP.</span><span class="fq-cnt">3/5 papers</span><span class="fq-unit">Unit III [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">6</span><span class="fq-q">What is Associative arrays in PHP? Explain it with simple PHP code.</span><span class="fq-cnt">4/5 papers</span><span class="fq-unit">Unit III [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">7</span><span class="fq-q">What is the purpose of AJAX? Explain with relevant example.</span><span class="fq-cnt">4/5 papers</span><span class="fq-unit">Unit III [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">8</span><span class="fq-q">List the difference between entity bean and session bean? Explain the callback method.</span><span class="fq-cnt">5/5 papers</span><span class="fq-unit">Unit IV [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">9</span><span class="fq-q">What are the different types of EJB? Identify and explain when to use session beans.</span><span class="fq-cnt">5/5 papers</span><span class="fq-unit">Unit IV [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">10</span><span class="fq-q">What are different DOM Levels? Explain DOM with suitable example.</span><span class="fq-cnt">3/5 papers</span><span class="fq-unit">Unit I [9M]</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ch"><h2>🟢 High Probability ★★ — Appeared in 2–3 Papers</h2><span class="s2">★★</span></div>
+    <div class="cb">
+      <div class="freq-row"><span class="fq-num">11</span><span class="fq-q">What are jQuery Events? Explain with example.</span><span class="fq-cnt">2/5 papers</span><span class="fq-unit">Unit I [8M]</span></div>
+      <div class="freq-row"><span class="fq-num">12</span><span class="fq-q">Write a JSP program to demonstrate page directive, Scriptlet, Expression and Comment.</span><span class="fq-cnt">2/5 papers</span><span class="fq-unit">Unit II [8M]</span></div>
+      <div class="freq-row"><span class="fq-num">13</span><span class="fq-q">Write advantages of JSP over Servlet and explain lifecycle of JSP.</span><span class="fq-cnt">2/5 papers</span><span class="fq-unit">Unit II [8M]</span></div>
+      <div class="freq-row"><span class="fq-num">14</span><span class="fq-q">Compare doGet and doPost methods in servlet.</span><span class="fq-cnt">3/5 papers</span><span class="fq-unit">Unit II [8M]</span></div>
+      <div class="freq-row"><span class="fq-num">15</span><span class="fq-q">What are features of PHP? Explain functions with respect to PHP.</span><span class="fq-cnt">2/5 papers</span><span class="fq-unit">Unit III [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">16</span><span class="fq-q">Write short note on Bootstrap. Write a program to demonstrate button styles.</span><span class="fq-cnt">2/5 papers</span><span class="fq-unit">Unit IV [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">17</span><span class="fq-q">Draw and explain each tier of three-tier architecture using EJB.</span><span class="fq-cnt">2/5 papers</span><span class="fq-unit">Unit IV [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">18</span><span class="fq-q">What is Angular JS? List and explain various directives in AngularJS.</span><span class="fq-cnt">3/5 papers</span><span class="fq-unit">Unit III [9M]</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ch"><h2>🟡 Moderate Probability ★ — Appeared in 1–2 Papers</h2><span class="s1">★</span></div>
+    <div class="cb">
+      <div class="freq-row"><span class="fq-num">19</span><span class="fq-q">What are different data types in JavaScript?</span><span class="fq-cnt">2/5 papers</span><span class="fq-unit">Unit I [8M]</span></div>
+      <div class="freq-row"><span class="fq-num">20</span><span class="fq-q">What is Servlet? Explain the lifecycle of servlet.</span><span class="fq-cnt">1/5 papers</span><span class="fq-unit">Unit II [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">21</span><span class="fq-q">List and explain steps involved in connecting MySQL with PHP.</span><span class="fq-cnt">1/5 papers</span><span class="fq-unit">Unit III [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">22</span><span class="fq-q">Explain in detail WAP Architecture &amp; WML.</span><span class="fq-cnt">3/5 papers</span><span class="fq-unit">Unit III [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">23</span><span class="fq-q">What is use of JSF? Write differences between SOAP and REST.</span><span class="fq-cnt">3/5 papers</span><span class="fq-unit">Unit IV [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">24</span><span class="fq-q">Write brief note on: i) WordPress ii) Spring</span><span class="fq-cnt">3/5 papers</span><span class="fq-unit">Unit IV [9M]</span></div>
+      <div class="freq-row"><span class="fq-num">25</span><span class="fq-q">What is DOM? Explain with jQuery — select, append, remove elements.</span><span class="fq-cnt">1/5 papers</span><span class="fq-unit">Unit I [9M]</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ MASTER PAPER ══════════════════════ -->
+<div id="pg-master" class="pg">
+  <div class="hero">
+    <h1>📋 Compiled Master Question Paper</h1>
+    <p>B.E. (Electronics and Computer Engineering) | Web Technology (410342) | 2019 Pattern | Sem-VII</p>
+    <div class="hmeta"><span>⏱ <strong>2½ Hours</strong></span><span>📊 <strong>70 Marks</strong></span></div>
+  </div>
+  <div class="card">
+    <div class="ch"><h2>Instructions</h2></div>
+    <div class="cb">
+      <ol><li>Answer Q1 or Q2, Q3 or Q4, Q5 or Q6, Q7 or Q8.</li><li>Figures to the right indicate full marks.</li><li>Assume suitable data, if necessary.</li></ol>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ch"><h2>Unit I — JavaScript, DOM &amp; jQuery</h2></div>
+    <div class="cb">
+      <div class="unit-head">Q1</div>
+      <div class="mp-q"><span class="mp-qn">Q1a)</span><span class="mp-qt">Explain features of JavaScript. How to create array and read elements in JavaScript. <span class="mp-s s3">★★★</span></span><span class="mp-m">[9]</span></div>
+      <div class="mp-q"><span class="mp-qn">Q1b)</span><span class="mp-qt">What are the various JavaScript objects? Explain any one with an example. <span class="mp-s s3">★★★</span></span><span class="mp-m">[8]</span></div>
+      <div class="or">— OR —</div>
+      <div class="unit-head">Q2</div>
+      <div class="mp-q"><span class="mp-qn">Q2a)</span><span class="mp-qt">What are the different DOM Levels? Explain Document Object Model (DOM) with suitable example. <span class="mp-s s3">★★★</span></span><span class="mp-m">[9]</span></div>
+      <div class="mp-q"><span class="mp-qn">Q2b)</span><span class="mp-qt">What are jQuery Events? Explain with example. <span class="mp-s s2">★★</span></span><span class="mp-m">[8]</span></div>
+      <hr>
+      <div class="unit-head">Unit II — JSP, Servlets &amp; Struts</div>
+      <div class="unit-head">Q3</div>
+      <div class="mp-q"><span class="mp-qn">Q3a)</span><span class="mp-qt">Write a JSP program to demonstrate use of page directive, Scriptlet, Expression and Comment. <span class="mp-s s2">★★</span></span><span class="mp-m">[8]</span></div>
+      <div class="mp-q"><span class="mp-qn">Q3b)</span><span class="mp-qt">Explain various JSP scripting elements, actions and Templates in JSP. <span class="mp-s s3">★★★</span></span><span class="mp-m">[9]</span></div>
+      <div class="or">— OR —</div>
+      <div class="unit-head">Q4</div>
+      <div class="mp-q"><span class="mp-qn">Q4a)</span><span class="mp-qt">Write advantages of JSP over Servlet and explain lifecycle of JSP. <span class="mp-s s2">★★</span></span><span class="mp-m">[8]</span></div>
+      <div class="mp-q"><span class="mp-qn">Q4b)</span><span class="mp-qt">Explain the Struts architecture with neat diagram and explain the benefits of Struts. <span class="mp-s s3">★★★</span></span><span class="mp-m">[9]</span></div>
+      <hr>
+      <div class="unit-head">Unit III — PHP, AJAX &amp; AngularJS</div>
+      <div class="unit-head">Q5</div>
+      <div class="mp-q"><span class="mp-qn">Q5a)</span><span class="mp-qt">Explain how session and cookies are used for session management in PHP. <span class="mp-s s3">★★★</span></span><span class="mp-m">[9]</span></div>
+      <div class="mp-q"><span class="mp-qn">Q5b)</span><span class="mp-qt">What are the features of PHP? Explain functions with respect to PHP. <span class="mp-s s2">★★</span></span><span class="mp-m">[9]</span></div>
+      <div class="or">— OR —</div>
+      <div class="unit-head">Q6</div>
+      <div class="mp-q"><span class="mp-qn">Q6a)</span><span class="mp-qt">What is Associative Arrays in PHP? Explain it with simple PHP code. <span class="mp-s s3">★★★</span></span><span class="mp-m">[9]</span></div>
+      <div class="mp-q"><span class="mp-qn">Q6b)</span><span class="mp-qt">What is the purpose of AJAX? Explain with relevant example. <span class="mp-s s3">★★★</span></span><span class="mp-m">[9]</span></div>
+      <hr>
+      <div class="unit-head">Unit IV — EJB, JSF, Bootstrap &amp; Frameworks</div>
+      <div class="unit-head">Q7</div>
+      <div class="mp-q"><span class="mp-qn">Q7a)</span><span class="mp-qt">Write short note on Bootstrap. Write a program to demonstrate button styles (warning, danger, default, primary, link, success). <span class="mp-s s2">★★</span></span><span class="mp-m">[9]</span></div>
+      <div class="mp-q"><span class="mp-qn">Q7b)</span><span class="mp-qt">Draw and explain each tier of three-tier architecture using EJB. <span class="mp-s s2">★★</span></span><span class="mp-m">[9]</span></div>
+      <div class="or">— OR —</div>
+      <div class="unit-head">Q8</div>
+      <div class="mp-q"><span class="mp-qn">Q8a)</span><span class="mp-qt">List the difference between entity bean and session bean. Explain the callback method. <span class="mp-s s3">★★★</span></span><span class="mp-m">[9]</span></div>
+      <div class="mp-q"><span class="mp-qn">Q8b)</span><span class="mp-qt">What are the different types of EJB? Identify and explain situations about when to use session beans. <span class="mp-s s3">★★★</span></span><span class="mp-m">[9]</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ Q1/Q2 ══════════════════════ -->
+<div id="pg-q12" class="pg">
+  <div class="stabs" id="tabs-q12">
+    <button class="stb on" onclick="gt('q12','a',this)">Q1a: JS Features &amp; Arrays</button>
+    <button class="stb" onclick="gt('q12','b',this)">Q1b: JS Objects</button>
+    <button class="stb" onclick="gt('q12','c',this)">Q2a: DOM &amp; Levels</button>
+    <button class="stb" onclick="gt('q12','d',this)">Q2b: jQuery Events</button>
+    <button class="stb" onclick="gt('q12','e',this)">Q2alt: Data Types</button>
+  </div>
+
+  <!-- Q1a -->
+  <div id="q12-a" class="sp on">
+    <div class="card">
+      <div class="ch"><h2>Q1a — JavaScript Features &amp; Arrays</h2><span class="s3">★★★</span><span class="marks">[9M]</span></div>
+      <div class="cb">
+        <h3>Definition</h3>
+        <p><strong>JavaScript (JS)</strong> is a lightweight, interpreted, object-based scripting language used to make web pages interactive. It runs client-side in browsers without server involvement and is one of the three core web technologies alongside HTML and CSS.</p>
+        <div class="note">💡 JavaScript was created by Brendan Eich in 1995 at Netscape in just 10 days. Originally called "LiveScript".</div>
+
+        <h3>Key Features of JavaScript</h3>
+        <table>
+          <tr><th>#</th><th>Feature</th><th>Description</th></tr>
+          <tr><td>1</td><td>Interpreted Language</td><td>No compilation; browser executes directly line-by-line.</td></tr>
+          <tr><td>2</td><td>Dynamically Typed</td><td>Variable types determined at runtime — no type declaration needed.</td></tr>
+          <tr><td>3</td><td>Object-Based</td><td>Supports objects, properties, and methods (prototype-based).</td></tr>
+          <tr><td>4</td><td>Event-Driven</td><td>Responds to user events: click, keypress, mouseover, submit.</td></tr>
+          <tr><td>5</td><td>Platform Independent</td><td>Runs on any OS with any browser — write once, run anywhere.</td></tr>
+          <tr><td>6</td><td>Case-Sensitive</td><td><code>myVar</code> and <code>MyVar</code> are different identifiers.</td></tr>
+          <tr><td>7</td><td>First-Class Functions</td><td>Functions are objects — stored in variables, passed as arguments.</td></tr>
+          <tr><td>8</td><td>Closures</td><td>Inner function retains access to outer function's scope after outer returns.</td></tr>
+          <tr><td>9</td><td>Prototype-Based Inheritance</td><td>Objects inherit from other objects via prototype chain.</td></tr>
+          <tr><td>10</td><td>Lightweight &amp; Fast</td><td>Minimal syntax, executes quickly client-side.</td></tr>
+        </table>
+
+        <h3>JavaScript Architecture Diagram</h3>
+        <svg viewBox="0 0 680 170" style="width:100%;max-width:680px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="170" fill="#010409" rx="8"/>
+          <rect x="10" y="30" width="140" height="110" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+          <text x="80" y="55" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">HTML Page</text>
+          <rect x="20" y="65" width="120" height="22" rx="4" fill="#21262d"/><text x="80" y="80" text-anchor="middle" fill="#c8d1da" font-size="10">&lt;script&gt; tag</text>
+          <rect x="20" y="93" width="120" height="22" rx="4" fill="#21262d"/><text x="80" y="108" text-anchor="middle" fill="#c8d1da" font-size="10">External .js file</text>
+          <rect x="20" y="121" width="120" height="14" rx="4" fill="#21262d"/><text x="80" y="132" text-anchor="middle" fill="#c8d1da" font-size="9">Inline onclick=""</text>
+          <defs><marker id="ma" markerWidth="7" markerHeight="7" refX="3.5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#58a6ff"/></marker></defs>
+          <line x1="150" y1="85" x2="188" y2="85" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#ma)"/>
+          <rect x="190" y="30" width="150" height="110" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+          <text x="265" y="55" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">JS Engine</text>
+          <rect x="200" y="65" width="130" height="22" rx="4" fill="#21262d"/><text x="265" y="80" text-anchor="middle" fill="#c8d1da" font-size="10">Parser / Lexer</text>
+          <rect x="200" y="93" width="130" height="22" rx="4" fill="#21262d"/><text x="265" y="108" text-anchor="middle" fill="#c8d1da" font-size="10">JIT Compiler</text>
+          <rect x="200" y="121" width="130" height="14" rx="4" fill="#21262d"/><text x="265" y="132" text-anchor="middle" fill="#c8d1da" font-size="9">Runtime Executor</text>
+          <line x1="340" y1="85" x2="378" y2="85" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ma)"/>
+          <rect x="380" y="30" width="150" height="110" rx="6" fill="#161b22" stroke="#e3b341" stroke-width="1"/>
+          <text x="455" y="55" text-anchor="middle" fill="#e3b341" font-size="11" font-weight="bold">Browser APIs</text>
+          <rect x="390" y="65" width="130" height="22" rx="4" fill="#21262d"/><text x="455" y="80" text-anchor="middle" fill="#c8d1da" font-size="10">DOM / BOM</text>
+          <rect x="390" y="93" width="130" height="22" rx="4" fill="#21262d"/><text x="455" y="108" text-anchor="middle" fill="#c8d1da" font-size="10">Events / AJAX</text>
+          <rect x="390" y="121" width="130" height="14" rx="4" fill="#21262d"/><text x="455" y="132" text-anchor="middle" fill="#c8d1da" font-size="9">Web Storage</text>
+          <line x1="530" y1="85" x2="568" y2="85" stroke="#e3b341" stroke-width="1.5" marker-end="url(#ma)"/>
+          <rect x="570" y="55" width="100" height="60" rx="6" fill="#161b22" stroke="#bc8cff" stroke-width="1"/>
+          <text x="620" y="82" text-anchor="middle" fill="#bc8cff" font-size="11" font-weight="bold">Output</text>
+          <text x="620" y="98" text-anchor="middle" fill="#c8d1da" font-size="10">Dynamic</text>
+          <text x="620" y="111" text-anchor="middle" fill="#c8d1da" font-size="9">Web Page</text>
+        </svg>
+
+        <h3>Arrays in JavaScript</h3>
+        <p>An <strong>array</strong> is an ordered collection of values accessed by numeric indices (0-based). Arrays in JS are dynamic — size changes automatically.</p>
+
+        <h4>Creating Arrays — 3 Methods</h4>
+        <pre><span class="cm">// Method 1: Array Literal (Recommended)</span>
+<span class="kw">let</span> fruits = [<span class="str">"Apple"</span>, <span class="str">"Banana"</span>, <span class="str">"Mango"</span>];
+
+<span class="cm">// Method 2: Array Constructor</span>
+<span class="kw">let</span> nums = <span class="kw">new</span> <span class="fn">Array</span>(<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>);
+
+<span class="cm">// Method 3: Empty + push</span>
+<span class="kw">let</span> colors = [];
+colors.<span class="fn">push</span>(<span class="str">"Red"</span>);
+colors.<span class="fn">push</span>(<span class="str">"Green"</span>);</pre>
+
+        <h4>Reading Array Elements</h4>
+        <pre><span class="kw">let</span> marks = [<span class="num">85</span>, <span class="num">92</span>, <span class="num">78</span>, <span class="num">95</span>];
+
+<span class="cm">// By index</span>
+console.<span class="fn">log</span>(marks[<span class="num">0</span>]);         <span class="cm">// 85</span>
+console.<span class="fn">log</span>(marks[marks.<span class="attr">length</span>-<span class="num">1</span>]); <span class="cm">// 95 (last element)</span>
+
+<span class="cm">// Using for loop</span>
+<span class="kw">for</span> (<span class="kw">let</span> i = <span class="num">0</span>; i &lt; marks.<span class="attr">length</span>; i++) {
+    document.<span class="fn">write</span>(marks[i] + <span class="str">" "</span>);
+}
+
+<span class="cm">// Using for...of (ES6) — cleaner</span>
+<span class="kw">for</span> (<span class="kw">let</span> m <span class="kw">of</span> marks) {
+    console.<span class="fn">log</span>(m);
+}
+
+<span class="cm">// Using forEach with arrow function</span>
+marks.<span class="fn">forEach</span>((val, idx) =&gt; {
+    console.<span class="fn">log</span>(`Index ${idx}: ${val}`);
+});</pre>
+
+        <h4>Common Array Methods</h4>
+        <table>
+          <tr><th>Method</th><th>Purpose</th><th>Example</th></tr>
+          <tr><td>push(x)</td><td>Add x to end</td><td>arr.push("Blue") → length+1</td></tr>
+          <tr><td>pop()</td><td>Remove &amp; return last</td><td>arr.pop() → "Blue"</td></tr>
+          <tr><td>shift()</td><td>Remove &amp; return first</td><td>arr.shift() → "Apple"</td></tr>
+          <tr><td>unshift(x)</td><td>Add x to start</td><td>arr.unshift("Grape")</td></tr>
+          <tr><td>indexOf(x)</td><td>Find position of x</td><td>arr.indexOf("Mango") → 2</td></tr>
+          <tr><td>splice(i,n)</td><td>Remove n items at i</td><td>arr.splice(1,1) removes index 1</td></tr>
+          <tr><td>slice(a,b)</td><td>Return sub-array [a,b)</td><td>arr.slice(0,2)</td></tr>
+          <tr><td>sort()</td><td>Sort alphabetically</td><td>arr.sort()</td></tr>
+          <tr><td>reverse()</td><td>Reverse in place</td><td>arr.reverse()</td></tr>
+          <tr><td>join(sep)</td><td>Join into string</td><td>arr.join(", ")</td></tr>
+        </table>
+        <div class="trick">FIPS — Features of JS: <strong>F</strong>irst-class functions · <strong>I</strong>nterpreted · <strong>P</strong>rototype-based · <strong>S</strong>ingle-threaded event-loop</div>
+        <div class="exam">Arrays use 0-based indexing. arr.length gives count. push/pop = end operations, shift/unshift = front operations.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q1b -->
+  <div id="q12-b" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Q1b — JavaScript Objects</h2><span class="s3">★★★</span><span class="marks">[8M]</span></div>
+      <div class="cb">
+        <h3>Definition</h3>
+        <p>JavaScript provides several <strong>built-in (native) objects</strong> that offer ready-made properties and methods for common operations — text, math, dates, arrays, etc.</p>
+        <table>
+          <tr><th>Object</th><th>Purpose</th><th>Key Methods</th></tr>
+          <tr><td>String</td><td>Text manipulation</td><td>length, toUpperCase(), substring(), indexOf(), replace(), split()</td></tr>
+          <tr><td>Array</td><td>Ordered list</td><td>push(), pop(), sort(), splice(), forEach(), map(), filter()</td></tr>
+          <tr><td>Math</td><td>Mathematical ops</td><td>Math.sqrt(), Math.PI, Math.random(), Math.floor(), Math.max()</td></tr>
+          <tr><td>Date</td><td>Date/time</td><td>getDate(), getMonth(), getFullYear(), now(), toLocaleDateString()</td></tr>
+          <tr><td>Number</td><td>Numeric ops</td><td>toFixed(), parseInt(), parseFloat(), isNaN(), isFinite()</td></tr>
+          <tr><td>Boolean</td><td>Logic</td><td>true / false, toString()</td></tr>
+          <tr><td>RegExp</td><td>Pattern matching</td><td>/pattern/.test(), match(), replace()</td></tr>
+          <tr><td>JSON</td><td>Data interchange</td><td>JSON.parse(), JSON.stringify()</td></tr>
+          <tr><td>Error</td><td>Error handling</td><td>new Error(), message, name, stack</td></tr>
+        </table>
+
+        <h3>Detailed Example: Math Object</h3>
+        <p>The <code>Math</code> object is a static built-in — it is NOT a constructor. Access its methods directly as <code>Math.method()</code>.</p>
+        <svg viewBox="0 0 680 150" style="width:100%;max-width:680px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="150" fill="#010409" rx="8"/>
+          <rect x="10" y="20" width="150" height="110" rx="6" fill="#161b22" stroke="#bc8cff" stroke-width="1"/>
+          <text x="85" y="42" text-anchor="middle" fill="#bc8cff" font-size="11" font-weight="bold">Math Properties</text>
+          <text x="85" y="60" text-anchor="middle" fill="#79c0ff" font-size="10">Math.PI = 3.14159</text>
+          <text x="85" y="76" text-anchor="middle" fill="#79c0ff" font-size="10">Math.E  = 2.71828</text>
+          <text x="85" y="92" text-anchor="middle" fill="#79c0ff" font-size="10">Math.LN2 = 0.693</text>
+          <text x="85" y="108" text-anchor="middle" fill="#79c0ff" font-size="10">Math.SQRT2 = 1.414</text>
+          <rect x="175" y="20" width="490" height="110" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+          <text x="420" y="42" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Math Methods</text>
+          <text x="260" y="62" text-anchor="middle" fill="#c8d1da" font-size="10">sqrt(25) = 5</text>
+          <text x="260" y="78" text-anchor="middle" fill="#c8d1da" font-size="10">pow(2,8) = 256</text>
+          <text x="260" y="94" text-anchor="middle" fill="#c8d1da" font-size="10">abs(-15) = 15</text>
+          <text x="260" y="110" text-anchor="middle" fill="#c8d1da" font-size="10">log(1) = 0</text>
+          <text x="420" y="62" text-anchor="middle" fill="#c8d1da" font-size="10">floor(4.9) = 4</text>
+          <text x="420" y="78" text-anchor="middle" fill="#c8d1da" font-size="10">ceil(4.1) = 5</text>
+          <text x="420" y="94" text-anchor="middle" fill="#c8d1da" font-size="10">round(4.5) = 5</text>
+          <text x="420" y="110" text-anchor="middle" fill="#c8d1da" font-size="10">trunc(4.9) = 4</text>
+          <text x="580" y="62" text-anchor="middle" fill="#c8d1da" font-size="10">max(3,8,1) = 8</text>
+          <text x="580" y="78" text-anchor="middle" fill="#c8d1da" font-size="10">min(3,8,1) = 1</text>
+          <text x="580" y="94" text-anchor="middle" fill="#c8d1da" font-size="10">random() → 0–1</text>
+          <text x="580" y="110" text-anchor="middle" fill="#c8d1da" font-size="10">sign(-5) = -1</text>
+        </svg>
+        <pre><span class="cm">// Math Object usage</span>
+console.<span class="fn">log</span>(Math.PI);          <span class="cm">// 3.141592653589793</span>
+console.<span class="fn">log</span>(Math.<span class="fn">sqrt</span>(<span class="num">144</span>));   <span class="cm">// 12</span>
+console.<span class="fn">log</span>(Math.<span class="fn">pow</span>(<span class="num">2</span>, <span class="num">10</span>));  <span class="cm">// 1024</span>
+console.<span class="fn">log</span>(Math.<span class="fn">floor</span>(<span class="num">3.9</span>)); <span class="cm">// 3</span>
+console.<span class="fn">log</span>(Math.<span class="fn">ceil</span>(<span class="num">3.1</span>));  <span class="cm">// 4</span>
+console.<span class="fn">log</span>(Math.<span class="fn">round</span>(<span class="num">3.5</span>)); <span class="cm">// 4</span>
+console.<span class="fn">log</span>(Math.<span class="fn">abs</span>(-<span class="num">42</span>));   <span class="cm">// 42</span>
+console.<span class="fn">log</span>(Math.<span class="fn">max</span>(<span class="num">5</span>,<span class="num">3</span>,<span class="num">9</span>)); <span class="cm">// 9</span>
+console.<span class="fn">log</span>(Math.<span class="fn">min</span>(<span class="num">5</span>,<span class="num">3</span>,<span class="num">9</span>)); <span class="cm">// 3</span>
+
+<span class="cm">// Practical: Random integer between 1 and 100</span>
+<span class="kw">let</span> rand = Math.<span class="fn">floor</span>(Math.<span class="fn">random</span>() * <span class="num">100</span>) + <span class="num">1</span>;
+
+<span class="cm">// Date Object</span>
+<span class="kw">let</span> d = <span class="kw">new</span> <span class="fn">Date</span>();
+console.<span class="fn">log</span>(d.<span class="fn">getFullYear</span>());         <span class="cm">// 2025</span>
+console.<span class="fn">log</span>(d.<span class="fn">getMonth</span>() + <span class="num">1</span>);       <span class="cm">// Month (0-indexed, so +1)</span>
+console.<span class="fn">log</span>(d.<span class="fn">getDate</span>());            <span class="cm">// Day of month (1-31)</span>
+console.<span class="fn">log</span>(d.<span class="fn">toLocaleDateString</span>()); <span class="cm">// "10/25/2025"</span>
+
+<span class="cm">// String Object</span>
+<span class="kw">let</span> s = <span class="str">"Hello World"</span>;
+console.<span class="fn">log</span>(s.<span class="attr">length</span>);              <span class="cm">// 11</span>
+console.<span class="fn">log</span>(s.<span class="fn">toUpperCase</span>());       <span class="cm">// HELLO WORLD</span>
+console.<span class="fn">log</span>(s.<span class="fn">indexOf</span>(<span class="str">"World"</span>));   <span class="cm">// 6</span>
+console.<span class="fn">log</span>(s.<span class="fn">substring</span>(<span class="num">0</span>, <span class="num">5</span>));    <span class="cm">// Hello</span>
+console.<span class="fn">log</span>(s.<span class="fn">replace</span>(<span class="str">"World"</span>,<span class="str">"JS"</span>));<span class="cm">// Hello JS</span></pre>
+        <div class="trick">Objects: <strong>SARMDBN</strong> — String · Array · RegExp · Math · Date · Boolean · Number</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2a -->
+  <div id="q12-c" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Q2a — DOM Levels &amp; Document Object Model</h2><span class="s3">★★★</span><span class="marks">[9M]</span></div>
+      <div class="cb">
+        <h3>Definition</h3>
+        <p>The <strong>Document Object Model (DOM)</strong> is a W3C standard programming interface for HTML/XML documents. It represents the entire web page as a hierarchical <strong>tree of nodes</strong> that can be accessed, manipulated, and modified using JavaScript.</p>
+        <div class="note">💡 DOM = Structural Representation + Programming Interface. Every HTML element, attribute, and text becomes a "node" in the DOM tree.</div>
+
+        <h3>DOM Tree Structure</h3>
+        <svg viewBox="0 0 680 300" style="width:100%;max-width:680px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="300" fill="#010409" rx="8"/>
+          <defs><marker id="mb" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><circle cx="3" cy="3" r="2" fill="#30363d"/></marker></defs>
+          <!-- Root -->
+          <rect x="280" y="12" width="120" height="30" rx="5" fill="#1f6feb"/><text x="340" y="32" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">document</text>
+          <line x1="340" y1="42" x2="340" y2="62" stroke="#30363d" stroke-width="1.5"/>
+          <!-- html -->
+          <rect x="280" y="62" width="120" height="28" rx="5" fill="#1f6feb"/><text x="340" y="81" text-anchor="middle" fill="#fff" font-size="11">&lt;html&gt;</text>
+          <line x1="280" y1="76" x2="180" y2="110" stroke="#30363d" stroke-width="1.5"/>
+          <line x1="400" y1="76" x2="500" y2="110" stroke="#30363d" stroke-width="1.5"/>
+          <!-- head, body -->
+          <rect x="120" y="110" width="120" height="28" rx="5" fill="#238636"/><text x="180" y="129" text-anchor="middle" fill="#fff" font-size="11">&lt;head&gt;</text>
+          <rect x="440" y="110" width="120" height="28" rx="5" fill="#238636"/><text x="500" y="129" text-anchor="middle" fill="#fff" font-size="11">&lt;body&gt;</text>
+          <!-- head children -->
+          <line x1="180" y1="138" x2="100" y2="168" stroke="#30363d" stroke-width="1.5"/>
+          <line x1="180" y1="138" x2="260" y2="168" stroke="#30363d" stroke-width="1.5"/>
+          <rect x="40" y="168" width="120" height="28" rx="5" fill="#9e6a03"/><text x="100" y="187" text-anchor="middle" fill="#fff" font-size="11">&lt;title&gt;</text>
+          <rect x="200" y="168" width="120" height="28" rx="5" fill="#9e6a03"/><text x="260" y="187" text-anchor="middle" fill="#fff" font-size="11">&lt;meta&gt;</text>
+          <!-- body children -->
+          <line x1="500" y1="138" x2="430" y2="168" stroke="#30363d" stroke-width="1.5"/>
+          <line x1="500" y1="138" x2="570" y2="168" stroke="#30363d" stroke-width="1.5"/>
+          <rect x="370" y="168" width="120" height="28" rx="5" fill="#9e6a03"/><text x="430" y="187" text-anchor="middle" fill="#fff" font-size="11">&lt;h1&gt;</text>
+          <rect x="510" y="168" width="120" height="28" rx="5" fill="#9e6a03"/><text x="570" y="187" text-anchor="middle" fill="#fff" font-size="11">&lt;p&gt;</text>
+          <!-- text nodes -->
+          <line x1="100" y1="196" x2="100" y2="226" stroke="#30363d" stroke-width="1.5"/>
+          <rect x="40" y="226" width="120" height="26" rx="4" fill="#6e40c9"/><text x="100" y="243" text-anchor="middle" fill="#fff" font-size="10">"My Page"</text>
+          <line x1="430" y1="196" x2="430" y2="226" stroke="#30363d" stroke-width="1.5"/>
+          <rect x="370" y="226" width="120" height="26" rx="4" fill="#6e40c9"/><text x="430" y="243" text-anchor="middle" fill="#fff" font-size="10">"Hello World"</text>
+          <!-- Legend -->
+          <rect x="10" y="265" width="12" height="12" rx="2" fill="#1f6feb"/><text x="26" y="276" fill="#8b949e" font-size="9">Root/Element</text>
+          <rect x="130" y="265" width="12" height="12" rx="2" fill="#238636"/><text x="146" y="276" fill="#8b949e" font-size="9">Parent Elements</text>
+          <rect x="270" y="265" width="12" height="12" rx="2" fill="#9e6a03"/><text x="286" y="276" fill="#8b949e" font-size="9">Child Elements</text>
+          <rect x="400" y="265" width="12" height="12" rx="2" fill="#6e40c9"/><text x="416" y="276" fill="#8b949e" font-size="9">Text Nodes</text>
+        </svg>
+
+        <h3>DOM Levels</h3>
+        <table>
+          <tr><th>Level</th><th>Year</th><th>Key Features Added</th></tr>
+          <tr><td>Level 0</td><td>Pre-1998</td><td>Browser-specific scripting; document.forms, document.images</td></tr>
+          <tr><td>Level 1</td><td>1998</td><td>getElementById(), createElement(), appendChild(), removeChild()</td></tr>
+          <tr><td>Level 2</td><td>2000</td><td>addEventListener(), removeEventListener(), getComputedStyle(), namespace support</td></tr>
+          <tr><td>Level 3</td><td>2004</td><td>XPath support, document validation, keyboard events, compareDocumentPosition()</td></tr>
+          <tr><td>Living Standard</td><td>2014+</td><td>querySelector(), querySelectorAll(), classList, dataset, MutationObserver</td></tr>
+        </table>
+
+        <h3>DOM Manipulation Examples</h3>
+        <pre><span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;&lt;body&gt;</span>
+  <span class="tag">&lt;p id=</span><span class="str">"msg"</span><span class="tag">&gt;</span>Original Text<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;ul id=</span><span class="str">"list"</span><span class="tag">&gt;&lt;li&gt;</span>Item 1<span class="tag">&lt;/li&gt;&lt;/ul&gt;</span>
+  <span class="tag">&lt;script&gt;</span>
+    <span class="cm">// 1. Access by ID</span>
+    <span class="kw">let</span> p = document.<span class="fn">getElementById</span>(<span class="str">"msg"</span>);
+    p.innerHTML = <span class="str">"&lt;strong&gt;Updated!&lt;/strong&gt;"</span>;
+    p.style.color = <span class="str">"red"</span>;
+
+    <span class="cm">// 2. Access by class / tag</span>
+    document.<span class="fn">getElementsByTagName</span>(<span class="str">"p"</span>)[<span class="num">0</span>].style.fontSize = <span class="str">"20px"</span>;
+    document.<span class="fn">querySelector</span>(<span class="str">"#msg"</span>).style.fontWeight = <span class="str">"bold"</span>;
+
+    <span class="cm">// 3. Create &amp; append element</span>
+    <span class="kw">let</span> li = document.<span class="fn">createElement</span>(<span class="str">"li"</span>);
+    li.textContent = <span class="str">"Item 2"</span>;
+    document.<span class="fn">getElementById</span>(<span class="str">"list"</span>).<span class="fn">appendChild</span>(li);
+
+    <span class="cm">// 4. Remove element</span>
+    <span class="kw">let</span> parent = document.<span class="fn">getElementById</span>(<span class="str">"list"</span>);
+    parent.<span class="fn">removeChild</span>(parent.firstElementChild);
+
+    <span class="cm">// 5. Event listener (DOM Level 2)</span>
+    p.<span class="fn">addEventListener</span>(<span class="str">"click"</span>, <span class="kw">function</span>() {
+        <span class="fn">alert</span>(<span class="str">"Paragraph clicked!"</span>);
+    });
+  <span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;/body&gt;&lt;/html&gt;</span></pre>
+        <div class="trick">DOM Levels: <strong>ZOCL</strong> — Zero · One(getElementById) · Two(addEventListener) · C(querySelector/classList)</div>
+        <div class="exam">DOM = Tree of Nodes. Nodes: Document, Element, Attribute, Text, Comment. document is root. window.document accesses it.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2b jQuery -->
+  <div id="q12-d" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Q2b — jQuery Events</h2><span class="s2">★★</span><span class="marks">[8M]</span></div>
+      <div class="cb">
+        <h3>Definition</h3>
+        <p><strong>jQuery</strong> is a fast, lightweight JavaScript library that simplifies HTML DOM manipulation, event handling, AJAX, and animations. Core syntax: <code>$(selector).action()</code></p>
+
+        <h3>jQuery Event Categories</h3>
+        <svg viewBox="0 0 680 140" style="width:100%;max-width:680px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="140" fill="#010409" rx="8"/>
+          <rect x="10" y="20" width="150" height="100" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+          <text x="85" y="42" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">🖱 Mouse Events</text>
+          <text x="85" y="58" text-anchor="middle" fill="#c8d1da" font-size="10">click, dblclick</text>
+          <text x="85" y="72" text-anchor="middle" fill="#c8d1da" font-size="10">mouseenter/leave</text>
+          <text x="85" y="86" text-anchor="middle" fill="#c8d1da" font-size="10">mousedown/up</text>
+          <text x="85" y="100" text-anchor="middle" fill="#c8d1da" font-size="10">hover, mousemove</text>
+          <rect x="175" y="20" width="150" height="100" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+          <text x="250" y="42" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">⌨ Keyboard Events</text>
+          <text x="250" y="62" text-anchor="middle" fill="#c8d1da" font-size="10">keydown</text>
+          <text x="250" y="78" text-anchor="middle" fill="#c8d1da" font-size="10">keyup</text>
+          <text x="250" y="94" text-anchor="middle" fill="#c8d1da" font-size="10">keypress</text>
+          <rect x="340" y="20" width="150" height="100" rx="6" fill="#161b22" stroke="#e3b341" stroke-width="1"/>
+          <text x="415" y="42" text-anchor="middle" fill="#e3b341" font-size="11" font-weight="bold">📋 Form Events</text>
+          <text x="415" y="58" text-anchor="middle" fill="#c8d1da" font-size="10">submit, change</text>
+          <text x="415" y="72" text-anchor="middle" fill="#c8d1da" font-size="10">focus, blur</text>
+          <text x="415" y="86" text-anchor="middle" fill="#c8d1da" font-size="10">select, reset</text>
+          <text x="415" y="100" text-anchor="middle" fill="#c8d1da" font-size="10">input</text>
+          <rect x="505" y="20" width="165" height="100" rx="6" fill="#161b22" stroke="#bc8cff" stroke-width="1"/>
+          <text x="587" y="42" text-anchor="middle" fill="#bc8cff" font-size="11" font-weight="bold">🌐 Doc/Window</text>
+          <text x="587" y="58" text-anchor="middle" fill="#c8d1da" font-size="10">ready, load</text>
+          <text x="587" y="72" text-anchor="middle" fill="#c8d1da" font-size="10">resize, scroll</text>
+          <text x="587" y="86" text-anchor="middle" fill="#c8d1da" font-size="10">unload</text>
+        </svg>
+
+        <pre><span class="cm">// Document Ready — ensures DOM is loaded</span>
+$(document).<span class="fn">ready</span>(<span class="kw">function</span>() {
+
+  <span class="cm">// 1. Click event</span>
+  $(<span class="str">"#btn"</span>).<span class="fn">click</span>(<span class="kw">function</span>() {
+    $(<span class="str">"p"</span>).<span class="fn">hide</span>(<span class="num">500</span>); <span class="cm">// fade out 500ms</span>
+  });
+
+  <span class="cm">// 2. Double-click</span>
+  $(<span class="str">"#box"</span>).<span class="fn">dblclick</span>(<span class="kw">function</span>() {
+    $(<span class="kw">this</span>).<span class="fn">css</span>(<span class="str">"background"</span>, <span class="str">"gold"</span>);
+  });
+
+  <span class="cm">// 3. Hover (enter + leave)</span>
+  $(<span class="str">"h2"</span>).<span class="fn">hover</span>(
+    <span class="kw">function</span>() { $(<span class="kw">this</span>).<span class="fn">css</span>(<span class="str">"color"</span>, <span class="str">"blue"</span>); },
+    <span class="kw">function</span>() { $(<span class="kw">this</span>).<span class="fn">css</span>(<span class="str">"color"</span>, <span class="str">"black"</span>); }
+  );
+
+  <span class="cm">// 4. Keypress</span>
+  $(<span class="str">"input"</span>).<span class="fn">keypress</span>(<span class="kw">function</span>(e) {
+    console.<span class="fn">log</span>(<span class="str">"ASCII: "</span> + e.which);
+  });
+
+  <span class="cm">// 5. on() — preferred method (also works for dynamic elements)</span>
+  $(<span class="str">"#myBtn"</span>).<span class="fn">on</span>(<span class="str">"click"</span>, <span class="kw">function</span>() {
+    $(<span class="str">"#result"</span>).<span class="fn">text</span>(<span class="str">"Clicked!"</span>);
+  });
+
+  <span class="cm">// 6. off() — remove handler</span>
+  $(<span class="str">"#myBtn"</span>).<span class="fn">off</span>(<span class="str">"click"</span>);
+
+  <span class="cm">// 7. Submit event</span>
+  $(<span class="str">"form"</span>).<span class="fn">on</span>(<span class="str">"submit"</span>, <span class="kw">function</span>(e) {
+    e.<span class="fn">preventDefault</span>(); <span class="cm">// prevent page reload</span>
+    <span class="fn">alert</span>(<span class="str">"Form submitted!"</span>);
+  });
+
+  <span class="cm">// 8. Select, Append, Remove</span>
+  $(<span class="str">"ul"</span>).<span class="fn">append</span>(<span class="str">"&lt;li&gt;New Item&lt;/li&gt;"</span>);   <span class="cm">// add to end</span>
+  $(<span class="str">"li:first"</span>).<span class="fn">remove</span>();                   <span class="cm">// remove first li</span>
+  $(<span class="str">"#myList li"</span>).<span class="fn">css</span>(<span class="str">"color"</span>, <span class="str">"green"</span>);   <span class="cm">// select all li inside #myList</span>
+});</pre>
+        <div class="trick">jQuery Basics: <strong>$()</strong> selects, <strong>.on()</strong> binds, <strong>.off()</strong> removes, <strong>.trigger()</strong> fires, <strong>.preventDefault()</strong> blocks default</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Types -->
+  <div id="q12-e" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Q2alt — JavaScript Data Types</h2><span class="s2">★★</span><span class="marks">[8M]</span></div>
+      <div class="cb">
+        <h3>Definition</h3>
+        <p>A <strong>data type</strong> defines the type of value a variable can hold. JavaScript is dynamically typed — the same variable can hold different types at different times.</p>
+        <h3>Categories of Data Types</h3>
+        <table>
+          <tr><th>Type</th><th>Category</th><th>Example</th><th>typeof</th></tr>
+          <tr><td>Number</td><td>Primitive</td><td>42, 3.14, NaN, Infinity</td><td>"number"</td></tr>
+          <tr><td>String</td><td>Primitive</td><td>"hello", 'world', `template`</td><td>"string"</td></tr>
+          <tr><td>Boolean</td><td>Primitive</td><td>true, false</td><td>"boolean"</td></tr>
+          <tr><td>Undefined</td><td>Primitive</td><td>let x; // x = undefined</td><td>"undefined"</td></tr>
+          <tr><td>Null</td><td>Primitive</td><td>let y = null;</td><td>"object" (bug!)</td></tr>
+          <tr><td>Symbol (ES6)</td><td>Primitive</td><td>Symbol("id")</td><td>"symbol"</td></tr>
+          <tr><td>BigInt (ES2020)</td><td>Primitive</td><td>9007199254740991n</td><td>"bigint"</td></tr>
+          <tr><td>Object</td><td>Reference</td><td>{name:"Alice"}</td><td>"object"</td></tr>
+          <tr><td>Array</td><td>Reference (Object)</td><td>[1,2,3]</td><td>"object"</td></tr>
+          <tr><td>Function</td><td>Reference (Object)</td><td>function f(){}</td><td>"function"</td></tr>
+        </table>
+        <pre><span class="kw">let</span> n = <span class="num">42</span>;        <span class="cm">// Number</span>
+<span class="kw">let</span> s = <span class="str">"hello"</span>;   <span class="cm">// String</span>
+<span class="kw">let</span> b = <span class="kw">true</span>;      <span class="cm">// Boolean</span>
+<span class="kw">let</span> u;             <span class="cm">// Undefined</span>
+<span class="kw">let</span> nu = <span class="kw">null</span>;     <span class="cm">// Null</span>
+<span class="kw">let</span> obj = {x:<span class="num">1</span>};   <span class="cm">// Object</span>
+
+<span class="cm">// Dynamic typing</span>
+<span class="kw">let</span> x = <span class="num">10</span>; x = <span class="str">"ten"</span>; <span class="cm">// valid!</span>
+
+<span class="cm">// Type coercion</span>
+<span class="num">5</span> + <span class="str">"3"</span> === <span class="str">"53"</span>  <span class="cm">// string wins</span>
+<span class="str">"5"</span> - <span class="num">3</span> === <span class="num">2</span>    <span class="cm">// numeric</span>
+<span class="kw">true</span> + <span class="num">1</span> === <span class="num">2</span>   <span class="cm">// true=1</span></pre>
+        <div class="trick">Primitives: <strong>NS-BUN-SB</strong> — Number · String · Boolean · Undefined · Null · Symbol · BigInt</div>
+      </div>
+    </div>
+  </div>
+</div><!-- end q12 -->
+
+<!-- ══════════════════════ Q3/Q4 ══════════════════════ -->
+<div id="pg-q34" class="pg">
+  <div class="stabs">
+    <button class="stb on" onclick="gt('q34','a',this)">Q3a: JSP Program</button>
+    <button class="stb" onclick="gt('q34','b',this)">Q3b: JSP Elements &amp; Actions</button>
+    <button class="stb" onclick="gt('q34','c',this)">Q4a: JSP vs Servlet + Lifecycle</button>
+    <button class="stb" onclick="gt('q34','d',this)">Q4b: Struts Architecture</button>
+    <button class="stb" onclick="gt('q34','e',this)">Extra: Servlet + doGet/doPost</button>
+  </div>
+
+  <div id="q34-a" class="sp on">
+    <div class="card">
+      <div class="ch"><h2>Q3a — JSP: Page Directive, Scriptlet, Expression &amp; Comment</h2><span class="s2">★★</span><span class="marks">[8M]</span></div>
+      <div class="cb">
+        <h3>JSP Tag Quick Reference</h3>
+        <table>
+          <tr><th>Tag</th><th>Syntax</th><th>Purpose</th></tr>
+          <tr><td>Page Directive</td><td>&lt;%@ page ... %&gt;</td><td>Sets page-level attributes (import, session, errorPage)</td></tr>
+          <tr><td>Include Directive</td><td>&lt;%@ include file="..." %&gt;</td><td>Static inclusion at translation time</td></tr>
+          <tr><td>Declaration</td><td>&lt;%! ... %&gt;</td><td>Declare class-level variables/methods</td></tr>
+          <tr><td>Scriptlet</td><td>&lt;% ... %&gt;</td><td>Java code — runs in _jspService()</td></tr>
+          <tr><td>Expression</td><td>&lt;%= ... %&gt;</td><td>Outputs value to response (no semicolon)</td></tr>
+          <tr><td>JSP Comment</td><td>&lt;%-- ... --%&gt;</td><td>Server-side only, NOT sent to browser</td></tr>
+          <tr><td>HTML Comment</td><td>&lt;!-- ... --&gt;</td><td>Sent to browser, visible in source</td></tr>
+        </table>
+        <pre><span class="cm">&lt;%-- JSP Comment: not sent to browser --%&gt;</span>
+
+<span class="cm">&lt;%-- PAGE DIRECTIVE --%&gt;</span>
+<span class="tag">&lt;%@</span> <span class="attr">page</span> <span class="attr">language</span>=<span class="str">"java"</span>
+         <span class="attr">contentType</span>=<span class="str">"text/html; charset=UTF-8"</span>
+         <span class="attr">pageEncoding</span>=<span class="str">"UTF-8"</span>
+         <span class="attr">import</span>=<span class="str">"java.util.Date, java.util.ArrayList"</span>
+         <span class="attr">session</span>=<span class="str">"true"</span>
+         <span class="attr">errorPage</span>=<span class="str">"error.jsp"</span> <span class="tag">%&gt;</span>
+
+<span class="tag">&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;</span>JSP Demo<span class="tag">&lt;/title&gt;&lt;/head&gt;&lt;body&gt;</span>
+<span class="tag">&lt;h2&gt;</span>JSP Scripting Elements<span class="tag">&lt;/h2&gt;</span>
+
+<span class="cm">&lt;%-- DECLARATION: class-level variable --%&gt;</span>
+<span class="tag">&lt;%!</span>
+    <span class="kw">int</span> visitCount = <span class="num">0</span>;
+    String <span class="fn">greet</span>(String name) { return <span class="str">"Hello, "</span> + name; }
+<span class="tag">%&gt;</span>
+
+<span class="cm">&lt;%-- SCRIPTLET: runs every request --%&gt;</span>
+<span class="tag">&lt;%</span>
+    visitCount++;
+    String subject = <span class="str">"Web Technology"</span>;
+    int maxMarks = <span class="num">70</span>;
+    Date now = <span class="kw">new</span> Date();
+    out.<span class="fn">println</span>(<span class="str">"&lt;p&gt;Subject: "</span> + subject + <span class="str">"&lt;/p&gt;"</span>);
+<span class="tag">%&gt;</span>
+
+<span class="cm">&lt;%-- EXPRESSION: outputs directly --%&gt;</span>
+<span class="tag">&lt;p&gt;</span>Max Marks: <span class="tag">&lt;%=</span> maxMarks <span class="tag">%&gt;</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>Date: <span class="tag">&lt;%=</span> now <span class="tag">%&gt;</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>Visits: <span class="tag">&lt;%=</span> visitCount <span class="tag">%&gt;</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>Greeting: <span class="tag">&lt;%=</span> <span class="fn">greet</span>(<span class="str">"Alice"</span>) <span class="tag">%&gt;</span><span class="tag">&lt;/p&gt;</span>
+
+<span class="cm">&lt;%-- SCRIPTLET with loop + template text --%&gt;</span>
+<span class="tag">&lt;%</span> <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">1</span>; i &lt;= <span class="num">3</span>; i++) { <span class="tag">%&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Row <span class="tag">&lt;%=</span> i <span class="tag">%&gt;</span>: Item<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;%</span> } <span class="tag">%&gt;</span>
+<span class="tag">&lt;/body&gt;&lt;/html&gt;</span></pre>
+        <div class="trick">JSP Tags: <strong>DESCC</strong> — Directive · Expression · Scriptlet · Comment · Custom-action</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="q34-b" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Q3b — JSP Scripting Elements, Actions &amp; Templates</h2><span class="s3">★★★</span><span class="marks">[9M]</span></div>
+      <div class="cb">
+        <h3>1. Scripting Elements</h3>
+        <table>
+          <tr><th>Element</th><th>Syntax</th><th>Scope/Behavior</th><th>Example</th></tr>
+          <tr><td>Declaration</td><td>&lt;%! ... %&gt;</td><td>Class-level; shared across requests</td><td>&lt;%! int count = 0; %&gt;</td></tr>
+          <tr><td>Scriptlet</td><td>&lt;% ... %&gt;</td><td>_jspService(); runs per request</td><td>&lt;% String s = "hi"; %&gt;</td></tr>
+          <tr><td>Expression</td><td>&lt;%= ... %&gt;</td><td>Evaluates &amp; writes to output stream</td><td>&lt;%= new Date() %&gt;</td></tr>
+        </table>
+        <h3>2. JSP Directives</h3>
+        <table>
+          <tr><th>Directive</th><th>Purpose</th><th>Key Attributes</th></tr>
+          <tr><td>&lt;%@ page %&gt;</td><td>Page-level config</td><td>language, import, session, errorPage, contentType, buffer, isThreadSafe</td></tr>
+          <tr><td>&lt;%@ include %&gt;</td><td>Static include at compile time</td><td>file="header.html"</td></tr>
+          <tr><td>&lt;%@ taglib %&gt;</td><td>Import tag library</td><td>uri="...", prefix="c"</td></tr>
+        </table>
+        <h3>3. JSP Standard Actions</h3>
+        <table>
+          <tr><th>Action Tag</th><th>Purpose</th></tr>
+          <tr><td>&lt;jsp:include page="x.jsp"/&gt;</td><td>Dynamic include at request time</td></tr>
+          <tr><td>&lt;jsp:forward page="x.jsp"/&gt;</td><td>Dispatch request to another resource</td></tr>
+          <tr><td>&lt;jsp:useBean id="b" class="MyBean" scope="session"/&gt;</td><td>Instantiate/retrieve a JavaBean</td></tr>
+          <tr><td>&lt;jsp:setProperty name="b" property="*"/&gt;</td><td>Populate bean from request params</td></tr>
+          <tr><td>&lt;jsp:getProperty name="b" property="name"/&gt;</td><td>Output a bean property</td></tr>
+          <tr><td>&lt;jsp:param name="k" value="v"/&gt;</td><td>Pass params to included/forwarded page</td></tr>
+        </table>
+        <h3>4. Template Text</h3>
+        <p><strong>Template text</strong> is any HTML/text content outside JSP tags. It is written directly to the response stream as-is on every request.</p>
+        <pre><span class="tag">&lt;h1&gt;</span>This is <strong>template text</strong> — static HTML<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;%</span> String user = <span class="str">"Alice"</span>; <span class="tag">%&gt;</span>
+<span class="tag">&lt;p&gt;</span>Hello &lt;%= user %&gt; — template + expression mixed<span class="tag">&lt;/p&gt;</span></pre>
+        <h3>JSP Implicit Objects (9 Objects)</h3>
+        <table>
+          <tr><th>Object</th><th>Class</th><th>Purpose</th></tr>
+          <tr><td>request</td><td>HttpServletRequest</td><td>Client request data, params, headers</td></tr>
+          <tr><td>response</td><td>HttpServletResponse</td><td>Manipulate response headers, redirect</td></tr>
+          <tr><td>out</td><td>JspWriter</td><td>Write to output stream</td></tr>
+          <tr><td>session</td><td>HttpSession</td><td>Store user session data</td></tr>
+          <tr><td>application</td><td>ServletContext</td><td>App-wide shared data</td></tr>
+          <tr><td>config</td><td>ServletConfig</td><td>Servlet init parameters</td></tr>
+          <tr><td>pageContext</td><td>PageContext</td><td>Access all scopes; include/forward</td></tr>
+          <tr><td>page</td><td>Object (this)</td><td>Current servlet instance</td></tr>
+          <tr><td>exception</td><td>Throwable</td><td>Available on error pages only</td></tr>
+        </table>
+        <div class="trick">9 Implicit Objects: <strong>RR-OSA-CPE</strong> — Request · Response · Out · Session · Application · Config · PageContext · Page · Exception</div>
+        <div class="exam">Directive = configuration at translate time. Action = dynamic at request time. Template = static HTML output. Expression = output value. Scriptlet = run code.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="q34-c" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Q4a — JSP Advantages over Servlet &amp; JSP Lifecycle</h2><span class="s2">★★</span><span class="marks">[8M]</span></div>
+      <div class="cb">
+        <h3>JSP vs Servlet — Comparison</h3>
+        <table>
+          <tr><th>Aspect</th><th>JSP</th><th>Servlet</th></tr>
+          <tr><td>Syntax</td><td>HTML with embedded Java tags</td><td>Pure Java class with HTML strings</td></tr>
+          <tr><td>Ease of Design</td><td>Easier — web designers can work on it</td><td>Harder — mixing HTML in Java code</td></tr>
+          <tr><td>Recompilation</td><td>Auto-compiled by container on change</td><td>Must manually recompile &amp; redeploy</td></tr>
+          <tr><td>Implicit Objects</td><td>9 implicit objects available automatically</td><td>Must obtain all objects explicitly</td></tr>
+          <tr><td>Maintenance</td><td>Easy — presentation separate from logic</td><td>Hard — logic mixed with presentation</td></tr>
+          <tr><td>Tag Libraries</td><td>JSTL, custom tags reduce Java in pages</td><td>No equivalent feature</td></tr>
+          <tr><td>Performance</td><td>Slight overhead (translation step)</td><td>Faster (already compiled)</td></tr>
+          <tr><td>Under the Hood</td><td>Gets converted to Servlet by container</td><td>Native Servlet — no conversion</td></tr>
+        </table>
+        <h3>JSP Lifecycle</h3>
+        <svg viewBox="0 0 680 110" style="width:100%;max-width:680px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="110" fill="#010409" rx="8"/>
+          <defs><marker id="mc" markerWidth="7" markerHeight="7" refX="3.5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#58a6ff"/></marker></defs>
+          <rect x="8"   y="30" width="96"  height="40" rx="5" fill="#1f6feb"/><text x="56"  y="47" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">Translation</text><text x="56" y="62" text-anchor="middle" fill="#c8d1da" font-size="9">.jsp → .java</text>
+          <rect x="118" y="30" width="96"  height="40" rx="5" fill="#238636"/><text x="166" y="47" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">Compilation</text><text x="166" y="62" text-anchor="middle" fill="#c8d1da" font-size="9">.java → .class</text>
+          <rect x="228" y="30" width="96"  height="40" rx="5" fill="#9e6a03"/><text x="276" y="47" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">ClassLoading</text><text x="276" y="62" text-anchor="middle" fill="#c8d1da" font-size="9">JVM loads</text>
+          <rect x="338" y="30" width="96"  height="40" rx="5" fill="#6e40c9"/><text x="386" y="47" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">jspInit()</text><text x="386" y="62" text-anchor="middle" fill="#c8d1da" font-size="9">once — init</text>
+          <rect x="448" y="30" width="104" height="40" rx="5" fill="#b08800"/><text x="500" y="47" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">_jspService()</text><text x="500" y="62" text-anchor="middle" fill="#c8d1da" font-size="9">per request</text>
+          <rect x="566" y="30" width="104" height="40" rx="5" fill="#da3633"/><text x="618" y="47" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">jspDestroy()</text><text x="618" y="62" text-anchor="middle" fill="#c8d1da" font-size="9">once — cleanup</text>
+          <line x1="104" y1="50" x2="116" y2="50" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#mc)"/>
+          <line x1="214" y1="50" x2="226" y2="50" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#mc)"/>
+          <line x1="324" y1="50" x2="336" y2="50" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#mc)"/>
+          <line x1="434" y1="50" x2="446" y2="50" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#mc)"/>
+          <line x1="552" y1="50" x2="564" y2="50" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#mc)"/>
+          <text x="340" y="95" text-anchor="middle" fill="#8b949e" font-size="9">Translation+Compilation happen only once (or when .jsp is modified). _jspService() called for every HTTP request.</text>
+        </svg>
+        <ul>
+          <li><strong>Translation:</strong> Container converts .jsp → .java (Servlet class)</li>
+          <li><strong>Compilation:</strong> javac compiles .java → .class bytecode</li>
+          <li><strong>ClassLoading:</strong> JVM ClassLoader loads .class into memory</li>
+          <li><strong>jspInit():</strong> Called once; override to allocate resources</li>
+          <li><strong>_jspService():</strong> Called per request; handles req/res</li>
+          <li><strong>jspDestroy():</strong> Called once before undeployment; cleanup</li>
+        </ul>
+        <div class="trick">Lifecycle: <strong>TC-CL-I-S-D</strong> — Translate · Compile · ClassLoad · Init · Service · Destroy</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="q34-d" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Q4b — Struts Architecture &amp; Benefits</h2><span class="s3">★★★</span><span class="marks">[9M]</span></div>
+      <div class="cb">
+        <h3>What is Struts?</h3>
+        <p>Apache Struts is an open-source MVC framework for Java web applications. It follows the <strong>Front Controller pattern</strong> using a central <code>ActionServlet</code> as the Controller.</p>
+        <h3>Struts Architecture Diagram</h3>
+        <svg viewBox="0 0 680 300" style="width:100%;max-width:680px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="300" fill="#010409" rx="8"/>
+          <defs><marker id="md" markerWidth="7" markerHeight="7" refX="3.5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#58a6ff"/></marker>
+          <marker id="md2" markerWidth="7" markerHeight="7" refX="3.5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3fb950"/></marker></defs>
+          <!-- Browser -->
+          <rect x="10" y="120" width="100" height="60" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+          <text x="60" y="147" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Browser</text>
+          <text x="60" y="162" text-anchor="middle" fill="#8b949e" font-size="9">Client</text>
+          <!-- ActionServlet -->
+          <rect x="160" y="100" width="140" height="80" rx="6" fill="#1f6feb"/>
+          <text x="230" y="128" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">ActionServlet</text>
+          <text x="230" y="143" text-anchor="middle" fill="#c8d1da" font-size="10">Controller</text>
+          <text x="230" y="158" text-anchor="middle" fill="#c8d1da" font-size="9">struts-config.xml</text>
+          <text x="230" y="170" text-anchor="middle" fill="#c8d1da" font-size="9">ActionMapping</text>
+          <!-- ActionForm -->
+          <rect x="370" y="40" width="130" height="60" rx="6" fill="#9e6a03"/>
+          <text x="435" y="68" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">ActionForm</text>
+          <text x="435" y="83" text-anchor="middle" fill="#c8d1da" font-size="10">Model (Bean)</text>
+          <!-- Action -->
+          <rect x="370" y="130" width="130" height="60" rx="6" fill="#238636"/>
+          <text x="435" y="158" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">Action Class</text>
+          <text x="435" y="173" text-anchor="middle" fill="#c8d1da" font-size="10">Business Logic</text>
+          <!-- JSP -->
+          <rect x="370" y="220" width="130" height="60" rx="6" fill="#6e40c9"/>
+          <text x="435" y="248" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">JSP View</text>
+          <text x="435" y="263" text-anchor="middle" fill="#c8d1da" font-size="10">Presentation</text>
+          <!-- DB -->
+          <rect x="560" y="130" width="110" height="60" rx="6" fill="#161b22" stroke="#e3b341" stroke-width="1"/>
+          <text x="615" y="158" text-anchor="middle" fill="#e3b341" font-size="11" font-weight="bold">Database</text>
+          <text x="615" y="173" text-anchor="middle" fill="#8b949e" font-size="10">MySQL/Oracle</text>
+          <!-- Arrows -->
+          <line x1="110" y1="140" x2="158" y2="140" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#md)"/>
+          <text x="134" y="133" text-anchor="middle" fill="#8b949e" font-size="9">① HTTP Req</text>
+          <line x1="300" y1="120" x2="368" y2="80" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#md)"/>
+          <text x="334" y="93" text-anchor="middle" fill="#8b949e" font-size="9">② populate</text>
+          <line x1="300" y1="150" x2="368" y2="160" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#md)"/>
+          <text x="334" y="148" text-anchor="middle" fill="#8b949e" font-size="9">③ forward</text>
+          <line x1="500" y1="160" x2="558" y2="160" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#md)"/>
+          <text x="529" y="153" text-anchor="middle" fill="#8b949e" font-size="9">④ JDBC</text>
+          <line x1="558" y1="175" x2="500" y2="175" stroke="#3fb950" stroke-width="1.5" marker-end="url(#md2)"/>
+          <text x="529" y="193" text-anchor="middle" fill="#3fb950" font-size="9">⑤ data</text>
+          <line x1="435" y1="190" x2="435" y2="218" stroke="#3fb950" stroke-width="1.5" marker-end="url(#md2)"/>
+          <text x="455" y="210" text-anchor="middle" fill="#8b949e" font-size="9">⑥ forward</text>
+          <line x1="370" y1="250" x2="162" y2="175" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#md2)"/>
+          <text x="260" y="230" text-anchor="middle" fill="#3fb950" font-size="9">⑦ HTML Response</text>
+          <text x="340" y="285" text-anchor="middle" fill="#e3b341" font-size="10" font-weight="bold">MVC Flow: Request → ActionServlet → ActionForm → Action → JSP → Response</text>
+        </svg>
+        <h3>Struts Components</h3>
+        <table>
+          <tr><th>Component</th><th>Role</th></tr>
+          <tr><td>ActionServlet</td><td>Central Front Controller; intercepts all requests</td></tr>
+          <tr><td>struts-config.xml</td><td>Maps URLs → Actions → Views</td></tr>
+          <tr><td>ActionForm</td><td>JavaBean holding form data; validates input</td></tr>
+          <tr><td>Action class</td><td>execute() method contains business logic; returns ActionForward</td></tr>
+          <tr><td>ActionForward</td><td>Tells controller which JSP to show next</td></tr>
+          <tr><td>ActionMapping</td><td>Links URL path to specific Action + Form</td></tr>
+          <tr><td>JSP/View</td><td>Presentation using Struts tag libraries</td></tr>
+          <tr><td>Tag Libraries</td><td>html:, bean:, logic:, tiles: tags for JSP</td></tr>
+        </table>
+        <h3>Benefits of Struts</h3>
+        <ul>
+          <li><strong>MVC Separation:</strong> Clean divide between Model, View, Controller.</li>
+          <li><strong>Centralized Control:</strong> Single entry-point simplifies request routing.</li>
+          <li><strong>Built-in Validation:</strong> Server &amp; client-side form validation framework.</li>
+          <li><strong>Internationalization:</strong> Built-in i18n resource bundles.</li>
+          <li><strong>Rich Tag Libraries:</strong> html, bean, logic, tiles tags reduce scriptlet code.</li>
+          <li><strong>Open Source:</strong> Apache-maintained; free and widely documented.</li>
+          <li><strong>Reusability:</strong> Action classes and forms are reusable across pages.</li>
+        </ul>
+        <div class="trick">Struts: <strong>SAAF-JV</strong> — Servlet(ActionServlet) · ActionForm · Action · Forward · JSP · Validation</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="q34-e" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Extra — Servlet Lifecycle + doGet vs doPost</h2><span class="s2">★★</span><span class="marks">[8–9M]</span></div>
+      <div class="cb">
+        <h3>Servlet Definition</h3>
+        <p>A <strong>Servlet</strong> is a Java class that extends <code>HttpServlet</code> and runs on a web server to handle HTTP requests and generate responses. It is the foundation for JSP and frameworks like Struts.</p>
+        <h3>Servlet Lifecycle</h3>
+        <ul>
+          <li><strong>Loading &amp; Instantiation:</strong> ClassLoader loads servlet class; container creates one instance.</li>
+          <li><strong>init():</strong> Called once — initialize resources (DB connections, config).</li>
+          <li><strong>service():</strong> Called per request — dispatches to doGet() or doPost().</li>
+          <li><strong>destroy():</strong> Called once on undeploy — release resources.</li>
+        </ul>
+        <h3>doGet() vs doPost()</h3>
+        <table>
+          <tr><th>Feature</th><th>doGet()</th><th>doPost()</th></tr>
+          <tr><td>HTTP Method</td><td>GET</td><td>POST</td></tr>
+          <tr><td>Data location</td><td>URL query string: ?name=val</td><td>Request body (hidden)</td></tr>
+          <tr><td>Data limit</td><td>~2048 chars (URL limit)</td><td>No practical limit</td></tr>
+          <tr><td>Security</td><td>Less secure — visible in URL, browser history, logs</td><td>More secure — body not logged by default</td></tr>
+          <tr><td>Idempotent</td><td>Yes — safe to repeat, bookmark</td><td>No — may cause side effects</td></tr>
+          <tr><td>Caching</td><td>Can be cached by browser/proxy</td><td>Not cached</td></tr>
+          <tr><td>Bookmarkable</td><td>Yes</td><td>No</td></tr>
+          <tr><td>Use Case</td><td>Read/search operations</td><td>Form submission, file upload, login</td></tr>
+        </table>
+        <pre><span class="kw">import</span> javax.servlet.*;
+<span class="kw">import</span> javax.servlet.http.*;
+<span class="kw">import</span> java.io.*;
+
+<span class="kw">public class</span> <span class="fn">LoginServlet</span> <span class="kw">extends</span> HttpServlet {
+    <span class="kw">public void</span> <span class="fn">init</span>() { System.out.<span class="fn">println</span>(<span class="str">"Init called once"</span>); }
+
+    <span class="kw">protected void</span> <span class="fn">doGet</span>(HttpServletRequest req, HttpServletResponse res)
+            <span class="kw">throws</span> IOException {
+        res.<span class="fn">setContentType</span>(<span class="str">"text/html"</span>);
+        PrintWriter out = res.<span class="fn">getWriter</span>();
+        String name = req.<span class="fn">getParameter</span>(<span class="str">"name"</span>); <span class="cm">// from URL</span>
+        out.<span class="fn">println</span>(<span class="str">"&lt;h2&gt;Hello, "</span> + name + <span class="str">"!&lt;/h2&gt;"</span>);
+    }
+
+    <span class="kw">protected void</span> <span class="fn">doPost</span>(HttpServletRequest req, HttpServletResponse res)
+            <span class="kw">throws</span> IOException {
+        req.<span class="fn">setCharacterEncoding</span>(<span class="str">"UTF-8"</span>);
+        String user = req.<span class="fn">getParameter</span>(<span class="str">"username"</span>); <span class="cm">// from body</span>
+        String pass = req.<span class="fn">getParameter</span>(<span class="str">"password"</span>);
+        <span class="kw">if</span> (user.<span class="fn">equals</span>(<span class="str">"admin"</span>) &amp;&amp; pass.<span class="fn">equals</span>(<span class="str">"1234"</span>)) {
+            res.<span class="fn">sendRedirect</span>(<span class="str">"dashboard.jsp"</span>);
+        } <span class="kw">else</span> {
+            res.<span class="fn">sendRedirect</span>(<span class="str">"login.jsp?error=1"</span>);
+        }
+    }
+    <span class="kw">public void</span> <span class="fn">destroy</span>() { System.out.<span class="fn">println</span>(<span class="str">"Destroy called"</span>); }
+}</pre>
+      </div>
+    </div>
+  </div>
+</div><!-- end q34 -->
+
+<!-- ══════════════════════ Q5/Q6 ══════════════════════ -->
+<div id="pg-q56" class="pg">
+  <div class="stabs">
+    <button class="stb on" onclick="gt('q56','a',this)">Q5a: PHP Sessions &amp; Cookies</button>
+    <button class="stb" onclick="gt('q56','b',this)">Q5b: PHP Features &amp; Functions</button>
+    <button class="stb" onclick="gt('q56','c',this)">Q6a: Associative Arrays</button>
+    <button class="stb" onclick="gt('q56','d',this)">Q6b: AJAX</button>
+    <button class="stb" onclick="gt('q56','e',this)">Extra: AngularJS &amp; WAP</button>
+  </div>
+
+  <div id="q56-a" class="sp on">
+    <div class="card">
+      <div class="ch"><h2>Q5a — Sessions &amp; Cookies in PHP</h2><span class="s3">★★★</span><span class="marks">[9M]</span></div>
+      <div class="cb">
+        <h3>Why Session Management?</h3>
+        <p>HTTP is <strong>stateless</strong> — each request is independent. Sessions and cookies maintain state across multiple requests from the same user.</p>
+        <svg viewBox="0 0 680 180" style="width:100%;max-width:680px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="180" fill="#010409" rx="8"/>
+          <defs><marker id="me" markerWidth="7" markerHeight="7" refX="3.5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#58a6ff"/></marker>
+          <marker id="me2" markerWidth="7" markerHeight="7" refX="3.5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3fb950"/></marker></defs>
+          <!-- Cookie flow -->
+          <text x="20" y="22" fill="#e3b341" font-size="11" font-weight="bold">🍪 Cookie Flow</text>
+          <rect x="20" y="30" width="90" height="40" rx="5" fill="#161b22" stroke="#58a6ff" stroke-width="1"/><text x="65" y="55" text-anchor="middle" fill="#58a6ff" font-size="10">Browser</text>
+          <rect x="260" y="30" width="90" height="40" rx="5" fill="#161b22" stroke="#3fb950" stroke-width="1"/><text x="305" y="55" text-anchor="middle" fill="#3fb950" font-size="10">PHP Server</text>
+          <line x1="110" y1="43" x2="258" y2="43" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#me)"/>
+          <text x="184" y="38" text-anchor="middle" fill="#8b949e" font-size="9">① HTTP Request (no cookie)</text>
+          <line x1="258" y1="62" x2="110" y2="62" stroke="#3fb950" stroke-width="1.5" marker-end="url(#me2)"/>
+          <text x="184" y="77" text-anchor="middle" fill="#3fb950" font-size="9">② Response: Set-Cookie: user=Alice; expires=...</text>
+          <rect x="20" y="90" width="90" height="22" rx="4" fill="#9e6a03"/><text x="65" y="106" text-anchor="middle" fill="#fff" font-size="9">Cookie stored</text>
+          <text x="65" y="130" text-anchor="middle" fill="#8b949e" font-size="8">Subsequent requests</text>
+          <text x="184" y="130" fill="#8b949e" font-size="9">──── Cookie auto-sent in header ────&gt;</text>
+          <!-- Session flow -->
+          <text x="400" y="22" fill="#e3b341" font-size="11" font-weight="bold">🔑 Session Flow</text>
+          <rect x="400" y="30" width="90" height="40" rx="5" fill="#161b22" stroke="#58a6ff" stroke-width="1"/><text x="445" y="55" text-anchor="middle" fill="#58a6ff" font-size="10">Browser</text>
+          <rect x="580" y="30" width="90" height="40" rx="5" fill="#161b22" stroke="#3fb950" stroke-width="1"/><text x="625" y="50" text-anchor="middle" fill="#3fb950" font-size="10">PHP + Session</text><text x="625" y="63" text-anchor="middle" fill="#8b949e" font-size="8">Store on server</text>
+          <line x1="490" y1="43" x2="578" y2="43" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#me)"/>
+          <line x1="578" y1="62" x2="490" y2="62" stroke="#3fb950" stroke-width="1.5" marker-end="url(#me2)"/>
+          <text x="534" y="77" text-anchor="middle" fill="#3fb950" font-size="8">Set-Cookie: PHPSESSID=abc123</text>
+          <rect x="400" y="90" width="130" height="22" rx="4" fill="#6e40c9"/><text x="465" y="106" text-anchor="middle" fill="#fff" font-size="9">Only Session ID in browser</text>
+          <text x="534" y="130" text-anchor="middle" fill="#8b949e" font-size="9">Actual data lives on SERVER</text>
+          <text x="340" y="165" text-anchor="middle" fill="#8b949e" font-size="10">Cookies: data IN browser | Sessions: data ON server, ID in browser</text>
+        </svg>
+        <h4>1. PHP Cookies</h4>
+        <pre><span class="cm">// Set cookie: name, value, expiry, path, domain, secure, httponly</span>
+<span class="fn">setcookie</span>(<span class="str">"username"</span>, <span class="str">"Alice"</span>, time()+<span class="num">3600</span>, <span class="str">"/"</span>); <span class="cm">// 1 hour</span>
+<span class="fn">setcookie</span>(<span class="str">"theme"</span>, <span class="str">"dark"</span>, time()+<span class="num">86400</span>*<span class="num">30</span>);    <span class="cm">// 30 days</span>
+
+<span class="cm">// Read cookie</span>
+<span class="kw">if</span> (<span class="fn">isset</span>($_COOKIE[<span class="str">"username"</span>])) {
+    echo <span class="str">"Welcome, "</span> . <span class="fn">htmlspecialchars</span>($_COOKIE[<span class="str">"username"</span>]);
+} <span class="kw">else</span> {
+    echo <span class="str">"New visitor"</span>;
+}
+
+<span class="cm">// Delete cookie — set expiry in past</span>
+<span class="fn">setcookie</span>(<span class="str">"username"</span>, <span class="str">""</span>, time()-<span class="num">3600</span>, <span class="str">"/"</span>);</pre>
+        <h4>2. PHP Sessions</h4>
+        <pre><span class="cm">// MUST call session_start() before any output</span>
+<span class="fn">session_start</span>();
+
+<span class="cm">// Set session variables</span>
+$_SESSION[<span class="str">"user"</span>]  = <span class="str">"Alice"</span>;
+$_SESSION[<span class="str">"role"</span>]  = <span class="str">"admin"</span>;
+$_SESSION[<span class="str">"login_time"</span>] = time();
+
+<span class="cm">// Read session</span>
+echo <span class="str">"Hello "</span> . $_SESSION[<span class="str">"user"</span>];
+echo <span class="str">"Role: "</span> . $_SESSION[<span class="str">"role"</span>];
+
+<span class="cm">// Check if logged in</span>
+<span class="kw">if</span> (!<span class="fn">isset</span>($_SESSION[<span class="str">"user"</span>])) {
+    header(<span class="str">"Location: login.php"</span>);
+    exit();
+}
+
+<span class="cm">// Remove one variable</span>
+<span class="fn">unset</span>($_SESSION[<span class="str">"role"</span>]);
+
+<span class="cm">// Destroy entire session (logout)</span>
+<span class="fn">session_unset</span>();
+<span class="fn">session_destroy</span>();</pre>
+        <table>
+          <tr><th>Feature</th><th>Cookie</th><th>Session</th></tr>
+          <tr><td>Storage</td><td>Client browser</td><td>Server (/tmp/sess_* file)</td></tr>
+          <tr><td>Security</td><td>Less — user can edit</td><td>More — user cannot access data</td></tr>
+          <tr><td>Size limit</td><td>~4 KB per cookie</td><td>No practical limit</td></tr>
+          <tr><td>Expiry</td><td>Set manually with time()</td><td>Browser close or session_destroy()</td></tr>
+          <tr><td>Data types</td><td>Strings only</td><td>Any PHP type (array, object)</td></tr>
+          <tr><td>Access</td><td>$_COOKIE["key"]</td><td>$_SESSION["key"]</td></tr>
+          <tr><td>Performance</td><td>Stored client-side</td><td>Server I/O for each request</td></tr>
+        </table>
+        <div class="trick">Cookie = <strong>Client keeps data</strong>. Session = <strong>Server keeps data, sends only an ID</strong>.</div>
+        <div class="exam">session_start() must be FIRST line before any HTML output. setcookie() also must be before output. Both use HTTP headers.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="q56-b" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Q5b — PHP Features &amp; Functions</h2><span class="s2">★★</span><span class="marks">[9M]</span></div>
+      <div class="cb">
+        <h3>What is PHP?</h3>
+        <p><strong>PHP</strong> (Hypertext Preprocessor) is a widely-used open-source server-side scripting language embedded in HTML. It runs on the server and sends only HTML to the browser.</p>
+        <h3>Features of PHP</h3>
+        <table>
+          <tr><th>#</th><th>Feature</th><th>Description</th></tr>
+          <tr><td>1</td><td>Server-Side Scripting</td><td>Runs on server; output is HTML sent to browser</td></tr>
+          <tr><td>2</td><td>Open Source &amp; Free</td><td>No licensing cost; huge community, LAMP stack</td></tr>
+          <tr><td>3</td><td>Cross-Platform</td><td>Runs on Windows, Linux, macOS with Apache/Nginx</td></tr>
+          <tr><td>4</td><td>Database Integration</td><td>MySQLi, PDO, PostgreSQL, Oracle — native support</td></tr>
+          <tr><td>5</td><td>Loosely Typed</td><td>No need to declare variable types (dynamic)</td></tr>
+          <tr><td>6</td><td>HTML Embeddable</td><td>PHP code inside &lt;?php ... ?&gt; within HTML</td></tr>
+          <tr><td>7</td><td>OOP Support</td><td>Classes, objects, interfaces, traits, inheritance (PHP 5+)</td></tr>
+          <tr><td>8</td><td>Extensive Library</td><td>1000+ built-in functions for strings, arrays, files, etc.</td></tr>
+          <tr><td>9</td><td>Session &amp; Cookie</td><td>Built-in state management (session_start, setcookie)</td></tr>
+          <tr><td>10</td><td>Error Handling</td><td>try/catch, set_error_handler(), custom exceptions</td></tr>
+        </table>
+        <h3>PHP Functions</h3>
+        <pre><span class="cm">// 1. User-defined function</span>
+<span class="kw">function</span> <span class="fn">add</span>($a, $b) {
+    return $a + $b;
+}
+echo <span class="fn">add</span>(<span class="num">10</span>, <span class="num">20</span>); <span class="cm">// 30</span>
+
+<span class="cm">// 2. Default parameter</span>
+<span class="kw">function</span> <span class="fn">greet</span>($name, $msg = <span class="str">"Hello"</span>) {
+    return $msg . <span class="str">", "</span> . $name . <span class="str">"!"</span>;
+}
+echo <span class="fn">greet</span>(<span class="str">"Alice"</span>);             <span class="cm">// Hello, Alice!</span>
+echo <span class="fn">greet</span>(<span class="str">"Bob"</span>, <span class="str">"Welcome"</span>);   <span class="cm">// Welcome, Bob!</span>
+
+<span class="cm">// 3. Variable-length arguments</span>
+<span class="kw">function</span> <span class="fn">total</span>(...$nums) {
+    return <span class="fn">array_sum</span>($nums);
+}
+echo <span class="fn">total</span>(<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>,<span class="num">4</span>,<span class="num">5</span>); <span class="cm">// 15</span>
+
+<span class="cm">// 4. Anonymous / Lambda function</span>
+$square = <span class="kw">function</span>($n) { return $n * $n; };
+echo $square(<span class="num">9</span>); <span class="cm">// 81</span>
+
+<span class="cm">// 5. Recursive function</span>
+<span class="kw">function</span> <span class="fn">factorial</span>($n) {
+    <span class="kw">if</span> ($n &lt;= <span class="num">1</span>) return <span class="num">1</span>;
+    return $n * <span class="fn">factorial</span>($n - <span class="num">1</span>);
+}
+echo <span class="fn">factorial</span>(<span class="num">6</span>); <span class="cm">// 720</span>
+
+<span class="cm">// 6. Pass by reference</span>
+<span class="kw">function</span> <span class="fn">addTen</span>(&amp;$val) { $val += <span class="num">10</span>; }
+$x = <span class="num">5</span>;
+<span class="fn">addTen</span>($x);
+echo $x; <span class="cm">// 15 — $x changed!</span></pre>
+        <div class="trick">PHP Features: <strong>SCOLD-FDE</strong> — Server-side · Cross-platform · Open-source · Loosely-typed · Database · Functions · Dynamic · Embeddable</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="q56-c" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Q6a — Associative Arrays in PHP</h2><span class="s3">★★★</span><span class="marks">[9M]</span></div>
+      <div class="cb">
+        <h3>Definition</h3>
+        <p>An <strong>associative array</strong> in PHP is an array where each element is stored as a <strong>key → value</strong> pair, and the key is a meaningful string (not a numeric index).</p>
+        <h3>Types of PHP Arrays</h3>
+        <table>
+          <tr><th>Type</th><th>Keys</th><th>Example</th></tr>
+          <tr><td>Indexed Array</td><td>Auto numeric (0,1,2...)</td><td>$arr = ["a","b","c"]</td></tr>
+          <tr><td>Associative Array</td><td>Named string keys</td><td>$arr = ["name"=>"Alice","age"=>22]</td></tr>
+          <tr><td>Multidimensional</td><td>Nested arrays</td><td>$arr = [["name"=>"Alice","marks"=>95]]</td></tr>
+        </table>
+        <pre><span class="cm">// Creating associative arrays</span>
+$student = <span class="fn">array</span>(
+    <span class="str">"name"</span>  =&gt; <span class="str">"Alice"</span>,
+    <span class="str">"age"</span>   =&gt; <span class="num">22</span>,
+    <span class="str">"grade"</span> =&gt; <span class="str">"A"</span>,
+    <span class="str">"cgpa"</span>  =&gt; <span class="num">9.2</span>
+);
+
+<span class="cm">// Short syntax (PHP 5.4+)</span>
+$marks = [
+    <span class="str">"Math"</span>    =&gt; <span class="num">95</span>,
+    <span class="str">"Physics"</span> =&gt; <span class="num">88</span>,
+    <span class="str">"English"</span> =&gt; <span class="num">79</span>
+];
+
+<span class="cm">// Accessing elements</span>
+echo $student[<span class="str">"name"</span>];     <span class="cm">// Alice</span>
+echo $marks[<span class="str">"Math"</span>];       <span class="cm">// 95</span>
+
+<span class="cm">// Modify &amp; Add</span>
+$student[<span class="str">"age"</span>]   = <span class="num">23</span>;        <span class="cm">// modify</span>
+$student[<span class="str">"email"</span>] = <span class="str">"a@b.com"</span>; <span class="cm">// add new key</span>
+
+<span class="cm">// Delete a key</span>
+<span class="fn">unset</span>($marks[<span class="str">"English"</span>]);
+
+<span class="cm">// Loop through (foreach is best)</span>
+<span class="kw">foreach</span> ($marks <span class="kw">as</span> $subject =&gt; $score) {
+    echo $subject . <span class="str">": "</span> . $score . <span class="str">"&lt;br&gt;"</span>;
+}
+
+<span class="cm">// Useful functions</span>
+echo <span class="fn">count</span>($marks);                           <span class="cm">// 2</span>
+echo <span class="fn">array_key_exists</span>(<span class="str">"Math"</span>, $marks) ? <span class="str">"yes"</span>:<span class="str">"no"</span>; <span class="cm">// yes</span>
+<span class="fn">ksort</span>($marks);     <span class="cm">// sort by key (Math, Physics)</span>
+<span class="fn">arsort</span>($marks);    <span class="cm">// sort by value descending, keep keys</span>
+print_r(<span class="fn">array_keys</span>($marks));    <span class="cm">// ["Math","Physics"]</span>
+print_r(<span class="fn">array_values</span>($marks));  <span class="cm">// [95,88]</span>
+echo <span class="fn">array_sum</span>($marks);         <span class="cm">// 183</span>
+
+<span class="cm">// Multidimensional Assoc. Array</span>
+$school = [
+    <span class="str">"Alice"</span> =&gt; [<span class="str">"Math"</span> =&gt; <span class="num">95</span>, <span class="str">"Sci"</span> =&gt; <span class="num">88</span>],
+    <span class="str">"Bob"</span>   =&gt; [<span class="str">"Math"</span> =&gt; <span class="num">72</span>, <span class="str">"Sci"</span> =&gt; <span class="num">80</span>]
+];
+echo $school[<span class="str">"Alice"</span>][<span class="str">"Math"</span>]; <span class="cm">// 95</span>
+
+<span class="kw">foreach</span> ($school <span class="kw">as</span> $name =&gt; $subj) {
+    echo $name . <span class="str">": Math="</span> . $subj[<span class="str">"Math"</span>] . <span class="str">"&lt;br&gt;"</span>;
+}</pre>
+        <div class="trick">Assoc Array: <strong>Key maps to Value</strong> — like a dictionary/HashMap. Keys must be unique. foreach($arr as $k =&gt; $v) is the standard loop.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="q56-d" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Q6b — AJAX: Purpose &amp; Example</h2><span class="s3">★★★</span><span class="marks">[9M]</span></div>
+      <div class="cb">
+        <h3>Definition</h3>
+        <p><strong>AJAX</strong> (Asynchronous JavaScript and XML) is a web development technique that allows a webpage to communicate with a server and update parts of the page <strong>without reloading</strong> the entire page.</p>
+        <div class="note">💡 AJAX is not a language — it's a technique combining: JavaScript + XMLHttpRequest/fetch + JSON/XML + DOM manipulation.</div>
+        <h3>AJAX Architecture</h3>
+        <svg viewBox="0 0 680 190" style="width:100%;max-width:680px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="190" fill="#010409" rx="8"/>
+          <defs><marker id="mf" markerWidth="7" markerHeight="7" refX="3.5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#58a6ff"/></marker>
+          <marker id="mf2" markerWidth="7" markerHeight="7" refX="3.5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3fb950"/></marker></defs>
+          <rect x="10" y="55" width="130" height="80" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+          <text x="75" y="82" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">Browser</text>
+          <text x="75" y="97" text-anchor="middle" fill="#c8d1da" font-size="9">HTML + DOM</text>
+          <text x="75" y="111" text-anchor="middle" fill="#c8d1da" font-size="9">JavaScript</text>
+          <text x="75" y="124" text-anchor="middle" fill="#c8d1da" font-size="9">XHR / fetch()</text>
+          <rect x="265" y="55" width="150" height="80" rx="6" fill="#1f6feb"/>
+          <text x="340" y="82" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">AJAX Engine</text>
+          <text x="340" y="97" text-anchor="middle" fill="#c8d1da" font-size="9">XMLHttpRequest</text>
+          <text x="340" y="111" text-anchor="middle" fill="#c8d1da" font-size="9">Async calls</text>
+          <text x="340" y="124" text-anchor="middle" fill="#c8d1da" font-size="9">Callbacks</text>
+          <rect x="540" y="55" width="130" height="80" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+          <text x="605" y="82" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="bold">Web Server</text>
+          <text x="605" y="97" text-anchor="middle" fill="#c8d1da" font-size="9">PHP/Java</text>
+          <text x="605" y="111" text-anchor="middle" fill="#c8d1da" font-size="9">Database</text>
+          <text x="605" y="124" text-anchor="middle" fill="#c8d1da" font-size="9">Returns JSON</text>
+          <line x1="140" y1="85" x2="263" y2="85" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#mf)"/>
+          <text x="202" y="78" text-anchor="middle" fill="#8b949e" font-size="9">① JS event fires</text>
+          <line x1="415" y1="85" x2="538" y2="85" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#mf)"/>
+          <text x="476" y="78" text-anchor="middle" fill="#8b949e" font-size="9">② HTTP Request</text>
+          <line x1="538" y1="110" x2="415" y2="110" stroke="#3fb950" stroke-width="1.5" marker-end="url(#mf2)"/>
+          <text x="476" y="128" text-anchor="middle" fill="#3fb950" font-size="9">③ JSON Response</text>
+          <line x1="263" y1="110" x2="140" y2="110" stroke="#3fb950" stroke-width="1.5" marker-end="url(#mf2)"/>
+          <text x="202" y="128" text-anchor="middle" fill="#8b949e" font-size="9">④ Update DOM</text>
+          <rect x="130" y="150" width="420" height="24" rx="4" fill="#21262d"/>
+          <text x="340" y="166" text-anchor="middle" fill="#e3b341" font-size="10" font-weight="bold">Page does NOT reload — only the specific section updates</text>
+        </svg>
+        <h4>Method 1: XMLHttpRequest (Traditional)</h4>
+        <pre><span class="cm">// Step 1: Create XHR object</span>
+<span class="kw">let</span> xhr = <span class="kw">new</span> XMLHttpRequest();
+
+<span class="cm">// Step 2: Configure request</span>
+xhr.<span class="fn">open</span>(<span class="str">"GET"</span>, <span class="str">"data.php?id=5"</span>, <span class="kw">true</span>); <span class="cm">// true = async</span>
+
+<span class="cm">// Step 3: Handle response</span>
+xhr.onreadystatechange = <span class="kw">function</span>() {
+    <span class="kw">if</span> (xhr.readyState === <span class="num">4</span> &amp;&amp; xhr.status === <span class="num">200</span>) {
+        <span class="kw">let</span> data = JSON.<span class="fn">parse</span>(xhr.responseText);
+        document.<span class="fn">getElementById</span>(<span class="str">"result"</span>).innerHTML =
+            <span class="str">"Name: "</span> + data.name + <span class="str">" Marks: "</span> + data.marks;
+    }
+};
+
+<span class="cm">// Step 4: Send request</span>
+xhr.<span class="fn">send</span>();</pre>
+        <h4>Method 2: Fetch API (Modern — ES6)</h4>
+        <pre><span class="fn">fetch</span>(<span class="str">"data.php"</span>)
+  .<span class="fn">then</span>(res =&gt; res.<span class="fn">json</span>())       <span class="cm">// parse JSON</span>
+  .<span class="fn">then</span>(data =&gt; {
+      document.<span class="fn">getElementById</span>(<span class="str">"name"</span>).textContent = data.name;
+      document.<span class="fn">getElementById</span>(<span class="str">"marks"</span>).textContent = data.marks;
+  })
+  .<span class="fn">catch</span>(err =&gt; console.<span class="fn">error</span>(<span class="str">"Error:"</span>, err));
+
+<span class="cm">// POST request with fetch</span>
+<span class="fn">fetch</span>(<span class="str">"save.php"</span>, {
+    method: <span class="str">"POST"</span>,
+    headers: { <span class="str">"Content-Type"</span>: <span class="str">"application/json"</span> },
+    body: JSON.<span class="fn">stringify</span>({ name: <span class="str">"Alice"</span>, marks: <span class="num">95</span> })
+}).<span class="fn">then</span>(res =&gt; res.<span class="fn">text</span>()).<span class="fn">then</span>(console.<span class="fn">log</span>);</pre>
+        <h4>Server-side: data.php</h4>
+        <pre><span class="cm">&lt;?php</span>
+header(<span class="str">"Content-Type: application/json"</span>);
+header(<span class="str">"Access-Control-Allow-Origin: *"</span>);
+$data = [<span class="str">"name"</span> =&gt; <span class="str">"Alice"</span>, <span class="str">"marks"</span> =&gt; <span class="num">95</span>];
+echo <span class="fn">json_encode</span>($data);
+<span class="cm">?&gt;</span></pre>
+        <table>
+          <tr><th>readyState</th><th>Meaning</th></tr>
+          <tr><td>0</td><td>UNSENT — open() not called yet</td></tr>
+          <tr><td>1</td><td>OPENED — open() called</td></tr>
+          <tr><td>2</td><td>HEADERS_RECEIVED — headers available</td></tr>
+          <tr><td>3</td><td>LOADING — response downloading</td></tr>
+          <tr><td>4</td><td>DONE — response complete ✓</td></tr>
+        </table>
+        <div class="trick">AJAX = <strong>A</strong>synchronous <strong>J</strong>avaScript <strong>A</strong>nd <strong>X</strong>ML. Modern apps use JSON not XML. Check: readyState==4 AND status==200.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="q56-e" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Extra — AngularJS Directives &amp; WAP/WML</h2><span class="s2">★★</span><span class="marks">[9M each]</span></div>
+      <div class="cb">
+        <h3>AngularJS</h3>
+        <p><strong>AngularJS</strong> (v1.x) is a Google JavaScript MVC framework for building Single Page Applications (SPAs). It extends HTML with custom attributes called <strong>directives</strong>.</p>
+        <h4>Key Directives</h4>
+        <table>
+          <tr><th>Directive</th><th>Purpose</th><th>Example</th></tr>
+          <tr><td>ng-app</td><td>Define root element of Angular app</td><td>&lt;html ng-app="myApp"&gt;</td></tr>
+          <tr><td>ng-controller</td><td>Attach controller to element</td><td>&lt;div ng-controller="Ctrl"&gt;</td></tr>
+          <tr><td>ng-model</td><td>Two-way data binding on input</td><td>&lt;input ng-model="name"&gt;</td></tr>
+          <tr><td>ng-bind</td><td>One-way binding to element text</td><td>&lt;span ng-bind="name"&gt;</td></tr>
+          <tr><td>ng-repeat</td><td>Loop over collection</td><td>&lt;li ng-repeat="x in items"&gt;</td></tr>
+          <tr><td>ng-if</td><td>Conditionally add/remove from DOM</td><td>&lt;p ng-if="show"&gt;</td></tr>
+          <tr><td>ng-show/ng-hide</td><td>Toggle visibility (stays in DOM)</td><td>&lt;div ng-show="isLoggedIn"&gt;</td></tr>
+          <tr><td>ng-click</td><td>Click event handler</td><td>&lt;button ng-click="save()"&gt;</td></tr>
+          <tr><td>ng-class</td><td>Dynamic CSS class binding</td><td>&lt;div ng-class="{active: isActive}"&gt;</td></tr>
+          <tr><td>ng-submit</td><td>Handle form submission</td><td>&lt;form ng-submit="login()"&gt;</td></tr>
+          <tr><td>ng-include</td><td>Include external HTML template</td><td>&lt;div ng-include="'nav.html'"&gt;</td></tr>
+          <tr><td>ng-disabled</td><td>Conditionally disable element</td><td>&lt;button ng-disabled="!valid"&gt;</td></tr>
+        </table>
+        <pre><span class="tag">&lt;html</span> <span class="attr">ng-app</span>=<span class="str">"myApp"</span><span class="tag">&gt;&lt;body</span> <span class="attr">ng-controller</span>=<span class="str">"StudentCtrl"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">ng-model</span>=<span class="str">"name"</span> <span class="attr">placeholder</span>=<span class="str">"Enter name"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Hello, {{ name }}!<span class="tag">&lt;/p&gt;</span>  <span class="cm">&lt;!-- Expression binding --&gt;</span>
+
+  <span class="tag">&lt;ul&gt;</span>
+    <span class="tag">&lt;li</span> <span class="attr">ng-repeat</span>=<span class="str">"s in students"</span><span class="tag">&gt;</span>
+      {{ s.name }} — {{ s.marks }}
+    <span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;/ul&gt;</span>
+
+  <span class="tag">&lt;script&gt;</span>
+    angular.<span class="fn">module</span>(<span class="str">"myApp"</span>, [])
+      .<span class="fn">controller</span>(<span class="str">"StudentCtrl"</span>, <span class="kw">function</span>($scope) {
+        $scope.name = <span class="str">"Alice"</span>;
+        $scope.students = [
+          {name:<span class="str">"Alice"</span>, marks:<span class="num">95</span>},
+          {name:<span class="str">"Bob"</span>,   marks:<span class="num">82</span>}
+        ];
+      });
+  <span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;/body&gt;&lt;/html&gt;</span></pre>
+        <hr>
+        <h3>WAP Architecture &amp; WML</h3>
+        <p><strong>WAP</strong> (Wireless Application Protocol) is a standard for accessing internet on mobile/wireless devices. <strong>WML</strong> (Wireless Markup Language) is the XML-based markup language for WAP browsers.</p>
+        <svg viewBox="0 0 680 150" style="width:100%;max-width:680px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="150" fill="#010409" rx="8"/>
+          <defs><marker id="mg" markerWidth="7" markerHeight="7" refX="3.5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#58a6ff"/></marker></defs>
+          <rect x="10" y="45" width="110" height="60" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1"/>
+          <text x="65" y="70" text-anchor="middle" fill="#58a6ff" font-size="10" font-weight="bold">Mobile Device</text>
+          <text x="65" y="84" text-anchor="middle" fill="#8b949e" font-size="9">WAP Browser</text>
+          <text x="65" y="97" text-anchor="middle" fill="#8b949e" font-size="9">WML Renderer</text>
+          <rect x="185" y="35" width="140" height="80" rx="6" fill="#1f6feb"/>
+          <text x="255" y="62" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">WAP Gateway</text>
+          <text x="255" y="77" text-anchor="middle" fill="#c8d1da" font-size="9">Protocol Converter</text>
+          <text x="255" y="91" text-anchor="middle" fill="#c8d1da" font-size="9">WAP ↔ HTTP</text>
+          <text x="255" y="105" text-anchor="middle" fill="#c8d1da" font-size="9">WML ↔ HTML</text>
+          <rect x="390" y="45" width="130" height="60" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1"/>
+          <text x="455" y="70" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">Web Server</text>
+          <text x="455" y="84" text-anchor="middle" fill="#8b949e" font-size="9">PHP + MySQL</text>
+          <text x="455" y="97" text-anchor="middle" fill="#8b949e" font-size="9">WML Content</text>
+          <rect x="580" y="45" width="90" height="60" rx="6" fill="#161b22" stroke="#e3b341" stroke-width="1"/>
+          <text x="625" y="70" text-anchor="middle" fill="#e3b341" font-size="10" font-weight="bold">Database</text>
+          <line x1="120" y1="75" x2="183" y2="75" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#mg)"/>
+          <text x="152" y="68" text-anchor="middle" fill="#8b949e" font-size="8">WSP</text>
+          <line x1="325" y1="75" x2="388" y2="75" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#mg)"/>
+          <text x="357" y="68" text-anchor="middle" fill="#8b949e" font-size="8">HTTP</text>
+          <line x1="520" y1="75" x2="578" y2="75" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#mg)"/>
+          <text x="340" y="135" text-anchor="middle" fill="#8b949e" font-size="9">WAP Stack layers: WAE · WSP · WTP · WTLS · WDP (similar to OSI layers)</text>
+        </svg>
+        <pre><span class="tag">&lt;?xml version=</span><span class="str">"1.0"</span><span class="tag">?&gt;</span>
+<span class="tag">&lt;wml&gt;</span>
+  <span class="tag">&lt;card id=</span><span class="str">"home"</span> <span class="attr">title</span>=<span class="str">"Welcome"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Welcome to WAP!<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;do type=</span><span class="str">"accept"</span> <span class="attr">label</span>=<span class="str">"Next"</span><span class="tag">&gt;&lt;go href=</span><span class="str">"#info"</span><span class="tag">/&gt;&lt;/do&gt;</span>
+  <span class="tag">&lt;/card&gt;</span>
+  <span class="tag">&lt;card id=</span><span class="str">"info"</span> <span class="attr">title</span>=<span class="str">"Info"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;p&gt;</span>This is card 2 in the deck.<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/card&gt;</span>
+<span class="tag">&lt;/wml&gt;</span></pre>
+        <div class="trick">WAP Stack: <strong>WWTW-D</strong> — WAE · WSP · WTP · WTLS · WDP. WML uses Decks (like websites) containing Cards (like pages).</div>
+      </div>
+    </div>
+  </div>
+</div><!-- end q56 -->
+
+<!-- ══════════════════════ Q7/Q8 ══════════════════════ -->
+<div id="pg-q78" class="pg">
+  <div class="stabs">
+    <button class="stb on" onclick="gt('q78','a',this)">Q7a: Bootstrap</button>
+    <button class="stb" onclick="gt('q78','b',this)">Q7b: EJB 3-Tier</button>
+    <button class="stb" onclick="gt('q78','c',this)">Q8a: Entity vs Session Bean</button>
+    <button class="stb" onclick="gt('q78','d',this)">Q8b: EJB Types &amp; Session Beans</button>
+    <button class="stb" onclick="gt('q78','e',this)">Extra: JSF · SOAP vs REST · Spring</button>
+  </div>
+
+  <div id="q78-a" class="sp on">
+    <div class="card">
+      <div class="ch"><h2>Q7a — Bootstrap &amp; Button Styles</h2><span class="s2">★★</span><span class="marks">[9M]</span></div>
+      <div class="cb">
+        <h3>What is Bootstrap?</h3>
+        <p><strong>Bootstrap</strong> is a free, open-source front-end CSS framework originally created by Twitter. It enables rapid development of responsive, mobile-first web pages using pre-built CSS classes and JS plugins.</p>
+        <h3>Bootstrap Key Features</h3>
+        <table>
+          <tr><th>Feature</th><th>Description</th></tr>
+          <tr><td>12-Column Grid</td><td>Responsive grid that adapts to xs/sm/md/lg/xl screen sizes</td></tr>
+          <tr><td>Pre-styled Components</td><td>Buttons, navbars, cards, modals, alerts, forms, badges, breadcrumbs</td></tr>
+          <tr><td>Mobile-First</td><td>Base styles target mobile, then scale up with breakpoints</td></tr>
+          <tr><td>JS Plugins</td><td>Dropdown, carousel, tooltip, modal, collapse, tabs</td></tr>
+          <tr><td>Utility Classes</td><td>m-2, p-3, text-center, d-flex, bg-primary, text-white</td></tr>
+          <tr><td>Customizable</td><td>Override with custom CSS or compile with Sass variables</td></tr>
+          <tr><td>Cross-browser</td><td>Consistent UI on Chrome, Firefox, Safari, Edge, IE11</td></tr>
+        </table>
+        <h3>Bootstrap Button Styles — Full Program</h3>
+        <pre><span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html lang=</span><span class="str">"en"</span><span class="tag">&gt;&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="str">"UTF-8"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="str">"viewport"</span> <span class="attr">content</span>=<span class="str">"width=device-width, initial-scale=1"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;title&gt;</span>Bootstrap Buttons<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span>
+    <span class="attr">href</span>=<span class="str">"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body class=</span><span class="str">"p-4"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h3&gt;</span>Bootstrap Button Styles<span class="tag">&lt;/h3&gt;&lt;hr&gt;</span>
+
+  <span class="cm">&lt;!-- Solid Buttons --&gt;</span>
+  <span class="tag">&lt;h5&gt;</span>Solid Buttons:<span class="tag">&lt;/h5&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-default"</span><span class="tag">&gt;</span>Default<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-primary"</span><span class="tag">&gt;</span>Primary<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-success"</span><span class="tag">&gt;</span>Success<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-warning"</span><span class="tag">&gt;</span>Warning<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-danger"</span><span class="tag">&gt;</span>Danger<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-link"</span><span class="tag">&gt;</span>Link<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-info"</span><span class="tag">&gt;</span>Info<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-dark"</span><span class="tag">&gt;</span>Dark<span class="tag">&lt;/button&gt;</span>
+
+  <span class="cm">&lt;!-- Outline Buttons --&gt;</span>
+  <span class="tag">&lt;h5 class=</span><span class="str">"mt-3"</span><span class="tag">&gt;</span>Outline Buttons:<span class="tag">&lt;/h5&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-outline-primary"</span><span class="tag">&gt;</span>Outline Primary<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-outline-danger"</span><span class="tag">&gt;</span>Outline Danger<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-outline-success"</span><span class="tag">&gt;</span>Outline Success<span class="tag">&lt;/button&gt;</span>
+
+  <span class="cm">&lt;!-- Button Sizes --&gt;</span>
+  <span class="tag">&lt;h5 class=</span><span class="str">"mt-3"</span><span class="tag">&gt;</span>Sizes:<span class="tag">&lt;/h5&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-primary btn-lg"</span><span class="tag">&gt;</span>Large<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-primary"</span><span class="tag">&gt;</span>Normal<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button class=</span><span class="str">"btn btn-primary btn-sm"</span><span class="tag">&gt;</span>Small<span class="tag">&lt;/button&gt;</span>
+
+  <span class="cm">&lt;!-- Disabled + Block --&gt;</span>
+  <span class="tag">&lt;div class=</span><span class="str">"mt-3"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;button class=</span><span class="str">"btn btn-warning"</span> disabled<span class="tag">&gt;</span>Disabled<span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;button class=</span><span class="str">"btn btn-success btn-block mt-2"</span><span class="tag">&gt;</span>Block Button<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/body&gt;&lt;/html&gt;</span></pre>
+        <table>
+          <tr><th>Class</th><th>Color</th><th>Semantic Use</th></tr>
+          <tr><td>btn-primary</td><td>Blue</td><td>Main action — Submit, Save, Continue</td></tr>
+          <tr><td>btn-success</td><td>Green</td><td>Positive — Confirm, Complete</td></tr>
+          <tr><td>btn-warning</td><td>Yellow</td><td>Caution — Archive, Reset</td></tr>
+          <tr><td>btn-danger</td><td>Red</td><td>Destructive — Delete, Cancel</td></tr>
+          <tr><td>btn-info</td><td>Cyan</td><td>Informational — View Details</td></tr>
+          <tr><td>btn-link</td><td>Link-style</td><td>Subtle / secondary action</td></tr>
+          <tr><td>btn-default</td><td>Grey/White</td><td>Neutral, unemphasized</td></tr>
+        </table>
+        <div class="trick">Bootstrap Button colors: <strong>PSWIDL</strong> — Primary · Success · Warning · Info · Danger · Link</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="q78-b" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Q7b — EJB Three-Tier Architecture</h2><span class="s2">★★</span><span class="marks">[9M]</span></div>
+      <div class="cb">
+        <h3>Three-Tier Architecture Overview</h3>
+        <p>Three-tier architecture divides an application into three logical and physical tiers: Presentation, Business Logic, and Data. EJB (Enterprise JavaBeans) primarily occupies the <strong>middle (business logic) tier</strong>.</p>
+        <svg viewBox="0 0 680 310" style="width:100%;max-width:680px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="310" fill="#010409" rx="8"/>
+          <defs><marker id="mh" markerWidth="7" markerHeight="7" refX="3.5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#58a6ff"/></marker>
+          <marker id="mh2" markerWidth="7" markerHeight="7" refX="3.5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#3fb950"/></marker></defs>
+          <!-- TIER 1 -->
+          <rect x="12" y="20" width="190" height="260" rx="8" fill="#0d1927" stroke="#58a6ff" stroke-width="1.5"/>
+          <text x="107" y="44" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="bold">TIER 1</text>
+          <text x="107" y="58" text-anchor="middle" fill="#8b949e" font-size="10">Presentation Layer</text>
+          <rect x="24" y="68" width="166" height="36" rx="5" fill="#1f6feb22" stroke="#1f6feb" stroke-width="1"/>
+          <text x="107" y="90" text-anchor="middle" fill="#58a6ff" font-size="10">Web Browser / Client</text>
+          <rect x="24" y="112" width="166" height="36" rx="5" fill="#1f6feb22" stroke="#1f6feb" stroke-width="1"/>
+          <text x="107" y="134" text-anchor="middle" fill="#58a6ff" font-size="10">JSP / HTML Pages</text>
+          <rect x="24" y="156" width="166" height="36" rx="5" fill="#1f6feb22" stroke="#1f6feb" stroke-width="1"/>
+          <text x="107" y="178" text-anchor="middle" fill="#58a6ff" font-size="10">Servlets / Bootstrap</text>
+          <rect x="24" y="200" width="166" height="36" rx="5" fill="#1f6feb22" stroke="#1f6feb" stroke-width="1"/>
+          <text x="107" y="222" text-anchor="middle" fill="#58a6ff" font-size="10">JSF Components</text>
+          <!-- TIER 2 -->
+          <rect x="244" y="20" width="192" height="260" rx="8" fill="#0d2010" stroke="#3fb950" stroke-width="1.5"/>
+          <text x="340" y="44" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">TIER 2</text>
+          <text x="340" y="58" text-anchor="middle" fill="#8b949e" font-size="10">Business Logic Layer</text>
+          <rect x="256" y="68" width="168" height="36" rx="5" fill="#23863611" stroke="#238636" stroke-width="1"/>
+          <text x="340" y="82" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="bold">EJB Container</text>
+          <text x="340" y="96" text-anchor="middle" fill="#8b949e" font-size="9">JBoss / GlassFish / WebLogic</text>
+          <rect x="256" y="112" width="168" height="36" rx="5" fill="#23863611" stroke="#238636" stroke-width="1"/>
+          <text x="340" y="128" text-anchor="middle" fill="#3fb950" font-size="10">Stateless Session Beans</text>
+          <text x="340" y="142" text-anchor="middle" fill="#8b949e" font-size="9">Business operations</text>
+          <rect x="256" y="156" width="168" height="36" rx="5" fill="#23863611" stroke="#238636" stroke-width="1"/>
+          <text x="340" y="172" text-anchor="middle" fill="#3fb950" font-size="10">Stateful Session Beans</text>
+          <text x="340" y="186" text-anchor="middle" fill="#8b949e" font-size="9">Per-user workflows</text>
+          <rect x="256" y="200" width="168" height="36" rx="5" fill="#23863611" stroke="#238636" stroke-width="1"/>
+          <text x="340" y="216" text-anchor="middle" fill="#3fb950" font-size="10">Message-Driven Beans</text>
+          <text x="340" y="230" text-anchor="middle" fill="#8b949e" font-size="9">Async processing</text>
+          <!-- TIER 3 -->
+          <rect x="476" y="20" width="192" height="260" rx="8" fill="#1a0d2a" stroke="#bc8cff" stroke-width="1.5"/>
+          <text x="572" y="44" text-anchor="middle" fill="#bc8cff" font-size="12" font-weight="bold">TIER 3</text>
+          <text x="572" y="58" text-anchor="middle" fill="#8b949e" font-size="10">Data / Resource Layer</text>
+          <rect x="488" y="68" width="168" height="36" rx="5" fill="#6e40c911" stroke="#6e40c9" stroke-width="1"/>
+          <text x="572" y="90" text-anchor="middle" fill="#bc8cff" font-size="10">JDBC / JPA / Hibernate</text>
+          <rect x="488" y="112" width="168" height="36" rx="5" fill="#6e40c911" stroke="#6e40c9" stroke-width="1"/>
+          <text x="572" y="134" text-anchor="middle" fill="#bc8cff" font-size="10">Database Server</text>
+          <rect x="488" y="156" width="168" height="36" rx="5" fill="#6e40c911" stroke="#6e40c9" stroke-width="1"/>
+          <text x="572" y="178" text-anchor="middle" fill="#bc8cff" font-size="10">MySQL / Oracle / PostgreSQL</text>
+          <rect x="488" y="200" width="168" height="36" rx="5" fill="#6e40c911" stroke="#6e40c9" stroke-width="1"/>
+          <text x="572" y="222" text-anchor="middle" fill="#bc8cff" font-size="10">Legacy Systems / EIS</text>
+          <!-- Arrows -->
+          <line x1="202" y1="150" x2="242" y2="150" stroke="#58a6ff" stroke-width="2" marker-end="url(#mh)"/>
+          <line x1="242" y1="168" x2="202" y2="168" stroke="#3fb950" stroke-width="2" marker-end="url(#mh2)"/>
+          <text x="222" y="145" text-anchor="middle" fill="#8b949e" font-size="8">HTTP/RMI</text>
+          <text x="222" y="183" text-anchor="middle" fill="#8b949e" font-size="8">Response</text>
+          <line x1="436" y1="150" x2="474" y2="150" stroke="#58a6ff" stroke-width="2" marker-end="url(#mh)"/>
+          <line x1="474" y1="168" x2="436" y2="168" stroke="#3fb950" stroke-width="2" marker-end="url(#mh2)"/>
+          <text x="455" y="145" text-anchor="middle" fill="#8b949e" font-size="8">JDBC/JPA</text>
+          <text x="455" y="183" text-anchor="middle" fill="#8b949e" font-size="8">ResultSet</text>
+          <text x="340" y="295" text-anchor="middle" fill="#e3b341" font-size="10" font-weight="bold">EJB handles Transactions, Security, Pooling, Persistence in Tier 2</text>
+        </svg>
+        <div class="trick">3-Tier: <strong>P-B-D</strong> — Presentation (JSP/Browser) · Business (EJB Container) · Data (DB/JDBC)</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="q78-c" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Q8a — Entity Bean vs Session Bean &amp; Callback Methods</h2><span class="s3">★★★</span><span class="marks">[9M]</span></div>
+      <div class="cb">
+        <h3>EJB Bean Types Overview</h3>
+        <svg viewBox="0 0 680 170" style="width:100%;max-width:680px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="680" height="170" fill="#010409" rx="8"/>
+          <rect x="270" y="12" width="140" height="34" rx="6" fill="#1f6feb"/><text x="340" y="34" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">EJB</text>
+          <line x1="340" y1="46" x2="130" y2="78" stroke="#30363d" stroke-width="1.5"/>
+          <line x1="340" y1="46" x2="340" y2="78" stroke="#30363d" stroke-width="1.5"/>
+          <line x1="340" y1="46" x2="560" y2="78" stroke="#30363d" stroke-width="1.5"/>
+          <rect x="40" y="78" width="180" height="38" rx="6" fill="#238636"/><text x="130" y="96" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">Session Bean</text><text x="130" y="109" text-anchor="middle" fill="#c8d1da" font-size="9">Business workflow</text>
+          <rect x="260" y="78" width="160" height="38" rx="6" fill="#9e6a03"/><text x="340" y="96" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">Entity Bean</text><text x="340" y="109" text-anchor="middle" fill="#c8d1da" font-size="9">Persistent data record</text>
+          <rect x="470" y="78" width="200" height="38" rx="6" fill="#6e40c9"/><text x="570" y="96" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">Message-Driven Bean</text><text x="570" y="109" text-anchor="middle" fill="#c8d1da" font-size="9">Async JMS listener</text>
+          <line x1="130" y1="116" x2="70" y2="145" stroke="#30363d" stroke-width="1"/>
+          <line x1="130" y1="116" x2="130" y2="145" stroke="#30363d" stroke-width="1"/>
+          <line x1="130" y1="116" x2="195" y2="145" stroke="#30363d" stroke-width="1"/>
+          <rect x="20"  y="145" width="96" height="20" rx="4" fill="#21262d" stroke="#238636" stroke-width="1"/><text x="68"  y="159" text-anchor="middle" fill="#3fb950" font-size="9">Stateless</text>
+          <rect x="84"  y="145" width="92" height="20" rx="4" fill="#21262d" stroke="#238636" stroke-width="1"/><text x="130" y="159" text-anchor="middle" fill="#3fb950" font-size="9">Stateful</text>
+          <rect x="150" y="145" width="90" height="20" rx="4" fill="#21262d" stroke="#238636" stroke-width="1"/><text x="195" y="159" text-anchor="middle" fill="#3fb950" font-size="9">Singleton</text>
+          <line x1="340" y1="116" x2="300" y2="145" stroke="#30363d" stroke-width="1"/>
+          <line x1="340" y1="116" x2="380" y2="145" stroke="#30363d" stroke-width="1"/>
+          <rect x="254" y="145" width="90" height="20" rx="4" fill="#21262d" stroke="#9e6a03" stroke-width="1"/><text x="299" y="159" text-anchor="middle" fill="#e3b341" font-size="9">BMP</text>
+          <rect x="348" y="145" width="90" height="20" rx="4" fill="#21262d" stroke="#9e6a03" stroke-width="1"/><text x="393" y="159" text-anchor="middle" fill="#e3b341" font-size="9">CMP</text>
+        </svg>
+        <h3>Entity Bean vs Session Bean</h3>
+        <table>
+          <tr><th>Feature</th><th>Entity Bean</th><th>Session Bean</th></tr>
+          <tr><td>Purpose</td><td>Represents persistent data (a DB table row)</td><td>Represents a business operation or task</td></tr>
+          <tr><td>Persistence</td><td>Persists in DB even if EJB server restarts</td><td>Lives only for client session duration</td></tr>
+          <tr><td>Primary Key</td><td>Has a unique primary key</td><td>No primary key</td></tr>
+          <tr><td>Sharing</td><td>Can be shared by multiple clients</td><td>Dedicated to one client (usually)</td></tr>
+          <tr><td>State</td><td>Always stateful (represents DB row)</td><td>Stateful OR Stateless OR Singleton</td></tr>
+          <tr><td>DB Interaction</td><td>Directly maps to DB table rows</td><td>Uses JDBC/JPA internally</td></tr>
+          <tr><td>Example</td><td>StudentBean, ProductBean, OrderBean</td><td>LoginBean, ShoppingCartBean</td></tr>
+          <tr><td>Interface</td><td>javax.ejb.EntityBean</td><td>javax.ejb.SessionBean</td></tr>
+          <tr><td>EJB 3+ Equiv.</td><td>JPA @Entity class</td><td>@Stateless / @Stateful annotation</td></tr>
+        </table>
+        <h3>Callback Methods</h3>
+        <p>Callback methods are lifecycle methods called by the <strong>EJB container</strong> at specific lifecycle events. The developer overrides them.</p>
+        <h4>Session Bean Callbacks</h4>
+        <table>
+          <tr><th>Method</th><th>When Called</th><th>Purpose</th></tr>
+          <tr><td>setSessionContext(ctx)</td><td>After instantiation</td><td>Store context reference</td></tr>
+          <tr><td>ejbCreate()</td><td>Client calls create()</td><td>Initialize bean</td></tr>
+          <tr><td>ejbRemove()</td><td>Client calls remove()</td><td>Cleanup before removal</td></tr>
+          <tr><td>ejbActivate()</td><td>Stateful: restored from storage</td><td>Re-acquire resources</td></tr>
+          <tr><td>ejbPassivate()</td><td>Stateful: saved to free memory</td><td>Release resources</td></tr>
+        </table>
+        <h4>Entity Bean Callbacks</h4>
+        <table>
+          <tr><th>Method</th><th>When Called</th></tr>
+          <tr><td>ejbCreate()</td><td>New record being inserted into DB</td></tr>
+          <tr><td>ejbPostCreate()</td><td>After ejbCreate() completes</td></tr>
+          <tr><td>ejbLoad()</td><td>Before container reads state from DB (synchronize)</td></tr>
+          <tr><td>ejbStore()</td><td>Before container writes state to DB (persist)</td></tr>
+          <tr><td>ejbRemove()</td><td>Record deleted from DB</td></tr>
+          <tr><td>ejbActivate()</td><td>Entity moved from pool to ready state</td></tr>
+          <tr><td>ejbPassivate()</td><td>Entity returned to pool</td></tr>
+        </table>
+        <pre><span class="kw">public class</span> <span class="fn">CartBean</span> <span class="kw">implements</span> SessionBean {
+    <span class="kw">private</span> SessionContext ctx;
+    <span class="kw">private</span> ArrayList cart = <span class="kw">new</span> ArrayList();
+
+    <span class="kw">public void</span> <span class="fn">setSessionContext</span>(SessionContext c) { ctx = c; }
+    <span class="kw">public void</span> <span class="fn">ejbCreate</span>()   { cart.<span class="fn">clear</span>(); }
+    <span class="kw">public void</span> <span class="fn">ejbRemove</span>()  { cart = <span class="kw">null</span>; }
+    <span class="kw">public void</span> <span class="fn">ejbActivate</span>() { <span class="cm">/* restore resources */</span> }
+    <span class="kw">public void</span> <span class="fn">ejbPassivate</span>(){ <span class="cm">/* release resources */</span> }
+
+    <span class="cm">// Business method</span>
+    <span class="kw">public void</span> <span class="fn">addItem</span>(String item) { cart.<span class="fn">add</span>(item); }
+    <span class="kw">public</span> ArrayList <span class="fn">getCart</span>() { <span class="kw">return</span> cart; }
+}</pre>
+        <div class="trick">Session Callbacks: <strong>SC-CR-AP</strong> — Set Context · Create · Remove · Activate · Passivate</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="q78-d" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Q8b — EJB Types &amp; When to Use Session Beans</h2><span class="s3">★★★</span><span class="marks">[9M]</span></div>
+      <div class="cb">
+        <h3>Types of EJB</h3>
+        <h4>1. Stateless Session Bean</h4>
+        <ul>
+          <li>No conversational state between calls.</li>
+          <li>Container pools instances — reused across clients.</li>
+          <li>Fast and scalable. Annotated: <code>@Stateless</code></li>
+          <li>Example: Tax calculator, authentication service, email sender.</li>
+        </ul>
+        <h4>2. Stateful Session Bean</h4>
+        <ul>
+          <li>Maintains state across multiple calls for one client.</li>
+          <li>One instance per client session. Annotated: <code>@Stateful</code></li>
+          <li>Example: Shopping cart, multi-step form wizard, bank transfer workflow.</li>
+        </ul>
+        <h4>3. Singleton Session Bean (EJB 3.1+)</h4>
+        <ul>
+          <li>One instance per application, shared by all clients.</li>
+          <li>Annotated: <code>@Singleton</code></li>
+          <li>Example: App configuration, global counter, cache manager.</li>
+        </ul>
+        <h4>4. Entity Bean (Legacy — replaced by JPA)</h4>
+        <ul>
+          <li>BMP (Bean-Managed): developer writes JDBC code manually.</li>
+          <li>CMP (Container-Managed): container auto-generates DB access.</li>
+          <li>EJB 3+ replaced with <code>@Entity</code> JPA annotations.</li>
+        </ul>
+        <h4>5. Message-Driven Bean (MDB)</h4>
+        <ul>
+          <li>Asynchronous; listens for JMS (Java Message Service) messages.</li>
+          <li>Implements <code>MessageListener</code> interface. Annotated: <code>@MessageDriven</code></li>
+          <li>Example: Order processing queue, email notification system.</li>
+        </ul>
+
+        <h3>When to Use Session Beans</h3>
+        <table>
+          <tr><th>Situation</th><th>Bean Type</th><th>Reason</th></tr>
+          <tr><td>Calculate tax / currency conversion</td><td>@Stateless</td><td>No user state; poolable, fast</td></tr>
+          <tr><td>User login / authentication</td><td>@Stateless</td><td>Single-step, independent operation</td></tr>
+          <tr><td>Send email/SMS notifications</td><td>@Stateless</td><td>Fire-and-forget, no session needed</td></tr>
+          <tr><td>Shopping cart (multi-request)</td><td>@Stateful</td><td>Must remember items per user</td></tr>
+          <tr><td>Multi-step form wizard</td><td>@Stateful</td><td>Needs intermediate state across steps</td></tr>
+          <tr><td>Online banking transfer (3 steps)</td><td>@Stateful</td><td>Must track account, amount, confirm</td></tr>
+          <tr><td>Application configuration/settings</td><td>@Singleton</td><td>Shared globally, one instance</td></tr>
+          <tr><td>Application startup initialization</td><td>@Singleton + @Startup</td><td>Runs once at app deployment</td></tr>
+          <tr><td>Async order processing queue</td><td>@MessageDriven</td><td>Decoupled from client, JMS-based</td></tr>
+        </table>
+
+        <pre><span class="cm">// EJB 3.x Annotations (modern style)</span>
+
+<span class="cm">// Stateless Session Bean</span>
+@Stateless
+<span class="kw">public class</span> <span class="fn">TaxBean</span> {
+    <span class="kw">public double</span> <span class="fn">calculate</span>(<span class="kw">double</span> amount) {
+        return amount * <span class="num">0.18</span>; <span class="cm">// 18% GST</span>
+    }
+}
+
+<span class="cm">// Stateful Session Bean</span>
+@Stateful
+<span class="kw">public class</span> <span class="fn">CartBean</span> {
+    <span class="kw">private</span> List&lt;String&gt; items = <span class="kw">new</span> ArrayList&lt;&gt;();
+    <span class="kw">public void</span> <span class="fn">add</span>(String item) { items.<span class="fn">add</span>(item); }
+    <span class="kw">public</span> List&lt;String&gt; <span class="fn">getItems</span>() { <span class="kw">return</span> items; }
+    @Remove
+    <span class="kw">public void</span> <span class="fn">checkout</span>() { items.<span class="fn">clear</span>(); }
+}
+
+<span class="cm">// Singleton Session Bean</span>
+@Singleton @Startup
+<span class="kw">public class</span> <span class="fn">AppConfigBean</span> {
+    @PostConstruct
+    <span class="kw">public void</span> <span class="fn">init</span>() { System.out.<span class="fn">println</span>(<span class="str">"App started"</span>); }
+    <span class="kw">public</span> String <span class="fn">getVersion</span>() { <span class="kw">return</span> <span class="str">"2.0"</span>; }
+}</pre>
+        <div class="trick">Session Beans: <strong>SLEF-SS</strong> — Stateless (pool) · Stateful (1 client) · Singleton (1 app)</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="q78-e" class="sp">
+    <div class="card">
+      <div class="ch"><h2>Extra — JSF, SOAP vs REST, WordPress &amp; Spring</h2><span class="s2">★★</span><span class="marks">[9M]</span></div>
+      <div class="cb">
+        <h3>JSF (JavaServer Faces)</h3>
+        <p>JSF is a Java EE web framework for building <strong>component-based UIs</strong>. It manages the MVC lifecycle with pre-built UI components and managed beans.</p>
+        <ul>
+          <li><strong>UI Components:</strong> h:inputText, h:commandButton, h:dataTable, f:ajax</li>
+          <li><strong>Managed Beans:</strong> @ManagedBean / @Named + @RequestScoped / @SessionScoped</li>
+          <li><strong>Navigation:</strong> faces-config.xml navigation rules or implicit navigation</li>
+          <li><strong>Facelets:</strong> Default templating system using XHTML (JSF 2.0+)</li>
+          <li><strong>AJAX:</strong> Built-in via &lt;f:ajax execute="@form" render="@form"&gt;</li>
+        </ul>
+        <hr>
+        <h3>SOAP vs REST</h3>
+        <table>
+          <tr><th>Feature</th><th>SOAP</th><th>REST</th></tr>
+          <tr><td>Full Form</td><td>Simple Object Access Protocol</td><td>Representational State Transfer</td></tr>
+          <tr><td>Type</td><td>Protocol (strict rules)</td><td>Architectural style (flexible)</td></tr>
+          <tr><td>Format</td><td>XML only</td><td>JSON, XML, HTML, plain text</td></tr>
+          <tr><td>Transport</td><td>HTTP, SMTP, TCP, FTP</td><td>HTTP only</td></tr>
+          <tr><td>WSDL</td><td>Required (contract-based)</td><td>Not required (self-descriptive)</td></tr>
+          <tr><td>Stateless</td><td>Can be stateful or stateless</td><td>Always stateless</td></tr>
+          <tr><td>Performance</td><td>Slower (verbose XML, WS-* headers)</td><td>Faster (lightweight JSON)</td></tr>
+          <tr><td>Security</td><td>WS-Security built-in</td><td>HTTPS + OAuth 2.0 / JWT</td></tr>
+          <tr><td>Error handling</td><td>Standardized SOAP Fault element</td><td>HTTP status codes (200, 404, 500)</td></tr>
+          <tr><td>Caching</td><td>Not supported</td><td>Supported (GET requests cacheable)</td></tr>
+          <tr><td>Use Case</td><td>Enterprise, banking, healthcare, legacy</td><td>Web APIs, mobile, microservices</td></tr>
+        </table>
+        <hr>
+        <h3>WordPress</h3>
+        <ul>
+          <li>World's most popular CMS (~43% of all websites); built with PHP + MySQL.</li>
+          <li><strong>Themes</strong> control appearance; <strong>Plugins</strong> extend functionality (WooCommerce, Yoast SEO).</li>
+          <li>Admin Dashboard at <code>/wp-admin</code>; supports posts, pages, media, comments.</li>
+          <li>REST API available for headless/decoupled architectures.</li>
+        </ul>
+        <h3>Spring Framework</h3>
+        <ul>
+          <li>Open-source Java framework providing IoC (Inversion of Control) and DI (Dependency Injection).</li>
+          <li><strong>Spring MVC:</strong> DispatcherServlet + @Controller + @RequestMapping for web layer.</li>
+          <li><strong>Spring Boot:</strong> Convention-over-config; embedded Tomcat; starter POMs; auto-configuration.</li>
+          <li><strong>Spring Data:</strong> Simplified DB access with JPA, MongoDB, Redis repositories.</li>
+          <li><strong>Spring Security:</strong> Authentication, authorization, CSRF, OAuth2.</li>
+          <li><strong>Spring AOP:</strong> Aspect-Oriented Programming — logging, transactions as cross-cutting concerns.</li>
+        </ul>
+        <pre><span class="cm">// Spring Boot REST Controller</span>
+@RestController
+@RequestMapping(<span class="str">"/api/students"</span>)
+<span class="kw">public class</span> <span class="fn">StudentController</span> {
+    @Autowired
+    <span class="kw">private</span> StudentService service;
+
+    @GetMapping(<span class="str">"/{id}"</span>)
+    <span class="kw">public</span> ResponseEntity&lt;Student&gt; <span class="fn">getById</span>(@PathVariable Long id) {
+        Student s = service.<span class="fn">findById</span>(id);
+        <span class="kw">return</span> ResponseEntity.<span class="fn">ok</span>(s);
+    }
+
+    @PostMapping
+    <span class="kw">public</span> ResponseEntity&lt;Student&gt; <span class="fn">create</span>(@RequestBody Student s) {
+        <span class="kw">return</span> ResponseEntity.<span class="fn">status</span>(<span class="num">201</span>).<span class="fn">body</span>(service.<span class="fn">save</span>(s));
+    }
+}</pre>
+      </div>
+    </div>
+  </div>
+</div><!-- end q78 -->
+
+<!-- ══════════════════════ LAST-DAY REVISION ══════════════════════ -->
+<div id="pg-rev" class="pg">
+  <div class="hero">
+    <h1>🔥 Last-Day Revision Handbook</h1>
+    <p>Top 20 questions · Key formulas · Mnemonics · 1-line definitions</p>
+  </div>
+
+  <div class="card">
+    <div class="ch"><h2>🎯 Top 20 High-Probability Questions</h2></div>
+    <div class="cb">
+      <div class="top20-item"><span class="t20n">1</span><span class="t20q"><span class="s3">★★★</span> JavaScript features + array creation and reading [9M]</span><span class="t20u">Unit I Q1a</span></div>
+      <div class="top20-item"><span class="t20n">2</span><span class="t20q"><span class="s3">★★★</span> JavaScript built-in objects — explain Math/Date/String [8M]</span><span class="t20u">Unit I Q1b</span></div>
+      <div class="top20-item"><span class="t20n">3</span><span class="t20q"><span class="s3">★★★</span> DOM Levels + DOM tree with diagram + manipulation example [9M]</span><span class="t20u">Unit I Q2a</span></div>
+      <div class="top20-item"><span class="t20n">4</span><span class="t20q"><span class="s2">★★</span> jQuery Events (click, hover, keypress) + on()/off() [8M]</span><span class="t20u">Unit I Q2b</span></div>
+      <div class="top20-item"><span class="t20n">5</span><span class="t20q"><span class="s2">★★</span> JSP program: page directive, scriptlet, expression, comment [8M]</span><span class="t20u">Unit II Q3a</span></div>
+      <div class="top20-item"><span class="t20n">6</span><span class="t20q"><span class="s3">★★★</span> JSP scripting elements + actions (jsp:include, useBean) + templates + 9 implicit objects [9M]</span><span class="t20u">Unit II Q3b</span></div>
+      <div class="top20-item"><span class="t20n">7</span><span class="t20q"><span class="s2">★★</span> JSP advantages over servlet + JSP lifecycle with diagram [8M]</span><span class="t20u">Unit II Q4a</span></div>
+      <div class="top20-item"><span class="t20n">8</span><span class="t20q"><span class="s3">★★★</span> Struts MVC architecture diagram + components + benefits [9M]</span><span class="t20u">Unit II Q4b</span></div>
+      <div class="top20-item"><span class="t20n">9</span><span class="t20q"><span class="s3">★★★</span> PHP sessions &amp; cookies — difference, code, flow diagram [9M]</span><span class="t20u">Unit III Q5a</span></div>
+      <div class="top20-item"><span class="t20n">10</span><span class="t20q"><span class="s2">★★</span> PHP features (10) + user-defined/recursive/variadic functions [9M]</span><span class="t20u">Unit III Q5b</span></div>
+      <div class="top20-item"><span class="t20n">11</span><span class="t20q"><span class="s3">★★★</span> PHP associative arrays — create, access, foreach, functions [9M]</span><span class="t20u">Unit III Q6a</span></div>
+      <div class="top20-item"><span class="t20n">12</span><span class="t20q"><span class="s3">★★★</span> AJAX — purpose, XHR, fetch(), readyState table, server-side PHP [9M]</span><span class="t20u">Unit III Q6b</span></div>
+      <div class="top20-item"><span class="t20n">13</span><span class="t20q"><span class="s2">★★</span> Bootstrap features + button styles program [9M]</span><span class="t20u">Unit IV Q7a</span></div>
+      <div class="top20-item"><span class="t20n">14</span><span class="t20q"><span class="s2">★★</span> EJB 3-tier architecture diagram — Presentation, Business (EJB), Data [9M]</span><span class="t20u">Unit IV Q7b</span></div>
+      <div class="top20-item"><span class="t20n">15</span><span class="t20q"><span class="s3">★★★</span> Entity Bean vs Session Bean comparison table [9M]</span><span class="t20u">Unit IV Q8a</span></div>
+      <div class="top20-item"><span class="t20n">16</span><span class="t20q"><span class="s3">★★★</span> EJB callback methods — Session (5) + Entity (7) [9M]</span><span class="t20u">Unit IV Q8a</span></div>
+      <div class="top20-item"><span class="t20n">17</span><span class="t20q"><span class="s3">★★★</span> Types of EJB (Stateless, Stateful, Singleton, MDB) with @annotations [9M]</span><span class="t20u">Unit IV Q8b</span></div>
+      <div class="top20-item"><span class="t20n">18</span><span class="t20q"><span class="s2">★★</span> SOAP vs REST — 10-row comparison table [9M]</span><span class="t20u">Unit IV Bonus</span></div>
+      <div class="top20-item"><span class="t20n">19</span><span class="t20q"><span class="s2">★★</span> AngularJS directives — 12 directives with examples [9M]</span><span class="t20u">Unit III Bonus</span></div>
+      <div class="top20-item"><span class="t20n">20</span><span class="t20q"><span class="s2">★★</span> doGet vs doPost — 8-row comparison table [8M]</span><span class="t20u">Unit II Bonus</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><h2>🧠 Mnemonics &amp; Memory Tricks</h2></div>
+    <div class="cb">
+      <div class="mnemonic"><strong>JavaScript Features (FIPS):</strong> <strong>F</strong>irst-class functions · <strong>I</strong>nterpreted · <strong>P</strong>rototype-based · <strong>S</strong>ingle-threaded event-loop</div>
+      <div class="mnemonic"><strong>JS Built-in Objects (SARMDBN):</strong> <strong>S</strong>tring · <strong>A</strong>rray · <strong>R</strong>egExp · <strong>M</strong>ath · <strong>D</strong>ate · <strong>B</strong>oolean · <strong>N</strong>umber</div>
+      <div class="mnemonic"><strong>DOM Levels (ZOCL):</strong> <strong>Z</strong>ero (pre-standard) · <strong>O</strong>ne (getElementById) · <strong>C</strong>ustom/Two (addEventListener) · <strong>L</strong>iving Standard (querySelector)</div>
+      <div class="mnemonic"><strong>JSP Implicit Objects (RR-OSA-CPE):</strong> <strong>R</strong>equest · <strong>R</strong>esponse · <strong>O</strong>ut · <strong>S</strong>ession · <strong>A</strong>pplication · <strong>C</strong>onfig · <strong>P</strong>ageContext · <strong>P</strong>age · <strong>E</strong>xception</div>
+      <div class="mnemonic"><strong>JSP Lifecycle (TC-CL-I-S-D):</strong> <strong>T</strong>ranslate · <strong>C</strong>ompile · <strong>C</strong>lassLoad · <strong>I</strong>nit · <strong>S</strong>ervice · <strong>D</strong>estroy</div>
+      <div class="mnemonic"><strong>Struts Components (SAAF-JV):</strong> <strong>S</strong>ervlet (Action) · <strong>A</strong>ctionForm · <strong>A</strong>ction · <strong>F</strong>orward · <strong>J</strong>SP · <strong>V</strong>alidation</div>
+      <div class="mnemonic"><strong>Cookie vs Session:</strong> Cookie = Client keeps data | Session = Server keeps data, sends only an ID cookie</div>
+      <div class="mnemonic"><strong>AJAX readyState:</strong> 0=Unsent · 1=Opened · 2=Headers · 3=Loading · 4=Done ✓ (need BOTH readyState==4 AND status==200)</div>
+      <div class="mnemonic"><strong>PHP Features (SCOLD-FDE):</strong> <strong>S</strong>erver-side · <strong>C</strong>ross-platform · <strong>O</strong>pen-source · <strong>L</strong>oosely-typed · <strong>D</strong>atabase · <strong>F</strong>unctions · <strong>D</strong>ynamic · <strong>E</strong>mbeddable</div>
+      <div class="mnemonic"><strong>EJB Types (SLFS-M):</strong> <strong>S</strong>tateless · <strong>S</strong>tateful · <strong>S</strong>ingleton · <strong>E</strong>ntity (BMP/CMP) · <strong>M</strong>essage-Driven</div>
+      <div class="mnemonic"><strong>Session Callbacks (SC-CR-AP):</strong> <strong>S</strong>etContext · <strong>C</strong>reate · <strong>R</strong>emove · <strong>A</strong>ctivate · <strong>P</strong>assivate</div>
+      <div class="mnemonic"><strong>3-Tier (P-B-D):</strong> <strong>P</strong>resentation (JSP/Browser) · <strong>B</strong>usiness (EJB) · <strong>D</strong>ata (DB/JDBC)</div>
+      <div class="mnemonic"><strong>Bootstrap Button Colors (PSWIDL):</strong> <strong>P</strong>rimary(blue) · <strong>S</strong>uccess(green) · <strong>W</strong>arning(yellow) · <strong>I</strong>nfo(cyan) · <strong>D</strong>anger(red) · <strong>L</strong>ink(text)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><h2>⚡ Quick 1-Line Definitions</h2></div>
+    <div class="cb">
+      <table>
+        <tr><th>Topic</th><th>Definition (exam-ready)</th></tr>
+        <tr><td>JavaScript</td><td>Lightweight, interpreted, event-driven client-side scripting language for making web pages interactive.</td></tr>
+        <tr><td>DOM</td><td>W3C standard programming interface representing HTML/XML document as a tree of nodes accessible by JavaScript.</td></tr>
+        <tr><td>jQuery</td><td>Fast, lightweight JS library with simplified syntax: $(selector).action() for DOM, events, and AJAX.</td></tr>
+        <tr><td>JSP</td><td>Server-side Java technology for creating dynamic web pages using HTML with embedded Java code (scriptlets, expressions).</td></tr>
+        <tr><td>Servlet</td><td>Java class extending HttpServlet that handles HTTP requests and generates responses on the server.</td></tr>
+        <tr><td>Struts</td><td>Apache open-source MVC framework for Java web apps using ActionServlet as front controller and struts-config.xml for routing.</td></tr>
+        <tr><td>PHP</td><td>Open-source, server-side scripting language embedded in HTML, primarily used for dynamic web development and MySQL integration.</td></tr>
+        <tr><td>Cookie</td><td>Small data file stored in the client's browser by the server via Set-Cookie header; sent automatically with subsequent requests.</td></tr>
+        <tr><td>Session</td><td>Server-side mechanism to store user data across requests; only a Session ID (PHPSESSID) is stored in the browser cookie.</td></tr>
+        <tr><td>AJAX</td><td>Technique using XMLHttpRequest/fetch to asynchronously exchange data with server and update part of the page without full reload.</td></tr>
+        <tr><td>AngularJS</td><td>Google MVC JavaScript framework for SPAs that extends HTML with directives (ng-app, ng-model, ng-repeat) and two-way data binding.</td></tr>
+        <tr><td>Bootstrap</td><td>Free open-source CSS framework with responsive 12-column grid, pre-styled components, and mobile-first design.</td></tr>
+        <tr><td>EJB</td><td>Server-side Java component for building distributed, scalable, secure enterprise applications; managed by EJB container.</td></tr>
+        <tr><td>Session Bean</td><td>EJB component representing a business process; can be Stateless (no state), Stateful (per-client state), or Singleton (one per app).</td></tr>
+        <tr><td>Entity Bean</td><td>EJB component representing a persistent data record in a database, identified by a primary key; replaced by JPA @Entity in EJB 3+.</td></tr>
+        <tr><td>MDB</td><td>Message-Driven Bean — asynchronous EJB that listens for and processes JMS messages without direct client invocation.</td></tr>
+        <tr><td>JSF</td><td>Java EE component-based web framework for building UIs using reusable h: components and managed beans with lifecycle management.</td></tr>
+        <tr><td>REST</td><td>Stateless architectural style for web services using HTTP methods (GET, POST, PUT, DELETE) with JSON data transfer.</td></tr>
+        <tr><td>SOAP</td><td>Protocol for web service communication using XML messages; requires WSDL contract; supports WS-Security.</td></tr>
+        <tr><td>WAP</td><td>Standard for accessing internet on mobile devices; uses WAP Gateway to convert between WAP (WML) and HTTP (HTML).</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><h2>📊 Marks-wise Strategy</h2></div>
+    <div class="cb">
+      <table>
+        <tr><th>Marks</th><th>What to Write</th><th>Diagram?</th></tr>
+        <tr><td>[8M]</td><td>Definition(2) + Key Points list(2) + Comparison Table(2) + Code Example(2)</td><td>Simple block diagram</td></tr>
+        <tr><td>[9M]</td><td>Definition(2) + Architecture/Diagram(2) + Working(2) + Advantages(1) + Example Code(2)</td><td>Full labeled diagram</td></tr>
+        <tr><td>[12M]</td><td>All of [9M] + Comparison Table + Real-world case + Disadvantages</td><td>Multiple diagrams</td></tr>
+      </table>
+      <div class="warn">⚠ Every 9-mark answer MUST have: Definition + Diagram + Code/Example + Advantages + Comparison (if two concepts asked). Missing diagram = lose 2 marks.</div>
+      <div class="note">✅ Diagrams carry ~50% weightage. Draw labeled block diagrams even for conceptual questions (Struts, DOM, 3-tier, AJAX flow). Use arrows.</div>
+    </div>
+  </div>
+</div><!-- end rev -->
+
+<script>
+function gp(id, btn) {
+  document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
+  document.getElementById('pg-' + id).classList.add('on');
+  btn.classList.add('on');
+  window.scrollTo(0,0);
+  clearSearch();
+}
+
+function gt(pg, id, btn) {
+  const prefix = pg + '-';
+  document.querySelectorAll('.sp').forEach(s => {
+    if(s.id.startsWith(prefix)) s.classList.remove('on');
+  });
+  document.querySelectorAll(`#pg-${pg} .stb`).forEach(b => b.classList.remove('on'));
+  document.getElementById(prefix + id).classList.add('on');
+  btn.classList.add('on');
+}
+
+function doSearch(q) {
+  const sc = document.getElementById('sc');
+  if (!q.trim()) { clearSearch(); return; }
+  
+  document.querySelectorAll('.pg').forEach(p => {
+    p.querySelectorAll('*').forEach(el => {
+      if (el.children.length === 0 && el.textContent) {
+        el.innerHTML = el.textContent.replace(/<mark>/g,'').replace(/<\/mark>/g,'');
+      }
+    });
+  });
+
+  let count = 0;
+  const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi');
+  
+  document.querySelectorAll('p, li, td, th, h3, h4, .mp-qt, .fq-q, .t20q').forEach(el => {
+    if (el.children.length === 0 && el.textContent.toLowerCase().includes(q.toLowerCase())) {
+      el.innerHTML = el.innerHTML.replace(re, '<mark class="hl">$1</mark>');
+      count += (el.innerHTML.match(/<mark/g) || []).length;
+    }
+  });
+  sc.textContent = count + ' match' + (count !== 1 ? 'es' : '');
+}
+
+function clearSearch() {
+  document.getElementById('si').value = '';
+  document.getElementById('sc').textContent = '';
+  document.querySelectorAll('.hl').forEach(m => {
+    const p = m.parentNode;
+    m.replaceWith(m.textContent);
+    p.normalize();
+  });
+}
+</script>
+</body>
+</html>

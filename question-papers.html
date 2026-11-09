@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BE Sem-VII Master Question Papers with Solutions — Electronics & Computer Engineering (2019 Pattern). DSV, WT, IoT, ICS, and HCI comprehensive papers and solutions.">
+  <title>Master Question Papers & Solutions — BE Sem-VII (ECE)</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo-dept.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/papers.css">
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div class="page-loader" id="page-loader">
+    <div class="spinner"></div>
+    <span class="page-loader-text">Loading Question Papers</span>
+  </div>
+
+  <!-- 3D Background Canvas -->
+  <div id="three-canvas-container"></div>
+
+  <!-- Header (loaded dynamically) -->
+  <div id="site-header"></div>
+
+  <!-- Page Content -->
+  <main class="page-wrapper" style="padding-top: 100px;">
+    <section class="section">
+
+      <!-- Hero Header -->
+      <div class="papers-hero reveal">
+        <div class="papers-badge">
+          <span class="papers-badge-dot"></span>
+          BE SEM-VII / XII &bull; 2019 PATTERN &bull; SPPU
+        </div>
+        <h1 class="section-title">
+          Master <span>Question Papers</span> &amp; Solutions
+        </h1>
+        <p class="section-subtitle">
+          Comprehensive exam revision handbooks, solved question banks, recurring frequency analysis, and step-by-step master answers for final year Electronics &amp; Computer Engineering students.
+        </p>
+        <div class="section-line"></div>
+      </div>
+
+      <!-- Live Search / Filter -->
+      <div class="papers-search-bar reveal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--neon-cyan);align-self:center;">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="text" 
+          id="paperSearchInput" 
+          class="papers-search-input" 
+          placeholder="Filter by subject name, code, or topic (e.g. IoT, DSV, Cyber Security, Naive Bayes, IPSec)..."
+          oninput="filterPapers()"
+        >
+      </div>
+
+      <!-- Single List of All 5 Master Question Papers -->
+      <div class="papers-list" id="papersList">
+
+        <!-- 1. DSV -->
+        <a href="assets/DSV_Master_Solutions.html" target="_blank" rel="noopener noreferrer" class="paper-item-card reveal" data-keywords="dsv 410341 data science and visualization machine learning linear regression apriori kmeans naive bayes decision tree random forest neural networks boxplot clustering">
+          <div class="paper-index-col">
+            <div class="paper-num">01</div>
+            <div class="paper-icon">📊</div>
+          </div>
+          <div class="paper-info-col">
+            <div class="paper-header-row">
+              <h2 class="paper-title">Data Science &amp; Visualization (DSV)</h2>
+              <span class="paper-code-badge">Course Code: 410341</span>
+            </div>
+            <div class="paper-subtext">B.E. Electronics &amp; Computer Engineering &bull; Semester VII &bull; 70 Marks</div>
+            <p class="paper-desc">
+              Master paper &amp; complete solutions compiled from 5 past university exam papers (P1–P5). Includes 100% verified answers with code, formulas, evaluation metrics, and unit-wise last-day revision handbook.
+            </p>
+            <div class="paper-highlights">
+              <span class="paper-highlight-pill">★ Apriori Algorithm</span>
+              <span class="paper-highlight-pill">★ K-Means &amp; DBSCAN</span>
+              <span class="paper-highlight-pill">★ Naive Bayes</span>
+              <span class="paper-highlight-pill">★ Decision Trees &amp; Random Forest</span>
+              <span class="paper-highlight-pill">★ Boxplots &amp; Histograms</span>
+            </div>
+            <div class="paper-footer-row">
+              <div class="paper-tags">
+                <span class="paper-tag">5 Past Papers</span>
+                <span class="paper-tag">Full Solutions</span>
+                <span class="paper-tag">Frequency Analysis</span>
+                <span class="paper-tag">By Access_299</span>
+              </div>
+              <span class="paper-action-btn">
+                Open Master Paper &amp; Solutions
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 2. WT -->
+        <a href="assets/WT_Ultimate.html" target="_blank" rel="noopener noreferrer" class="paper-item-card reveal" data-keywords="wt 410342 web technology ultimate master solutions javascript html css bootstrap jsp servlet struts mvc xml rest api dom json">
+          <div class="paper-index-col">
+            <div class="paper-num">02</div>
+            <div class="paper-icon">🌐</div>
+          </div>
+          <div class="paper-info-col">
+            <div class="paper-header-row">
+              <h2 class="paper-title">Web Technology (WT)</h2>
+              <span class="paper-code-badge">Course Code: 410342</span>
+            </div>
+            <div class="paper-subtext">B.E. Electronics &amp; Computer Engineering &bull; Semester VII &bull; 70 Marks</div>
+            <p class="paper-desc">
+              Ultimate Master Question Paper &amp; Solutions handbook covering full syllabus with architectural diagrams, clean code snippets, JSP directives, Servlets lifecycle, Apache Struts MVC framework, and CSS frameworks.
+            </p>
+            <div class="paper-highlights">
+              <span class="paper-highlight-pill">★ Apache Struts MVC</span>
+              <span class="paper-highlight-pill">★ Servlets &amp; JSP Directives</span>
+              <span class="paper-highlight-pill">★ JavaScript / DOM Events</span>
+              <span class="paper-highlight-pill">★ RESTful Web Services &amp; XML</span>
+              <span class="paper-highlight-pill">★ Bootstrap Grid &amp; Forms</span>
+            </div>
+            <div class="paper-footer-row">
+              <div class="paper-tags">
+                <span class="paper-tag">Complete Master Paper</span>
+                <span class="paper-tag">Architecture Diagrams</span>
+                <span class="paper-tag">Verified Answers</span>
+                <span class="paper-tag">By Access_299</span>
+              </div>
+              <span class="paper-action-btn">
+                Open Master Paper &amp; Solutions
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 3. IoT -->
+        <a href="assets/IoT Master Question Paper & Answer Bank.html" target="_blank" rel="noopener noreferrer" class="paper-item-card reveal" data-keywords="iot 410343 internet of things master question paper and answer bank wsn wireless sensor networks cloud computing arduino raspberry pi big data analytics hadoop mapreduce rfid zigbee">
+          <div class="paper-index-col">
+            <div class="paper-num">03</div>
+            <div class="paper-icon">📡</div>
+          </div>
+          <div class="paper-info-col">
+            <div class="paper-header-row">
+              <h2 class="paper-title">Internet of Things (IoT)</h2>
+              <span class="paper-code-badge">Course Code: 410343</span>
+            </div>
+            <div class="paper-subtext">B.E. Electronics &amp; Computer Engineering &bull; Semester VII &bull; 70 Marks</div>
+            <p class="paper-desc">
+              Master Question Paper &amp; comprehensive Answer Bank. Detailed coverage of WSN architectures, cloud computing layers (IaaS, PaaS, SaaS), Arduino vs Raspberry Pi comparative studies, sensors, actuators, and Big Data Hadoop analytics.
+            </p>
+            <div class="paper-highlights">
+              <span class="paper-highlight-pill">★ WSN &amp; Cloud Computing</span>
+              <span class="paper-highlight-pill">★ Arduino &amp; Raspberry Pi Interfacing</span>
+              <span class="paper-highlight-pill">★ Big Data &amp; Hadoop Ecosystem</span>
+              <span class="paper-highlight-pill">★ Structured vs Unstructured Data</span>
+              <span class="paper-highlight-pill">★ IoT Protocols (MQTT, CoAP)</span>
+            </div>
+            <div class="paper-footer-row">
+              <div class="paper-tags">
+                <span class="paper-tag">Full Answer Bank</span>
+                <span class="paper-tag">Hardware &amp; Software</span>
+                <span class="paper-tag">Diagrams Included</span>
+                <span class="paper-tag">By Access_299</span>
+              </div>
+              <span class="paper-action-btn">
+                Open Master Paper &amp; Solutions
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 4. ICS -->
+        <a href="assets/ICS_Master_Paper.html" target="_blank" rel="noopener noreferrer" class="paper-item-card reveal" data-keywords="ics 410344c 410344 information and cyber security master revision handbook rsa diffie hellman crt chinese remainder theorem sha-1 digital signature ipsec ah esp kerberos cyber crimes risk assessment phishing dos ddos sql injection">
+          <div class="paper-index-col">
+            <div class="paper-num">04</div>
+            <div class="paper-icon">🛡️</div>
+          </div>
+          <div class="paper-info-col">
+            <div class="paper-header-row">
+              <h2 class="paper-title">Information &amp; Cyber Security (ICS)</h2>
+              <span class="paper-code-badge">Course Code: 410344C</span>
+            </div>
+            <div class="paper-subtext">B.E. Electronics &amp; Computer Engineering &bull; Semester VII &bull; 70 Marks</div>
+            <p class="paper-desc">
+              Exam Revision Handbook built from 5 past university question papers (Oct-23, Apr-24, Nov-24, Apr-25, Oct-25). Features Top 12 recurring topics, step-by-step cryptographic numericals, network security protocols, and cyber law essentials.
+            </p>
+            <div class="paper-highlights">
+              <span class="paper-highlight-pill">★ Digital Signatures &amp; SHA-1</span>
+              <span class="paper-highlight-pill">★ Diffie-Hellman &amp; RSA Numericals</span>
+              <span class="paper-highlight-pill">★ Chinese Remainder Theorem</span>
+              <span class="paper-highlight-pill">★ IPSec (AH &amp; ESP, Tunnel vs Transport)</span>
+              <span class="paper-highlight-pill">★ Kerberos &amp; Cyber Crime Laws</span>
+            </div>
+            <div class="paper-footer-row">
+              <div class="paper-tags">
+                <span class="paper-tag">5 Past Papers</span>
+                <span class="paper-tag">Top 12 Topics (★★★)</span>
+                <span class="paper-tag">Numerical Steps</span>
+                <span class="paper-tag">By Access_299</span>
+              </div>
+              <span class="paper-action-btn">
+                Open Master Paper &amp; Solutions
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 5. HCI -->
+        <a href="assets/HCI_Master_Paper.html" target="_blank" rel="noopener noreferrer" class="paper-item-card reveal" data-keywords="hci 410345 410344d human computer interaction master paper model answers usability heuristics design principles evaluation techniques fitts law norman model interaction styles">
+          <div class="paper-index-col">
+            <div class="paper-num">05</div>
+            <div class="paper-icon">🧠</div>
+          </div>
+          <div class="paper-info-col">
+            <div class="paper-header-row">
+              <h2 class="paper-title">Human Computer Interaction (HCI)</h2>
+              <span class="paper-code-badge">Course Code: 410345 / 410344D</span>
+            </div>
+            <div class="paper-subtext">B.E. Electronics &amp; Computer Engineering &bull; Semester VII &bull; 70 Marks (Elective)</div>
+            <p class="paper-desc">
+              Comprehensive Master Question Paper &amp; Model Answers for HCI. In-depth explanations of human sensory channels, interactive system design rules, evaluation paradigms, usability testing, and emerging interaction paradigms.
+            </p>
+            <div class="paper-highlights">
+              <span class="paper-highlight-pill">★ Usability Heuristics (Nielsen's 10)</span>
+              <span class="paper-highlight-pill">★ Norman's Execution-Evaluation Cycle</span>
+              <span class="paper-highlight-pill">★ Fitts' Law &amp; Cognitive Models</span>
+              <span class="paper-highlight-pill">★ Dialogue Design &amp; Prototyping</span>
+              <span class="paper-highlight-pill">★ Expert &amp; User Evaluation Methods</span>
+            </div>
+            <div class="paper-footer-row">
+              <div class="paper-tags">
+                <span class="paper-tag">Model Answers</span>
+                <span class="paper-tag">Heuristics &amp; Rules</span>
+                <span class="paper-tag">High Probability</span>
+                <span class="paper-tag">By Access_299</span>
+              </div>
+              <span class="paper-action-btn">
+                Open Master Paper &amp; Solutions
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Quick Guidance Box -->
+      <div class="papers-info-box reveal">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          How to Use These Master Question Papers
+        </h3>
+        <p>
+          Each subject's master paper is compiled systematically from multiple past University examinations with complete solutions, frequency analysis, and recurring high-yield question stars (★★★). Click on any subject row above to open the complete interactive document with tabbed navigation, code snippets, diagrams, and quick search capabilities.
+        </p>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer (loaded dynamically) -->
+  <div id="site-footer"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="js/three-scene.js"></script>
+  <script src="js/shared.js"></script>
+
+  <script>
+    // Live Filter for the Question Papers List
+    function filterPapers() {
+      const query = document.getElementById('paperSearchInput').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.paper-item-card');
+      
+      cards.forEach(card => {
+        const text = (card.textContent + ' ' + card.getAttribute('data-keywords')).toLowerCase();
+        if (!query || text.includes(query)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
+

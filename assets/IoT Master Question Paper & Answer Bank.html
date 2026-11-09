@@ -1,0 +1,2281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>IoT Master Question Paper & Answer Bank By Access_299</title>
+<style>
+:root {
+  --bg: #0a0f1e;
+  --surface: #111827;
+  --surface2: #1a2235;
+  --surface3: #1e2d45;
+  --accent: #00d4ff;
+  --accent2: #7c3aed;
+  --accent3: #10b981;
+  --accent4: #f59e0b;
+  --danger: #ef4444;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #64748b;
+  --border: #1e3a5f;
+  --star: #fbbf24;
+  --code-bg: #0d1117;
+  --radius: 8px;
+  color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;padding-bottom:4rem}
+
+/* NAV */
+.top-nav{position:sticky;top:0;z-index:100;background:rgba(10,15,30,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.5rem 1rem}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.nav-title{font-size:.85rem;font-weight:700;color:var(--accent);white-space:nowrap;margin-right:1rem;letter-spacing:.05em}
+.nav-btn{background:transparent;border:1px solid var(--border);color:var(--text2);padding:.3rem .7rem;border-radius:var(--radius);cursor:pointer;font-size:.78rem;white-space:nowrap;transition:all .2s}
+.nav-btn:hover,.nav-btn.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:600}
+
+/* SEARCH */
+.search-bar{max-width:1200px;margin:1rem auto;padding:0 1rem;display:flex;gap:.5rem}
+.search-bar input{flex:1;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:.6rem 1rem;border-radius:var(--radius);font-size:.9rem;outline:none}
+.search-bar input:focus{border-color:var(--accent)}
+.search-bar button{background:var(--accent);color:#000;border:none;padding:.6rem 1.2rem;border-radius:var(--radius);cursor:pointer;font-weight:600}
+
+/* PAGES */
+.page{display:none;max-width:1200px;margin:0 auto;padding:1rem}
+.page.active{display:block}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;margin-bottom:1rem}
+.card-header{font-size:1rem;font-weight:700;color:var(--accent);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+
+/* BADGES */
+.badge{display:inline-block;padding:.15rem .5rem;border-radius:4px;font-size:.72rem;font-weight:700;letter-spacing:.05em}
+.badge-vhp{background:#7c3aed22;color:#a78bfa;border:1px solid #7c3aed55}
+.badge-hp{background:#059669aa;color:#6ee7b7;border:1px solid #059669}
+.badge-mp{background:#d9770020;color:#fcd34d;border:1px solid #d97706aa}
+
+/* STARS */
+.stars{color:var(--star);font-size:.9rem}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.88rem}
+th{background:var(--surface3);color:var(--accent);padding:.6rem .8rem;text-align:left;border:1px solid var(--border)}
+td{padding:.5rem .8rem;border:1px solid var(--border);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface2)}
+
+/* Q TABS */
+.qtab-nav{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+.qtab-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text2);padding:.35rem .8rem;border-radius:var(--radius);cursor:pointer;font-size:.8rem;transition:all .2s}
+.qtab-btn:hover{border-color:var(--accent2);color:var(--text)}
+.qtab-btn.active{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+
+.qtab-content{display:none}
+.qtab-content.active{display:block}
+
+/* ANSWER BLOCK */
+.answer-block{background:var(--surface);border-left:3px solid var(--accent);padding:1rem 1.2rem;border-radius:0 var(--radius) var(--radius) 0;margin:1rem 0}
+.answer-block h3{color:var(--accent);font-size:1rem;margin-bottom:.5rem}
+.answer-block h4{color:var(--accent3);font-size:.9rem;margin:.7rem 0 .3rem}
+.answer-block p{margin:.4rem 0;font-size:.9rem;color:var(--text)}
+.answer-block ul,.answer-block ol{padding-left:1.5rem;margin:.4rem 0}
+.answer-block li{margin:.25rem 0;font-size:.9rem}
+
+/* CODE */
+pre{background:var(--code-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;overflow-x:auto;font-size:.82rem;margin:.7rem 0;line-height:1.5}
+code{font-family:'Cascadia Code','Fira Code',monospace;color:#79c0ff}
+.kw{color:#ff7b72}
+.fn{color:#d2a8ff}
+.str{color:#a5d6ff}
+.cm{color:#8b949e}
+.num{color:#f78166}
+
+/* SVG DIAGRAMS */
+.diagram-wrap{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin:1rem 0;overflow-x:auto}
+.diagram-wrap svg{max-width:100%;height:auto}
+
+/* HIGHLIGHT BOX */
+.highlight-box{background:#00d4ff11;border:1px solid #00d4ff44;border-radius:var(--radius);padding:.8rem 1rem;margin:.7rem 0}
+.highlight-box.green{background:#10b98111;border-color:#10b98144}
+.highlight-box.purple{background:#7c3aed11;border-color:#7c3aed44}
+.highlight-box.amber{background:#f59e0b11;border-color:#f59e0b44}
+
+/* MARK INDICATOR */
+.mark-tag{background:var(--surface3);border:1px solid var(--border);border-radius:4px;padding:.1rem .4rem;font-size:.75rem;color:var(--accent4);float:right;margin-left:.5rem}
+
+/* SECTION HEADER */
+.sec-header{background:linear-gradient(135deg,var(--surface2),var(--surface3));border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;margin:1.5rem 0 1rem;display:flex;align-items:center;gap:.7rem}
+.sec-header h2{font-size:1.1rem;color:var(--text)}
+.sec-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+
+/* GRID */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* REVISION LIST */
+.rev-item{display:flex;align-items:flex-start;gap:.6rem;padding:.5rem .7rem;border-bottom:1px solid var(--border)}
+.rev-num{background:var(--accent2);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
+
+/* PAGE HEADER */
+.page-hero{background:linear-gradient(135deg,#0a0f1e 0%,#111827 50%,#0a1628 100%);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem;text-align:center;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,#00d4ff18 0%,transparent 60%)}
+.page-hero h1{font-size:1.6rem;color:var(--accent);margin-bottom:.4rem}
+.page-hero p{color:var(--text2);font-size:.9rem}
+.hero-badges{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-top:.8rem}
+
+/* Q HEADER */
+.q-header{background:linear-gradient(90deg,var(--surface3),var(--surface2));border-left:4px solid var(--accent2);padding:.8rem 1rem;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:.8rem}
+.q-header h3{color:var(--text);font-size:.95rem}
+
+/* OR DIVIDER */
+.or-divider{text-align:center;position:relative;margin:1.5rem 0}
+.or-divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:var(--border)}
+.or-divider span{position:relative;background:var(--bg);padding:0 1rem;color:var(--accent4);font-weight:700;font-size:.85rem}
+
+/* VIVA */
+.viva-box{background:var(--surface2);border:1px solid #7c3aed55;border-radius:var(--radius);padding:1rem;margin:.7rem 0}
+.viva-box h4{color:#a78bfa;margin-bottom:.5rem;font-size:.88rem}
+.viva-box li{font-size:.85rem;color:var(--text2)}
+
+/* TRICK */
+.trick-box{background:#10b98108;border:1px dashed #10b98166;border-radius:var(--radius);padding:.7rem 1rem;margin:.5rem 0}
+.trick-box h4{color:var(--accent3);font-size:.85rem;margin-bottom:.3rem}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+/* SEARCH HIGHLIGHT */
+.search-hl{background:#ff0;color:#000;border-radius:2px}
+
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="nav-inner">
+    <span class="nav-title">📡 IoT Master Paper</span>
+    <button class="nav-btn active" onclick="showPage('home')">🏠 Home</button>
+    <button class="nav-btn" onclick="showPage('freq')">📊 Frequency Analysis</button>
+    <button class="nav-btn" onclick="showPage('master')">📋 Master Paper</button>
+    <button class="nav-btn" onclick="showPage('q1')">Q1/Q2: WSN & Cloud</button>
+    <button class="nav-btn" onclick="showPage('q3')">Q3/Q4: Arduino & RPi</button>
+    <button class="nav-btn" onclick="showPage('q5')">Q5/Q6: Big Data</button>
+    <button class="nav-btn" onclick="showPage('q7')">Q7/Q8: Applications</button>
+    <button class="nav-btn" onclick="showPage('revision')">🎯 Last-Day Revision</button>
+  </div>
+</nav>
+
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search topics, keywords, definitions... (e.g. MQTT, Hadoop, WSN)" oninput="doSearch(this.value)">
+  <button onclick="doSearch(document.getElementById('searchInput').value)">Search</button>
+  <button onclick="clearSearch()" style="background:var(--surface2);color:var(--text2);border:1px solid var(--border)">Clear</button>
+</div>
+
+<!-- ========== HOME PAGE ========== -->
+<div id="page-home" class="page active">
+<div class="page-hero">
+  <h1>📡 IoT Master Question Paper & Answer Bank By Access_299</h1>
+  <p>B.E. Electronics & Computer Engineering | Semester VII | 410343 | 2019 Pattern</p>
+  <p style="margin-top:.4rem;color:var(--text3);font-size:.82rem">Compiled from 5 past year papers: Oct 2023 • Apr 2024 • Nov 2024 • Apr 2025 • Oct 2025</p>
+  <div class="hero-badges">
+    <span class="badge badge-vhp">★★★ 8 Very High Probability Topics</span>
+    <span class="badge badge-hp">★★ 12 High Probability Questions</span>
+    <span class="badge badge-mp">★ Moderate Coverage</span>
+  </div>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <div class="card-header">📁 Papers Analyzed</div>
+    <table>
+      <tr><th>Paper</th><th>Code</th><th>Key Focus</th></tr>
+      <tr><td>Oct 2023</td><td>[6354]-762</td><td>WSN, Cloud, Python, Big Data, Greenhouse, Smart Home</td></tr>
+      <tr><td>Apr 2024</td><td>[6263]-361</td><td>WSN Architecture, Cloud, Arduino, Hadoop, Analytics</td></tr>
+      <tr><td>Nov 2024</td><td>[6181]-395</td><td>IaaS/PaaS, Ultrasonic, Raspberry Pi, Hadoop, Smart Cities</td></tr>
+      <tr><td>Apr 2025</td><td>[6404]-356</td><td>PIR, LM35, PaaS/SaaS, ThingSpeak, Agriculture IoT</td></tr>
+      <tr><td>Oct 2025</td><td>[6584]-364</td><td>IaaS/PaaS/SaaS compare, Hadoop, Smart Healthcare, Industrial Standards</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <div class="card-header">🔥 Most Repeated Topics</div>
+    <table>
+      <tr><th>Topic</th><th>Frequency</th></tr>
+      <tr><td>WSN Architecture & Applications</td><td><span class="stars">★★★</span> 5/5</td></tr>
+      <tr><td>Cloud Computing Architecture</td><td><span class="stars">★★★</span> 5/5</td></tr>
+      <tr><td>IaaS / PaaS / SaaS</td><td><span class="stars">★★★</span> 5/5</td></tr>
+      <tr><td>Hadoop Architecture & Features</td><td><span class="stars">★★★</span> 5/5</td></tr>
+      <tr><td>Smart Home Automation IoT</td><td><span class="stars">★★★</span> 5/5</td></tr>
+      <tr><td>Arduino Interfacing (PIR/LCD/Ultrasonic)</td><td><span class="stars">★★★</span> 5/5</td></tr>
+      <tr><td>Raspberry Pi Interfacing & Programs</td><td><span class="stars">★★★</span> 5/5</td></tr>
+      <tr><td>Big Data Characteristics & Solutions</td><td><span class="stars">★★★</span> 5/5</td></tr>
+      <tr><td>Wearable Technology Trends</td><td><span class="stars">★★★</span> 4/5</td></tr>
+      <tr><td>Smart Agriculture IoT</td><td><span class="stars">★★★</span> 4/5</td></tr>
+      <tr><td>Air Pollution Monitoring IoT</td><td><span class="stars">★★</span> 3/5</td></tr>
+      <tr><td>Smart Car Parking IoT</td><td><span class="stars">★★</span> 3/5</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="highlight-box">
+  <strong>⚡ Quick Navigation:</strong> Use the top navigation to jump to any section. Each Q tab has collapsible answers with diagrams, code, comparison tables, and revision notes.
+</div>
+</div>
+
+<!-- ========== FREQUENCY ANALYSIS ========== -->
+<div id="page-freq" class="page">
+<div class="page-hero">
+  <h1>📊 Frequency Analysis & High-Probability Questions</h1>
+  <p>Statistical analysis of all 5 past year papers to identify exam trends</p>
+</div>
+
+<div class="sec-header"><div class="sec-icon" style="background:#7c3aed">🎯</div><h2>Most Likely Questions — Very High Probability (★★★)</h2></div>
+<div class="card">
+  <table>
+    <tr><th>#</th><th>Question / Topic</th><th>Marks</th><th>Papers</th><th>Probability</th></tr>
+    <tr><td>1</td><td>Draw and explain WSN Architecture with its features and challenges</td><td>6–8</td><td>All 5</td><td><span class="badge badge-vhp">VERY HIGH</span></td></tr>
+    <tr><td>2</td><td>Draw and explain basic architecture of Cloud Computing</td><td>6–8</td><td>All 5</td><td><span class="badge badge-vhp">VERY HIGH</span></td></tr>
+    <tr><td>3</td><td>Compare IaaS, PaaS, and SaaS with diagrams</td><td>8</td><td>All 5</td><td><span class="badge badge-vhp">VERY HIGH</span></td></tr>
+    <tr><td>4</td><td>Arduino interfacing: PIR sensor / LCD / Ultrasonic with program</td><td>8</td><td>All 5</td><td><span class="badge badge-vhp">VERY HIGH</span></td></tr>
+    <tr><td>5</td><td>Raspberry Pi: LED/Ultrasonic interfacing with Python program</td><td>8</td><td>All 5</td><td><span class="badge badge-vhp">VERY HIGH</span></td></tr>
+    <tr><td>6</td><td>Characteristics of Big Data + Components of Big Data Solution</td><td>8</td><td>All 5</td><td><span class="badge badge-vhp">VERY HIGH</span></td></tr>
+    <tr><td>7</td><td>Hadoop Architecture, Features, Advantages</td><td>8</td><td>All 5</td><td><span class="badge badge-vhp">VERY HIGH</span></td></tr>
+    <tr><td>8</td><td>Smart Home Automation using IoT (diagram + explanation)</td><td>9</td><td>All 5</td><td><span class="badge badge-vhp">VERY HIGH</span></td></tr>
+    <tr><td>9</td><td>Wearable Technology — modern trends</td><td>9</td><td>4/5</td><td><span class="badge badge-vhp">VERY HIGH</span></td></tr>
+    <tr><td>10</td><td>Smart Agriculture Monitoring using IoT</td><td>9</td><td>4/5</td><td><span class="badge badge-vhp">VERY HIGH</span></td></tr>
+  </table>
+</div>
+
+<div class="sec-header"><div class="sec-icon" style="background:#059669">📈</div><h2>High Probability Questions (★★)</h2></div>
+<div class="card">
+  <table>
+    <tr><th>#</th><th>Question / Topic</th><th>Marks</th><th>Papers</th><th>Probability</th></tr>
+    <tr><td>1</td><td>WSN for Healthcare Monitoring (diagram)</td><td>6–8</td><td>3/5</td><td><span class="badge badge-hp">HIGH</span></td></tr>
+    <tr><td>2</td><td>AWS / Azure IoT Cloud Platform features</td><td>6</td><td>3/5</td><td><span class="badge badge-hp">HIGH</span></td></tr>
+    <tr><td>3</td><td>Challenges of Cloud Computing</td><td>6</td><td>3/5</td><td><span class="badge badge-hp">HIGH</span></td></tr>
+    <tr><td>4</td><td>Ultrasonic sensor interfacing to Raspberry Pi / Arduino + program</td><td>8</td><td>4/5</td><td><span class="badge badge-hp">HIGH</span></td></tr>
+    <tr><td>5</td><td>Data analytics using ThingSpeak</td><td>8</td><td>3/5</td><td><span class="badge badge-hp">HIGH</span></td></tr>
+    <tr><td>6</td><td>Prescriptive, Diagnostic, Descriptive, Predictive Analytics</td><td>8</td><td>3/5</td><td><span class="badge badge-hp">HIGH</span></td></tr>
+    <tr><td>7</td><td>Smart City IoT use cases + implementation</td><td>9</td><td>3/5</td><td><span class="badge badge-hp">HIGH</span></td></tr>
+    <tr><td>8</td><td>Air Pollution Monitoring using IoT</td><td>9</td><td>3/5</td><td><span class="badge badge-hp">HIGH</span></td></tr>
+    <tr><td>9</td><td>Smart Car Parking System using IoT</td><td>9</td><td>3/5</td><td><span class="badge badge-hp">HIGH</span></td></tr>
+    <tr><td>10</td><td>Greenhouse Monitoring using IoT</td><td>9</td><td>3/5</td><td><span class="badge badge-hp">HIGH</span></td></tr>
+    <tr><td>11</td><td>Smart Healthcare Monitoring using IoT</td><td>9</td><td>3/5</td><td><span class="badge badge-hp">HIGH</span></td></tr>
+    <tr><td>12</td><td>Industrial Standards in IoT</td><td>9</td><td>2/5</td><td><span class="badge badge-hp">HIGH</span></td></tr>
+  </table>
+</div>
+
+<div class="sec-header"><div class="sec-icon" style="background:#d97706">📉</div><h2>Unit-Wise Topic Distribution</h2></div>
+<div class="card">
+  <table>
+    <tr><th>Unit</th><th>Topic</th><th>Expected Marks</th><th>Weightage</th></tr>
+    <tr><td>Unit 1 (Q1/Q2)</td><td>WSN + Cloud Computing + IaaS/PaaS/SaaS</td><td>20</td><td>High</td></tr>
+    <tr><td>Unit 2 (Q3/Q4)</td><td>Arduino + Raspberry Pi + Sensors</td><td>16</td><td>High</td></tr>
+    <tr><td>Unit 3 (Q5/Q6)</td><td>Big Data + Hadoop + Data Analytics</td><td>16</td><td>High</td></tr>
+    <tr><td>Unit 4 (Q7/Q8)</td><td>IoT Applications: Smart Home, Healthcare, Agriculture, Smart Cities</td><td>18</td><td>Very High</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- ========== MASTER PAPER ========== -->
+<div id="page-master" class="page">
+<div class="page-hero">
+  <h1>📋 Compiled Master Question Paper</h1>
+  <p>70 Marks | 2.5 Hours | Based on 5-paper frequency analysis</p>
+</div>
+
+<div class="highlight-box amber">
+  <strong>Format:</strong> Answer Q1 or Q2 | Q3 or Q4 | Q5 or Q6 | Q7 or Q8 &nbsp;|&nbsp; Figures to the right indicate full marks
+</div>
+
+<div class="card">
+  <div class="card-header">SECTION A — Q1 OR Q2 &nbsp;<span class="stars">★★★</span></div>
+
+  <div class="q-header"><h3>Q1 a) <span class="mark-tag">[6M]</span> <span class="stars">★★★</span> Draw and explain architecture of Wireless Sensor Network. Explain its features and design challenges.</h3></div>
+  <div class="q-header"><h3>Q1 b) <span class="mark-tag">[6M]</span> <span class="stars">★★</span> With the help of neat diagram, explain how WSN is used for Healthcare Monitoring.</h3></div>
+  <div class="q-header"><h3>Q1 c) <span class="mark-tag">[8M]</span> <span class="stars">★★★</span> Compare IaaS, PaaS, and SaaS with neat diagrams and advantages of each.</h3></div>
+
+  <div class="or-divider"><span>OR</span></div>
+
+  <div class="q-header"><h3>Q2 a) <span class="mark-tag">[6M]</span> <span class="stars">★★★</span> Draw and explain the basic architecture of Cloud Computing.</h3></div>
+  <div class="q-header"><h3>Q2 b) <span class="mark-tag">[6M]</span> <span class="stars">★★</span> What are the challenges of Cloud Computing? Elaborate each challenge in brief.</h3></div>
+  <div class="q-header"><h3>Q2 c) <span class="mark-tag">[8M]</span> <span class="stars">★★</span> Explain features and services provided by Amazon Web Services (AWS) and Microsoft Azure IoT Cloud Platform.</h3></div>
+</div>
+
+<div class="card">
+  <div class="card-header">SECTION B — Q3 OR Q4 &nbsp;<span class="stars">★★★</span></div>
+
+  <div class="q-header"><h3>Q3 a) <span class="mark-tag">[8M]</span> <span class="stars">★★★</span> What is PIR Sensor? Draw interfacing diagram of PIR sensor with Arduino UNO. Write a program to detect motion and turn ON/OFF a buzzer accordingly.</h3></div>
+  <div class="q-header"><h3>Q3 b) <span class="mark-tag">[8M]</span> <span class="stars">★★★</span> What is Arduino? Describe features of Arduino UNO board. Interface LM35 temperature sensor to Arduino UNO and write a program to read and display temperature on serial monitor.</h3></div>
+
+  <div class="or-divider"><span>OR</span></div>
+
+  <div class="q-header"><h3>Q4 a) <span class="mark-tag">[8M]</span> <span class="stars">★★★</span> Explain working of Ultrasonic Sensor. Draw interfacing of ultrasonic sensor to Raspberry Pi and write a program to measure distance from obstacle.</h3></div>
+  <div class="q-header"><h3>Q4 b) <span class="mark-tag">[8M]</span> <span class="stars">★★★</span> What is Raspberry Pi? Write its features. Draw interfacing of LEDs to Raspberry Pi and write a program to turn ON/OFF LEDs with delay.</h3></div>
+</div>
+
+<div class="card">
+  <div class="card-header">SECTION C — Q5 OR Q6 &nbsp;<span class="stars">★★★</span></div>
+
+  <div class="q-header"><h3>Q5 a) <span class="mark-tag">[8M]</span> <span class="stars">★★★</span> What are the characteristics of Big Data? List out components of Big Data solution. Explain each component in detail.</h3></div>
+  <div class="q-header"><h3>Q5 b) <span class="mark-tag">[8M]</span> <span class="stars">★★★</span> What is Hadoop? Draw and explain Hadoop Architecture. Explain its key features, advantages and disadvantages.</h3></div>
+
+  <div class="or-divider"><span>OR</span></div>
+
+  <div class="q-header"><h3>Q6 a) <span class="mark-tag">[8M]</span> <span class="stars">★★</span> What is Big Data Analytics? Explain Prescriptive, Diagnostic, Descriptive and Predictive data analytics in detail.</h3></div>
+  <div class="q-header"><h3>Q6 b) <span class="mark-tag">[8M]</span> <span class="stars">★★</span> Explain structured, semi-structured and unstructured data. Compare all three with a neat comparison table.</h3></div>
+</div>
+
+<div class="card">
+  <div class="card-header">SECTION D — Q7 OR Q8 &nbsp;<span class="stars">★★★</span></div>
+
+  <div class="q-header"><h3>Q7 a) <span class="mark-tag">[9M]</span> <span class="stars">★★★</span> Explain with neat diagrams: (i) Smart Home Automation using IoT (ii) Smart Healthcare Monitoring using IoT</h3></div>
+  <div class="q-header"><h3>Q7 b) <span class="mark-tag">[9M]</span> <span class="stars">★★★</span> What do citizens expect from Smart Cities? Explain IoT use cases for Smart Cities with implementation details of any one use case.</h3></div>
+
+  <div class="or-divider"><span>OR</span></div>
+
+  <div class="q-header"><h3>Q8 a) <span class="mark-tag">[9M]</span> <span class="stars">★★★</span> What is Wearable Technology? Elaborate different modern trends in wearable technology. How is wearable technology partnering with Smart Cities?</h3></div>
+  <div class="q-header"><h3>Q8 b) <span class="mark-tag">[9M]</span> <span class="stars">★★</span> Explain with neat diagrams: (i) Smart Agriculture Monitoring using IoT (ii) Air Pollution Monitoring using IoT</h3></div>
+</div>
+</div>
+
+<!-- ========== Q1/Q2 ANSWERS ========== -->
+<div id="page-q1" class="page">
+<div class="page-hero">
+  <h1>Q1 / Q2: WSN & Cloud Computing</h1>
+  <p>Unit 1 Answers — 20 Marks Section</p>
+</div>
+
+<div class="qtab-nav">
+  <button class="qtab-btn active" onclick="showQTab('q1',0)">Q1a: WSN Architecture</button>
+  <button class="qtab-btn" onclick="showQTab('q1',1)">Q1b: WSN Healthcare</button>
+  <button class="qtab-btn" onclick="showQTab('q1',2)">Q1c: IaaS/PaaS/SaaS Compare</button>
+  <button class="qtab-btn" onclick="showQTab('q1',3)">Q2a: Cloud Architecture</button>
+  <button class="qtab-btn" onclick="showQTab('q1',4)">Q2b: Cloud Challenges</button>
+  <button class="qtab-btn" onclick="showQTab('q1',5)">Q2c: AWS & Azure</button>
+</div>
+
+<!-- Q1a WSN Architecture -->
+<div class="qtab-content active" data-qtab="q1-0">
+<div class="answer-block">
+  <h3>Q1a: Wireless Sensor Network (WSN) Architecture <span class="badge badge-vhp">★★★ 5/5 Papers</span> <span class="mark-tag">[6M]</span></h3>
+
+  <h4>📌 Definition</h4>
+  <p>A Wireless Sensor Network (WSN) is a collection of spatially distributed autonomous sensor nodes that cooperatively monitor physical or environmental conditions (temperature, sound, pressure, motion) and communicate the collected data wirelessly to a central base station or sink node.</p>
+
+  <h4>🏗️ Architecture Diagram</h4>
+  <div class="diagram-wrap">
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#00d4ff"/>
+    </marker>
+  </defs>
+  <!-- Background -->
+  <rect width="700" height="380" fill="#111827" rx="10"/>
+  <!-- Title -->
+  <text x="350" y="28" fill="#00d4ff" font-size="14" font-weight="bold" text-anchor="middle">WSN Architecture</text>
+
+  <!-- Sensor Nodes Layer -->
+  <rect x="20" y="50" width="660" height="120" rx="8" fill="#1e3a5f" stroke="#00d4ff" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="40" y="72" fill="#94a3b8" font-size="10">Sensor Field (Deployment Area)</text>
+
+  <!-- Sensor nodes -->
+  <g transform="translate(60,95)">
+    <circle r="22" fill="#1a2235" stroke="#10b981" stroke-width="2"/>
+    <text y="4" fill="#10b981" font-size="9" text-anchor="middle">Sensor</text>
+    <text y="15" fill="#10b981" font-size="9" text-anchor="middle">Node 1</text>
+  </g>
+  <g transform="translate(160,105)">
+    <circle r="22" fill="#1a2235" stroke="#10b981" stroke-width="2"/>
+    <text y="4" fill="#10b981" font-size="9" text-anchor="middle">Sensor</text>
+    <text y="15" fill="#10b981" font-size="9" text-anchor="middle">Node 2</text>
+  </g>
+  <g transform="translate(260,90)">
+    <circle r="22" fill="#1a2235" stroke="#10b981" stroke-width="2"/>
+    <text y="4" fill="#10b981" font-size="9" text-anchor="middle">Sensor</text>
+    <text y="15" fill="#10b981" font-size="9" text-anchor="middle">Node 3</text>
+  </g>
+  <g transform="translate(360,110)">
+    <circle r="22" fill="#1a2235" stroke="#10b981" stroke-width="2"/>
+    <text y="4" fill="#10b981" font-size="9" text-anchor="middle">Sensor</text>
+    <text y="15" fill="#10b981" font-size="9" text-anchor="middle">Node 4</text>
+  </g>
+  <g transform="translate(460,95)">
+    <circle r="22" fill="#1a2235" stroke="#10b981" stroke-width="2"/>
+    <text y="4" fill="#10b981" font-size="9" text-anchor="middle">Sensor</text>
+    <text y="15" fill="#10b981" font-size="9" text-anchor="middle">Node 5</text>
+  </g>
+
+  <!-- Wireless lines between nodes -->
+  <line x1="82" y1="95" x2="138" y2="105" stroke="#10b981" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="182" y1="105" x2="238" y2="90" stroke="#10b981" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="282" y1="90" x2="338" y2="110" stroke="#10b981" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="382" y1="110" x2="438" y2="95" stroke="#10b981" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Gateway -->
+  <rect x="275" y="210" width="150" height="50" rx="8" fill="#1a2235" stroke="#f59e0b" stroke-width="2"/>
+  <text x="350" y="231" fill="#f59e0b" font-size="11" font-weight="bold" text-anchor="middle">🔀 Gateway /</text>
+  <text x="350" y="246" fill="#f59e0b" font-size="11" text-anchor="middle">Cluster Head</text>
+
+  <!-- Arrows from nodes to gateway -->
+  <line x1="60" y1="117" x2="295" y2="225" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="460" y1="117" x2="405" y2="225" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="260" y1="112" x2="320" y2="210" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Sink / Base Station -->
+  <rect x="275" y="300" width="150" height="50" rx="8" fill="#1a2235" stroke="#7c3aed" stroke-width="2"/>
+  <text x="350" y="321" fill="#a78bfa" font-size="11" font-weight="bold" text-anchor="middle">📡 Base Station /</text>
+  <text x="350" y="336" fill="#a78bfa" font-size="11" text-anchor="middle">Sink Node</text>
+
+  <!-- Arrow gateway to sink -->
+  <line x1="350" y1="260" x2="350" y2="300" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Internet/Cloud -->
+  <rect x="570" y="300" width="110" height="50" rx="8" fill="#1a2235" stroke="#ef4444" stroke-width="2"/>
+  <text x="625" y="321" fill="#ef4444" font-size="11" font-weight="bold" text-anchor="middle">☁️ Internet /</text>
+  <text x="625" y="336" fill="#ef4444" font-size="11" text-anchor="middle">Cloud Server</text>
+
+  <!-- Arrow sink to cloud -->
+  <line x1="425" y1="325" x2="570" y2="325" stroke="#ef4444" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Labels -->
+  <text x="140" y="185" fill="#00d4ff" font-size="9" text-anchor="middle">Multi-hop</text>
+  <text x="140" y="196" fill="#00d4ff" font-size="9" text-anchor="middle">Wireless Comm.</text>
+  <text x="497" y="318" fill="#94a3b8" font-size="9" text-anchor="middle">Internet</text>
+</svg>
+  </div>
+
+  <h4>🔧 Key Components of WSN</h4>
+  <table>
+    <tr><th>Component</th><th>Description</th><th>Role</th></tr>
+    <tr><td><strong>Sensor Node</strong></td><td>Tiny device with sensor, MCU, radio, power</td><td>Senses and transmits data</td></tr>
+    <tr><td><strong>Gateway</strong></td><td>Cluster head or aggregator node</td><td>Collects data from multiple nodes</td></tr>
+    <tr><td><strong>Base Station / Sink</strong></td><td>High-power node connected to internet</td><td>Receives all data, communicates with server</td></tr>
+    <tr><td><strong>Cloud/Server</strong></td><td>Remote data storage and processing</td><td>Analysis, visualization, alerts</td></tr>
+  </table>
+
+  <h4>📱 Sensor Node Internal Architecture</h4>
+  <div class="diagram-wrap">
+<svg viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+  <rect width="500" height="150" fill="#111827" rx="8"/>
+  <rect x="20" y="40" width="80" height="60" rx="6" fill="#1a2235" stroke="#10b981" stroke-width="1.5"/>
+  <text x="60" y="67" fill="#10b981" font-size="10" text-anchor="middle">Sensing</text>
+  <text x="60" y="80" fill="#10b981" font-size="10" text-anchor="middle">Unit</text>
+  <text x="60" y="93" fill="#94a3b8" font-size="8" text-anchor="middle">(Sensor+ADC)</text>
+
+  <rect x="140" y="40" width="80" height="60" rx="6" fill="#1a2235" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="180" y="67" fill="#f59e0b" font-size="10" text-anchor="middle">Processing</text>
+  <text x="180" y="80" fill="#f59e0b" font-size="10" text-anchor="middle">Unit</text>
+  <text x="180" y="93" fill="#94a3b8" font-size="8" text-anchor="middle">(MCU+Memory)</text>
+
+  <rect x="260" y="40" width="80" height="60" rx="6" fill="#1a2235" stroke="#00d4ff" stroke-width="1.5"/>
+  <text x="300" y="67" fill="#00d4ff" font-size="10" text-anchor="middle">Transceiver</text>
+  <text x="300" y="80" fill="#00d4ff" font-size="10" text-anchor="middle">Unit</text>
+  <text x="300" y="93" fill="#94a3b8" font-size="8" text-anchor="middle">(RF Module)</text>
+
+  <rect x="380" y="40" width="80" height="60" rx="6" fill="#1a2235" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="420" y="67" fill="#ef4444" font-size="10" text-anchor="middle">Power</text>
+  <text x="420" y="80" fill="#ef4444" font-size="10" text-anchor="middle">Unit</text>
+  <text x="420" y="93" fill="#94a3b8" font-size="8" text-anchor="middle">(Battery)</text>
+
+  <line x1="100" y1="70" x2="140" y2="70" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="220" y1="70" x2="260" y2="70" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="340" y1="70" x2="380" y2="70" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <text x="250" y="140" fill="#94a3b8" font-size="9" text-anchor="middle">Internal Architecture of a Sensor Node</text>
+</svg>
+  </div>
+
+  <h4>✅ Key Features of WSN</h4>
+  <ul>
+    <li><strong>Self-organizing:</strong> Nodes automatically form a network without manual configuration</li>
+    <li><strong>Scalability:</strong> New nodes can be added easily</li>
+    <li><strong>Fault tolerance:</strong> Network continues even if some nodes fail</li>
+    <li><strong>Energy efficiency:</strong> Low power protocols to maximize battery life</li>
+    <li><strong>Multi-hop communication:</strong> Data is relayed through intermediate nodes</li>
+    <li><strong>Ad-hoc deployment:</strong> Can be deployed in hostile/inaccessible environments</li>
+  </ul>
+
+  <h4>⚠️ Design Challenges</h4>
+  <ul>
+    <li><strong>Energy constraints:</strong> Limited battery life; nodes must conserve energy</li>
+    <li><strong>Limited bandwidth:</strong> Low data rate wireless channels</li>
+    <li><strong>Security:</strong> Vulnerable to eavesdropping and attacks in open wireless medium</li>
+    <li><strong>Data aggregation:</strong> Reducing redundant data before transmission</li>
+    <li><strong>Routing:</strong> Finding energy-efficient paths in dynamic network topology</li>
+    <li><strong>QoS:</strong> Maintaining reliability and latency in lossy networks</li>
+  </ul>
+
+  <div class="trick-box">
+    <h4>🧠 Memory Trick: WSN Features — "SAFE ME"</h4>
+    <p>S-caling | A-d-hoc | F-ault tolerance | E-nergy efficiency | M-ulti-hop | E-asy deployment</p>
+  </div>
+  <div class="viva-box">
+    <h4>🎤 Expected Viva Questions</h4>
+    <ul>
+      <li>What is the difference between WSN and traditional networks?</li>
+      <li>What protocols are used in WSN? (Zigbee, 6LoWPAN, IEEE 802.15.4)</li>
+      <li>What is LEACH protocol in WSN?</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- Q1b WSN Healthcare -->
+<div class="qtab-content" data-qtab="q1-1">
+<div class="answer-block">
+  <h3>Q1b: WSN for Healthcare Monitoring <span class="badge badge-hp">★★ 3/5 Papers</span> <span class="mark-tag">[6M]</span></h3>
+
+  <h4>📌 Introduction</h4>
+  <p>WSN enables remote health monitoring by using body-worn or implanted sensor nodes that continuously collect patient vitals and transmit them wirelessly to healthcare providers.</p>
+
+  <h4>🏥 Healthcare WSN Architecture Diagram</h4>
+  <div class="diagram-wrap">
+<svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+  <rect width="680" height="320" fill="#111827" rx="10"/>
+  <text x="340" y="25" fill="#00d4ff" font-size="13" font-weight="bold" text-anchor="middle">WSN Healthcare Monitoring System</text>
+
+  <!-- Patient with sensors -->
+  <ellipse cx="90" cy="130" rx="50" ry="70" fill="#1a2235" stroke="#ef4444" stroke-width="2"/>
+  <text x="90" y="115" fill="#ef4444" font-size="10" text-anchor="middle">👤 Patient</text>
+  <text x="90" y="130" fill="#94a3b8" font-size="8" text-anchor="middle">Body Sensors:</text>
+  <text x="90" y="143" fill="#10b981" font-size="8" text-anchor="middle">• Heart Rate</text>
+  <text x="90" y="155" fill="#10b981" font-size="8" text-anchor="middle">• SpO2</text>
+  <text x="90" y="167" fill="#10b981" font-size="8" text-anchor="middle">• Temp / BP</text>
+  <text x="90" y="179" fill="#10b981" font-size="8" text-anchor="middle">• EEG/ECG</text>
+
+  <!-- Personal Gateway (Phone) -->
+  <rect x="195" y="100" width="90" height="60" rx="6" fill="#1a2235" stroke="#f59e0b" stroke-width="2"/>
+  <text x="240" y="122" fill="#f59e0b" font-size="10" text-anchor="middle">📱 Personal</text>
+  <text x="240" y="135" fill="#f59e0b" font-size="10" text-anchor="middle">Gateway</text>
+  <text x="240" y="148" fill="#94a3b8" font-size="8" text-anchor="middle">(Smartphone)</text>
+
+  <!-- Hospital Gateway -->
+  <rect x="345" y="100" width="90" height="60" rx="6" fill="#1a2235" stroke="#7c3aed" stroke-width="2"/>
+  <text x="390" y="122" fill="#a78bfa" font-size="10" text-anchor="middle">🏥 Hospital</text>
+  <text x="390" y="135" fill="#a78bfa" font-size="10" text-anchor="middle">Gateway</text>
+  <text x="390" y="148" fill="#94a3b8" font-size="8" text-anchor="middle">(Base Station)</text>
+
+  <!-- Cloud/Server -->
+  <rect x="490" y="80" width="100" height="80" rx="6" fill="#1a2235" stroke="#00d4ff" stroke-width="2"/>
+  <text x="540" y="108" fill="#00d4ff" font-size="10" text-anchor="middle">☁️ Health</text>
+  <text x="540" y="121" fill="#00d4ff" font-size="10" text-anchor="middle">Cloud Server</text>
+  <text x="540" y="137" fill="#94a3b8" font-size="8" text-anchor="middle">• EHR Database</text>
+  <text x="540" y="149" fill="#94a3b8" font-size="8" text-anchor="middle">• AI Analysis</text>
+
+  <!-- Doctor Dashboard -->
+  <rect x="345" y="210" width="90" height="60" rx="6" fill="#1a2235" stroke="#10b981" stroke-width="2"/>
+  <text x="390" y="232" fill="#10b981" font-size="10" text-anchor="middle">👨‍⚕️ Doctor</text>
+  <text x="390" y="245" fill="#10b981" font-size="10" text-anchor="middle">Dashboard</text>
+  <text x="390" y="258" fill="#94a3b8" font-size="8" text-anchor="middle">(Alerts/Monitor)</text>
+
+  <!-- Alert System -->
+  <rect x="195" y="210" width="90" height="60" rx="6" fill="#1a2235" stroke="#ef4444" stroke-width="2"/>
+  <text x="240" y="232" fill="#ef4444" font-size="10" text-anchor="middle">🚨 Alert</text>
+  <text x="240" y="245" fill="#ef4444" font-size="10" text-anchor="middle">System</text>
+  <text x="240" y="258" fill="#94a3b8" font-size="8" text-anchor="middle">(SMS/Email)</text>
+
+  <!-- Connections -->
+  <line x1="140" y1="130" x2="195" y2="130" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="167" y="123" fill="#94a3b8" font-size="8" text-anchor="middle">BLE/ZigBee</text>
+  <line x1="285" y1="130" x2="345" y2="130" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="315" y="123" fill="#94a3b8" font-size="8" text-anchor="middle">WiFi/4G</text>
+  <line x1="435" y1="130" x2="490" y2="130" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="462" y="123" fill="#94a3b8" font-size="8" text-anchor="middle">Internet</text>
+  <line x1="390" y1="160" x2="390" y2="210" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="540" y1="160" x2="390" y2="215" stroke="#00d4ff" stroke-width="1.5"/>
+  <line x1="300" y1="240" x2="345" y2="240" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3"/>
+</svg>
+  </div>
+
+  <h4>⚙️ Working Process</h4>
+  <ol>
+    <li>Body-worn sensors (heart rate, SpO2, temperature) collect vital signs continuously</li>
+    <li>Sensor nodes transmit data to personal gateway (smartphone) via Bluetooth/ZigBee</li>
+    <li>Gateway aggregates data and sends to hospital server over WiFi/4G/Internet</li>
+    <li>Cloud server stores Electronic Health Records (EHR) and runs AI algorithms</li>
+    <li>Doctors access dashboards; automated alerts sent if vitals cross thresholds</li>
+  </ol>
+
+  <h4>✅ Advantages</h4>
+  <ul>
+    <li>Continuous remote monitoring without hospital admission</li>
+    <li>Early detection of abnormalities → reduced mortality</li>
+    <li>Cost-effective: reduces hospital visits</li>
+    <li>Useful for elderly, chronic disease patients</li>
+  </ul>
+</div>
+</div>
+
+<!-- Q1c IaaS PaaS SaaS -->
+<div class="qtab-content" data-qtab="q1-2">
+<div class="answer-block">
+  <h3>Q1c: IaaS, PaaS, SaaS — Comparison <span class="badge badge-vhp">★★★ 5/5 Papers</span> <span class="mark-tag">[8M]</span></h3>
+
+  <h4>📌 Cloud Service Models Overview</h4>
+  <div class="diagram-wrap">
+<svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+  <rect width="680" height="300" fill="#111827" rx="10"/>
+  <text x="340" y="25" fill="#00d4ff" font-size="13" font-weight="bold" text-anchor="middle">Cloud Service Models — IaaS / PaaS / SaaS</text>
+
+  <!-- IaaS Column -->
+  <rect x="30" y="45" width="190" height="230" rx="8" fill="#1e3a5f" stroke="#10b981" stroke-width="2"/>
+  <rect x="30" y="45" width="190" height="35" rx="8" fill="#059669"/>
+  <text x="125" y="68" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">IaaS</text>
+  <text x="125" y="100" fill="#94a3b8" font-size="9" text-anchor="middle">User Manages:</text>
+  <rect x="50" y="108" width="150" height="22" rx="4" fill="#1a2235" stroke="#10b981" stroke-width="1"/>
+  <text x="125" y="124" fill="#10b981" font-size="9" text-anchor="middle">Applications</text>
+  <rect x="50" y="134" width="150" height="22" rx="4" fill="#1a2235" stroke="#10b981" stroke-width="1"/>
+  <text x="125" y="150" fill="#10b981" font-size="9" text-anchor="middle">Runtime / Middleware</text>
+  <rect x="50" y="160" width="150" height="22" rx="4" fill="#1a2235" stroke="#10b981" stroke-width="1"/>
+  <text x="125" y="176" fill="#10b981" font-size="9" text-anchor="middle">OS</text>
+  <text x="125" y="210" fill="#94a3b8" font-size="9" text-anchor="middle">Provider Manages:</text>
+  <rect x="50" y="218" width="150" height="22" rx="4" fill="#059669" stroke="none"/>
+  <text x="125" y="234" fill="#fff" font-size="9" text-anchor="middle">Virtualization, Servers, Storage, Network</text>
+  <text x="125" y="265" fill="#94a3b8" font-size="8" text-anchor="middle">Ex: AWS EC2, Azure VMs,</text>
+  <text x="125" y="276" fill="#94a3b8" font-size="8" text-anchor="middle">Google Compute Engine</text>
+
+  <!-- PaaS Column -->
+  <rect x="245" y="45" width="190" height="230" rx="8" fill="#1e2d45" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="245" y="45" width="190" height="35" rx="8" fill="#d97706"/>
+  <text x="340" y="68" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">PaaS</text>
+  <text x="340" y="100" fill="#94a3b8" font-size="9" text-anchor="middle">User Manages:</text>
+  <rect x="265" y="108" width="150" height="22" rx="4" fill="#1a2235" stroke="#f59e0b" stroke-width="1"/>
+  <text x="340" y="124" fill="#f59e0b" font-size="9" text-anchor="middle">Applications + Data</text>
+  <text x="340" y="165" fill="#94a3b8" font-size="9" text-anchor="middle">Provider Manages:</text>
+  <rect x="265" y="173" width="150" height="22" rx="4" fill="#d97706" stroke="none"/>
+  <text x="340" y="189" fill="#fff" font-size="9" text-anchor="middle">Runtime, OS, Middleware, Infra</text>
+  <text x="340" y="265" fill="#94a3b8" font-size="8" text-anchor="middle">Ex: Google App Engine,</text>
+  <text x="340" y="276" fill="#94a3b8" font-size="8" text-anchor="middle">Heroku, AWS Elastic Beanstalk</text>
+
+  <!-- SaaS Column -->
+  <rect x="460" y="45" width="190" height="230" rx="8" fill="#1a1f35" stroke="#7c3aed" stroke-width="2"/>
+  <rect x="460" y="45" width="190" height="35" rx="8" fill="#7c3aed"/>
+  <text x="555" y="68" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">SaaS</text>
+  <text x="555" y="100" fill="#94a3b8" font-size="9" text-anchor="middle">User Only Uses:</text>
+  <rect x="480" y="108" width="150" height="22" rx="4" fill="#1a2235" stroke="#7c3aed" stroke-width="1"/>
+  <text x="555" y="124" fill="#a78bfa" font-size="9" text-anchor="middle">Web Browser / UI</text>
+  <text x="555" y="165" fill="#94a3b8" font-size="9" text-anchor="middle">Provider Manages:</text>
+  <rect x="480" y="173" width="150" height="22" rx="4" fill="#7c3aed" stroke="none"/>
+  <text x="555" y="189" fill="#fff" font-size="9" text-anchor="middle">Everything</text>
+  <text x="555" y="265" fill="#94a3b8" font-size="8" text-anchor="middle">Ex: Gmail, Salesforce,</text>
+  <text x="555" y="276" fill="#94a3b8" font-size="8" text-anchor="middle">Office 365, ThingSpeak</text>
+</svg>
+  </div>
+
+  <h4>📊 Detailed Comparison Table</h4>
+  <table>
+    <tr><th>Parameter</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+    <tr><td><strong>Full Form</strong></td><td>Infrastructure as a Service</td><td>Platform as a Service</td><td>Software as a Service</td></tr>
+    <tr><td><strong>What is offered</strong></td><td>Virtualized computing resources</td><td>Development platform + tools</td><td>Ready-to-use software</td></tr>
+    <tr><td><strong>User Controls</strong></td><td>OS, Middleware, Apps, Data</td><td>Apps and Data only</td><td>Nothing (only configuration)</td></tr>
+    <tr><td><strong>Provider Controls</strong></td><td>Servers, Storage, Networking</td><td>Runtime, OS, Infra, Networking</td><td>Everything</td></tr>
+    <tr><td><strong>Target Users</strong></td><td>System administrators</td><td>Developers</td><td>End users</td></tr>
+    <tr><td><strong>Flexibility</strong></td><td>Highest</td><td>Medium</td><td>Lowest</td></tr>
+    <tr><td><strong>Examples</strong></td><td>AWS EC2, Google Compute</td><td>Google App Engine, Heroku</td><td>Gmail, Salesforce, ThingSpeak</td></tr>
+    <tr><td><strong>IoT Use</strong></td><td>Host IoT servers, VMs</td><td>Build IoT apps</td><td>Use IoT dashboards</td></tr>
+  </table>
+
+  <h4>📌 IaaS — Infrastructure as a Service</h4>
+  <p><strong>Definition:</strong> IaaS provides fundamental computing resources (VMs, storage, networking) on-demand over the internet on a pay-per-use basis.</p>
+  <p><strong>Advantages:</strong> Complete control over infrastructure; no hardware investment; pay as you go; easy scaling; disaster recovery.</p>
+
+  <h4>📌 PaaS — Platform as a Service</h4>
+  <p><strong>Definition:</strong> PaaS provides a platform allowing customers to develop, run, and manage applications without maintaining the underlying infrastructure.</p>
+  <p><strong>Advantages:</strong> Faster app development; no server management; built-in scalability; collaboration tools; reduced time to market.</p>
+
+  <h4>📌 SaaS — Software as a Service</h4>
+  <p><strong>Definition:</strong> SaaS delivers software applications over the internet, on-demand, typically on a subscription basis.</p>
+  <p><strong>Advantages:</strong> No installation needed; accessible from anywhere; automatic updates; cost-effective; multi-user access.</p>
+
+  <div class="trick-box">
+    <h4>🧠 Memory Trick: I-P-S = "I Pay Someone"</h4>
+    <p>IaaS = I manage most | PaaS = Provider manages platform | SaaS = Someone manages everything</p>
+  </div>
+</div>
+</div>
+
+<!-- Q2a Cloud Architecture -->
+<div class="qtab-content" data-qtab="q1-3">
+<div class="answer-block">
+  <h3>Q2a: Cloud Computing Architecture <span class="badge badge-vhp">★★★ 5/5 Papers</span> <span class="mark-tag">[6M]</span></h3>
+
+  <h4>📌 Definition</h4>
+  <p>Cloud Computing is the delivery of computing services—including servers, storage, databases, networking, software, and analytics—over the internet ("the cloud") to offer faster innovation, flexible resources, and economies of scale.</p>
+
+  <h4>🏗️ Cloud Computing Architecture Diagram</h4>
+  <div class="diagram-wrap">
+<svg viewBox="0 0 680 350" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+  <rect width="680" height="350" fill="#111827" rx="10"/>
+  <text x="340" y="25" fill="#00d4ff" font-size="13" font-weight="bold" text-anchor="middle">Cloud Computing Architecture</text>
+
+  <!-- Layer 1: Client Tier -->
+  <rect x="20" y="40" width="640" height="55" rx="8" fill="#1e3a5f" stroke="#10b981" stroke-width="1.5"/>
+  <text x="340" y="62" fill="#10b981" font-weight="bold" font-size="11" text-anchor="middle">Client Tier (Frontend)</text>
+  <text x="90" y="82" fill="#94a3b8" font-size="9" text-anchor="middle">🖥️ Desktop</text>
+  <text x="210" y="82" fill="#94a3b8" font-size="9" text-anchor="middle">📱 Mobile App</text>
+  <text x="340" y="82" fill="#94a3b8" font-size="9" text-anchor="middle">🌐 Web Browser</text>
+  <text x="470" y="82" fill="#94a3b8" font-size="9" text-anchor="middle">📡 IoT Devices</text>
+  <text x="590" y="82" fill="#94a3b8" font-size="9" text-anchor="middle">🔌 APIs</text>
+
+  <!-- Arrow -->
+  <line x1="340" y1="95" x2="340" y2="115" stroke="#00d4ff" stroke-width="2"/>
+  <text x="380" y="109" fill="#94a3b8" font-size="8">Internet</text>
+
+  <!-- Layer 2: Service Layer -->
+  <rect x="20" y="120" width="640" height="80" rx="8" fill="#1a2235" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="340" y="140" fill="#f59e0b" font-weight="bold" font-size="11" text-anchor="middle">Service Layer (Middleware)</text>
+  <rect x="45" y="150" width="120" height="35" rx="4" fill="#1e3a5f" stroke="#10b981" stroke-width="1"/>
+  <text x="105" y="173" fill="#10b981" font-size="9" text-anchor="middle">SaaS</text>
+  <rect x="195" y="150" width="120" height="35" rx="4" fill="#1e3a5f" stroke="#f59e0b" stroke-width="1"/>
+  <text x="255" y="173" fill="#f59e0b" font-size="9" text-anchor="middle">PaaS</text>
+  <rect x="345" y="150" width="120" height="35" rx="4" fill="#1e3a5f" stroke="#a78bfa" stroke-width="1"/>
+  <text x="405" y="173" fill="#a78bfa" font-size="9" text-anchor="middle">IaaS</text>
+  <rect x="495" y="150" width="140" height="35" rx="4" fill="#1e3a5f" stroke="#00d4ff" stroke-width="1"/>
+  <text x="565" y="173" fill="#00d4ff" font-size="9" text-anchor="middle">Load Balancer / API GW</text>
+
+  <!-- Arrow -->
+  <line x1="340" y1="200" x2="340" y2="220" stroke="#00d4ff" stroke-width="2"/>
+
+  <!-- Layer 3: Infrastructure Layer -->
+  <rect x="20" y="225" width="640" height="80" rx="8" fill="#1e2235" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="340" y="245" fill="#a78bfa" font-weight="bold" font-size="11" text-anchor="middle">Infrastructure Layer (Backend / Data Centers)</text>
+  <rect x="45" y="255" width="100" height="35" rx="4" fill="#1e3a5f" stroke="#7c3aed" stroke-width="1"/>
+  <text x="95" y="278" fill="#94a3b8" font-size="9" text-anchor="middle">🖥️ Servers</text>
+  <rect x="165" y="255" width="100" height="35" rx="4" fill="#1e3a5f" stroke="#7c3aed" stroke-width="1"/>
+  <text x="215" y="278" fill="#94a3b8" font-size="9" text-anchor="middle">💾 Storage</text>
+  <rect x="285" y="255" width="100" height="35" rx="4" fill="#1e3a5f" stroke="#7c3aed" stroke-width="1"/>
+  <text x="335" y="278" fill="#94a3b8" font-size="9" text-anchor="middle">🌐 Network</text>
+  <rect x="405" y="255" width="100" height="35" rx="4" fill="#1e3a5f" stroke="#7c3aed" stroke-width="1"/>
+  <text x="455" y="278" fill="#94a3b8" font-size="9" text-anchor="middle">⚡ Power</text>
+  <rect x="525" y="255" width="110" height="35" rx="4" fill="#1e3a5f" stroke="#7c3aed" stroke-width="1"/>
+  <text x="580" y="278" fill="#94a3b8" font-size="9" text-anchor="middle">🔒 Security</text>
+
+  <!-- Layer Label -->
+  <text x="340" y="330" fill="#94a3b8" font-size="9" text-anchor="middle">Virtualization Layer: Hypervisor (VMware, KVM, Hyper-V) manages virtual machines</text>
+</svg>
+  </div>
+
+  <h4>🔧 Key Characteristics (NIST Definition)</h4>
+  <ul>
+    <li><strong>On-demand self-service:</strong> Resources provisioned automatically without human interaction</li>
+    <li><strong>Broad network access:</strong> Accessible from anywhere over the internet</li>
+    <li><strong>Resource pooling:</strong> Multi-tenant model; resources shared among multiple users</li>
+    <li><strong>Rapid elasticity:</strong> Resources can be scaled up/down quickly</li>
+    <li><strong>Measured service:</strong> Pay-per-use billing model</li>
+  </ul>
+
+  <h4>Deployment Models</h4>
+  <table>
+    <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+    <tr><td>Public Cloud</td><td>Shared infrastructure owned by provider, accessible to all</td><td>AWS, Azure, Google Cloud</td></tr>
+    <tr><td>Private Cloud</td><td>Dedicated infrastructure for one organization</td><td>OpenStack, VMware</td></tr>
+    <tr><td>Hybrid Cloud</td><td>Combination of public and private clouds</td><td>AWS Outposts</td></tr>
+    <tr><td>Community Cloud</td><td>Shared among organizations with common concerns</td><td>Government cloud</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- Q2b Cloud Challenges -->
+<div class="qtab-content" data-qtab="q1-4">
+<div class="answer-block">
+  <h3>Q2b: Challenges of Cloud Computing <span class="badge badge-hp">★★ 3/5 Papers</span> <span class="mark-tag">[6M]</span></h3>
+  <table>
+    <tr><th>#</th><th>Challenge</th><th>Description</th></tr>
+    <tr><td>1</td><td><strong>Security & Privacy</strong></td><td>Data stored remotely; risk of unauthorized access, data breaches, compliance (GDPR, HIPAA)</td></tr>
+    <tr><td>2</td><td><strong>Downtime / Availability</strong></td><td>Service outages affect all users; SLA guarantees needed; internet dependency</td></tr>
+    <tr><td>3</td><td><strong>Vendor Lock-in</strong></td><td>Difficult to migrate between providers; proprietary APIs and formats</td></tr>
+    <tr><td>4</td><td><strong>Limited Control</strong></td><td>Users have no control over infrastructure; dependent on provider for updates</td></tr>
+    <tr><td>5</td><td><strong>Bandwidth Costs</strong></td><td>High data transfer costs for bandwidth-intensive applications</td></tr>
+    <tr><td>6</td><td><strong>Compliance & Legal</strong></td><td>Data sovereignty issues; different countries have different data laws</td></tr>
+    <tr><td>7</td><td><strong>Performance</strong></td><td>Latency issues for real-time applications due to geographic distance</td></tr>
+  </table>
+  <div class="trick-box">
+    <h4>🧠 Memory Trick: "SECURE VP" for Cloud Challenges</h4>
+    <p>S-ecurity | E-rrors (downtime) | C-ompliance | U-ncontrolled | R-ising costs | E-ndpoint lock-in | V-endor lock-in | P-erformance</p>
+  </div>
+</div>
+</div>
+
+<!-- Q2c AWS Azure -->
+<div class="qtab-content" data-qtab="q1-5">
+<div class="answer-block">
+  <h3>Q2c: AWS & Azure IoT Cloud Platforms <span class="badge badge-hp">★★ 3/5 Papers</span> <span class="mark-tag">[8M]</span></h3>
+
+  <h4>🔶 Amazon Web Services (AWS) IoT</h4>
+  <table>
+    <tr><th>Feature</th><th>Description</th></tr>
+    <tr><td>AWS IoT Core</td><td>Managed cloud service to connect IoT devices to AWS; supports MQTT, HTTP, WebSockets</td></tr>
+    <tr><td>AWS IoT Greengrass</td><td>Edge computing — runs Lambda functions on IoT devices</td></tr>
+    <tr><td>AWS IoT Analytics</td><td>Collects, processes, and analyzes IoT data at scale</td></tr>
+    <tr><td>AWS S3</td><td>Scalable object storage for IoT data</td></tr>
+    <tr><td>AWS Lambda</td><td>Serverless computing triggered by IoT events</td></tr>
+    <tr><td>Amazon Kinesis</td><td>Real-time data streaming from IoT devices</td></tr>
+    <tr><td>AWS SageMaker</td><td>Machine learning for IoT data predictive analytics</td></tr>
+  </table>
+
+  <h4>🔷 Microsoft Azure IoT</h4>
+  <table>
+    <tr><th>Feature</th><th>Description</th></tr>
+    <tr><td>Azure IoT Hub</td><td>Central message broker between IoT devices and Azure; bidirectional communication</td></tr>
+    <tr><td>Azure IoT Central</td><td>Fully managed SaaS IoT app platform; dashboard without coding</td></tr>
+    <tr><td>Azure Digital Twins</td><td>Creates digital models of physical environments</td></tr>
+    <tr><td>Azure Stream Analytics</td><td>Real-time analytics on IoT data streams</td></tr>
+    <tr><td>Azure Time Series Insights</td><td>Exploration and analysis of time series IoT data</td></tr>
+    <tr><td>Azure Machine Learning</td><td>Build predictive models from IoT sensor data</td></tr>
+    <tr><td>Azure Blob Storage</td><td>Store large amounts of IoT data cost-effectively</td></tr>
+  </table>
+
+  <h4>📊 AWS vs Azure IoT Comparison</h4>
+  <table>
+    <tr><th>Parameter</th><th>AWS IoT</th><th>Azure IoT</th></tr>
+    <tr><td>Core Service</td><td>AWS IoT Core</td><td>Azure IoT Hub</td></tr>
+    <tr><td>Protocol Support</td><td>MQTT, HTTP, WebSockets</td><td>MQTT, AMQP, HTTP</td></tr>
+    <tr><td>Edge Computing</td><td>AWS Greengrass</td><td>Azure IoT Edge</td></tr>
+    <tr><td>Device Management</td><td>AWS Device Defender</td><td>Azure Device Provisioning</td></tr>
+    <tr><td>Market Share</td><td>~33% (Market leader)</td><td>~22% (Second)</td></tr>
+  </table>
+</div>
+</div>
+</div>
+
+<!-- ========== Q3/Q4 ANSWERS ========== -->
+<div id="page-q3" class="page">
+<div class="page-hero">
+  <h1>Q3 / Q4: Arduino & Raspberry Pi</h1>
+  <p>Unit 2 Answers — 16 Marks Section | Sensors, Programming, Interfacing</p>
+</div>
+
+<div class="qtab-nav">
+  <button class="qtab-btn active" onclick="showQTab('q3',0)">Q3a: PIR + Arduino</button>
+  <button class="qtab-btn" onclick="showQTab('q3',1)">Q3b: Arduino + LM35</button>
+  <button class="qtab-btn" onclick="showQTab('q3',2)">Q4a: Ultrasonic + RPi</button>
+  <button class="qtab-btn" onclick="showQTab('q3',3)">Q4b: Raspberry Pi + LEDs</button>
+  <button class="qtab-btn" onclick="showQTab('q3',4)">Bonus: Arduino Functions</button>
+  <button class="qtab-btn" onclick="showQTab('q3',5)">Bonus: LCD with Arduino</button>
+</div>
+
+<!-- Q3a PIR Arduino -->
+<div class="qtab-content active" data-qtab="q3-0">
+<div class="answer-block">
+  <h3>Q3a: PIR Sensor Interfacing with Arduino UNO <span class="badge badge-vhp">★★★ 4/5 Papers</span> <span class="mark-tag">[8M]</span></h3>
+
+  <h4>📌 What is a PIR Sensor?</h4>
+  <p>A PIR (Passive Infrared) sensor detects motion by measuring changes in infrared radiation emitted by warm bodies (humans, animals). It is "passive" because it does not emit any radiation itself; it only detects changes in ambient infrared energy.</p>
+
+  <h4>⚙️ Working Principle</h4>
+  <ul>
+    <li>Contains two pyroelectric sensors connected in opposition</li>
+    <li>When no motion: both sensors detect same IR level → output = LOW</li>
+    <li>When motion detected: one sensor receives more IR than other → differential → output = HIGH</li>
+    <li>Output pin goes HIGH for 1–10 seconds (adjustable via potentiometer)</li>
+  </ul>
+
+  <h4>🔌 Interfacing Diagram: PIR Sensor with Arduino UNO</h4>
+  <div class="diagram-wrap">
+<svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+  <rect width="680" height="300" fill="#111827" rx="10"/>
+  <text x="340" y="25" fill="#00d4ff" font-size="12" font-weight="bold" text-anchor="middle">PIR Sensor Interfacing with Arduino UNO</text>
+
+  <!-- Arduino Board -->
+  <rect x="320" y="60" width="200" height="210" rx="8" fill="#1a4040" stroke="#10b981" stroke-width="2"/>
+  <text x="420" y="80" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">Arduino UNO</text>
+  <!-- Pin labels -->
+  <text x="335" y="105" fill="#94a3b8" font-size="9">5V →</text>
+  <text x="335" y="130" fill="#94a3b8" font-size="9">GND →</text>
+  <text x="335" y="155" fill="#94a3b8" font-size="9">D2 (IN) →</text>
+  <text x="335" y="200" fill="#94a3b8" font-size="9">D7 (Buzzer+) →</text>
+  <text x="335" y="230" fill="#94a3b8" font-size="9">GND →</text>
+  <!-- Pin dots -->
+  <circle cx="324" cy="102" r="4" fill="#ef4444"/>
+  <circle cx="324" cy="127" r="4" fill="#1f1f1f" stroke="#94a3b8"/>
+  <circle cx="324" cy="152" r="4" fill="#f59e0b"/>
+  <circle cx="324" cy="197" r="4" fill="#7c3aed"/>
+  <circle cx="324" cy="227" r="4" fill="#1f1f1f" stroke="#94a3b8"/>
+
+  <!-- PIR Sensor -->
+  <rect x="80" y="80" width="130" height="120" rx="8" fill="#1a3050" stroke="#f59e0b" stroke-width="2"/>
+  <text x="145" y="102" fill="#f59e0b" font-size="11" font-weight="bold" text-anchor="middle">PIR Sensor</text>
+  <text x="145" y="118" fill="#94a3b8" font-size="8" text-anchor="middle">(HC-SR501)</text>
+  <circle cx="100" cy="140" r="12" fill="#1a2235" stroke="#f59e0b"/>
+  <text x="100" y="144" fill="#f59e0b" font-size="7" text-anchor="middle">VCC</text>
+  <circle cx="145" cy="140" r="12" fill="#1a2235" stroke="#94a3b8"/>
+  <text x="145" y="144" fill="#94a3b8" font-size="7" text-anchor="middle">GND</text>
+  <circle cx="190" cy="140" r="12" fill="#1a2235" stroke="#10b981"/>
+  <text x="190" y="144" fill="#10b981" font-size="7" text-anchor="middle">OUT</text>
+
+  <!-- Buzzer -->
+  <ellipse cx="145" cy="230" rx="40" ry="25" fill="#1a2235" stroke="#7c3aed" stroke-width="2"/>
+  <text x="145" y="234" fill="#a78bfa" font-size="10" text-anchor="middle">🔔 Buzzer</text>
+
+  <!-- Connections -->
+  <line x1="100" y1="152" x2="100" y2="102" stroke="#ef4444" stroke-width="2"/>
+  <line x1="100" y1="102" x2="324" y2="102" stroke="#ef4444" stroke-width="2"/>
+  <line x1="145" y1="152" x2="145" y2="175" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="145" y1="175" x2="295" y2="175" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="295" y1="175" x2="295" y2="127" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="295" y1="127" x2="324" y2="127" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="190" y1="152" x2="310" y2="152" stroke="#f59e0b" stroke-width="2"/>
+  <line x1="310" y1="152" x2="324" y2="152" stroke="#f59e0b" stroke-width="2"/>
+  <line x1="145" y1="205" x2="145" y2="197" stroke="#7c3aed" stroke-width="2"/>
+  <line x1="145" y1="197" x2="324" y2="197" stroke="#7c3aed" stroke-width="2"/>
+  <line x1="145" y1="255" x2="145" y2="265" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="145" y1="265" x2="300" y2="265" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="300" y1="265" x2="300" y2="227" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="300" y1="227" x2="324" y2="227" stroke="#94a3b8" stroke-width="2"/>
+
+  <!-- Legend -->
+  <rect x="470" y="70" width="190" height="90" rx="6" fill="#1a2235" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="565" y="88" fill="#94a3b8" font-size="9" text-anchor="middle">Connections</text>
+  <text x="480" y="105" fill="#ef4444" font-size="8">— PIR VCC → Arduino 5V</text>
+  <text x="480" y="118" fill="#94a3b8" font-size="8">— PIR GND → Arduino GND</text>
+  <text x="480" y="131" fill="#f59e0b" font-size="8">— PIR OUT → Arduino D2</text>
+  <text x="480" y="144" fill="#7c3aed" font-size="8">— Buzzer+ → Arduino D7</text>
+  <text x="480" y="157" fill="#94a3b8" font-size="8">— Buzzer- → Arduino GND</text>
+</svg>
+  </div>
+
+  <h4>💻 Arduino Program — PIR Motion Detection with Buzzer</h4>
+<pre><code><span class="cm">// PIR Sensor Motion Detection with Buzzer</span>
+<span class="cm">// PIR OUT → D2, Buzzer → D7</span>
+
+<span class="kw">int</span> pirPin = <span class="num">2</span>;   <span class="cm">// PIR sensor output pin</span>
+<span class="kw">int</span> buzzerPin = <span class="num">7</span>; <span class="cm">// Buzzer pin</span>
+<span class="kw">int</span> pirState = <span class="num">0</span>; <span class="cm">// Variable to store PIR state</span>
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  <span class="fn">pinMode</span>(pirPin, <span class="kw">INPUT</span>);     <span class="cm">// PIR as input</span>
+  <span class="fn">pinMode</span>(buzzerPin, <span class="kw">OUTPUT</span>); <span class="cm">// Buzzer as output</span>
+  <span class="fn">Serial.begin</span>(<span class="num">9600</span>);          <span class="cm">// Initialize serial monitor</span>
+  <span class="fn">Serial.println</span>(<span class="str">"PIR Sensor Ready..."</span>);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  pirState = <span class="fn">digitalRead</span>(pirPin); <span class="cm">// Read PIR output</span>
+
+  <span class="kw">if</span> (pirState == <span class="kw">HIGH</span>) {        <span class="cm">// Motion detected</span>
+    <span class="fn">digitalWrite</span>(buzzerPin, <span class="kw">HIGH</span>); <span class="cm">// Turn ON buzzer</span>
+    <span class="fn">Serial.println</span>(<span class="str">"Motion Detected! Buzzer ON"</span>);
+    <span class="fn">delay</span>(<span class="num">2000</span>);                   <span class="cm">// Keep buzzer on 2 seconds</span>
+  } <span class="kw">else</span> {                         <span class="cm">// No motion</span>
+    <span class="fn">digitalWrite</span>(buzzerPin, <span class="kw">LOW</span>);  <span class="cm">// Turn OFF buzzer</span>
+    <span class="fn">Serial.println</span>(<span class="str">"No Motion. Buzzer OFF"</span>);
+  }
+  <span class="fn">delay</span>(<span class="num">100</span>); <span class="cm">// Small debounce delay</span>
+}</code></pre>
+
+  <div class="viva-box">
+    <h4>🎤 Viva Questions</h4>
+    <ul>
+      <li>What is the detection range of HC-SR501 PIR sensor? (3–7 meters)</li>
+      <li>What is the difference between active and passive IR sensors?</li>
+      <li>Can PIR detect motion through glass? (No — glass blocks IR)</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- Q3b Arduino LM35 -->
+<div class="qtab-content" data-qtab="q3-1">
+<div class="answer-block">
+  <h3>Q3b: Arduino UNO + LM35 Temperature Sensor <span class="badge badge-hp">★★ 3/5 Papers</span> <span class="mark-tag">[8M]</span></h3>
+
+  <h4>📌 What is Arduino UNO?</h4>
+  <p>Arduino UNO is an open-source microcontroller development board based on the ATmega328P microcontroller. It is the most popular board for prototyping and IoT development due to its simplicity and large community support.</p>
+
+  <h4>🔧 Key Features of Arduino UNO</h4>
+  <table>
+    <tr><th>Feature</th><th>Specification</th></tr>
+    <tr><td>Microcontroller</td><td>ATmega328P (8-bit, 16 MHz)</td></tr>
+    <tr><td>Digital I/O Pins</td><td>14 (6 PWM capable)</td></tr>
+    <tr><td>Analog Input Pins</td><td>6 (10-bit ADC)</td></tr>
+    <tr><td>Flash Memory</td><td>32 KB (0.5 KB bootloader)</td></tr>
+    <tr><td>SRAM</td><td>2 KB</td></tr>
+    <tr><td>EEPROM</td><td>1 KB</td></tr>
+    <tr><td>Operating Voltage</td><td>5V (input 7–12V)</td></tr>
+    <tr><td>Communication</td><td>UART, SPI, I2C</td></tr>
+  </table>
+
+  <h4>🌡️ LM35 Temperature Sensor</h4>
+  <p>LM35 is an analog temperature sensor that outputs 10mV per °C (at 0°C it gives 0V, at 25°C it gives 250mV). It directly gives readings in Celsius without conversion.</p>
+  <p><strong>Formula:</strong> Temperature (°C) = (ADC_Value × 5000mV / 1024) / 10</p>
+
+  <h4>💻 Arduino Program — LM35 Temperature on Serial Monitor</h4>
+<pre><code><span class="cm">// LM35 Temperature Sensor with Arduino UNO</span>
+<span class="cm">// LM35 Vout → A0, VCC → 5V, GND → GND</span>
+
+<span class="kw">int</span> sensorPin = <span class="kw">A0</span>; <span class="cm">// Analog pin for LM35</span>
+<span class="kw">int</span> sensorValue;
+<span class="kw">float</span> temperature;
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  <span class="fn">Serial.begin</span>(<span class="num">9600</span>);
+  <span class="fn">Serial.println</span>(<span class="str">"LM35 Temperature Sensor"</span>);
+  <span class="fn">Serial.println</span>(<span class="str">"========================"</span>);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  sensorValue = <span class="fn">analogRead</span>(sensorPin);     <span class="cm">// Read ADC value (0-1023)</span>
+  
+  <span class="cm">// Convert ADC value to millivolts</span>
+  <span class="cm">// 10mV per degree Celsius, 5V ref = 5000mV</span>
+  temperature = (sensorValue * <span class="num">5000.0</span> / <span class="num">1024.0</span>) / <span class="num">10.0</span>;
+  
+  <span class="fn">Serial.print</span>(<span class="str">"Temperature: "</span>);
+  <span class="fn">Serial.print</span>(temperature);
+  <span class="fn">Serial.println</span>(<span class="str">" °C"</span>);
+  
+  <span class="fn">delay</span>(<span class="num">1000</span>); <span class="cm">// Read every 1 second</span>
+}</code></pre>
+
+  <div class="highlight-box green">
+    <strong>📌 Connections: LM35 → Arduino</strong><br>
+    Pin 1 (VS / VCC) → 5V | Pin 2 (Vout) → A0 | Pin 3 (GND) → GND
+  </div>
+</div>
+</div>
+
+<!-- Q4a Ultrasonic RPi -->
+<div class="qtab-content" data-qtab="q3-2">
+<div class="answer-block">
+  <h3>Q4a: Ultrasonic Sensor with Raspberry Pi <span class="badge badge-vhp">★★★ 4/5 Papers</span> <span class="mark-tag">[8M]</span></h3>
+
+  <h4>📌 Working of Ultrasonic Sensor (HC-SR04)</h4>
+  <ul>
+    <li>Sends 8 pulses of 40KHz ultrasonic sound when TRIG pin is HIGH for 10μs</li>
+    <li>Sound travels to obstacle and returns as echo</li>
+    <li>ECHO pin remains HIGH for time proportional to distance</li>
+    <li><strong>Distance = (Time × Speed of Sound) / 2</strong></li>
+    <li>Speed of sound = 343 m/s = 0.0343 cm/μs</li>
+  </ul>
+
+  <div class="diagram-wrap">
+<svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+  <rect width="680" height="260" fill="#111827" rx="10"/>
+  <text x="340" y="25" fill="#00d4ff" font-size="12" font-weight="bold" text-anchor="middle">Ultrasonic Sensor Interfacing with Raspberry Pi</text>
+
+  <!-- RPi Board -->
+  <rect x="20" y="50" width="200" height="180" rx="8" fill="#1a3a1a" stroke="#10b981" stroke-width="2"/>
+  <text x="120" y="72" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">Raspberry Pi</text>
+  <text x="120" y="90" fill="#94a3b8" font-size="9" text-anchor="middle">GPIO Pins:</text>
+  <text x="55" y="110" fill="#94a3b8" font-size="9">GPIO 5V → </text>
+  <text x="55" y="130" fill="#94a3b8" font-size="9">GPIO GND → </text>
+  <text x="55" y="150" fill="#94a3b8" font-size="9">GPIO 23 (TRIG) → </text>
+  <text x="55" y="170" fill="#94a3b8" font-size="9">GPIO 24 (ECHO) → </text>
+  <circle cx="220" cy="107" r="5" fill="#ef4444"/>
+  <circle cx="220" cy="127" r="5" fill="#1f1f1f" stroke="#94a3b8"/>
+  <circle cx="220" cy="147" r="5" fill="#f59e0b"/>
+  <circle cx="220" cy="167" r="5" fill="#10b981"/>
+
+  <!-- Voltage Divider for ECHO (5V→3.3V) -->
+  <rect x="280" y="140" width="90" height="55" rx="6" fill="#1a2235" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="325" y="158" fill="#f59e0b" font-size="9" text-anchor="middle">Voltage</text>
+  <text x="325" y="170" fill="#f59e0b" font-size="9" text-anchor="middle">Divider</text>
+  <text x="325" y="183" fill="#94a3b8" font-size="8" text-anchor="middle">1kΩ + 2kΩ</text>
+
+  <!-- Ultrasonic Sensor -->
+  <rect x="460" y="60" width="180" height="130" rx="8" fill="#1a1a40" stroke="#00d4ff" stroke-width="2"/>
+  <text x="550" y="80" fill="#00d4ff" font-size="11" font-weight="bold" text-anchor="middle">HC-SR04</text>
+  <text x="550" y="96" fill="#94a3b8" font-size="8" text-anchor="middle">Ultrasonic Sensor</text>
+  <ellipse cx="510" cy="130" rx="22" ry="22" fill="#1e1e3a" stroke="#00d4ff"/>
+  <text x="510" y="134" fill="#00d4ff" font-size="8" text-anchor="middle">TX</text>
+  <ellipse cx="590" cy="130" rx="22" ry="22" fill="#1e1e3a" stroke="#7c3aed"/>
+  <text x="590" y="134" fill="#a78bfa" font-size="8" text-anchor="middle">RX</text>
+  <text x="466" y="170" fill="#94a3b8" font-size="8">VCC  TRIG  ECHO  GND</text>
+  <circle cx="472" cy="184" r="4" fill="#ef4444"/>
+  <circle cx="498" cy="184" r="4" fill="#f59e0b"/>
+  <circle cx="527" cy="184" r="4" fill="#10b981"/>
+  <circle cx="556" cy="184" r="4" fill="#1f1f1f" stroke="#94a3b8"/>
+
+  <!-- Connections -->
+  <line x1="220" y1="107" x2="472" y2="107" stroke="#ef4444" stroke-width="1.5"/>
+  <line x1="220" y1="147" x2="498" y2="147" stroke="#f59e0b" stroke-width="1.5"/>
+  <line x1="498" y1="147" x2="498" y2="184" stroke="#f59e0b" stroke-width="1.5"/>
+  <line x1="527" y1="184" x2="527" y2="155" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="527" y1="155" x2="370" y2="155" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="280" y1="167" x2="220" y2="167" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="556" y1="184" x2="556" y2="200" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="556" y1="200" x2="40" y2="200" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="40" y1="200" x2="40" y2="127" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="40" y1="127" x2="20" y2="127" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="395" y="140" fill="#f59e0b" font-size="8" text-anchor="middle">⚠️ 3.3V needed</text>
+</svg>
+  </div>
+
+  <h4>🐍 Python Program — Ultrasonic Distance Measurement on Raspberry Pi</h4>
+<pre><code><span class="cm"># Ultrasonic Sensor Distance Measurement - Raspberry Pi</span>
+<span class="cm"># HC-SR04: VCC→5V, GND→GND, TRIG→GPIO23, ECHO→GPIO24</span>
+
+<span class="kw">import</span> RPi.GPIO <span class="kw">as</span> GPIO
+<span class="kw">import</span> time
+
+<span class="cm"># GPIO Setup</span>
+GPIO.<span class="fn">setmode</span>(GPIO.BCM)
+TRIG = <span class="num">23</span>
+ECHO = <span class="num">24</span>
+
+GPIO.<span class="fn">setup</span>(TRIG, GPIO.OUT)
+GPIO.<span class="fn">setup</span>(ECHO, GPIO.IN)
+
+<span class="kw">def</span> <span class="fn">measure_distance</span>():
+    <span class="cm"># Send 10us trigger pulse</span>
+    GPIO.<span class="fn">output</span>(TRIG, <span class="kw">False</span>)
+    time.<span class="fn">sleep</span>(<span class="num">0.5</span>)              <span class="cm"># Settle time</span>
+    GPIO.<span class="fn">output</span>(TRIG, <span class="kw">True</span>)
+    time.<span class="fn">sleep</span>(<span class="num">0.00001</span>)          <span class="cm"># 10 microseconds</span>
+    GPIO.<span class="fn">output</span>(TRIG, <span class="kw">False</span>)
+    
+    <span class="cm"># Measure echo pulse duration</span>
+    pulse_start = time.<span class="fn">time</span>()
+    <span class="kw">while</span> GPIO.<span class="fn">input</span>(ECHO) == <span class="num">0</span>:
+        pulse_start = time.<span class="fn">time</span>()
+    
+    pulse_end = time.<span class="fn">time</span>()
+    <span class="kw">while</span> GPIO.<span class="fn">input</span>(ECHO) == <span class="num">1</span>:
+        pulse_end = time.<span class="fn">time</span>()
+    
+    pulse_duration = pulse_end - pulse_start
+    
+    <span class="cm"># Distance = (time × speed of sound) / 2</span>
+    <span class="cm"># Speed of sound = 34300 cm/s</span>
+    distance = pulse_duration * <span class="num">34300</span> / <span class="num">2</span>
+    <span class="kw">return</span> <span class="fn">round</span>(distance, <span class="num">2</span>)
+
+<span class="kw">try</span>:
+    <span class="kw">while</span> <span class="kw">True</span>:
+        dist = <span class="fn">measure_distance</span>()
+        <span class="fn">print</span>(<span class="str">f"Distance: {dist} cm"</span>)
+        time.<span class="fn">sleep</span>(<span class="num">1</span>)
+
+<span class="kw">except</span> KeyboardInterrupt:
+    <span class="fn">print</span>(<span class="str">"Measurement stopped"</span>)
+    GPIO.<span class="fn">cleanup</span>()
+</code></pre>
+
+  <div class="highlight-box">
+    <strong>⚠️ Important Note:</strong> HC-SR04 ECHO pin outputs 5V but Raspberry Pi GPIO can only handle 3.3V. Use a voltage divider (1kΩ + 2kΩ resistors) to protect RPi GPIO.
+  </div>
+</div>
+</div>
+
+<!-- Q4b Raspberry Pi LEDs -->
+<div class="qtab-content" data-qtab="q3-3">
+<div class="answer-block">
+  <h3>Q4b: Raspberry Pi — Features & LED Interfacing <span class="badge badge-vhp">★★★ 5/5 Papers</span> <span class="mark-tag">[8M]</span></h3>
+
+  <h4>📌 What is Raspberry Pi?</h4>
+  <p>Raspberry Pi is a low-cost, credit-card-sized single-board computer developed by the Raspberry Pi Foundation (UK). It runs a full Linux operating system and is widely used in IoT, education, and embedded systems. The name "Pi" refers to Python, the primary programming language.</p>
+
+  <h4>🔧 Key Features of Raspberry Pi 4 Model B</h4>
+  <table>
+    <tr><th>Feature</th><th>Specification</th></tr>
+    <tr><td>Processor</td><td>ARM Cortex-A72 quad-core @ 1.8GHz (64-bit)</td></tr>
+    <tr><td>RAM</td><td>2GB / 4GB / 8GB LPDDR4</td></tr>
+    <tr><td>Storage</td><td>MicroSD card slot</td></tr>
+    <tr><td>GPIO Pins</td><td>40-pin header</td></tr>
+    <tr><td>USB Ports</td><td>2× USB 3.0 + 2× USB 2.0</td></tr>
+    <tr><td>Display</td><td>2× micro-HDMI (4K)</td></tr>
+    <tr><td>Connectivity</td><td>WiFi (802.11ac), Bluetooth 5.0, Gigabit Ethernet</td></tr>
+    <tr><td>Camera Interface</td><td>CSI port for Pi camera module</td></tr>
+    <tr><td>OS</td><td>Raspberry Pi OS (Debian-based Linux)</td></tr>
+  </table>
+
+  <h4>🔌 LED Interfacing with Raspberry Pi</h4>
+  <div class="diagram-wrap">
+<svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+  <rect width="680" height="240" fill="#111827" rx="10"/>
+  <text x="340" y="22" fill="#00d4ff" font-size="12" font-weight="bold" text-anchor="middle">4 LEDs Interfacing with Raspberry Pi GPIO</text>
+
+  <!-- RPi Block -->
+  <rect x="20" y="40" width="200" height="180" rx="8" fill="#1a3a1a" stroke="#10b981" stroke-width="2"/>
+  <text x="120" y="60" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle">Raspberry Pi GPIO</text>
+  <text x="55" y="85" fill="#94a3b8" font-size="9">GPIO 11 → </text>
+  <text x="55" y="105" fill="#94a3b8" font-size="9">GPIO 12 → </text>
+  <text x="55" y="125" fill="#94a3b8" font-size="9">GPIO 13 → </text>
+  <text x="55" y="145" fill="#94a3b8" font-size="9">GPIO 15 → </text>
+  <text x="55" y="175" fill="#94a3b8" font-size="9">GND → </text>
+  <circle cx="220" cy="82" r="5" fill="#ef4444"/>
+  <circle cx="220" cy="102" r="5" fill="#10b981"/>
+  <circle cx="220" cy="122" r="5" fill="#f59e0b"/>
+  <circle cx="220" cy="142" r="5" fill="#00d4ff"/>
+  <circle cx="220" cy="172" r="5" fill="#1f1f1f" stroke="#94a3b8"/>
+
+  <!-- LEDs -->
+  <g transform="translate(360,55)">
+    <ellipse cx="0" cy="20" rx="15" ry="20" fill="#ef444444" stroke="#ef4444" stroke-width="2"/>
+    <text x="0" y="24" fill="#ef4444" font-size="9" text-anchor="middle">LED1</text>
+    <line x1="0" y1="-2" x2="-40" y2="-2" stroke="#ef4444" stroke-width="1.5"/>
+    <line x1="0" y1="40" x2="0" y2="55" stroke="#94a3b8" stroke-width="1.5"/>
+  </g>
+  <g transform="translate(360,105)">
+    <ellipse cx="0" cy="20" rx="15" ry="20" fill="#10b98144" stroke="#10b981" stroke-width="2"/>
+    <text x="0" y="24" fill="#10b981" font-size="9" text-anchor="middle">LED2</text>
+    <line x1="0" y1="-2" x2="-40" y2="-2" stroke="#10b981" stroke-width="1.5"/>
+    <line x1="0" y1="40" x2="0" y2="55" stroke="#94a3b8" stroke-width="1.5"/>
+  </g>
+  <g transform="translate(360,155)">
+    <ellipse cx="0" cy="20" rx="15" ry="20" fill="#f59e0b44" stroke="#f59e0b" stroke-width="2"/>
+    <text x="0" y="24" fill="#f59e0b" font-size="9" text-anchor="middle">LED3</text>
+    <line x1="0" y1="-2" x2="-40" y2="-2" stroke="#f59e0b" stroke-width="1.5"/>
+    <line x1="0" y1="40" x2="0" y2="55" stroke="#94a3b8" stroke-width="1.5"/>
+  </g>
+  <g transform="translate(360,205)">
+    <ellipse cx="0" cy="10" rx="15" ry="15" fill="#00d4ff44" stroke="#00d4ff" stroke-width="2"/>
+    <text x="0" y="14" fill="#00d4ff" font-size="9" text-anchor="middle">LED4</text>
+    <line x1="0" y1="-7" x2="-40" y2="-7" stroke="#00d4ff" stroke-width="1.5"/>
+  </g>
+
+  <!-- Resistors (220 ohm) -->
+  <text x="300" y="78" fill="#94a3b8" font-size="8" text-anchor="middle">220Ω</text>
+  <text x="300" y="98" fill="#94a3b8" font-size="8" text-anchor="middle">220Ω</text>
+  <text x="300" y="118" fill="#94a3b8" font-size="8" text-anchor="middle">220Ω</text>
+  <text x="300" y="138" fill="#94a3b8" font-size="8" text-anchor="middle">220Ω</text>
+
+  <!-- Connect RPi to resistors -->
+  <line x1="220" y1="82" x2="320" y2="82" stroke="#ef4444" stroke-width="1.5"/>
+  <line x1="320" y1="82" x2="320" y2="53" stroke="#ef4444" stroke-width="1.5"/>
+  <line x1="220" y1="102" x2="320" y2="102" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="320" y1="102" x2="320" y2="103" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="220" y1="122" x2="320" y2="122" stroke="#f59e0b" stroke-width="1.5"/>
+  <line x1="220" y1="142" x2="320" y2="142" stroke="#00d4ff" stroke-width="1.5"/>
+
+  <!-- GND rail -->
+  <line x1="360" y1="110" x2="440" y2="110" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="440" y1="110" x2="440" y2="225" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="220" y1="172" x2="440" y2="172" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <text x="540" y="100" fill="#94a3b8" font-size="9">Each LED needs</text>
+  <text x="540" y="113" fill="#94a3b8" font-size="9">220Ω resistor</text>
+  <text x="540" y="126" fill="#94a3b8" font-size="9">to limit current</text>
+</svg>
+  </div>
+
+  <h4>🐍 Python Program — 4 LEDs Blinking with 5-second delay</h4>
+<pre><code><span class="cm"># 4 LEDs Blinking with Raspberry Pi</span>
+<span class="cm"># LEDs connected via 220Ω resistors to GPIO 11,12,13,15</span>
+
+<span class="kw">import</span> RPi.GPIO <span class="kw">as</span> GPIO
+<span class="kw">import</span> time
+
+<span class="cm"># Setup</span>
+GPIO.<span class="fn">setmode</span>(GPIO.BOARD)         <span class="cm"># Use board pin numbers</span>
+GPIO.<span class="fn">setwarnings</span>(<span class="kw">False</span>)
+
+led_pins = [<span class="num">11</span>, <span class="num">12</span>, <span class="num">13</span>, <span class="num">15</span>]     <span class="cm"># GPIO pins for 4 LEDs</span>
+
+<span class="cm"># Set all LED pins as OUTPUT</span>
+<span class="kw">for</span> pin <span class="kw">in</span> led_pins:
+    GPIO.<span class="fn">setup</span>(pin, GPIO.OUT)
+    GPIO.<span class="fn">output</span>(pin, GPIO.LOW)   <span class="cm"># Initially OFF</span>
+
+<span class="kw">try</span>:
+    <span class="kw">while</span> <span class="kw">True</span>:
+        <span class="cm"># Turn ALL LEDs ON</span>
+        <span class="fn">print</span>(<span class="str">"All LEDs ON"</span>)
+        <span class="kw">for</span> pin <span class="kw">in</span> led_pins:
+            GPIO.<span class="fn">output</span>(pin, GPIO.HIGH)
+        time.<span class="fn">sleep</span>(<span class="num">5</span>)              <span class="cm"># Delay 5 seconds</span>
+        
+        <span class="cm"># Turn ALL LEDs OFF</span>
+        <span class="fn">print</span>(<span class="str">"All LEDs OFF"</span>)
+        <span class="kw">for</span> pin <span class="kw">in</span> led_pins:
+            GPIO.<span class="fn">output</span>(pin, GPIO.LOW)
+        time.<span class="fn">sleep</span>(<span class="num">5</span>)              <span class="cm"># Delay 5 seconds</span>
+
+<span class="kw">except</span> KeyboardInterrupt:
+    <span class="fn">print</span>(<span class="str">"Program stopped"</span>)
+    GPIO.<span class="fn">cleanup</span>()               <span class="cm"># Release all GPIO resources</span>
+</code></pre>
+
+  <div class="trick-box">
+    <h4>🧠 Memory Trick: Why is RPi more powerful than Arduino?</h4>
+    <p>RPi = Full Linux OS + Multi-GHz CPU + RAM + WiFi + BT + Multiple USB + Camera. Arduino = Microcontroller (MCU) only, no OS, 16MHz. RPi can run Python, Node.js, databases; Arduino runs only C/C++.</p>
+  </div>
+</div>
+</div>
+
+<!-- Bonus: Arduino Functions -->
+<div class="qtab-content" data-qtab="q3-4">
+<div class="answer-block">
+  <h3>Bonus: Arduino Built-in Functions <span class="badge badge-hp">★★ 2/5 Papers</span> <span class="mark-tag">[8M]</span></h3>
+  <table>
+    <tr><th>Function</th><th>Syntax</th><th>Purpose & Example</th></tr>
+    <tr><td><code>pinMode()</code></td><td><code>pinMode(pin, mode)</code></td><td>Sets pin as INPUT or OUTPUT. <code>pinMode(13, OUTPUT)</code></td></tr>
+    <tr><td><code>Serial.begin()</code></td><td><code>Serial.begin(baud)</code></td><td>Initializes serial communication. <code>Serial.begin(9600)</code></td></tr>
+    <tr><td><code>digitalWrite()</code></td><td><code>digitalWrite(pin, val)</code></td><td>Sets digital pin HIGH/LOW. <code>digitalWrite(13, HIGH)</code></td></tr>
+    <tr><td><code>analogWrite()</code></td><td><code>analogWrite(pin, val)</code></td><td>PWM output 0-255 on PWM pins. <code>analogWrite(9, 128)</code> = 50% duty cycle</td></tr>
+    <tr><td><code>digitalRead()</code></td><td><code>digitalRead(pin)</code></td><td>Reads HIGH/LOW from digital pin. <code>int x = digitalRead(2)</code></td></tr>
+    <tr><td><code>analogRead()</code></td><td><code>analogRead(pin)</code></td><td>Reads 0–1023 from analog pin. <code>int v = analogRead(A0)</code></td></tr>
+    <tr><td><code>delay()</code></td><td><code>delay(ms)</code></td><td>Pauses execution in milliseconds. <code>delay(1000)</code> = 1 second</td></tr>
+    <tr><td><code>millis()</code></td><td><code>millis()</code></td><td>Returns ms since program started. Used for non-blocking timing.</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- Bonus LCD Arduino -->
+<div class="qtab-content" data-qtab="q3-5">
+<div class="answer-block">
+  <h3>Bonus: 16×2 LCD with Arduino UNO <span class="badge badge-hp">★★ 2/5 Papers</span> <span class="mark-tag">[8M]</span></h3>
+<pre><code><span class="cm">// 16x2 LCD Display with Arduino UNO</span>
+<span class="cm">// Using LiquidCrystal library</span>
+<span class="cm">// LCD RS→D12, E→D11, D4→D5, D5→D4, D6→D3, D7→D2</span>
+
+<span class="kw">#include</span> <span class="str">&lt;LiquidCrystal.h&gt;</span>
+
+<span class="cm">// Initialize LCD: (RS, E, D4, D5, D6, D7)</span>
+LiquidCrystal <span class="fn">lcd</span>(<span class="num">12</span>, <span class="num">11</span>, <span class="num">5</span>, <span class="num">4</span>, <span class="num">3</span>, <span class="num">2</span>);
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  lcd.<span class="fn">begin</span>(<span class="num">16</span>, <span class="num">2</span>);             <span class="cm">// 16 columns, 2 rows</span>
+  
+  lcd.<span class="fn">setCursor</span>(<span class="num">0</span>, <span class="num">0</span>);          <span class="cm">// Row 0, Col 0</span>
+  lcd.<span class="fn">print</span>(<span class="str">"WELCOME"</span>);
+  
+  lcd.<span class="fn">setCursor</span>(<span class="num">0</span>, <span class="num">1</span>);          <span class="cm">// Row 1, Col 0</span>
+  lcd.<span class="fn">print</span>(<span class="str">"SPPU, PUNE"</span>);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="cm">// Message stays on screen</span>
+}
+</code></pre>
+</div>
+</div>
+</div>
+
+<!-- ========== Q5/Q6 ANSWERS ========== -->
+<div id="page-q5" class="page">
+<div class="page-hero">
+  <h1>Q5 / Q6: Big Data & Analytics</h1>
+  <p>Unit 3 Answers — 16 Marks Section</p>
+</div>
+
+<div class="qtab-nav">
+  <button class="qtab-btn active" onclick="showQTab('q5',0)">Q5a: Big Data Characteristics</button>
+  <button class="qtab-btn" onclick="showQTab('q5',1)">Q5b: Hadoop Architecture</button>
+  <button class="qtab-btn" onclick="showQTab('q5',2)">Q6a: Data Analytics Types</button>
+  <button class="qtab-btn" onclick="showQTab('q5',3)">Q6b: Structured vs Unstructured</button>
+  <button class="qtab-btn" onclick="showQTab('q5',4)">Bonus: ThingSpeak Analytics</button>
+</div>
+
+<!-- Q5a Big Data -->
+<div class="qtab-content active" data-qtab="q5-0">
+<div class="answer-block">
+  <h3>Q5a: Big Data — Characteristics & Components <span class="badge badge-vhp">★★★ 5/5 Papers</span> <span class="mark-tag">[8M]</span></h3>
+
+  <h4>📌 Definition of Big Data</h4>
+  <p>Big Data refers to extremely large datasets that cannot be processed using traditional data processing tools due to their volume, velocity, variety, and veracity. Big Data requires special hardware and software tools for storage, processing, and analysis.</p>
+
+  <h4>🔥 The 5 V's of Big Data (Key Characteristics)</h4>
+  <div class="diagram-wrap">
+<svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+  <rect width="680" height="280" fill="#111827" rx="10"/>
+  <text x="340" y="25" fill="#00d4ff" font-size="13" font-weight="bold" text-anchor="middle">The 5 V's of Big Data</text>
+
+  <!-- Center -->
+  <circle cx="340" cy="145" r="45" fill="#1e3a5f" stroke="#00d4ff" stroke-width="2"/>
+  <text x="340" y="140" fill="#00d4ff" font-size="11" font-weight="bold" text-anchor="middle">BIG</text>
+  <text x="340" y="155" fill="#00d4ff" font-size="11" font-weight="bold" text-anchor="middle">DATA</text>
+
+  <!-- Volume -->
+  <rect x="20" y="55" width="140" height="70" rx="8" fill="#1a2235" stroke="#10b981" stroke-width="2"/>
+  <text x="90" y="80" fill="#10b981" font-size="12" font-weight="bold" text-anchor="middle">VOLUME</text>
+  <text x="90" y="98" fill="#94a3b8" font-size="8" text-anchor="middle">Massive amount of data</text>
+  <text x="90" y="112" fill="#94a3b8" font-size="8" text-anchor="middle">Terabytes to Zettabytes</text>
+  <line x1="160" y1="90" x2="295" y2="130" stroke="#10b981" stroke-width="1.5"/>
+
+  <!-- Velocity -->
+  <rect x="20" y="165" width="140" height="70" rx="8" fill="#1a2235" stroke="#f59e0b" stroke-width="2"/>
+  <text x="90" y="190" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="middle">VELOCITY</text>
+  <text x="90" y="208" fill="#94a3b8" font-size="8" text-anchor="middle">Speed of data generation</text>
+  <text x="90" y="222" fill="#94a3b8" font-size="8" text-anchor="middle">Real-time streaming</text>
+  <line x1="160" y1="200" x2="295" y2="160" stroke="#f59e0b" stroke-width="1.5"/>
+
+  <!-- Variety -->
+  <rect x="520" y="55" width="140" height="70" rx="8" fill="#1a2235" stroke="#7c3aed" stroke-width="2"/>
+  <text x="590" y="80" fill="#a78bfa" font-size="12" font-weight="bold" text-anchor="middle">VARIETY</text>
+  <text x="590" y="98" fill="#94a3b8" font-size="8" text-anchor="middle">Structured, unstructured</text>
+  <text x="590" y="112" fill="#94a3b8" font-size="8" text-anchor="middle">Text, images, video</text>
+  <line x1="520" y1="90" x2="385" y2="130" stroke="#7c3aed" stroke-width="1.5"/>
+
+  <!-- Veracity -->
+  <rect x="520" y="165" width="140" height="70" rx="8" fill="#1a2235" stroke="#ef4444" stroke-width="2"/>
+  <text x="590" y="190" fill="#ef4444" font-size="12" font-weight="bold" text-anchor="middle">VERACITY</text>
+  <text x="590" y="208" fill="#94a3b8" font-size="8" text-anchor="middle">Data quality & accuracy</text>
+  <text x="590" y="222" fill="#94a3b8" font-size="8" text-anchor="middle">Noise and inconsistency</text>
+  <line x1="520" y1="200" x2="385" y2="160" stroke="#ef4444" stroke-width="1.5"/>
+
+  <!-- Value -->
+  <rect x="275" y="230" width="130" height="40" rx="8" fill="#1a2235" stroke="#00d4ff" stroke-width="2"/>
+  <text x="340" y="255" fill="#00d4ff" font-size="11" font-weight="bold" text-anchor="middle">VALUE</text>
+  <line x1="340" y1="230" x2="340" y2="190" stroke="#00d4ff" stroke-width="1.5"/>
+</svg>
+  </div>
+
+  <h4>📦 Components of Big Data Solution</h4>
+  <table>
+    <tr><th>Component</th><th>Tool/Technology</th><th>Function</th></tr>
+    <tr><td><strong>Data Ingestion</strong></td><td>Apache Kafka, Flume, Sqoop</td><td>Collect data from various sources (sensors, logs, social media)</td></tr>
+    <tr><td><strong>Data Storage</strong></td><td>HDFS, HBase, Cassandra, S3</td><td>Distributed storage of massive datasets</td></tr>
+    <tr><td><strong>Data Processing</strong></td><td>MapReduce, Apache Spark, Hive</td><td>Batch and real-time processing of stored data</td></tr>
+    <tr><td><strong>Data Analytics</strong></td><td>Pig, Hive, Mahout, Spark ML</td><td>Analysis, ML models, pattern discovery</td></tr>
+    <tr><td><strong>Data Visualization</strong></td><td>Tableau, Kibana, Power BI</td><td>Dashboards, charts, reports</td></tr>
+    <tr><td><strong>Resource Management</strong></td><td>YARN, Kubernetes, Mesos</td><td>Manage cluster resources for jobs</td></tr>
+  </table>
+
+  <div class="trick-box">
+    <h4>🧠 Memory Trick: Big Data "5V" = "Very Valuable Data Varieties Verified"</h4>
+    <p>V-olume, V-elocity, V-ariety, V-eracity, V-alue</p>
+  </div>
+</div>
+</div>
+
+<!-- Q5b Hadoop -->
+<div class="qtab-content" data-qtab="q5-1">
+<div class="answer-block">
+  <h3>Q5b: Hadoop Architecture & Features <span class="badge badge-vhp">★★★ 5/5 Papers</span> <span class="mark-tag">[8M]</span></h3>
+
+  <h4>📌 What is Hadoop?</h4>
+  <p>Apache Hadoop is an open-source framework for distributed storage and processing of large datasets using a cluster of commodity hardware. It is based on Google's MapReduce and Google File System (GFS) papers.</p>
+
+  <h4>🏗️ Hadoop Architecture</h4>
+  <div class="diagram-wrap">
+<svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+  <rect width="680" height="320" fill="#111827" rx="10"/>
+  <text x="340" y="22" fill="#00d4ff" font-size="13" font-weight="bold" text-anchor="middle">Hadoop Architecture (HDFS + MapReduce + YARN)</text>
+
+  <!-- Client -->
+  <rect x="285" y="38" width="110" height="40" rx="6" fill="#1a2235" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="340" y="63" fill="#94a3b8" font-size="10" text-anchor="middle">👤 Client</text>
+
+  <!-- YARN Resource Manager -->
+  <rect x="20" y="110" width="250" height="60" rx="8" fill="#1e2235" stroke="#f59e0b" stroke-width="2"/>
+  <text x="145" y="134" fill="#f59e0b" font-size="11" font-weight="bold" text-anchor="middle">YARN Resource Manager</text>
+  <text x="145" y="153" fill="#94a3b8" font-size="8" text-anchor="middle">(Job scheduling + Resource allocation)</text>
+
+  <!-- HDFS NameNode -->
+  <rect x="410" y="110" width="250" height="60" rx="8" fill="#1e3a5f" stroke="#10b981" stroke-width="2"/>
+  <text x="535" y="134" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">HDFS NameNode</text>
+  <text x="535" y="153" fill="#94a3b8" font-size="8" text-anchor="middle">(Metadata management + File system)</text>
+
+  <!-- Arrows from client -->
+  <line x1="300" y1="78" x2="200" y2="110" stroke="#f59e0b" stroke-width="1.5"/>
+  <line x1="380" y1="78" x2="480" y2="110" stroke="#10b981" stroke-width="1.5"/>
+
+  <!-- DataNodes -->
+  <rect x="30" y="215" width="130" height="80" rx="6" fill="#1a2235" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="95" y="237" fill="#a78bfa" font-size="10" font-weight="bold" text-anchor="middle">DataNode 1</text>
+  <text x="95" y="252" fill="#94a3b8" font-size="8" text-anchor="middle">HDFS Block</text>
+  <text x="95" y="265" fill="#94a3b8" font-size="8" text-anchor="middle">NodeManager</text>
+  <text x="95" y="278" fill="#94a3b8" font-size="8" text-anchor="middle">MapReduce Task</text>
+
+  <rect x="195" y="215" width="130" height="80" rx="6" fill="#1a2235" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="260" y="237" fill="#a78bfa" font-size="10" font-weight="bold" text-anchor="middle">DataNode 2</text>
+  <text x="260" y="252" fill="#94a3b8" font-size="8" text-anchor="middle">HDFS Block</text>
+  <text x="260" y="265" fill="#94a3b8" font-size="8" text-anchor="middle">NodeManager</text>
+  <text x="260" y="278" fill="#94a3b8" font-size="8" text-anchor="middle">MapReduce Task</text>
+
+  <rect x="360" y="215" width="130" height="80" rx="6" fill="#1a2235" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="425" y="237" fill="#a78bfa" font-size="10" font-weight="bold" text-anchor="middle">DataNode 3</text>
+  <text x="425" y="252" fill="#94a3b8" font-size="8" text-anchor="middle">HDFS Block</text>
+  <text x="425" y="265" fill="#94a3b8" font-size="8" text-anchor="middle">NodeManager</text>
+  <text x="425" y="278" fill="#94a3b8" font-size="8" text-anchor="middle">MapReduce Task</text>
+
+  <rect x="525" y="215" width="130" height="80" rx="6" fill="#1a2235" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="590" y="237" fill="#a78bfa" font-size="10" font-weight="bold" text-anchor="middle">DataNode N</text>
+  <text x="590" y="252" fill="#94a3b8" font-size="8" text-anchor="middle">HDFS Block</text>
+  <text x="590" y="265" fill="#94a3b8" font-size="8" text-anchor="middle">NodeManager</text>
+  <text x="590" y="278" fill="#94a3b8" font-size="8" text-anchor="middle">MapReduce Task</text>
+
+  <!-- Arrows from Resource Manager to DataNodes -->
+  <line x1="95" y1="170" x2="95" y2="215" stroke="#f59e0b" stroke-width="1.5"/>
+  <line x1="145" y1="170" x2="260" y2="215" stroke="#f59e0b" stroke-width="1.5"/>
+  <!-- Arrows from NameNode to DataNodes -->
+  <line x1="535" y1="170" x2="425" y2="215" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="560" y1="170" x2="590" y2="215" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="470" y1="170" x2="260" y2="215" stroke="#10b981" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <text x="340" y="308" fill="#94a3b8" font-size="8" text-anchor="middle">Heartbeat messages from DataNodes to NameNode every 3 seconds</text>
+</svg>
+  </div>
+
+  <h4>🔑 Key Features of Hadoop</h4>
+  <table>
+    <tr><th>Feature</th><th>Description</th></tr>
+    <tr><td><strong>Fault Tolerance</strong></td><td>Data replicated 3x across nodes; if one fails, data is recovered from replicas</td></tr>
+    <tr><td><strong>Scalability</strong></td><td>Easily scale from single server to thousands of machines horizontally</td></tr>
+    <tr><td><strong>Cost-Effective</strong></td><td>Runs on commodity (cheap) hardware; open-source framework</td></tr>
+    <tr><td><strong>Flexible</strong></td><td>Processes any data format: structured, semi-structured, unstructured</td></tr>
+    <tr><td><strong>High Throughput</strong></td><td>Processes large datasets in parallel across the cluster</td></tr>
+  </table>
+
+  <h4>✅ Advantages & ❌ Disadvantages</h4>
+  <div class="grid2">
+    <div class="highlight-box green">
+      <strong>Advantages:</strong><br>
+      • Processes petabytes of data<br>
+      • Fault-tolerant by design<br>
+      • No schema required (schema-on-read)<br>
+      • Open source — free to use<br>
+      • Large community support
+    </div>
+    <div class="highlight-box" style="background:#ef444411;border-color:#ef444444">
+      <strong>Disadvantages:</strong><br>
+      • Not suitable for real-time processing<br>
+      • Small file problem (HDFS inefficient)<br>
+      • Java knowledge needed<br>
+      • No in-memory processing (slow vs Spark)<br>
+      • Complex cluster management
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Q6a Analytics -->
+<div class="qtab-content" data-qtab="q5-2">
+<div class="answer-block">
+  <h3>Q6a: Types of Data Analytics <span class="badge badge-hp">★★ 3/5 Papers</span> <span class="mark-tag">[8M]</span></h3>
+
+  <div class="diagram-wrap">
+<svg viewBox="0 0 680 180" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+  <rect width="680" height="180" fill="#111827" rx="10"/>
+  <text x="340" y="22" fill="#00d4ff" font-size="12" font-weight="bold" text-anchor="middle">Data Analytics Continuum: Past → Future</text>
+
+  <rect x="20" y="40" width="150" height="110" rx="8" fill="#1a2235" stroke="#10b981" stroke-width="2"/>
+  <text x="95" y="65" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">Descriptive</text>
+  <text x="95" y="82" fill="#94a3b8" font-size="8" text-anchor="middle">What happened?</text>
+  <text x="95" y="98" fill="#94a3b8" font-size="8" text-anchor="middle">Historical data</text>
+  <text x="95" y="114" fill="#94a3b8" font-size="8" text-anchor="middle">Reports, dashboards</text>
+  <text x="95" y="130" fill="#f59e0b" font-size="8" text-anchor="middle">Ex: Monthly sales</text>
+
+  <rect x="188" y="40" width="150" height="110" rx="8" fill="#1a2235" stroke="#f59e0b" stroke-width="2"/>
+  <text x="263" y="65" fill="#f59e0b" font-size="11" font-weight="bold" text-anchor="middle">Diagnostic</text>
+  <text x="263" y="82" fill="#94a3b8" font-size="8" text-anchor="middle">Why did it happen?</text>
+  <text x="263" y="98" fill="#94a3b8" font-size="8" text-anchor="middle">Root cause analysis</text>
+  <text x="263" y="114" fill="#94a3b8" font-size="8" text-anchor="middle">Drill-down, correlate</text>
+  <text x="263" y="130" fill="#f59e0b" font-size="8" text-anchor="middle">Ex: Why sales dropped</text>
+
+  <rect x="356" y="40" width="150" height="110" rx="8" fill="#1a2235" stroke="#7c3aed" stroke-width="2"/>
+  <text x="431" y="65" fill="#a78bfa" font-size="11" font-weight="bold" text-anchor="middle">Predictive</text>
+  <text x="431" y="82" fill="#94a3b8" font-size="8" text-anchor="middle">What will happen?</text>
+  <text x="431" y="98" fill="#94a3b8" font-size="8" text-anchor="middle">ML models, forecasting</text>
+  <text x="431" y="114" fill="#94a3b8" font-size="8" text-anchor="middle">Regression, clustering</text>
+  <text x="431" y="130" fill="#f59e0b" font-size="8" text-anchor="middle">Ex: Future demand</text>
+
+  <rect x="524" y="40" width="136" height="110" rx="8" fill="#1a2235" stroke="#ef4444" stroke-width="2"/>
+  <text x="592" y="65" fill="#ef4444" font-size="11" font-weight="bold" text-anchor="middle">Prescriptive</text>
+  <text x="592" y="82" fill="#94a3b8" font-size="8" text-anchor="middle">What should we do?</text>
+  <text x="592" y="98" fill="#94a3b8" font-size="8" text-anchor="middle">Optimization, AI</text>
+  <text x="592" y="114" fill="#94a3b8" font-size="8" text-anchor="middle">Decision support</text>
+  <text x="592" y="130" fill="#f59e0b" font-size="8" text-anchor="middle">Ex: Optimal pricing</text>
+
+  <!-- Arrow -->
+  <line x1="170" y1="95" x2="188" y2="95" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="338" y1="95" x2="356" y2="95" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="506" y1="95" x2="524" y2="95" stroke="#00d4ff" stroke-width="2"/>
+  <text x="20" y="168" fill="#94a3b8" font-size="8">← Past (What happened)</text>
+  <text x="560" y="168" fill="#94a3b8" font-size="8">Future (What to do) →</text>
+</svg>
+  </div>
+
+  <table>
+    <tr><th>Type</th><th>Question</th><th>Techniques</th><th>IoT Example</th></tr>
+    <tr><td><strong>Descriptive</strong></td><td>What happened?</td><td>Reports, dashboards, aggregation</td><td>Temperature logs of last month</td></tr>
+    <tr><td><strong>Diagnostic</strong></td><td>Why did it happen?</td><td>Drill-down, root cause analysis</td><td>Why did machine temperature spike?</td></tr>
+    <tr><td><strong>Predictive</strong></td><td>What will happen?</td><td>ML, regression, time series</td><td>Predict next week's energy usage</td></tr>
+    <tr><td><strong>Prescriptive</strong></td><td>What should we do?</td><td>Optimization, reinforcement learning</td><td>Optimal AC schedule to save energy</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- Q6b Structured vs Unstructured -->
+<div class="qtab-content" data-qtab="q5-3">
+<div class="answer-block">
+  <h3>Q6b: Structured, Semi-Structured & Unstructured Data <span class="badge badge-hp">★★ 2/5 Papers</span> <span class="mark-tag">[8M]</span></h3>
+  <table>
+    <tr><th>Parameter</th><th>Structured</th><th>Semi-Structured</th><th>Unstructured</th></tr>
+    <tr><td><strong>Definition</strong></td><td>Organized in rows/columns with defined schema</td><td>Partially organized with tags/markers</td><td>No predefined format or organization</td></tr>
+    <tr><td><strong>Schema</strong></td><td>Fixed, predefined</td><td>Flexible, self-describing</td><td>No schema</td></tr>
+    <tr><td><strong>Storage</strong></td><td>Relational databases (RDBMS)</td><td>NoSQL databases, files</td><td>Files, object storage</td></tr>
+    <tr><td><strong>Query</strong></td><td>SQL queries</td><td>XQuery, JSONPath</td><td>Full-text search, ML</td></tr>
+    <tr><td><strong>Examples</strong></td><td>MySQL tables, Excel sheets, CSV</td><td>XML, JSON, HTML, Email headers</td><td>Video, audio, images, social media posts</td></tr>
+    <tr><td><strong>% of Big Data</strong></td><td>~10%</td><td>~15%</td><td>~75%</td></tr>
+    <tr><td><strong>Processing Ease</strong></td><td>Easiest</td><td>Medium</td><td>Hardest (needs AI/NLP)</td></tr>
+    <tr><td><strong>IoT Example</strong></td><td>Sensor readings in DB</td><td>IoT device config (JSON)</td><td>Security camera footage</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- ThingSpeak -->
+<div class="qtab-content" data-qtab="q5-4">
+<div class="answer-block">
+  <h3>Bonus: Data Analytics using ThingSpeak <span class="badge badge-hp">★★ 3/5 Papers</span> <span class="mark-tag">[8M]</span></h3>
+
+  <h4>📌 What is ThingSpeak?</h4>
+  <p>ThingSpeak is an open-source IoT analytics platform service (by MathWorks) that allows aggregation, visualization, and analysis of live data streams in the cloud. It supports MATLAB analytics on IoT data.</p>
+
+  <h4>⚙️ Steps for Data Collection & Visualization on ThingSpeak</h4>
+  <ol>
+    <li><strong>Create Account:</strong> Register at thingspeak.com and create a new channel</li>
+    <li><strong>Configure Channel:</strong> Add field names (e.g., Temperature, Humidity), get API key</li>
+    <li><strong>Connect IoT Device:</strong> Program Arduino/RPi to send HTTP GET/POST requests with sensor data</li>
+    <li><strong>Data Upload:</strong> <code>GET https://api.thingspeak.com/update?api_key=KEY&field1=TEMP</code></li>
+    <li><strong>Visualization:</strong> ThingSpeak auto-generates time-series charts for each field</li>
+    <li><strong>MATLAB Analysis:</strong> Write MATLAB code in ThingSpeak to perform statistical analysis</li>
+    <li><strong>Alerts:</strong> Configure ThingHTTP or React to trigger alerts when thresholds exceeded</li>
+  </ol>
+
+  <h4>Arduino Code — Sending Data to ThingSpeak</h4>
+<pre><code><span class="kw">#include</span> <span class="str">&lt;ESP8266WiFi.h&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;ThingSpeak.h&gt;</span>
+
+<span class="kw">const char</span>* ssid = <span class="str">"YourWiFi"</span>;
+<span class="kw">const char</span>* password = <span class="str">"YourPassword"</span>;
+<span class="kw">unsigned long</span> channelID = <span class="num">1234567</span>;
+<span class="kw">const char</span>* apiKey = <span class="str">"YOUR_WRITE_API_KEY"</span>;
+
+WiFiClient client;
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  WiFi.<span class="fn">begin</span>(ssid, password);
+  ThingSpeak.<span class="fn">begin</span>(client);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">float</span> temp = <span class="fn">readTemperature</span>(); <span class="cm">// Your sensor function</span>
+  ThingSpeak.<span class="fn">setField</span>(<span class="num">1</span>, temp);
+  ThingSpeak.<span class="fn">writeFields</span>(channelID, apiKey);
+  <span class="fn">delay</span>(<span class="num">15000</span>); <span class="cm">// ThingSpeak needs 15s min between updates</span>
+}
+</code></pre>
+</div>
+</div>
+</div>
+
+<!-- ========== Q7/Q8 ANSWERS ========== -->
+<div id="page-q7" class="page">
+<div class="page-hero">
+  <h1>Q7 / Q8: IoT Applications</h1>
+  <p>Unit 4 Answers — 18 Marks Section | Smart Applications & Case Studies</p>
+</div>
+
+<div class="qtab-nav">
+  <button class="qtab-btn active" onclick="showQTab('q7',0)">Smart Home Automation</button>
+  <button class="qtab-btn" onclick="showQTab('q7',1)">Smart Healthcare IoT</button>
+  <button class="qtab-btn" onclick="showQTab('q7',2)">Smart Agriculture IoT</button>
+  <button class="qtab-btn" onclick="showQTab('q7',3)">Air Pollution Monitoring</button>
+  <button class="qtab-btn" onclick="showQTab('q7',4)">Smart Cities</button>
+  <button class="qtab-btn" onclick="showQTab('q7',5)">Wearable Technology</button>
+  <button class="qtab-btn" onclick="showQTab('q7',6)">Greenhouse Monitoring</button>
+  <button class="qtab-btn" onclick="showQTab('q7',7)">Smart Car Parking</button>
+  <button class="qtab-btn" onclick="showQTab('q7',8)">Industrial Standards</button>
+</div>
+
+<!-- Smart Home -->
+<div class="qtab-content active" data-qtab="q7-0">
+<div class="answer-block">
+  <h3>Smart Home Automation using IoT <span class="badge badge-vhp">★★★ 5/5 Papers</span> <span class="mark-tag">[9M]</span></h3>
+
+  <h4>📌 Introduction</h4>
+  <p>Smart Home Automation refers to the automatic and remote control of home appliances and systems (lights, AC, security, locks, appliances) using IoT devices, sensors, and internet connectivity to improve comfort, security, and energy efficiency.</p>
+
+  <h4>🏠 Smart Home Architecture</h4>
+  <div class="diagram-wrap">
+<svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+  <rect width="680" height="340" fill="#111827" rx="10"/>
+  <text x="340" y="22" fill="#00d4ff" font-size="13" font-weight="bold" text-anchor="middle">Smart Home Automation — IoT Architecture</text>
+
+  <!-- House outline -->
+  <polygon points="340,38 100,110 100,290 580,290 580,110" fill="none" stroke="#1e3a5f" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="340" y="58" fill="#1e3a5f" font-size="9" text-anchor="middle">Home Environment</text>
+
+  <!-- Sensors/Devices inside house -->
+  <rect x="120" y="120" width="90" height="40" rx="4" fill="#1a2235" stroke="#f59e0b" stroke-width="1"/>
+  <text x="165" y="137" fill="#f59e0b" font-size="8" text-anchor="middle">🌡️ Temp/Humidity</text>
+  <text x="165" y="150" fill="#94a3b8" font-size="7" text-anchor="middle">DHT22 Sensor</text>
+
+  <rect x="120" y="175" width="90" height="40" rx="4" fill="#1a2235" stroke="#10b981" stroke-width="1"/>
+  <text x="165" y="192" fill="#10b981" font-size="8" text-anchor="middle">💡 Smart Lights</text>
+  <text x="165" y="205" fill="#94a3b8" font-size="7" text-anchor="middle">Relay + LED</text>
+
+  <rect x="120" y="230" width="90" height="40" rx="4" fill="#1a2235" stroke="#ef4444" stroke-width="1"/>
+  <text x="165" y="247" fill="#ef4444" font-size="8" text-anchor="middle">🔒 Smart Lock</text>
+  <text x="165" y="260" fill="#94a3b8" font-size="7" text-anchor="middle">Servo + RFID</text>
+
+  <rect x="295" y="120" width="90" height="40" rx="4" fill="#1a2235" stroke="#a78bfa" stroke-width="1"/>
+  <text x="340" y="137" fill="#a78bfa" font-size="8" text-anchor="middle">👁️ PIR Motion</text>
+  <text x="340" y="150" fill="#94a3b8" font-size="7" text-anchor="middle">HC-SR501</text>
+
+  <rect x="295" y="175" width="90" height="40" rx="4" fill="#1a2235" stroke="#00d4ff" stroke-width="1"/>
+  <text x="340" y="192" fill="#00d4ff" font-size="8" text-anchor="middle">🌬️ Air Quality</text>
+  <text x="340" y="205" fill="#94a3b8" font-size="7" text-anchor="middle">MQ-135</text>
+
+  <rect x="295" y="230" width="90" height="40" rx="4" fill="#1a2235" stroke="#f59e0b" stroke-width="1"/>
+  <text x="340" y="247" fill="#f59e0b" font-size="8" text-anchor="middle">🔥 Gas/Smoke</text>
+  <text x="340" y="260" fill="#94a3b8" font-size="7" text-anchor="middle">MQ-2 / Smoke</text>
+
+  <rect x="470" y="120" width="90" height="40" rx="4" fill="#1a2235" stroke="#10b981" stroke-width="1"/>
+  <text x="515" y="137" fill="#10b981" font-size="8" text-anchor="middle">❄️ Smart AC</text>
+  <text x="515" y="150" fill="#94a3b8" font-size="7" text-anchor="middle">IR Blaster</text>
+
+  <rect x="470" y="175" width="90" height="40" rx="4" fill="#1a2235" stroke="#ef4444" stroke-width="1"/>
+  <text x="515" y="192" fill="#ef4444" font-size="8" text-anchor="middle">📹 IP Camera</text>
+  <text x="515" y="205" fill="#94a3b8" font-size="7" text-anchor="middle">Security</text>
+
+  <!-- Home Hub -->
+  <rect x="275" y="295" width="130" height="40" rx="6" fill="#1e3a5f" stroke="#00d4ff" stroke-width="2"/>
+  <text x="340" y="315" fill="#00d4ff" font-size="10" font-weight="bold" text-anchor="middle">🔀 Home Hub (RPi/ESP32)</text>
+
+  <!-- Lines to hub -->
+  <line x1="165" y1="270" x2="300" y2="295" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="340" y1="270" x2="340" y2="295" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="515" y1="215" x2="405" y2="295" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Cloud + Mobile -->
+  <text x="85" y="315" fill="#f59e0b" font-size="9" text-anchor="middle">☁️ Cloud (AWS/Azure)</text>
+  <text x="590" y="315" fill="#10b981" font-size="9" text-anchor="middle">📱 Mobile App</text>
+  <line x1="275" y1="315" x2="140" y2="315" stroke="#f59e0b" stroke-width="1.5"/>
+  <line x1="405" y1="315" x2="560" y2="315" stroke="#10b981" stroke-width="1.5"/>
+
+  <text x="340" y="90" fill="#94a3b8" font-size="8" text-anchor="middle">WiFi / ZigBee / Z-Wave Communication</text>
+</svg>
+  </div>
+
+  <h4>⚙️ Working Principle</h4>
+  <ol>
+    <li>Sensors (temperature, motion, gas, light) continuously monitor home environment</li>
+    <li>Data is sent to a central home hub (Raspberry Pi / ESP32) via WiFi/ZigBee</li>
+    <li>Hub processes data and applies automation rules (e.g., if temp > 28°C → turn ON AC)</li>
+    <li>Home hub connects to cloud for remote access and data logging</li>
+    <li>Users control all devices through a mobile app or voice commands (Alexa/Google)</li>
+    <li>Alerts are sent via push notification if smoke, gas, or intrusion detected</li>
+  </ol>
+
+  <h4>✅ Benefits</h4>
+  <ul>
+    <li><strong>Energy saving:</strong> Auto turn-off when no motion detected</li>
+    <li><strong>Security:</strong> Remote monitoring via IP camera; smart locks</li>
+    <li><strong>Convenience:</strong> Control everything from smartphone</li>
+    <li><strong>Safety:</strong> Early fire/gas alerts save lives</li>
+  </ul>
+
+  <div class="viva-box">
+    <h4>🎤 Viva Questions</h4>
+    <ul>
+      <li>What protocols are used in Smart Home? (WiFi, ZigBee, Z-Wave, Bluetooth, Matter)</li>
+      <li>What is the difference between ZigBee and WiFi in smart home context?</li>
+      <li>What is IFTTT and how is it used in smart home automation?</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- Smart Healthcare -->
+<div class="qtab-content" data-qtab="q7-1">
+<div class="answer-block">
+  <h3>Smart Healthcare Monitoring using IoT <span class="badge badge-hp">★★ 3/5 Papers</span> <span class="mark-tag">[9M]</span></h3>
+
+  <h4>📌 Introduction</h4>
+  <p>IoT-based smart healthcare enables continuous remote monitoring of patients' vital signs, allowing doctors to track health in real-time and provide timely intervention without requiring physical presence at hospitals.</p>
+
+  <h4>Sensors Used in Healthcare IoT</h4>
+  <table>
+    <tr><th>Sensor</th><th>Parameter Monitored</th><th>Device Example</th></tr>
+    <tr><td>Pulse Oximeter</td><td>Heart rate, SpO2 (blood oxygen)</td><td>MAX30100, MAX30102</td></tr>
+    <tr><td>ECG Sensor</td><td>Heart electrical activity</td><td>AD8232 Module</td></tr>
+    <tr><td>Blood Pressure</td><td>Systolic/Diastolic BP</td><td>Inflatable cuff with pressure sensor</td></tr>
+    <tr><td>Temperature</td><td>Body temperature</td><td>LM35, MLX90614 (contactless)</td></tr>
+    <tr><td>Accelerometer</td><td>Fall detection, activity monitoring</td><td>ADXL345, MPU6050</td></tr>
+    <tr><td>Glucose Sensor</td><td>Blood glucose level</td><td>Continuous glucose monitor (CGM)</td></tr>
+  </table>
+
+  <h4>⚙️ System Architecture</h4>
+  <ul>
+    <li><strong>Layer 1 — Sensor Layer:</strong> Body-worn or implanted sensors collect vitals continuously</li>
+    <li><strong>Layer 2 — Gateway Layer:</strong> Smartphone or dedicated hub aggregates sensor data via BLE/ZigBee</li>
+    <li><strong>Layer 3 — Network Layer:</strong> Data transmitted to hospital server via 4G/WiFi/Internet</li>
+    <li><strong>Layer 4 — Cloud Layer:</strong> EHR stored; AI algorithms detect anomalies; alerts generated</li>
+    <li><strong>Layer 5 — Application Layer:</strong> Doctor dashboard, patient app, emergency response</li>
+  </ul>
+
+  <h4>✅ Benefits of IoT Healthcare</h4>
+  <ul>
+    <li>Reduces hospital readmissions by 25–30%</li>
+    <li>24/7 monitoring without nurses required for routine checks</li>
+    <li>Early detection of deterioration in chronic patients (diabetes, heart disease)</li>
+    <li>Telemedicine integration for remote consultations</li>
+    <li>Cost reduction: fewer emergency visits</li>
+  </ul>
+</div>
+</div>
+
+<!-- Smart Agriculture -->
+<div class="qtab-content" data-qtab="q7-2">
+<div class="answer-block">
+  <h3>Smart Agriculture Monitoring using IoT <span class="badge badge-vhp">★★★ 4/5 Papers</span> <span class="mark-tag">[9M]</span></h3>
+
+  <h4>📌 Introduction</h4>
+  <p>Smart Agriculture (Precision Farming) uses IoT sensors, drones, and AI to monitor and automate farming operations, optimizing water usage, fertilizer application, and crop health to increase yield and reduce costs.</p>
+
+  <h4>🌾 Smart Agriculture IoT Architecture</h4>
+  <div class="diagram-wrap">
+<svg viewBox="0 0 680 290" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+  <rect width="680" height="290" fill="#111827" rx="10"/>
+  <text x="340" y="22" fill="#00d4ff" font-size="12" font-weight="bold" text-anchor="middle">Smart Agriculture Monitoring System</text>
+
+  <!-- Farm sensors -->
+  <rect x="20" y="40" width="200" height="180" rx="8" fill="#1a3a1a" stroke="#10b981" stroke-width="2"/>
+  <text x="120" y="60" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle">🌱 Farm Field (Sensors)</text>
+  <text x="45" y="85" fill="#94a3b8" font-size="9">🌡️ Soil Temperature Sensor</text>
+  <text x="45" y="103" fill="#94a3b8" font-size="9">💧 Soil Moisture Sensor</text>
+  <text x="45" y="121" fill="#94a3b8" font-size="9">🌧️ Rain/Humidity Sensor</text>
+  <text x="45" y="139" fill="#94a3b8" font-size="9">☀️ Light Intensity Sensor</text>
+  <text x="45" y="157" fill="#94a3b8" font-size="9">🧪 pH/Nutrient Sensor</text>
+  <text x="45" y="175" fill="#94a3b8" font-size="9">💨 Wind Speed Sensor</text>
+  <text x="45" y="193" fill="#94a3b8" font-size="9">🚁 Drone Imagery</text>
+
+  <!-- Field Gateway -->
+  <rect x="275" y="80" width="130" height="60" rx="6" fill="#1a2235" stroke="#f59e0b" stroke-width="2"/>
+  <text x="340" y="104" fill="#f59e0b" font-size="10" font-weight="bold" text-anchor="middle">📡 Field Gateway</text>
+  <text x="340" y="120" fill="#94a3b8" font-size="8" text-anchor="middle">(LoRa/ZigBee)</text>
+
+  <!-- Cloud Server -->
+  <rect x="460" y="60" width="200" height="90" rx="8" fill="#1e2235" stroke="#7c3aed" stroke-width="2"/>
+  <text x="560" y="82" fill="#a78bfa" font-size="10" font-weight="bold" text-anchor="middle">☁️ Cloud Analytics</text>
+  <text x="560" y="100" fill="#94a3b8" font-size="8" text-anchor="middle">• AI Crop Disease Detection</text>
+  <text x="560" y="115" fill="#94a3b8" font-size="8" text-anchor="middle">• Yield Prediction (ML)</text>
+  <text x="560" y="130" fill="#94a3b8" font-size="8" text-anchor="middle">• Automated Alerts</text>
+
+  <!-- Actuators -->
+  <rect x="275" y="190" width="130" height="80" rx="6" fill="#1a2235" stroke="#ef4444" stroke-width="2"/>
+  <text x="340" y="212" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">⚙️ Actuators</text>
+  <text x="340" y="230" fill="#94a3b8" font-size="8" text-anchor="middle">💧 Irrigation Pump</text>
+  <text x="340" y="246" fill="#94a3b8" font-size="8" text-anchor="middle">🌬️ Greenhouse Fan</text>
+  <text x="340" y="262" fill="#94a3b8" font-size="8" text-anchor="middle">💊 Fertilizer Dispenser</text>
+
+  <!-- Farmer Dashboard -->
+  <rect x="460" y="190" width="200" height="60" rx="8" fill="#1a2235" stroke="#10b981" stroke-width="2"/>
+  <text x="560" y="216" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle">📱 Farmer Dashboard</text>
+  <text x="560" y="234" fill="#94a3b8" font-size="8" text-anchor="middle">Web App / Mobile App</text>
+
+  <!-- Connections -->
+  <line x1="220" y1="130" x2="275" y2="110" stroke="#10b981" stroke-width="1.5"/>
+  <line x1="405" y1="110" x2="460" y2="105" stroke="#f59e0b" stroke-width="1.5"/>
+  <line x1="405" y1="140" x2="460" y2="200" stroke="#7c3aed" stroke-width="1.5"/>
+  <line x1="340" y1="140" x2="340" y2="190" stroke="#ef4444" stroke-width="1.5"/>
+  <line x1="560" y1="150" x2="560" y2="190" stroke="#a78bfa" stroke-width="1.5"/>
+</svg>
+  </div>
+
+  <h4>⚙️ Automation Features</h4>
+  <ul>
+    <li><strong>Auto-irrigation:</strong> Moisture sensor triggers water pump when soil dry</li>
+    <li><strong>Crop disease detection:</strong> Drone camera + AI identifies diseases early</li>
+    <li><strong>Weather integration:</strong> Connects to weather APIs; delays irrigation if rain predicted</li>
+    <li><strong>Precision fertilization:</strong> pH/nutrient sensors guide targeted fertilizer application</li>
+    <li><strong>Yield prediction:</strong> ML models predict harvest based on historical and current data</li>
+  </ul>
+
+  <h4>✅ Benefits</h4>
+  <ul>
+    <li>Water usage reduced by 30–50% through precision irrigation</li>
+    <li>Early disease detection reduces crop losses</li>
+    <li>Increased yield through optimal conditions</li>
+    <li>Remote monitoring saves farmer travel time</li>
+  </ul>
+</div>
+</div>
+
+<!-- Air Pollution -->
+<div class="qtab-content" data-qtab="q7-3">
+<div class="answer-block">
+  <h3>Air Pollution Monitoring using IoT <span class="badge badge-hp">★★ 3/5 Papers</span> <span class="mark-tag">[9M]</span></h3>
+
+  <h4>📌 Introduction</h4>
+  <p>IoT-based Air Pollution Monitoring deploys sensor networks across cities/industrial areas to continuously measure air quality parameters and provide real-time AQI (Air Quality Index) data to authorities and citizens.</p>
+
+  <h4>Sensors Used</h4>
+  <table>
+    <tr><th>Gas/Parameter</th><th>Sensor</th><th>Threshold</th></tr>
+    <tr><td>CO (Carbon Monoxide)</td><td>MQ-7</td><td>>9 ppm (dangerous)</td></tr>
+    <tr><td>CO2</td><td>MQ-135</td><td>>1000 ppm (poor ventilation)</td></tr>
+    <tr><td>NO2 (Nitrogen Dioxide)</td><td>MiCS-2714</td><td>>0.1 ppm</td></tr>
+    <tr><td>PM2.5 / PM10 (Dust)</td><td>GP2Y1010AU0F, PMS5003</td><td>>35 μg/m³ (unhealthy)</td></tr>
+    <tr><td>Temperature/Humidity</td><td>DHT22</td><td>Context for AQI</td></tr>
+    <tr><td>O3 (Ozone)</td><td>MQ-131</td><td>>0.07 ppm</td></tr>
+  </table>
+
+  <h4>⚙️ System Flow</h4>
+  <ol>
+    <li>Multiple sensor nodes deployed at strategic locations (traffic junctions, industrial zones)</li>
+    <li>Nodes collect gas levels at regular intervals (every 5 minutes)</li>
+    <li>Data sent via LoRa/NB-IoT/WiFi to central server</li>
+    <li>AQI calculated and displayed on web portal and mobile app</li>
+    <li>Alerts sent to authorities when AQI exceeds dangerous thresholds</li>
+    <li>Historical data analyzed to identify pollution patterns and sources</li>
+  </ol>
+
+  <h4>✅ Applications</h4>
+  <ul>
+    <li>City-wide AQI mapping (heat maps)</li>
+    <li>Industrial emission compliance monitoring</li>
+    <li>School/hospital air quality management</li>
+    <li>Alert citizens with health advisories</li>
+  </ul>
+</div>
+</div>
+
+<!-- Smart Cities -->
+<div class="qtab-content" data-qtab="q7-4">
+<div class="answer-block">
+  <h3>IoT for Smart Cities <span class="badge badge-hp">★★ 3/5 Papers</span> <span class="mark-tag">[9M]</span></h3>
+
+  <h4>📌 Citizens' Expectations from Smart Cities</h4>
+  <ul>
+    <li>Efficient public transportation and traffic management</li>
+    <li>Reliable and renewable energy supply</li>
+    <li>Clean water supply and waste management</li>
+    <li>Public safety and security (smart surveillance)</li>
+    <li>Transparent and digital government services</li>
+    <li>Green spaces and pollution-free environment</li>
+  </ul>
+
+  <h4>🏙️ Key IoT Use Cases in Smart Cities</h4>
+  <table>
+    <tr><th>Domain</th><th>IoT Application</th><th>Benefit</th></tr>
+    <tr><td>Traffic</td><td>Adaptive traffic signals, congestion monitoring</td><td>Reduce commute time by 20%</td></tr>
+    <tr><td>Parking</td><td>Smart parking sensors + mobile app guidance</td><td>Reduce parking search time by 30%</td></tr>
+    <tr><td>Waste</td><td>Smart bins with fill-level sensors</td><td>Optimize collection routes; reduce costs</td></tr>
+    <tr><td>Street Lighting</td><td>Motion-activated, dimming smart lights</td><td>60% energy savings</td></tr>
+    <tr><td>Water</td><td>Smart meters, leak detection sensors</td><td>Reduce water wastage by 15%</td></tr>
+    <tr><td>Safety</td><td>AI surveillance cameras, emergency SOS</td><td>Faster incident response</td></tr>
+  </table>
+
+  <h4>📌 Case Study: Smart Street Lighting System</h4>
+  <ul>
+    <li><strong>Sensors:</strong> LDR (light), PIR (motion), power consumption sensors</li>
+    <li><strong>Control:</strong> Microcontroller + relay module per pole</li>
+    <li><strong>Automation:</strong> Auto ON at sunset (LDR); 30% brightness when no motion; 100% when motion detected</li>
+    <li><strong>Connectivity:</strong> ZigBee mesh network between poles + 4G backhaul to control center</li>
+    <li><strong>Dashboard:</strong> City managers view all lights; faults auto-reported; remote control</li>
+    <li><strong>Result:</strong> 60% energy savings; 40% maintenance cost reduction</li>
+  </ul>
+</div>
+</div>
+
+<!-- Wearable Tech -->
+<div class="qtab-content" data-qtab="q7-5">
+<div class="answer-block">
+  <h3>Wearable Technology — Modern Trends <span class="badge badge-vhp">★★★ 4/5 Papers</span> <span class="mark-tag">[9M]</span></h3>
+
+  <h4>📌 Definition</h4>
+  <p>Wearable technology refers to electronic devices that can be worn on the body, often as accessories or clothing, that incorporate sensors, connectivity, and computing capabilities to collect and transmit data about the wearer or environment.</p>
+
+  <h4>📱 Modern Trends in Wearable Technology</h4>
+  <table>
+    <tr><th>#</th><th>Trend</th><th>Description</th><th>Example</th></tr>
+    <tr><td>1</td><td><strong>Smartwatches</strong></td><td>Multi-sensor wrist devices with health monitoring, notifications, payments</td><td>Apple Watch, Samsung Galaxy Watch</td></tr>
+    <tr><td>2</td><td><strong>Fitness Trackers</strong></td><td>Track steps, heart rate, sleep, calories; long battery life</td><td>Fitbit, Garmin, Mi Band</td></tr>
+    <tr><td>3</td><td><strong>Smart Glasses / AR</strong></td><td>Augmented reality overlay; heads-up display; navigation</td><td>Google Glass, Microsoft HoloLens</td></tr>
+    <tr><td>4</td><td><strong>Smart Clothing</strong></td><td>Fabric with embedded sensors monitoring muscle activity, posture, temperature</td><td>Hexoskin Smart Shirt</td></tr>
+    <tr><td>5</td><td><strong>Medical Wearables</strong></td><td>Continuous glucose monitoring; ECG patches; drug delivery</td><td>Abbott FreeStyle Libre, AliveCor KardiaMobile</td></tr>
+    <tr><td>6</td><td><strong>Smart Earbuds</strong></td><td>Biometric sensors (heart rate, temperature); health coaching</td><td>Jabra Enhance, Apple AirPods Pro</td></tr>
+    <tr><td>7</td><td><strong>Neural Interfaces</strong></td><td>Brain-computer interfaces; control devices with thoughts</td><td>Neuralink (Musk), Meta's EEG headsets</td></tr>
+    <tr><td>8</td><td><strong>Smart Patches</strong></td><td>Stick-on biosensors monitoring sweat composition, UV exposure</td><td>L'Oréal UV Sense, Profusa implantable sensors</td></tr>
+  </table>
+
+  <h4>🏙️ Wearables Partnering with Smart Cities</h4>
+  <ul>
+    <li><strong>Elderly care:</strong> Fall detection wearables connected to city emergency response</li>
+    <li><strong>Crowd management:</strong> Aggregate health data from wearables for public health insights</li>
+    <li><strong>Environmental health:</strong> Citizens wear pollution sensors; crowd-sourced AQI mapping</li>
+    <li><strong>Smart payments:</strong> NFC-enabled wearables for public transport payment</li>
+    <li><strong>Worker safety:</strong> Industrial IoT wearables monitor worker vital signs in hazardous zones</li>
+    <li><strong>Smart traffic:</strong> Cyclist helmets with GPS and indicators improve road safety</li>
+  </ul>
+
+  <div class="trick-box">
+    <h4>🧠 Memory Trick: Wearable Categories "SAFE MEN"</h4>
+    <p>S-martwatch | A-R glasses | F-itness bands | E-arbuds | M-edical patches | E-mbedded clothing | N-eural interfaces</p>
+  </div>
+</div>
+</div>
+
+<!-- Greenhouse -->
+<div class="qtab-content" data-qtab="q7-6">
+<div class="answer-block">
+  <h3>Greenhouse Monitoring using IoT <span class="badge badge-hp">★★ 3/5 Papers</span> <span class="mark-tag">[9M]</span></h3>
+
+  <h4>📌 Introduction</h4>
+  <p>IoT-based Greenhouse Monitoring automates the control of environmental parameters inside greenhouses (temperature, humidity, CO2, light) to create optimal growing conditions and maximize crop yield year-round.</p>
+
+  <h4>🌿 Sensors & Actuators Used</h4>
+  <table>
+    <tr><th>Sensor/Actuator</th><th>Parameter</th><th>Purpose</th></tr>
+    <tr><td>DHT22 / SHT31</td><td>Temperature & Humidity</td><td>Trigger ventilation or misting</td></tr>
+    <tr><td>MH-Z19B CO2 Sensor</td><td>CO2 concentration</td><td>Optimize photosynthesis (target: 800–1200 ppm)</td></tr>
+    <tr><td>BH1750 Light Sensor</td><td>Light intensity (Lux)</td><td>Control grow lights</td></tr>
+    <tr><td>Soil Moisture Sensor</td><td>Soil water content</td><td>Trigger drip irrigation</td></tr>
+    <tr><td>Exhaust Fan</td><td>Actuator</td><td>Control humidity and temperature</td></tr>
+    <tr><td>Heater / Cooler</td><td>Actuator</td><td>Maintain temperature in winter/summer</td></tr>
+    <tr><td>Grow LED Lights</td><td>Actuator</td><td>Supplement sunlight for 18h photoperiod</td></tr>
+  </table>
+
+  <h4>⚙️ Automation Rules Example</h4>
+  <ul>
+    <li>If temperature > 30°C → Turn ON exhaust fan + misting</li>
+    <li>If soil moisture < 30% → Activate drip irrigation for 10 minutes</li>
+    <li>If CO2 < 400 ppm → Inject CO2 from tank</li>
+    <li>If light < 500 lux → Turn ON LED grow lights</li>
+    <li>All data logged to cloud every 5 minutes; dashboard shows real-time graphs</li>
+  </ul>
+
+  <h4>✅ Benefits</h4>
+  <ul>
+    <li>Year-round crop production regardless of external weather</li>
+    <li>50% reduction in water usage vs traditional farming</li>
+    <li>No human error in maintaining optimal conditions</li>
+    <li>Early pest/disease detection through camera + ML</li>
+  </ul>
+</div>
+</div>
+
+<!-- Smart Car Parking -->
+<div class="qtab-content" data-qtab="q7-7">
+<div class="answer-block">
+  <h3>Smart Car Parking System using IoT <span class="badge badge-hp">★★ 3/5 Papers</span> <span class="mark-tag">[9M]</span></h3>
+
+  <h4>📌 Introduction</h4>
+  <p>IoT-based Smart Parking uses sensors to detect vehicle presence in each parking slot and communicates availability in real-time to drivers via mobile apps, reducing search time and traffic congestion.</p>
+
+  <h4>🚗 Components</h4>
+  <table>
+    <tr><th>Component</th><th>Role</th></tr>
+    <tr><td>IR Sensor / Ultrasonic Sensor</td><td>Detect if parking slot is occupied</td></tr>
+    <tr><td>RFID Card Reader</td><td>Identify authorized vehicles for entry/exit</td></tr>
+    <tr><td>Servo Motor / Barrier Gate</td><td>Automatic opening/closing of entry gate</td></tr>
+    <tr><td>LED Indicators (R/G)</td><td>Red = Occupied, Green = Available on each slot</td></tr>
+    <tr><td>Raspberry Pi / Arduino Mega</td><td>Central controller managing all slots</td></tr>
+    <tr><td>WiFi Module (ESP8266)</td><td>Send data to cloud; update availability</td></tr>
+    <tr><td>Mobile App / Web Dashboard</td><td>Show real-time parking map; navigation</td></tr>
+    <tr><td>Payment Gateway</td><td>Automated parking fee calculation and payment</td></tr>
+  </table>
+
+  <h4>⚙️ Working Process</h4>
+  <ol>
+    <li>Vehicle arrives: RFID/ANPR camera reads number plate</li>
+    <li>System checks slot availability in database</li>
+    <li>If available: barrier opens; driver guided to nearest slot via app</li>
+    <li>IR sensor in slot detects vehicle → slot status changed to Occupied</li>
+    <li>Timer starts for fee calculation</li>
+    <li>On exit: RFID read again → fee calculated → payment collected → barrier opens</li>
+    <li>Slot status updated to Available in real-time</li>
+  </ol>
+
+  <h4>✅ Benefits</h4>
+  <ul>
+    <li>30% reduction in parking search time</li>
+    <li>Reduces traffic congestion by 15–20%</li>
+    <li>Cashless automated payment</li>
+    <li>Revenue optimization through dynamic pricing</li>
+    <li>Data analytics on peak usage patterns</li>
+  </ul>
+</div>
+</div>
+
+<!-- Industrial Standards -->
+<div class="qtab-content" data-qtab="q7-8">
+<div class="answer-block">
+  <h3>Industrial Standards in IoT <span class="badge badge-hp">★★ 2/5 Papers</span> <span class="mark-tag">[9M]</span></h3>
+
+  <h4>📌 Why IoT Standards Matter</h4>
+  <p>IoT standards ensure interoperability (devices from different manufacturers can communicate), security, and reliability across the IoT ecosystem. Without standards, devices from different vendors cannot work together.</p>
+
+  <h4>📋 Key IoT Industrial Standards</h4>
+  <table>
+    <tr><th>Standard</th><th>Organization</th><th>Purpose</th></tr>
+    <tr><td><strong>IEEE 802.15.4</strong></td><td>IEEE</td><td>Physical/MAC layer for low-power wireless (ZigBee, 6LoWPAN foundation)</td></tr>
+    <tr><td><strong>IEEE 802.11 (WiFi)</strong></td><td>IEEE</td><td>Wireless LAN standard; backbone for home/office IoT</td></tr>
+    <tr><td><strong>MQTT (ISO/IEC 20922)</strong></td><td>OASIS / ISO</td><td>Lightweight publish/subscribe messaging for IoT devices</td></tr>
+    <tr><td><strong>CoAP (RFC 7252)</strong></td><td>IETF</td><td>Constrained Application Protocol for resource-limited IoT nodes</td></tr>
+    <tr><td><strong>OPC-UA</strong></td><td>OPC Foundation</td><td>Industrial automation data exchange; Industry 4.0</td></tr>
+    <tr><td><strong>Matter</strong></td><td>CSA (Connectivity Standards Alliance)</td><td>Unified smart home standard (Apple, Google, Amazon backed)</td></tr>
+    <tr><td><strong>LoRaWAN</strong></td><td>LoRa Alliance</td><td>Long-range low-power WAN protocol for rural IoT</td></tr>
+    <tr><td><strong>IEC 62443</strong></td><td>IEC</td><td>Industrial cybersecurity standard for OT/SCADA systems</td></tr>
+    <tr><td><strong>ISO/IEC 30141</strong></td><td>ISO/IEC JTC1</td><td>IoT Reference Architecture standard</td></tr>
+    <tr><td><strong>ETSI EN 303 645</strong></td><td>ETSI</td><td>Cybersecurity standard for consumer IoT devices</td></tr>
+  </table>
+
+  <h4>🔗 Communication Protocol Standards Comparison</h4>
+  <table>
+    <tr><th>Protocol</th><th>Range</th><th>Power</th><th>Use Case</th></tr>
+    <tr><td>ZigBee (IEEE 802.15.4)</td><td>10–100m</td><td>Very Low</td><td>Smart home mesh networks</td></tr>
+    <tr><td>Bluetooth LE (BLE)</td><td>10–50m</td><td>Very Low</td><td>Wearables, beacons</td></tr>
+    <tr><td>WiFi (IEEE 802.11)</td><td>50–100m</td><td>Medium–High</td><td>Video cameras, smart appliances</td></tr>
+    <tr><td>LoRaWAN</td><td>5–15 km</td><td>Very Low</td><td>Agricultural, city-wide sensors</td></tr>
+    <tr><td>NB-IoT</td><td>Cellular</td><td>Low</td><td>Smart meters, asset tracking</td></tr>
+  </table>
+</div>
+</div>
+</div>
+
+<!-- ========== LAST DAY REVISION ========== -->
+<div id="page-revision" class="page">
+<div class="page-hero">
+  <h1>🎯 Last-Day Revision List</h1>
+  <p>Top 20 Most Important Questions for Maximum Exam Score</p>
+</div>
+
+<div class="highlight-box amber">
+  <strong>⚡ Strategy:</strong> Focus on ★★★ questions first. Each carries 6–9 marks. Mastering these 20 questions covers approximately 85% of the exam.
+</div>
+
+<div class="card">
+  <div class="card-header">🔥 Top 20 Most Important Questions</div>
+  <div class="rev-item"><div class="rev-num">1</div><div><strong>WSN Architecture</strong> — Draw diagram, explain components (Sensor Node → Gateway → Base Station → Cloud), features, challenges. <span class="stars">★★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">2</div><div><strong>Cloud Computing Architecture</strong> — 3-tier diagram (Client → Service → Infrastructure), 5 NIST characteristics, deployment models. <span class="stars">★★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">3</div><div><strong>IaaS vs PaaS vs SaaS</strong> — Definitions, what each layer provides, comparison table (at least 6 parameters), examples. <span class="stars">★★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">4</div><div><strong>PIR Sensor + Arduino Program</strong> — Working principle, pin diagram (PIR→D2, Buzzer→D7), complete Arduino code with comments. <span class="stars">★★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">5</div><div><strong>Ultrasonic Sensor + Raspberry Pi Program</strong> — Working (echo pulse), voltage divider circuit, Python code for distance calculation. <span class="stars">★★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">6</div><div><strong>Raspberry Pi Features + LED Program</strong> — 8+ features (RPi4 specs), GPIO diagram for 4 LEDs with 220Ω resistors, Python blink code. <span class="stars">★★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">7</div><div><strong>Big Data — 5 V's + Components</strong> — Volume, Velocity, Variety, Veracity, Value with examples; 6 components: Ingestion→Storage→Processing→Analytics→Visualization→Management. <span class="stars">★★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">8</div><div><strong>Hadoop Architecture</strong> — NameNode, DataNode, YARN Resource Manager, NodeManager; MapReduce concept; 5 features; advantages and disadvantages. <span class="stars">★★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">9</div><div><strong>Smart Home Automation</strong> — Architecture diagram, sensors list (temp, motion, gas, light), hub, cloud, mobile app; working in steps; benefits. <span class="stars">★★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">10</div><div><strong>Wearable Technology</strong> — Definition, 8 modern trends (smartwatch, AR glasses, smart clothing, medical wearables, neural interfaces…), role in smart cities. <span class="stars">★★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">11</div><div><strong>Smart Agriculture</strong> — Sensors (soil moisture, pH, temp, light, rain), gateway, cloud, actuators (pump, fan), automation rules, benefits. <span class="stars">★★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">12</div><div><strong>Data Analytics Types</strong> — Descriptive, Diagnostic, Predictive, Prescriptive — definitions, questions answered, techniques, IoT examples. <span class="stars">★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">13</div><div><strong>AWS IoT vs Azure IoT</strong> — Key services (IoT Core/Hub, Greengrass/Edge, Analytics, Lambda), comparison table. <span class="stars">★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">14</div><div><strong>Cloud Computing Challenges</strong> — At least 7 challenges: Security, Downtime, Vendor lock-in, Limited control, Bandwidth, Compliance, Performance. <span class="stars">★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">15</div><div><strong>Smart Healthcare IoT</strong> — Sensors (pulse oximeter, ECG, BP, glucose), 5-layer architecture, benefits, remote monitoring. <span class="stars">★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">16</div><div><strong>Smart Cities IoT Use Cases</strong> — Citizens' expectations, 6+ use cases (traffic, parking, waste, lighting, water, safety), case study of smart street lighting. <span class="stars">★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">17</div><div><strong>Greenhouse Monitoring</strong> — Sensors (DHT22, CO2, light, soil), actuators (fan, heater, grow lights), automation rules, benefits. <span class="stars">★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">18</div><div><strong>Air Pollution Monitoring</strong> — Gas sensors (MQ-7, MQ-135, PMS5003), AQI calculation, city-wide deployment, alert system. <span class="stars">★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">19</div><div><strong>Smart Car Parking</strong> — IR sensors per slot, RFID gates, LED indicators, cloud database, mobile app guidance, payment gateway. <span class="stars">★★</span></div></div>
+  <div class="rev-item"><div class="rev-num">20</div><div><strong>Industrial Standards in IoT</strong> — IEEE 802.15.4, MQTT, CoAP, OPC-UA, Matter, LoRaWAN, IEC 62443, comparison table of protocols. <span class="stars">★★</span></div></div>
+</div>
+
+<div class="sec-header"><div class="sec-icon" style="background:#059669">⚡</div><h2>Quick Formula & Code Reference</h2></div>
+<div class="grid2">
+  <div class="card">
+    <div class="card-header">📐 Key Formulas</div>
+    <ul style="font-size:.88rem">
+      <li><strong>Ultrasonic Distance:</strong> d = (t × 34300) / 2 (cm)</li>
+      <li><strong>LM35 Temperature:</strong> T = (ADC × 5000/1024) / 10 °C</li>
+      <li><strong>HDFS Replication:</strong> Default = 3 copies</li>
+      <li><strong>Big Data Volume:</strong> KB → MB → GB → TB → PB → EB → ZB</li>
+      <li><strong>PWM Duty Cycle:</strong> analogWrite(pin, 128) = 50% (128/255)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-header">🧠 Quick Mnemonics</div>
+    <ul style="font-size:.88rem">
+      <li><strong>Big Data 5V:</strong> "Very Valuable Data Varieties Verified"</li>
+      <li><strong>IaaS/PaaS/SaaS:</strong> "I Pay Someone"</li>
+      <li><strong>WSN Features:</strong> "SAFE ME"</li>
+      <li><strong>Cloud NIST:</strong> "On Board Resources Rapidly Measured" (On-demand, Broad, Resource pooling, Rapid elasticity, Measured)</li>
+      <li><strong>Analytics:</strong> "Doctors Diagnose, Predict, Prescribe"</li>
+    </ul>
+  </div>
+</div>
+
+<div class="highlight-box green">
+  <strong>🎓 Exam Strategy:</strong>
+  <ul style="margin-top:.4rem">
+    <li>Always draw the architecture diagram FIRST — 2–3 marks secured immediately</li>
+    <li>Include a comparison table wherever possible — examiners love structured answers</li>
+    <li>Write the program with comments — shows understanding beyond memorization</li>
+    <li>Use headings (Definition, Diagram, Working, Advantages, Applications) — easy marks</li>
+    <li>End each answer with "Applications" or "Real-World Example" for full marks</li>
+  </ul>
+</div>
+</div>
+
+<script>
+// Page navigation
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// Q tab navigation
+function showQTab(section, idx){
+  const page = document.getElementById('page-'+section);
+  if(!page) return;
+  page.querySelectorAll('.qtab-btn').forEach((b,i)=>{
+    b.classList.toggle('active', i===idx);
+  });
+  page.querySelectorAll('.qtab-content').forEach(c=>c.classList.remove('active'));
+  const contents = page.querySelectorAll('.qtab-content');
+  if(contents[idx]) contents[idx].classList.add('active');
+}
+
+// Search
+function doSearch(q){
+  if(!q.trim()){clearSearch();return;}
+  q = q.trim().toLowerCase();
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-home').classList.add('active');
+  
+  // Highlight matching text across all pages
+  document.querySelectorAll('.page').forEach(p=>p.classList.add('active'));
+  
+  // Simple highlight approach
+  clearHighlights();
+  if(!q) return;
+  
+  const walk = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  let node;
+  while(node = walk.nextNode()){
+    if(node.parentNode.nodeName !== 'SCRIPT' && node.parentNode.nodeName !== 'STYLE'){
+      nodes.push(node);
+    }
+  }
+  
+  let found = false;
+  nodes.forEach(n=>{
+    const idx = n.textContent.toLowerCase().indexOf(q);
+    if(idx >= 0){
+      const span = document.createElement('span');
+      const before = document.createTextNode(n.textContent.substring(0,idx));
+      const match = document.createElement('mark');
+      match.className = 'search-hl';
+      match.textContent = n.textContent.substring(idx, idx+q.length);
+      const after = document.createTextNode(n.textContent.substring(idx+q.length));
+      span.appendChild(before);
+      span.appendChild(match);
+      span.appendChild(after);
+      n.parentNode.replaceChild(span, n);
+      if(!found){match.scrollIntoView({behavior:'smooth',block:'center'});found=true;}
+    }
+  });
+  
+  if(!found) alert('No results found for: "'+q+'"');
+}
+
+function clearHighlights(){
+  document.querySelectorAll('.search-hl').forEach(el=>{
+    const parent = el.parentNode;
+    if(parent){
+      parent.replaceChild(document.createTextNode(el.textContent), el);
+      parent.normalize();
+    }
+  });
+}
+
+function clearSearch(){
+  document.getElementById('searchInput').value='';
+  clearHighlights();
+  // Show only home
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-home').classList.add('active');
+}
+</script>
+</body>
+</html>
